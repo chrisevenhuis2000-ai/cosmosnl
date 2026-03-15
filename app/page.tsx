@@ -7,6 +7,7 @@ interface APODData {
   title: string
   explanation: string
   url: string
+  hdurl?: string
   media_type: string
   copyright?: string
   date: string
@@ -210,7 +211,12 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
       {/* Background */}
       <div style={{ position: 'absolute', inset: 0, background: '#0c0e18' }}>
         {apod?.media_type === 'image' && (
-          <img src={apod.url} alt={apod.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, filter: 'brightness(0.85) saturate(1.2)' }} />
+          <img
+            src={apod.hdurl || apod.url}
+            alt={apod.title}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, filter: 'brightness(0.85) saturate(1.2)' }}
+            crossOrigin="anonymous"
+          />
         )}
         {!apod && (
           <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg,#0c0e18 0%,#111a2a 50%,#0a1020 100%)' }} />
