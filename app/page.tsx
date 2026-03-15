@@ -140,7 +140,11 @@ function Starfield() {
 
 // ── Header ─────────────────────────────────────────────────────────────────
 function Header() {
-  const date = new Date().toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  // ✅ FIX: date via useState zodat server en client hetzelfde renderen (hydration fix)
+  const [date, setDate] = useState('')
+  useEffect(() => {
+    setDate(new Date().toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))
+  }, [])
   return (
     <>
       {/* Topbar */}
@@ -227,7 +231,7 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
           {apod?.title || 'Elke dag een nieuw venster op het heelal'}
         </h1>
         <p style={{ fontSize: '1rem', color: '#7a86a8', lineHeight: 1.7, maxWidth: 540, marginBottom: 28 }}>
-          {apod ? apod.explanation.slice(0, 180) + '…' : 'NASA publiceert dagelijks de mooiste astronomische foto — wij leggen het uit op jouw niveau.'}
+          {apod?.explanation ? apod.explanation.slice(0, 180) + '…' : 'NASA publiceert dagelijks de mooiste astronomische foto — wij leggen het uit op jouw niveau.'}
         </p>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           {/* ✅ FIX: APOD aanwezig → NASA website (nieuw tabblad); geen APOD → featured artikel */}
@@ -438,7 +442,7 @@ export default function HomePage() {
                 <div style={{ padding: '14px 18px' }}>
                   <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.55rem', letterSpacing: '0.1em', color: '#d4a84b', marginBottom: 5 }}>{new Date(apod.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })}</div>
                   <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '0.95rem', fontWeight: 600, color: '#f4f6ff', marginBottom: 6 }}>{apod.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#7a86a8', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{apod.explanation}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#7a86a8', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{apod.explanation ?? ''}</div>
                 </div>
               </div>
             )}
