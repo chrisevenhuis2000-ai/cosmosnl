@@ -193,8 +193,14 @@ function Header() {
 }
 
 // ── Hero ───────────────────────────────────────────────────────────────────
-// ✅ FIX: featuredSlug als prop zodat de knop dynamisch is
+// ✅ FIX: als APOD beschikbaar is, linkt de knop naar NASA APOD; anders naar featured artikel
 function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: string }) {
+  // Als APOD geladen is → open NASA APOD pagina in nieuw tabblad
+  // Anders → ga naar het featured artikel op deze site
+  const heroHref   = apod ? 'https://apod.nasa.gov/apod/astropix.html' : `/nieuws/${featuredSlug}`
+  const heroTarget = apod ? '_blank' : '_self'
+  const heroLabel  = apod ? 'Bekijk op NASA →' : 'Lees het artikel →'
+
   return (
     <section style={{ position: 'relative', zIndex: 1, height: '88vh', minHeight: 520, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
       {/* Background */}
@@ -224,9 +230,13 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
           {apod ? apod.explanation.slice(0, 180) + '…' : 'NASA publiceert dagelijks de mooiste astronomische foto — wij leggen het uit op jouw niveau.'}
         </p>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          {/* ✅ FIX: gebruikt nu de dynamische featuredSlug */}
-          <a href={`/nieuws/${featuredSlug}`} style={{ background: '#f4f6ff', color: '#07080d', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))' }}>
-            Lees het artikel →
+          {/* ✅ FIX: APOD aanwezig → NASA website (nieuw tabblad); geen APOD → featured artikel */}
+          <a
+            href={heroHref}
+            target={heroTarget}
+            rel="noopener noreferrer"
+            style={{ background: '#f4f6ff', color: '#07080d', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))' }}>
+            {heroLabel}
           </a>
           <a href="#nieuws" style={{ fontSize: '0.7rem', color: '#7a86a8', textDecoration: 'none' }}>Alle nieuws →</a>
         </div>
