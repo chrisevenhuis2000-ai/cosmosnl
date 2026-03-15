@@ -153,7 +153,6 @@ function Header() {
                 <span style={{ color: '#3dcfdf', marginRight: 8 }}>●</span>{item}
               </span>
             ))}
-            {/* Duplicate for seamless loop */}
             {['James Webb detecteert DMS op K2-18b', 'SpaceX Starship IFT-8 gepland Q2 2026', 'Vera Rubin Observatory start eerste survey', 'ESA Hera nadert asteroïde Dimorphos'].map((item, i) => (
               <span key={`b${i}`} style={{ display: 'inline-block', marginRight: 48, fontFamily: 'DM Mono, monospace', fontSize: '0.58rem', color: '#4a5278', letterSpacing: '0.06em' }}>
                 <span style={{ color: '#3dcfdf', marginRight: 8 }}>●</span>{item}
@@ -181,7 +180,8 @@ function Header() {
                 onMouseEnter={e => (e.currentTarget.style.color = '#dde2f0')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#7a86a8')}>{item}</a>
             ))}
-            <a href="/nieuws/james-webb-k2-18b-biosignatuur" style={{ color: '#d4a84b', textDecoration: 'none' }}>AI Tools</a>
+            {/* ✅ FIX: was hardcoded naar james-webb artikel */}
+            <a href="/tools/herschrijver" style={{ color: '#d4a84b', textDecoration: 'none' }}>AI Tools</a>
           </nav>
           <button style={{ background: '#d4a84b', color: '#07080d', fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '8px 20px', border: 'none', cursor: 'pointer', clipPath: 'polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))' }}>
             Nieuwsbrief
@@ -193,7 +193,8 @@ function Header() {
 }
 
 // ── Hero ───────────────────────────────────────────────────────────────────
-function Hero({ apod }: { apod: APODData | null }) {
+// ✅ FIX: featuredSlug als prop zodat de knop dynamisch is
+function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: string }) {
   return (
     <section style={{ position: 'relative', zIndex: 1, height: '88vh', minHeight: 520, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
       {/* Background */}
@@ -223,7 +224,8 @@ function Hero({ apod }: { apod: APODData | null }) {
           {apod ? apod.explanation.slice(0, 180) + '…' : 'NASA publiceert dagelijks de mooiste astronomische foto — wij leggen het uit op jouw niveau.'}
         </p>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-          <a href="/nieuws/james-webb-k2-18b-biosignatuur" style={{ background: '#f4f6ff', color: '#07080d', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))' }}>
+          {/* ✅ FIX: gebruikt nu de dynamische featuredSlug */}
+          <a href={`/nieuws/${featuredSlug}`} style={{ background: '#f4f6ff', color: '#07080d', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', clipPath: 'polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))' }}>
             Lees het artikel →
           </a>
           <a href="#nieuws" style={{ fontSize: '0.7rem', color: '#7a86a8', textDecoration: 'none' }}>Alle nieuws →</a>
@@ -322,6 +324,9 @@ export default function HomePage() {
   const [apod, setApod] = useState<APODData | null>(null)
   const [iss,  setIss]  = useState<ISSData | null>(null)
 
+  // ✅ FIX: bepaal de featured article één keer hier, gebruik de slug overal
+  const featuredArticle = ARTICLES.find(a => a.featured) ?? ARTICLES[0]
+
   // Fetch APOD
   useEffect(() => {
     fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
@@ -355,7 +360,8 @@ export default function HomePage() {
 
       <Starfield />
       <Header />
-      <Hero apod={apod} />
+      {/* ✅ FIX: geeft featuredSlug mee aan Hero */}
+      <Hero apod={apod} featuredSlug={featuredArticle.slug} />
 
       {/* Topics strip */}
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '28px 40px 0' }}>
@@ -433,7 +439,8 @@ export default function HomePage() {
               <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#d4a84b', marginBottom: 8 }}>✦ AI Feature</div>
               <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.15rem', fontWeight: 700, color: '#f4f6ff', marginBottom: 8, lineHeight: 1.2 }}>Lees elk artikel op jouw niveau</div>
               <p style={{ fontSize: '0.76rem', color: '#7a86a8', lineHeight: 1.6, marginBottom: 14 }}>Kies Beginner, Amateur of Pro — onze AI herschrijft het artikel live voor jou.</p>
-              <a href="/nieuws/james-webb-k2-18b-biosignatuur" style={{ display: 'block', background: '#d4a84b', color: '#07080d', fontFamily: 'DM Mono, monospace', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '10px 20px', textAlign: 'center', textDecoration: 'none' }}>
+              {/* ✅ FIX: was hardcoded naar james-webb, nu naar featured artikel */}
+              <a href={`/nieuws/${featuredArticle.slug}`} style={{ display: 'block', background: '#d4a84b', color: '#07080d', fontFamily: 'DM Mono, monospace', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '10px 20px', textAlign: 'center', textDecoration: 'none' }}>
                 Probeer het nu →
               </a>
             </div>
@@ -451,7 +458,7 @@ export default function HomePage() {
           </div>
           {[
             { title: 'Onderwerpen', links: ['James Webb', 'Mars Exploratie', 'Zwarte Gaten', 'Sterrenkijken', 'Exoplaneten'] },
-            { title: 'Tools', links: ['AI Herschrijver', 'ISS Tracker', 'Sterrenkaart', 'Lanceringskalender'] },
+            { title: 'Tools', links: ['AI Herschrijver', 'ISS Tracker', 'Sterrenkaart', 'Lanceerkalender'] },
             { title: 'Over ons', links: ['Redactie', 'Nieuwsbrief', 'Contact', 'Privacy'] },
           ].map(col => (
             <div key={col.title}>
