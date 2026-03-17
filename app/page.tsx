@@ -433,7 +433,7 @@ export default function HomePage() {
       .catch(() => {})
   }, [])
 
-  const featuredArticle = articles.find((a: typeof FALLBACK_articles[0]) => a.featured) ?? articles[0]
+  const featuredArticle = articles.find((a: typeof FALLBACK_ARTICLES[0]) => a.featured) ?? articles[0]
 
   // Fetch APOD
   useEffect(() => {
