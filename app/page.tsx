@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface APODData {
@@ -212,7 +213,7 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
       <div style={{ position: 'absolute', inset: 0, background: '#0c0e18' }}>
         {apod?.media_type === 'image' && (
           <img
-            src={apod.hdurl || apod.url}
+            src={`https://images.weserv.nl/?url=${encodeURIComponent(apod.hdurl || apod.url)}`}
             alt={apod.title}
             style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, filter: 'brightness(0.85) saturate(1.2)' }}
            
@@ -448,7 +449,6 @@ export default function HomePage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
         * { margin:0; padding:0; box-sizing:border-box; }
         body { background:#07080d; color:#dde2f0; font-family:'Syne',sans-serif; overflow-x:hidden; }
         a { color:inherit; text-decoration:none; }
@@ -522,7 +522,7 @@ export default function HomePage() {
             {apod && (
               <div style={{ border: '1px solid #1c2035', background: '#111420', overflow: 'hidden' }}>
                 <div style={{ padding: '12px 18px', borderBottom: '1px solid #1c2035', fontFamily: 'DM Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7a86a8' }}>📸 NASA Foto van de Dag</div>
-                {apod.media_type === 'image' && <img src={apod.url} alt={apod.title} style={{ width: '100%', height: 170, objectFit: 'cover', filter: 'brightness(0.85)' }} />}
+                {apod.media_type === 'image' && <img src={`https://images.weserv.nl/?url=${encodeURIComponent(apod.url)}`} alt={apod.title} style={{ width: '100%', height: 170, objectFit: 'cover', filter: 'brightness(0.85)' }} />}
                 <div style={{ padding: '14px 18px' }}>
                   <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.55rem', letterSpacing: '0.1em', color: '#d4a84b', marginBottom: 5 }}>{new Date(apod.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })}</div>
                   <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '0.95rem', fontWeight: 600, color: '#f4f6ff', marginBottom: 6 }}>{apod.title}</div>
