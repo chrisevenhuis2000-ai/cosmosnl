@@ -301,7 +301,9 @@ function ArticleCard({ article, size = 'sm' }: { article: typeof ARTICLES[0]; si
   )
 }
 
-// ── ISS Widget ─────────────────────────────────────────────────────────────
+// ── ISS Widget met echte wereldkaart ──────────────────────────────────────
+// Vervang de bestaande ISSWidget functie in app/page.tsx met dit blok
+
 function ISSWidget({ iss }: { iss: ISSData | null }) {
   const px = iss ? ((iss.longitude + 180) / 360 * 100) : 50
   const py = iss ? ((90 - iss.latitude) / 180 * 100) : 50
@@ -316,9 +318,85 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
         <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.52rem', color: '#4a5278' }}>Realtime</span>
       </div>
 
-      {/* Map */}
-      <div style={{ height: 150, background: '#050810', position: 'relative', overflow: 'hidden', backgroundImage: 'linear-gradient(#1c2035 1px,transparent 1px),linear-gradient(90deg,#1c2035 1px,transparent 1px)', backgroundSize: '40px 40px' }}>
-        <div style={{ position: 'absolute', left: `${px}%`, top: `${py}%`, width: 12, height: 12, borderRadius: '50%', background: '#3ddf90', transform: 'translate(-50%,-50%)', boxShadow: '0 0 0 4px rgba(61,223,144,0.2),0 0 16px rgba(61,223,144,0.5)', transition: 'left 2s linear,top 2s linear', zIndex: 2 }} />
+      {/* Wereldkaart met SVG */}
+      <div style={{ height: 150, background: '#050810', position: 'relative', overflow: 'hidden' }}>
+        {/* SVG wereldkaart via Natural Earth / simpele projectie */}
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png"
+          alt="Wereldkaart"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.25,
+            filter: 'brightness(0.6) saturate(0) sepia(1) hue-rotate(190deg)',
+            position: 'absolute',
+            inset: 0,
+          }}
+        />
+
+        {/* Grid lijnen */}
+        <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.15 }} xmlns="http://www.w3.org/2000/svg">
+          {/* Breedtegraden */}
+          {[25, 50, 75].map(y => (
+            <line key={y} x1="0" y1={`${y}%`} x2="100%" y2={`${y}%`} stroke="#3dcfdf" strokeWidth="0.5" />
+          ))}
+          {/* Lengtegraden */}
+          {[16.6, 33.3, 50, 66.6, 83.3].map(x => (
+            <line key={x} x1={`${x}%`} y1="0" x2={`${x}%`} y2="100%" stroke="#3dcfdf" strokeWidth="0.5" />
+          ))}
+          {/* Evenaar */}
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#3dcfdf" strokeWidth="1" opacity="0.5" />
+        </svg>
+
+        {/* ISS orbit trail (simpel) */}
+        {iss && (
+          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} xmlns="http://www.w3.org/2000/svg">
+            <ellipse
+              cx={`${px}%`}
+              cy="50%"
+              rx="18%"
+              ry="28%"
+              fill="none"
+              stroke="#3ddf90"
+              strokeWidth="0.8"
+              strokeDasharray="3 4"
+              opacity="0.3"
+            />
+          </svg>
+        )}
+
+        {/* ISS groene dot */}
+        <div style={{
+          position: 'absolute',
+          left: `${px}%`,
+          top: `${py}%`,
+          width: 12,
+          height: 12,
+          borderRadius: '50%',
+          background: '#3ddf90',
+          transform: 'translate(-50%,-50%)',
+          boxShadow: '0 0 0 4px rgba(61,223,144,0.2), 0 0 16px rgba(61,223,144,0.6)',
+          transition: 'left 2s linear, top 2s linear',
+          zIndex: 2,
+        }} />
+
+        {/* ISS label */}
+        {iss && (
+          <div style={{
+            position: 'absolute',
+            left: `${Math.min(px + 2, 85)}%`,
+            top: `${Math.max(py - 12, 5)}%`,
+            fontFamily: 'DM Mono, monospace',
+            fontSize: '0.48rem',
+            color: '#3ddf90',
+            letterSpacing: '0.1em',
+            whiteSpace: 'nowrap',
+            zIndex: 3,
+          }}>
+            ISS ↗
+          </div>
+        )}
       </div>
 
       {/* Stats */}
@@ -327,7 +405,7 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
           { val: iss ? `${iss.latitude.toFixed(1)}°` : '—', lbl: 'Breedtegraad' },
           { val: iss ? `${iss.longitude.toFixed(1)}°` : '—', lbl: 'Lengtegraad' },
           { val: iss ? `${Math.round(iss.altitude)} km` : '408 km', lbl: 'Hoogte' },
-          { val: '27.6k km/h', lbl: 'Snelheid' },
+          { val: iss ? `${(iss.velocity / 1000).toFixed(1)}k km/h` : '27.6k km/h', lbl: 'Snelheid' },
         ].map((s, i) => (
           <div key={i} style={{ padding: '12px 18px', borderTop: '1px solid #1c2035', borderRight: i % 2 === 0 ? '1px solid #1c2035' : 'none' }}>
             <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 700, color: '#f4f6ff', lineHeight: 1 }}>{s.val}</div>
@@ -349,7 +427,7 @@ export default function HomePage() {
 
   // Fetch APOD
   useEffect(() => {
-    fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY || 'DEMO_KEY'}`)
       .then(r => r.json())
       .then(setApod)
       .catch(() => {})
