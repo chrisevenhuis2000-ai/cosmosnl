@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { LEVELS, type ReadingLevel } from '@/types'
+import GalaxyMap from './GalaxyMap'
 
 // ── Article data interface ─────────────────────────────────────────────────
 interface ArticleData {
@@ -349,6 +350,8 @@ export default function ArticleClient({ slug }: { slug: string }) {
         </div>
 
       </main>
+
+      <GalaxyMap currentSlug={slug} />
 
       {/* Footer */}
       <footer style={{ borderTop: '1px solid #1c2035', background: '#0c0e18', padding: '24px 40px', display: 'flex', justifyContent: 'space-between', fontFamily: 'DM Mono, monospace', fontSize: '0.56rem', color: '#2a3050' }}>
