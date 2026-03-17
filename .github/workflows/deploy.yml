@@ -9,19 +9,23 @@ jobs:
     steps:
       - name: 📦 Checkout code
         uses: actions/checkout@v4
+
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+
       - name: 📥 Dependencies installeren
         run: npm ci
+
       - name: 🔨 Statische build maken
         env:
           NEXT_PUBLIC_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
         run: npm run build
-      - name: 🔧 Maak index.html van elke artikel slug
+
+      - name: 🔧 Artikel slugs als index.html mappen
         run: |
           cd out/nieuws
           for f in *.html; do
@@ -29,16 +33,13 @@ jobs:
             mkdir -p "$slug"
             cp "$f" "$slug/index.html"
           done
-      - name: 🌐 Deployen naar Plesk via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+
+      - name: 🚀 Deploy via SSH/rsync naar Plesk
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          server:      ${{ secrets.FTP_HOST }}
-          username:    ${{ secrets.FTP_USERNAME }}
-          password:    ${{ secrets.FTP_PASSWORD }}
-          local-dir:   ./out/
-          server-dir:  /stargazing.crixium.net/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+          switches: -avzr --delete
+          path: out/
+          remote_path: /var/www/vhosts/gentlemanvillage.com/stargazing.crixium.net/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USERNAME }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
