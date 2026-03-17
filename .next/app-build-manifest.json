@@ -20,14 +20,14 @@
       "static/chunks/fd9d1056-87da80e0c187477b.js",
       "static/chunks/117-54ab7854be5ada76.js",
       "static/chunks/main-app-fa697feea54feb51.js",
-      "static/chunks/app/page-ca1dc2848d537a06.js"
+      "static/chunks/app/page-eb2103e8d92bd720.js"
     ],
     "/nieuws/[slug]/page": [
       "static/chunks/webpack-c8441f2d519541e3.js",
       "static/chunks/fd9d1056-87da80e0c187477b.js",
       "static/chunks/117-54ab7854be5ada76.js",
       "static/chunks/main-app-fa697feea54feb51.js",
-      "static/chunks/app/nieuws/[slug]/page-fa2293ccb14735cf.js"
+      "static/chunks/app/nieuws/[slug]/page-70ec5a92e5fd36d8.js"
     ]
   }
 }

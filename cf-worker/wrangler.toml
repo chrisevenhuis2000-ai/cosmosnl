@@ -1,0 +1,4 @@
+name = "cosmosnl-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+account_id = "81e3376cdf10af6f23d939f91c4d920c"

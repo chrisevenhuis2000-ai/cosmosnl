@@ -112,7 +112,7 @@ function useRewrite() {
 
     await Promise.all(paragraphs.map(async (para, idx) => {
       try {
-        const res = await fetch('https://api.anthropic.com/v1/messages', {
+        const res = await fetch('https://cosmosnl-proxy.chrisevenhuis2000.workers.dev', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
