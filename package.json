@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "fetch-articles": "node scripts/fetch-articles.js",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prebuild": "mkdir -p public/content/articles && cp content/articles/*.md public/content/articles/"
   },
   "dependencies": {
     "clsx": "^2.1.1",

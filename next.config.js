@@ -1,8 +1,9 @@
-// next.config.js
+cat > next.config.js << 'EOF'
 const nextConfig = {
   output: 'export',
   images: {
-    unoptimized: true, // ✅ nodig voor static export + externe images
+    unoptimized: true,
   },
 }
 module.exports = nextConfig
+EOF
