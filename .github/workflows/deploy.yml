@@ -35,7 +35,7 @@ jobs:
           username:    ${{ secrets.FTP_USERNAME }}
           password:    ${{ secrets.FTP_PASSWORD }}
           local-dir:   ./out/
-          server-dir:  /stargazing.crixium.net/
+          server-dir:  /var/www/vhosts/gentlemanvillage.com/stargazing.crixium.net/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
