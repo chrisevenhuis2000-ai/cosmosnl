@@ -136,7 +136,7 @@ function Starfield() {
     window.addEventListener('resize', onResize)
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
   }, [])
-  return <canvas id="starfield" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0 }} />
+  return <canvas id="starfield" suppressHydrationWarning style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0 }} />
 }
 
 // ── Header ─────────────────────────────────────────────────────────────────
@@ -150,7 +150,7 @@ function Header() {
     <>
       {/* Topbar */}
       <div style={{ position: 'relative', zIndex: 20, borderBottom: '1px solid #1c2035', display: 'flex', alignItems: 'center', padding: '0 40px', height: 44, gap: 20, background: 'rgba(7,8,13,0.95)', backdropFilter: 'blur(12px)' }}>
-        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.15em', color: '#4a5278', textTransform: 'uppercase' }}>{date}</span>
+        <span suppressHydrationWarning style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.15em', color: '#4a5278', textTransform: 'uppercase' }}>{date}</span>
         <div style={{ flex: 1, overflow: 'hidden' }}>
           <div style={{ display: 'inline-block', whiteSpace: 'nowrap', animation: 'ticker 40s linear infinite' }}>
             {['James Webb detecteert DMS op K2-18b', 'SpaceX Starship IFT-8 gepland Q2 2026', 'Vera Rubin Observatory start eerste survey', 'ESA Hera nadert asteroïde Dimorphos'].map((item, i) => (
@@ -181,7 +181,7 @@ function Header() {
           </div>
           <nav style={{ display: 'flex', gap: 28, flex: 1, justifyContent: 'center', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7a86a8' }}>
             {['Nieuws', 'Sterrenkijken', 'Missies', 'Educatie'].map(item => (
-              <a key={item} href="#" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}
+              <a key={item} href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#dde2f0')}
                 onMouseLeave={e => (e.currentTarget.style.color = '#7a86a8')}>{item}</a>
             ))}
@@ -215,7 +215,7 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
             src={apod.hdurl || apod.url}
             alt={apod.title}
             style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5, filter: 'brightness(0.85) saturate(1.2)' }}
-            crossOrigin="anonymous"
+           
           />
         )}
         {!apod && (
@@ -562,7 +562,7 @@ export default function HomePage() {
             <div key={col.title}>
               <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.58rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4a5278', marginBottom: 14 }}>{col.title}</div>
               {col.links.map(link => (
-                <div key={link} style={{ marginBottom: 8 }}><a href="#" style={{ fontSize: '0.8rem', color: '#7a86a8', textDecoration: 'none' }}>{link}</a></div>
+                <div key={link} style={{ marginBottom: 8 }}><a href="/" style={{ fontSize: '0.8rem', color: '#7a86a8', textDecoration: 'none' }}>{link}</a></div>
               ))}
             </div>
           ))}
