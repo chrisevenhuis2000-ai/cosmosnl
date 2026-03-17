@@ -1,4 +1,3 @@
-cat > next.config.js << 'EOF'
 const nextConfig = {
   output: 'export',
   images: {
@@ -6,4 +5,3 @@ const nextConfig = {
   },
 }
 module.exports = nextConfig
-EOF
