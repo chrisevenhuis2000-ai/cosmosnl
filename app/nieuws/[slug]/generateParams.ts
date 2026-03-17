@@ -1,13 +1,10 @@
-// Alle bekende slugs voor statische export
-export const KNOWN_SLUGS = [
-  'james-webb-k2-18b-biosignatuur',
-  'desi-donkere-energie',
-  'starship-mechazilla',
-  'perseverance-mars',
-  'komeet-c2026-a1',
-  'neutronenster-uitgelegd',
-]
+import fs from 'fs'
+import path from 'path'
 
-export function generateStaticParams() {
-  return KNOWN_SLUGS.map(slug => ({ slug }))
+export function getAllSlugs(): string[] {
+  const dir = path.join(process.cwd(), 'content', 'articles')
+  if (!fs.existsSync(dir)) return []
+  return fs.readdirSync(dir)
+    .filter(f => f.endsWith('.md'))
+    .map(f => f.replace('.md', ''))
 }

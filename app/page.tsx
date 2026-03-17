@@ -21,7 +21,8 @@ interface ISSData {
   velocity: number
 }
 
-const ARTICLES = [
+// ── Dynamische artikelen uit articles-index.json ──────────────────────────
+const FALLBACK_ARTICLES = [
   {
     slug: 'james-webb-k2-18b-biosignatuur',
     title: 'James Webb vindt mogelijke sporen van leven op K2-18b',
@@ -263,7 +264,7 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
 }
 
 // ── Article Card ───────────────────────────────────────────────────────────
-function ArticleCard({ article, size = 'sm' }: { article: typeof ARTICLES[0]; size?: 'lg' | 'sm' | 'xs' }) {
+function ArticleCard({ article, size = 'sm' }: { article: typeof FALLBACK_ARTICLES[0]; size?: 'lg' | 'sm' | 'xs' }) {
   const [hovered, setHovered] = useState(false)
   const imgHeight = size === 'lg' ? 320 : size === 'sm' ? 160 : 130
 
@@ -420,11 +421,19 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
 
 // ── Main Page ──────────────────────────────────────────────────────────────
 export default function HomePage() {
-  const [apod, setApod] = useState<APODData | null>(null)
-  const [iss,  setIss]  = useState<ISSData | null>(null)
+  const [apod,     setApod]     = useState<APODData | null>(null)
+  const [iss,      setIss]      = useState<ISSData | null>(null)
+  const [articles, setArticles] = useState(FALLBACK_ARTICLES)
 
-  // ✅ FIX: bepaal de featured article één keer hier, gebruik de slug overal
-  const featuredArticle = ARTICLES.find(a => a.featured) ?? ARTICLES[0]
+  // Laad artikelen dynamisch uit articles-index.json
+  useEffect(() => {
+    fetch('/content/articles-index.json')
+      .then(r => r.json())
+      .then(data => { if (Array.isArray(data) && data.length > 0) setArticles(data) })
+      .catch(() => {})
+  }, [])
+
+  const featuredArticle = articles.find((a: typeof FALLBACK_articles[0]) => a.featured) ?? articles[0]
 
   // Fetch APOD
   useEffect(() => {
@@ -483,12 +492,12 @@ export default function HomePage() {
 
         {/* Article grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 2, background: '#1c2035', border: '1px solid #1c2035', marginBottom: 64 }}>
-          <div style={{ gridColumn: 'span 7', gridRow: 'span 2' }}><ArticleCard article={ARTICLES[0]} size="lg" /></div>
-          <div style={{ gridColumn: 'span 5' }}><ArticleCard article={ARTICLES[1]} size="sm" /></div>
-          <div style={{ gridColumn: 'span 5' }}><ArticleCard article={ARTICLES[2]} size="sm" /></div>
-          <div style={{ gridColumn: 'span 4' }}><ArticleCard article={ARTICLES[3]} size="xs" /></div>
-          <div style={{ gridColumn: 'span 4' }}><ArticleCard article={ARTICLES[4]} size="xs" /></div>
-          <div style={{ gridColumn: 'span 4' }}><ArticleCard article={ARTICLES[5]} size="xs" /></div>
+          <div style={{ gridColumn: 'span 7', gridRow: 'span 2' }}><ArticleCard article={articles[0]} size="lg" /></div>
+          <div style={{ gridColumn: 'span 5' }}><ArticleCard article={articles[1]} size="sm" /></div>
+          <div style={{ gridColumn: 'span 5' }}><ArticleCard article={articles[2]} size="sm" /></div>
+          <div style={{ gridColumn: 'span 4' }}><ArticleCard article={articles[3]} size="xs" /></div>
+          <div style={{ gridColumn: 'span 4' }}><ArticleCard article={articles[4]} size="xs" /></div>
+          <div style={{ gridColumn: 'span 4' }}><ArticleCard article={articles[5]} size="xs" /></div>
         </div>
 
         {/* Split: news list + sidebar */}
@@ -500,7 +509,7 @@ export default function HomePage() {
               Recent
               <div style={{ flex: 1, height: 1, background: '#1c2035' }} />
             </div>
-            {ARTICLES.map((a, i) => (
+            {articles.map((a, i) => (
               <div key={i} onClick={() => window.location.href = `/nieuws/${a.slug}`}
                 style={{ display: 'grid', gridTemplateColumns: '72px 1fr', gap: 16, padding: '18px 0', borderBottom: '1px solid #1c2035', cursor: 'pointer' }}>
                 <div style={{ width: 72, height: 72, background: a.bgColor, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', flexShrink: 0 }}>{a.emoji}</div>
