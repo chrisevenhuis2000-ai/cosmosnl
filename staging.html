@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CosmosNL — Staging Overhaul</title>
+  <meta name="description" content="Het Nederlandse astronomie-platform met AI-aangedreven uitleg op jouw niveau." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Tokens ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Colors */
+      --void:       #07080d;
+      --surface:    #0c0e18;
+      --surface-2:  #111420;
+      --border:     #1c2035;
+      --border-2:   #252840;
+      --star:       #dde2f0;
+      --muted:      #7a86a8;
+      --faint:      #4a5278;
+      --gold:       #d4a84b;
+      --gold-dim:   #8a6820;
+      --cyan:       #3dcfdf;
+      --green:      #3ddf90;
+      --red:        #e05040;
+      --purple:     #c080ff;
+      --blue:       #7aadff;
+      --mars:       #ff8a60;
+
+      /* Typography */
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:    'Syne', system-ui, sans-serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+
+      /* Spacing scale (8pt) */
+      --sp-1:  4px;
+      --sp-2:  8px;
+      --sp-3:  12px;
+      --sp-4:  16px;
+      --sp-5:  20px;
+      --sp-6:  24px;
+      --sp-8:  32px;
+      --sp-10: 40px;
+      --sp-12: 48px;
+      --sp-16: 64px;
+
+      /* Layout */
+      --max-w:      1240px;
+      --nav-h:      60px;
+      --topbar-h:   40px;
+      --radius-sm:  4px;
+      --radius:     8px;
+
+      /* Transitions */
+      --ease-out:  cubic-bezier(0.2, 0, 0, 1);
+      --dur-fast:  150ms;
+      --dur-base:  250ms;
+      --dur-slow:  400ms;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      background: var(--void);
+      color: var(--star);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ─── Skip link ───────────────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--sp-4);
+      z-index: 9999;
+      background: var(--gold);
+      color: var(--void);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: var(--sp-2) var(--sp-4);
+      border-radius: var(--radius-sm);
+      transition: top var(--dur-fast) var(--ease-out);
+    }
+    .skip-link:focus { top: var(--sp-3); outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    /* ─── Focus states (WCAG 2.1 AA) ─────────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ─── Scrollbar ───────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
+
+    /* ─── Animations ──────────────────────────────────────────────────────── */
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+    @keyframes live-ring {
+      0%   { transform: scale(1);   opacity: 0.5; }
+      100% { transform: scale(2.8); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -600px 0; }
+      100% { background-position:  600px 0; }
+    }
+    @keyframes starfield-twinkle {
+      0%, 100% { opacity: var(--star-o); }
+      50%       { opacity: calc(var(--star-o) * 0.3); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ─── Utility classes ─────────────────────────────────────────────────── */
+    .font-display { font-family: var(--font-display); }
+    .font-mono    { font-family: var(--font-mono); }
+    .text-muted   { color: var(--muted); }
+    .text-faint   { color: var(--faint); }
+    .text-gold    { color: var(--gold); }
+    .text-star    { color: var(--star); }
+
+    .label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-6);
+    }
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Clip-path CTA buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 11px 24px;
+      transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--star); color: var(--void); }
+    .btn-primary:hover { background: #fff; }
+    .btn-gold    { background: var(--gold); color: var(--void); }
+    .btn-gold:hover { background: #e8be60; }
+    .btn-ghost   {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border-2);
+      clip-path: none;
+      border-radius: var(--radius-sm);
+    }
+    .btn-ghost:hover { color: var(--star); border-color: var(--faint); }
+    .btn-sm {
+      font-size: 0.58rem;
+      padding: 8px 16px;
+      clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+    }
+
+    /* ─── Canvas starfield ────────────────────────────────────────────────── */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Topbar ──────────────────────────────────────────────────────────── */
+    .topbar {
+      position: relative;
+      z-index: 30;
+      height: var(--topbar-h);
+      background: rgba(7,8,13,0.97);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--sp-10);
+      gap: var(--sp-5);
+      backdrop-filter: blur(12px);
+    }
+    .topbar__date {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--faint);
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .topbar__ticker {
+      flex: 1;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    }
+    .topbar__ticker-inner {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 50s linear infinite;
+    }
+    .topbar__ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      margin-right: var(--sp-12);
+      font-family: var(--font-mono);
+      font-size: 0.57rem;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+    }
+    .topbar__ticker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--cyan);
+      flex-shrink: 0;
+    }
+    .topbar__lang {
+      display: flex;
+      gap: var(--sp-3);
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--faint);
+      flex-shrink: 0;
+    }
+    .topbar__lang a { transition: color var(--dur-fast); }
+    .topbar__lang a.active { color: var(--star); }
+    .topbar__lang a:hover  { color: var(--muted); }
+
+    /* ─── Navigation ──────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: var(--nav-h);
+      background: rgba(7,8,13,0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .nav__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 var(--sp-10);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-10);
+    }
+    .nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--star);
+      flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+    .nav__logo em { font-style: italic; color: var(--gold); }
+
+    .nav__links {
+      display: flex;
+      gap: var(--sp-8);
+      flex: 1;
+      justify-content: center;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      transition: color var(--dur-fast) var(--ease-out);
+      padding: var(--sp-2) 0;
+      position: relative;
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width var(--dur-base) var(--ease-out);
+    }
+    .nav__links a:hover { color: var(--star); }
+    .nav__links a:hover::after { width: 100%; }
+    .nav__links a.active { color: var(--gold); }
+    .nav__links a.active::after { width: 100%; }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      flex-shrink: 0;
+    }
+
+    /* Hamburger (mobile) */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: var(--sp-2);
+      margin-left: auto;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--muted);
+      border-radius: 1px;
+      transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+    }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile nav drawer */
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      top: calc(var(--topbar-h) + var(--nav-h));
+      left: 0;
+      right: 0;
+      background: rgba(7,8,13,0.98);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      padding: var(--sp-6) var(--sp-6);
+      z-index: 19;
+      flex-direction: column;
+      gap: var(--sp-1);
+      animation: fadeIn var(--dur-base) var(--ease-out);
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      display: block;
+      padding: var(--sp-3) 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      transition: color var(--dur-fast);
+    }
+    .nav__mobile a:hover { color: var(--star); }
+    .nav__mobile a:last-child { border-bottom: none; }
+
+    /* ─── Hero ────────────────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 88vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0c0e18 0%, #111a2a 50%, #0a1020 100%);
+    }
+    .hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      filter: brightness(0.85) saturate(1.15);
+      transition: opacity 0.8s var(--ease-out);
+    }
+    /* Gradient overlay — richer, more layered */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top,  rgba(7,8,13,1) 0%, rgba(7,8,13,0.75) 35%, rgba(7,8,13,0.1) 75%, transparent 100%),
+        linear-gradient(to right, rgba(7,8,13,0.6) 0%, transparent 60%);
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--sp-10) 64px;
+      max-width: 860px;
+      animation: fadeUp 0.8s var(--ease-out) both;
+    }
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-5);
+    }
+    .hero__eyebrow-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .hero__live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(224, 80, 64, 0.15);
+      border: 1px solid rgba(224, 80, 64, 0.4);
+      color: #ff7060;
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+    .hero__live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #e05040;
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+    .hero__eyebrow-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.06;
+      color: #f4f6ff;
+      margin-bottom: var(--sp-5);
+      letter-spacing: -0.01em;
+    }
+    .hero__excerpt {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: var(--sp-8);
+    }
+    .hero__ctas {
+      display: flex;
+      gap: var(--sp-4);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero__secondary-cta {
+      font-size: 0.72rem;
+      color: var(--muted);
+      transition: color var(--dur-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero__secondary-cta:hover { color: var(--star); }
+    .hero__copyright {
+      position: absolute;
+      bottom: 16px;
+      right: var(--sp-6);
+      z-index: 3;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      color: rgba(120, 130, 160, 0.5);
+    }
+
+    /* Hero metadata strip (category + scroll hint) */
+    .hero__meta-strip {
+      position: absolute;
+      bottom: 24px;
+      right: var(--sp-10);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--sp-2);
+    }
+    .hero__scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .hero__scroll-hint span {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--faint);
+      writing-mode: vertical-rl;
+    }
+    .hero__scroll-hint-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--faint), transparent);
+    }
+
+    /* ─── Topics filter strip ─────────────────────────────────────────────── */
+    .topics {
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid var(--border);
+      background: var(--void);
+    }
+    .topics__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--sp-10);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .topics__inner::-webkit-scrollbar { display: none; }
+    .topics__item {
+      flex-shrink: 0;
+      padding: 14px 22px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .topics__item:hover { color: var(--muted); }
+    .topics__item.active {
+      color: var(--star);
+      border-bottom-color: var(--gold);
+    }
+    .topics__item svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+
+    /* ─── Main content wrapper ────────────────────────────────────────────── */
+    .main {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--sp-12) var(--sp-10) var(--sp-16);
+    }
+
+    /* ─── Section header ──────────────────────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--sp-6);
+      gap: var(--sp-4);
+    }
+    .section-header__left {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+    }
+    .section-header__label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .section-header__line {
+      width: 48px;
+      height: 1px;
+      background: var(--border-2);
+    }
+    .section-header__count {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: var(--faint);
+    }
+
+    /* ─── Bento article grid ──────────────────────────────────────────────── */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: var(--sp-16);
+    }
+
+    /* Card base */
+    .card {
+      background: var(--surface);
+      overflow: hidden;
+      transition: background var(--dur-base) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { background: var(--surface-2); }
+
+    /* Card sizes */
+    .card--hero  { grid-column: span 7; grid-row: span 2; }
+    .card--md    { grid-column: span 5; }
+    .card--sm    { grid-column: span 4; }
+
+    .card__thumb {
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .card--hero  .card__thumb { height: 320px; }
+    .card--md    .card__thumb { height: 180px; }
+    .card--sm    .card__thumb { height: 130px; }
+
+    /* Gradient placeholder instead of emoji */
+    .card__thumb-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .card:hover .card__thumb-inner { transform: scale(1.04); }
+
+    /* Category color top-border accent */
+    .card__accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .card__body {
+      padding: var(--sp-5);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card--hero .card__body { padding: var(--sp-8); }
+    .card--sm   .card__body { padding: var(--sp-4); }
+
+    .card__category {
+      font-family: var(--font-mono);
+      font-size: 0.57rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+    }
+    .card__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.18;
+      color: #f4f6ff;
+      margin-bottom: var(--sp-3);
+    }
+    .card--hero .card__title { font-size: 2rem; }
+    .card--md   .card__title { font-size: 1.1rem; }
+    .card--sm   .card__title { font-size: 0.9rem; margin-bottom: 0; }
+
+    .card__excerpt {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card--hero .card__excerpt { -webkit-line-clamp: 3; margin-bottom: var(--sp-5); }
+    .card--md   .card__excerpt { -webkit-line-clamp: 2; margin-bottom: var(--sp-4); }
+
+    .card__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      color: var(--faint);
+      letter-spacing: 0.05em;
+      margin-top: auto;
+      padding-top: var(--sp-3);
+    }
+    .card--sm .card__meta { margin-top: var(--sp-2); }
+    .card__meta-sep { opacity: 0.4; }
+
+    /* Read more arrow — appears on hover */
+    .card__read-more {
+      margin-left: auto;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity var(--dur-fast), transform var(--dur-fast);
+      font-size: 0.6rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+    }
+    .card:hover .card__read-more { opacity: 1; transform: translateX(0); }
+
+    /* Card link wrapper — proper accessibility */
+    .card__link {
+      display: contents;
+    }
+    .card__link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    /* ─── Content split: list + sidebar ──────────────────────────────────── */
+    .content-split {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--sp-16);
+      align-items: start;
+    }
+
+    /* ─── Article list (recent) ───────────────────────────────────────────── */
+    .article-list { display: flex; flex-direction: column; }
+
+    .article-row {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: var(--sp-5);
+      padding: var(--sp-5) 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      position: relative;
+      transition: background var(--dur-fast);
+    }
+    .article-row:last-child { border-bottom: none; }
+    .article-row:hover { background: rgba(255,255,255,0.015); }
+
+    .article-row__thumb {
+      width: 84px;
+      height: 84px;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+    }
+
+    .article-row__link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    .article-row__category {
+      font-family: var(--font-mono);
+      font-size: 0.53rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-1);
+    }
+    .article-row__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f4f6ff;
+      line-height: 1.3;
+      margin-bottom: var(--sp-1);
+    }
+    .article-row__meta {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      color: var(--faint);
+    }
+
+    /* Reading level badge */
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      margin-top: var(--sp-1);
+    }
+    .level-badge--beg { background: rgba(224,80,64,0.12); color: #e05040; border-left: 2px solid #e05040; }
+    .level-badge--ama { background: rgba(61,223,144,0.12); color: #3ddf90; border-left: 2px solid #3ddf90; }
+    .level-badge--pro { background: rgba(61,207,223,0.12); color: #3dcfdf; border-left: 2px solid #3dcfdf; }
+
+    /* ─── Sidebar widgets ─────────────────────────────────────────────────── */
+    .sidebar { display: flex; flex-direction: column; gap: var(--sp-6); }
+
+    .widget {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+    }
+    .widget__header {
+      padding: 11px var(--sp-5);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .widget__title {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .widget__live-dot {
+      position: relative;
+      width: 7px;
+      height: 7px;
+    }
+    .widget__live-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    .widget__live-dot::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid var(--green);
+      animation: live-ring 1.5s ease-out infinite;
+    }
+    .widget__badge {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+    }
+
+    /* ISS tracker map */
+    .iss-map {
+      height: 160px;
+      background: #050810;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Improved grid-bg with radial center glow */
+    .iss-map__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(28,32,53,0.6) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(28,32,53,0.6) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .iss-map__glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(7,8,13,0) 40%, rgba(5,8,16,0.8) 100%);
+    }
+    /* Continents SVG overlay */
+    .iss-map__continents {
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+    }
+    .iss-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+    .iss-dot__core {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 2px rgba(61,223,144,0.3), 0 0 12px rgba(61,223,144,0.6);
+    }
+    .iss-dot__ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(61,223,144,0.5);
+      animation: live-ring 2s ease-out infinite;
+    }
+    /* ISS orbit trail */
+    .iss-trail {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(61,223,144,0.15), transparent);
+      transform: translateY(-50%);
+    }
+
+    .iss-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .iss-stat {
+      padding: var(--sp-3) var(--sp-5);
+      border-top: 1px solid var(--border);
+    }
+    .iss-stat:nth-child(odd) { border-right: 1px solid var(--border); }
+    .iss-stat__val {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #f4f6ff;
+      line-height: 1;
+    }
+    .iss-stat__lbl {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-top: 3px;
+    }
+
+    /* APOD sidebar widget */
+    .apod-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      filter: brightness(0.85) saturate(1.1);
+      display: block;
+    }
+    .apod-placeholder {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, #0a1030, #1a2060);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .widget__body { padding: var(--sp-4) var(--sp-5); }
+    .widget__date {
+      font-family: var(--font-mono);
+      font-size: 0.53rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: var(--sp-2);
+    }
+    .widget__subtitle {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f4f6ff;
+      line-height: 1.3;
+      margin-bottom: var(--sp-2);
+    }
+    .widget__text {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* AI promo widget */
+    .widget--ai {
+      background: linear-gradient(135deg, rgba(16,14,5,0.9), rgba(26,21,8,0.9));
+      border-color: rgba(138, 104, 32, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .widget--ai::before {
+      content: '✦';
+      position: absolute;
+      right: 16px;
+      top: 12px;
+      font-size: 4rem;
+      color: var(--gold-dim);
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .widget--ai .widget__body { padding: var(--sp-6); }
+    .widget--ai-label {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--sp-3);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .widget--ai-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f4f6ff;
+      line-height: 1.2;
+      margin-bottom: var(--sp-3);
+    }
+    .widget--ai-desc {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: var(--sp-5);
+    }
+
+    /* Reading level pills */
+    .level-pills {
+      display: flex;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-5);
+    }
+    .level-pill {
+      flex: 1;
+      padding: 6px 0;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      border: 1px solid;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background var(--dur-fast), color var(--dur-fast);
+    }
+    .level-pill--beg { border-color: rgba(224,80,64,0.4); color: #e05040; }
+    .level-pill--ama { border-color: rgba(61,223,144,0.4); color: #3ddf90; }
+    .level-pill--pro { border-color: rgba(61,207,223,0.4); color: #3dcfdf; }
+    .level-pill--beg:hover { background: rgba(224,80,64,0.1); }
+    .level-pill--ama:hover { background: rgba(61,223,144,0.1); }
+    .level-pill--pro:hover { background: rgba(61,207,223,0.1); }
+
+    /* ─── Newsletter section ──────────────────────────────────────────────── */
+    .newsletter {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .newsletter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(212,168,75,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .newsletter__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--sp-16) var(--sp-10);
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--sp-16);
+      align-items: center;
+    }
+    .newsletter__label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--sp-4);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+    .newsletter__label::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .newsletter__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: #f4f6ff;
+      line-height: 1.1;
+      margin-bottom: var(--sp-4);
+    }
+    .newsletter__desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 440px;
+    }
+    .newsletter__stats {
+      display: flex;
+      gap: var(--sp-8);
+      margin-top: var(--sp-6);
+    }
+    .newsletter__stat-val {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .newsletter__stat-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-top: 2px;
+    }
+    .newsletter__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+    .newsletter__input-wrap {
+      display: flex;
+      gap: 2px;
+      background: var(--border);
+    }
+    .newsletter__input {
+      flex: 1;
+      background: #0a0c14;
+      border: none;
+      padding: 14px 18px;
+      color: var(--star);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      outline: none;
+      transition: background var(--dur-fast);
+    }
+    .newsletter__input::placeholder { color: var(--faint); }
+    .newsletter__input:focus { background: #0f1120; }
+    .newsletter__privacy {
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      color: var(--faint);
+      line-height: 1.6;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────────────────────── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .footer__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--sp-16) var(--sp-10) var(--sp-8);
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--sp-12);
+      margin-bottom: var(--sp-12);
+    }
+    .footer__logo {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #f4f6ff;
+      margin-bottom: var(--sp-4);
+    }
+    .footer__logo em { font-style: italic; color: var(--gold); }
+    .footer__tagline {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 280px;
+      margin-bottom: var(--sp-6);
+    }
+    .footer__social {
+      display: flex;
+      gap: var(--sp-3);
+    }
+    .footer__social-link {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--faint);
+      transition: border-color var(--dur-fast), color var(--dur-fast);
+    }
+    .footer__social-link:hover { border-color: var(--faint); color: var(--muted); }
+    .footer__social-link svg { width: 14px; height: 14px; }
+
+    .footer__col-title {
+      font-family: var(--font-mono);
+      font-size: 0.57rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: var(--sp-4);
+    }
+    .footer__links { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .footer__links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      transition: color var(--dur-fast);
+    }
+    .footer__links a:hover { color: var(--star); }
+
+    .footer__bottom {
+      border-top: 1px solid var(--border);
+      padding-top: var(--sp-5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer__copyright {
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      letter-spacing: 0.06em;
+      color: var(--faint);
+    }
+    .footer__powered {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      color: var(--faint);
+    }
+    .footer__powered-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border: 1px solid var(--border-2);
+      border-radius: 2px;
+      color: var(--faint);
+    }
+
+    /* ─── Staging annotation banner ───────────────────────────────────────── */
+    .staging-banner {
+      position: fixed;
+      bottom: var(--sp-5);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9000;
+      background: rgba(212,168,75,0.12);
+      border: 1px solid rgba(212,168,75,0.4);
+      backdrop-filter: blur(12px);
+      padding: var(--sp-3) var(--sp-6);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .staging-banner span {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .staging-banner__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    /* ─── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .content-split { grid-template-columns: 1fr; }
+      .sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+      .newsletter__inner { grid-template-columns: 1fr; gap: var(--sp-10); }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: var(--sp-10); }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --topbar-h: 36px;
+        --nav-h: 54px;
+      }
+
+      .topbar { padding: 0 var(--sp-5); }
+      .topbar__date { display: none; }
+
+      .nav__inner { padding: 0 var(--sp-5); gap: var(--sp-4); }
+      .nav__links  { display: none; }
+      .nav__actions .btn:not(.btn-sm) { display: none; }
+      .nav__hamburger { display: flex; }
+
+      .hero__content { padding: 0 var(--sp-5) 48px; }
+      .hero__title { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+      .hero__excerpt { font-size: 0.9rem; }
+      .hero__meta-strip { display: none; }
+
+      .topics__inner { padding: 0 var(--sp-5); }
+
+      .main { padding: var(--sp-8) var(--sp-5) var(--sp-12); }
+
+      /* Stack bento on mobile */
+      .bento { grid-template-columns: 1fr; background: none; border: none; gap: var(--sp-3); }
+      .card--hero,
+      .card--md,
+      .card--sm  { grid-column: span 1; grid-row: auto; }
+      .card--hero .card__thumb { height: 220px; }
+      .card--sm   .card__body  { padding: var(--sp-4); }
+
+      .content-split { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .sidebar { grid-template-columns: 1fr; }
+
+      .newsletter__inner { padding: var(--sp-10) var(--sp-5); }
+      .newsletter__stats { gap: var(--sp-6); }
+      .newsletter__stat-val { font-size: 1.4rem; }
+
+      .footer__grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .footer__inner { padding: var(--sp-10) var(--sp-5) var(--sp-6); }
+      .footer__bottom { flex-direction: column; align-items: flex-start; }
+
+      .staging-banner { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__ctas { flex-direction: column; align-items: flex-start; }
+      .newsletter__input-wrap { flex-direction: column; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip to content (accessibility) -->
+  <a href="#main-content" class="skip-link">Ga naar hoofdinhoud</a>
+
+  <!-- Starfield canvas -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ── Topbar ──────────────────────────────────────────────────────────── -->
+  <div class="topbar" role="banner">
+    <div class="topbar__date" aria-label="Datum">
+      <span id="current-date"></span>
+    </div>
+    <div class="topbar__ticker" aria-hidden="true">
+      <div class="topbar__ticker-inner" id="ticker">
+        <!-- filled by JS -->
+      </div>
+    </div>
+    <div class="topbar__lang" role="navigation" aria-label="Taal selectie">
+      <a href="/" class="active" lang="nl" aria-current="true">NL</a>
+      <a href="/en" lang="en">EN</a>
+    </div>
+  </div>
+
+  <!-- ── Navigation ─────────────────────────────────────────────────────── -->
+  <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="CosmosNL — naar de startpagina">
+        Cosmos<em>NL</em>
+      </a>
+      <ul class="nav__links" role="list">
+        <li><a href="/nieuws" class="active" aria-current="page">Nieuws</a></li>
+        <li><a href="/sterrenkijken">Sterrenkijken</a></li>
+        <li><a href="/missies">Missies</a></li>
+        <li><a href="/educatie">Educatie</a></li>
+        <li><a href="/tools" style="color:var(--gold)">AI Tools</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="/nieuwsbrief" class="btn btn-gold btn-sm" aria-label="Aanmelden voor nieuwsbrief">
+          Nieuwsbrief
+        </a>
+        <button class="nav__hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu openen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div id="mobile-nav" class="nav__mobile" role="navigation" aria-label="Mobiele navigatie">
+    <a href="/nieuws" aria-current="page">Nieuws</a>
+    <a href="/sterrenkijken">Sterrenkijken</a>
+    <a href="/missies">Missies</a>
+    <a href="/educatie">Educatie</a>
+    <a href="/tools" style="color:var(--gold)">AI Tools</a>
+    <a href="/nieuwsbrief">Nieuwsbrief</a>
+  </div>
+
+  <!-- ── Hero ───────────────────────────────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__bg">
+      <!-- APOD image loads here dynamically; fallback gradient shown -->
+      <img id="apod-img" src="" alt="" style="display:none;" />
+    </div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <div class="hero__eyebrow-line" aria-hidden="true"></div>
+        <div class="hero__live-badge" role="status" aria-live="polite">
+          <span class="hero__live-dot" aria-hidden="true"></span>
+          NASA APOD
+        </div>
+        <span class="hero__eyebrow-label">Foto van de dag</span>
+      </div>
+
+      <h1 class="hero__title" id="hero-title">
+        Elke dag een nieuw venster op het heelal
+      </h1>
+      <p class="hero__excerpt" id="hero-excerpt">
+        NASA publiceert dagelijks de mooiste astronomische foto — wij leggen het uit op jouw niveau, van beginner tot professional.
+      </p>
+      <div class="hero__ctas">
+        <a href="/nieuws/james-webb-k2-18b-biosignatuur" class="btn btn-primary">
+          Lees het artikel
+          <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#nieuws" class="hero__secondary-cta">
+          Alle nieuws
+          <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M2 7l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Decorative scroll indicator -->
+    <div class="hero__meta-strip" aria-hidden="true">
+      <div class="hero__scroll-hint">
+        <div class="hero__scroll-hint-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Topics filter ──────────────────────────────────────────────────── -->
+  <div class="topics" role="navigation" aria-label="Onderwerp filter">
+    <div class="topics__inner" id="topics-strip">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <!-- ── Main content ───────────────────────────────────────────────────── -->
+  <main class="main" id="main-content" tabindex="-1">
+
+    <!-- Section header -->
+    <div class="section-header" id="nieuws">
+      <div class="section-header__left">
+        <span class="section-header__label">Laatste nieuws</span>
+        <div class="section-header__line" aria-hidden="true"></div>
+      </div>
+      <span class="section-header__count" aria-label="6 artikelen">6 artikelen</span>
+    </div>
+
+    <!-- ── Bento grid ──────────────────────────────────────────────────── -->
+    <div class="bento" id="bento-grid" role="list" aria-label="Nieuws artikelen">
+      <!-- filled by JS -->
+    </div>
+
+    <!-- ── Content split ──────────────────────────────────────────────── -->
+    <div class="content-split">
+
+      <!-- Recent nieuws list -->
+      <section aria-labelledby="recent-label">
+        <div class="section-header">
+          <div class="section-header__left">
+            <span class="section-header__label" id="recent-label">Recent</span>
+            <div class="section-header__line" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="article-list" id="article-list" role="list">
+          <!-- filled by JS -->
+        </div>
+      </section>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" aria-label="Widgets">
+
+        <!-- ISS Live Tracker -->
+        <div class="widget" role="region" aria-labelledby="iss-title">
+          <div class="widget__header">
+            <span class="widget__title" id="iss-title">
+              <span class="widget__live-dot" aria-hidden="true"></span>
+              ISS Live Tracker
+            </span>
+            <span class="widget__badge" aria-live="polite" aria-atomic="true">Realtime</span>
+          </div>
+          <div class="iss-map" role="img" aria-label="Kaart van ISS positie">
+            <div class="iss-map__grid" aria-hidden="true"></div>
+            <div class="iss-map__glow" aria-hidden="true"></div>
+            <div class="iss-trail" aria-hidden="true"></div>
+            <!-- Simple equator line -->
+            <div aria-hidden="true" style="position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,0.04);"></div>
+            <!-- Prime meridian line -->
+            <div aria-hidden="true" style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(255,255,255,0.04);"></div>
+            <div class="iss-dot" id="iss-dot" style="left:50%;top:50%;" aria-hidden="true">
+              <div class="iss-dot__core"></div>
+              <div class="iss-dot__ring"></div>
+            </div>
+          </div>
+          <div class="iss-stats" id="iss-stats">
+            <div class="iss-stat">
+              <div class="iss-stat__val" id="iss-lat">—</div>
+              <div class="iss-stat__lbl">Breedtegraad</div>
+            </div>
+            <div class="iss-stat">
+              <div class="iss-stat__val" id="iss-lon">—</div>
+              <div class="iss-stat__lbl">Lengtegraad</div>
+            </div>
+            <div class="iss-stat">
+              <div class="iss-stat__val" id="iss-alt">408 km</div>
+              <div class="iss-stat__lbl">Hoogte</div>
+            </div>
+            <div class="iss-stat">
+              <div class="iss-stat__val">27.6k</div>
+              <div class="iss-stat__lbl">km/uur</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NASA APOD widget -->
+        <div class="widget" role="region" aria-labelledby="apod-widget-title">
+          <div class="widget__header">
+            <span class="widget__title" id="apod-widget-title">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              NASA Foto van de Dag
+            </span>
+          </div>
+          <div class="apod-placeholder" id="apod-thumb">
+            <!-- Stars SVG placeholder -->
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="4" fill="rgba(212,168,75,0.6)"/>
+              <circle cx="24" cy="24" r="10" fill="none" stroke="rgba(212,168,75,0.2)" stroke-width="1"/>
+              <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(212,168,75,0.08)" stroke-width="1"/>
+              <circle cx="10" cy="10" r="1.5" fill="rgba(200,210,255,0.5)"/>
+              <circle cx="38" cy="12" r="1" fill="rgba(200,210,255,0.4)"/>
+              <circle cx="8" cy="35" r="1" fill="rgba(200,210,255,0.3)"/>
+              <circle cx="40" cy="36" r="1.5" fill="rgba(200,210,255,0.4)"/>
+            </svg>
+          </div>
+          <div class="widget__body">
+            <div class="widget__date" id="apod-date">Laden…</div>
+            <div class="widget__subtitle" id="apod-title">NASA Astronomy Picture of the Day</div>
+            <p class="widget__text" id="apod-text">NASA publiceert elke dag een bijzondere astronomische foto of video, geselecteerd door professionele astronomen.</p>
+          </div>
+        </div>
+
+        <!-- AI Feature promo -->
+        <div class="widget widget--ai" role="region" aria-label="AI Feature">
+          <div class="widget__body">
+            <div class="widget--ai-label">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1l1.5 3H11l-2.5 2 1 3L6 7.5 2.5 9l1-3L1 4h3.5L6 1z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
+              AI Feature
+            </div>
+            <div class="widget--ai-title">Lees elk artikel op jouw niveau</div>
+            <p class="widget--ai-desc">Kies Beginner, Amateur of Pro — onze AI herschrijft het artikel live voor jou.</p>
+            <div class="level-pills" role="group" aria-label="Lees niveau keuze">
+              <button class="level-pill level-pill--beg" aria-label="Beginners niveau">Beginner</button>
+              <button class="level-pill level-pill--ama" aria-label="Amateur niveau">Amateur</button>
+              <button class="level-pill level-pill--pro" aria-label="Pro niveau">Pro</button>
+            </div>
+            <a href="/nieuws/james-webb-k2-18b-biosignatuur" class="btn btn-gold" style="width:100%;justify-content:center;display:flex;">
+              Probeer het nu
+            </a>
+          </div>
+        </div>
+
+      </aside>
+    </div><!-- /content-split -->
+
+  </main>
+
+  <!-- ── Newsletter ──────────────────────────────────────────────────────── -->
+  <section class="newsletter" aria-labelledby="newsletter-title">
+    <div class="newsletter__inner">
+      <div>
+        <div class="newsletter__label">Nieuwsbrief</div>
+        <h2 class="newsletter__title" id="newsletter-title">
+          Het heelal<br>in je inbox
+        </h2>
+        <p class="newsletter__desc">
+          Wekelijks de belangrijkste ontdekkingen, komende lanceringen en sterrenkijk-tips — uitgelegd op jouw niveau. Geen spam, altijd uitschrijfbaar.
+        </p>
+        <div class="newsletter__stats">
+          <div>
+            <div class="newsletter__stat-val">4.200+</div>
+            <div class="newsletter__stat-lbl">Abonnees</div>
+          </div>
+          <div>
+            <div class="newsletter__stat-val">Wekelijks</div>
+            <div class="newsletter__stat-lbl">Frequentie</div>
+          </div>
+          <div>
+            <div class="newsletter__stat-val">Gratis</div>
+            <div class="newsletter__stat-lbl">Altijd</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form class="newsletter__form" action="#" method="post" aria-label="Nieuwsbrief aanmelden">
+          <div class="newsletter__input-wrap">
+            <label for="nl-email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">E-mailadres</label>
+            <input
+              id="nl-email"
+              type="email"
+              name="email"
+              class="newsletter__input"
+              placeholder="jouw@email.nl"
+              required
+              autocomplete="email"
+              inputmode="email"
+            />
+            <button type="submit" class="btn btn-gold" style="clip-path:none;border-radius:0;white-space:nowrap;" aria-label="Aanmelden voor nieuwsbrief">
+              Aanmelden
+            </button>
+          </div>
+          <p class="newsletter__privacy">
+            Door aan te melden ga je akkoord met onze <a href="/privacy" style="color:var(--muted);text-decoration:underline;text-underline-offset:3px;">privacyverklaring</a>. Je kunt je altijd uitschrijven.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__grid">
+
+        <div>
+          <div class="footer__logo">Cosmos<em>NL</em></div>
+          <p class="footer__tagline">Het Nederlandse astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.</p>
+          <div class="footer__social" aria-label="Sociale media">
+            <!-- X/Twitter -->
+            <a href="#" class="footer__social-link" aria-label="CosmosNL op X (Twitter)">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M12.6 1h2.4l-5.2 6 6.2 8H12l-3.7-4.9L3.8 15H1.4l5.5-6.3L.8 1H5l3.4 4.5L12.6 1z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" class="footer__social-link" aria-label="CosmosNL op Instagram">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5"/><circle cx="8" cy="8" r="3"/><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" class="footer__social-link" aria-label="CosmosNL op YouTube">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.5 4.5s-.2-1.2-.7-1.7c-.7-.7-1.4-.7-1.8-.8C10.5 2 8 2 8 2s-2.5 0-4 .1c-.4 0-1.1.1-1.8.8-.5.5-.7 1.7-.7 1.7S1.3 5.9 1.3 7.3v1.3c0 1.4.2 2.8.2 2.8s.2 1.2.7 1.7c.7.7 1.6.7 2 .7C5.5 14 8 14 8 14s2.5 0 4-.1c.4-.1 1.1-.1 1.8-.8.5-.5.7-1.7.7-1.7s.2-1.4.2-2.8V7.3C14.7 5.9 14.5 4.5 14.5 4.5zM6.5 10.2V5.8l4.5 2.2-4.5 2.2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Onderwerpen</div>
+          <div class="footer__links">
+            <a href="#">James Webb</a>
+            <a href="#">Mars Exploratie</a>
+            <a href="#">Zwarte Gaten</a>
+            <a href="#">Sterrenkijken</a>
+            <a href="#">Exoplaneten</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Tools</div>
+          <div class="footer__links">
+            <a href="#">AI Herschrijver</a>
+            <a href="#">ISS Tracker</a>
+            <a href="#">Sterrenkaart</a>
+            <a href="#">Lanceringskalender</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer__col-title">Over ons</div>
+          <div class="footer__links">
+            <a href="#">Redactie</a>
+            <a href="#">Nieuwsbrief</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span class="footer__copyright">© 2026 CosmosNL — Astronomie voor iedereen</span>
+        <div class="footer__powered">
+          <span class="footer__powered-badge">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 2.5v2.5l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+            Claude AI
+          </span>
+          <span class="footer__powered-badge">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1L6.5 4H9L6.5 6 7.5 9 5 7.5 2.5 9l1-3L1 4h2.5L5 1z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
+            NASA Open APIs
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Staging annotation ──────────────────────────────────────────────── -->
+  <div class="staging-banner" role="status" aria-live="polite">
+    <div class="staging-banner__dot" aria-hidden="true"></div>
+    <span>Staging — Design Overhaul v2</span>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────────────────────
+       JavaScript
+  ──────────────────────────────────────────────────────────────────────── -->
+  <script>
+    'use strict';
+
+    /* ── Article data ───────────────────────────────────────────────────── */
+    const ARTICLES = [
+      {
+        slug:     'james-webb-k2-18b-biosignatuur',
+        title:    'James Webb vindt mogelijke sporen van leven op K2-18b',
+        excerpt:  'De JWST heeft dimethylsulfide gedetecteerd in de atmosfeer van K2-18b — een molecuul dat op Aarde uitsluitend door levende organismen wordt gemaakt.',
+        category: 'James Webb',
+        catColor: '#7aadff',
+        author:   'Dr. Mara Visser',
+        date:     '11 mrt 2026',
+        readTime: 6,
+        featured: true,
+        level:    'ama',
+        bg:       'linear-gradient(135deg,#0a1030 0%,#1a2860 100%)',
+      },
+      {
+        slug:     'desi-donkere-energie',
+        title:    'DESI: donkere energie verzwakt al 4,5 miljard jaar',
+        excerpt:  'De grootste 3D kaart van het heelal toont dat de kracht van donkere energie niet constant is — een potentiële revolutie in de kosmologie.',
+        category: 'Kosmologie',
+        catColor: '#c080ff',
+        author:   'Redactie',
+        date:     '9 mrt 2026',
+        readTime: 5,
+        featured: false,
+        level:    'pro',
+        bg:       'linear-gradient(135deg,#0f0520 0%,#1a0a35 100%)',
+      },
+      {
+        slug:     'starship-mechazilla',
+        title:    'Starship IFT-7: booster gevangen door Mechazilla',
+        excerpt:  'SpaceX\' mechanische arm ving opnieuw de Super Heavy booster op — een mijlpaal voor volledig herbruikbare ruimtevaart.',
+        category: 'Missies',
+        catColor: '#3dcfdf',
+        author:   'Redactie',
+        date:     '7 mrt 2026',
+        readTime: 4,
+        featured: false,
+        level:    'beg',
+        bg:       'linear-gradient(135deg,#051a20 0%,#0a3040 100%)',
+      },
+      {
+        slug:     'perseverance-mars',
+        title:    'Perseverance vindt \'luipaardvlekken\' in Jezero krater',
+        excerpt:  'Vreemde geologische patronen op Mars verbazen wetenschappers wereldwijd.',
+        category: 'Mars',
+        catColor: '#ff8a60',
+        author:   'Redactie',
+        date:     '5 mrt 2026',
+        readTime: 3,
+        featured: false,
+        level:    'beg',
+        bg:       'linear-gradient(135deg,#1a0a05 0%,#3a1510 100%)',
+      },
+      {
+        slug:     'komeet-c2026-a1',
+        title:    'Komeet C/2026 A1 mogelijk zichtbaar met blote oog',
+        excerpt:  'Astronomen zijn enthousiast over een heldere komeet die in april zichtbaar wordt.',
+        category: 'Sterrenkijken',
+        catColor: '#d4a84b',
+        author:   'Redactie',
+        date:     '3 mrt 2026',
+        readTime: 3,
+        featured: false,
+        level:    'beg',
+        bg:       'linear-gradient(135deg,#1a1505 0%,#2a2010 100%)',
+      },
+      {
+        slug:     'neutronenster-uitgelegd',
+        title:    'Wat is een neutronenster? Uitleg in 3 niveaus',
+        excerpt:  'Van makkelijk naar technisch — ons AI-systeem legt het uit op jouw niveau.',
+        category: 'Educatie',
+        catColor: '#3ddf90',
+        author:   'Redactie',
+        date:     '1 mrt 2026',
+        readTime: 5,
+        featured: false,
+        level:    'ama',
+        bg:       'linear-gradient(135deg,#051a10 0%,#0a2a1a 100%)',
+      },
+    ];
+
+    const LEVEL_LABELS = { beg: 'Beginner', ama: 'Amateur', pro: 'Pro' };
+
+    /* SVG icon placeholders per category (instead of emojis) */
+    function categoryIcon(cat, color, size = 40) {
+      const icons = {
+        'James Webb': `<svg width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="8" stroke="${color}" stroke-width="1.5" opacity="0.7"/><path d="M20 4v4M20 32v4M4 20h4M32 20h4M8.3 8.3l2.8 2.8M28.9 28.9l2.8 2.8M8.3 31.7l2.8-2.8M28.9 11.1l2.8-2.8" stroke="${color}" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="20" r="3" fill="${color}" opacity="0.8"/></svg>`,
+        'Kosmologie':  `<svg width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true"><ellipse cx="20" cy="20" rx="16" ry="7" stroke="${color}" stroke-width="1.5" opacity="0.6"/><ellipse cx="20" cy="20" rx="16" ry="7" stroke="${color}" stroke-width="1.5" opacity="0.4" transform="rotate(60 20 20)"/><ellipse cx="20" cy="20" rx="16" ry="7" stroke="${color}" stroke-width="1.5" opacity="0.4" transform="rotate(120 20 20)"/><circle cx="20" cy="20" r="3" fill="${color}" opacity="0.9"/></svg>`,
+        'Missies':     `<svg width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 6L24 20H20V34L16 20H20V6z" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" opacity="0.8"/><path d="M14 16s-4 2-4 8M26 16s4 2 4 8" stroke="${color}" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="32" r="2" fill="${color}" opacity="0.5"/></svg>`,
+        'Mars':        `<svg width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="13" stroke="${color}" stroke-width="1.5" opacity="0.7"/><path d="M10 16c3-2 7-1 10 2s7 3 10 0" stroke="${color}" stroke-width="1" opacity="0.4"/><circle cx="15" cy="18" r="2.5" stroke="${color}" stroke-width="1" opacity="0.5"/><circle cx="25" cy="23" r="1.5" stroke="${color}" stroke-width="1" opacity="0.4"/></svg>`,
+        'Sterrenkijken': `<svg width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 6l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" opacity="0.8"/><circle cx="10" cy="28" r="2" fill="${color}" opacity="0.4"/><circle cx="30" cy="30" r="1.5" fill="${color}" opacity="0.3"/><circle cx="8" cy="16" r="1" fill="${color}" opacity="0.5"/></svg>`,
+        'Educatie':    `<svg width="${size}" height="${size}" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 8L34 16l-14 8L6 16 20 8z" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" opacity="0.8"/><path d="M10 19v8c0 2 4 5 10 5s10-3 10-5v-8" stroke="${color}" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><path d="M34 16v8" stroke="${color}" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></svg>`,
+      };
+      return icons[cat] || icons['James Webb'];
+    }
+
+    /* ── Topbar: current date ───────────────────────────────────────────── */
+    const dateEl = document.getElementById('current-date');
+    if (dateEl) {
+      dateEl.textContent = new Date().toLocaleDateString('nl-NL', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      });
+    }
+
+    /* ── Ticker ─────────────────────────────────────────────────────────── */
+    const TICKER_ITEMS = [
+      'James Webb detecteert DMS op K2-18b',
+      'SpaceX Starship IFT-8 gepland Q2 2026',
+      'Vera Rubin Observatory start eerste survey',
+      'ESA Hera nadert asteroïde Dimorphos',
+      'DESI kaart onthult dynamische donkere energie',
+      'Komeet C/2026 A1 verwacht in april',
+    ];
+    const tickerEl = document.getElementById('ticker');
+    if (tickerEl) {
+      // Double for seamless loop
+      const html = [...TICKER_ITEMS, ...TICKER_ITEMS].map(t =>
+        `<span class="topbar__ticker-item"><span class="topbar__ticker-dot" aria-hidden="true"></span>${t}</span>`
+      ).join('');
+      tickerEl.innerHTML = html;
+    }
+
+    /* ── Topics ─────────────────────────────────────────────────────────── */
+    const TOPICS = [
+      { label: 'Alles', active: true },
+      { label: 'James Webb' },
+      { label: 'Mars' },
+      { label: 'Missies' },
+      { label: 'Zwarte Gaten' },
+      { label: 'Maan' },
+      { label: 'Sterrenkijken' },
+      { label: 'Zonnestelsel' },
+      { label: 'Kosmologie' },
+    ];
+    const topicsEl = document.getElementById('topics-strip');
+    if (topicsEl) {
+      topicsEl.innerHTML = TOPICS.map((t, i) =>
+        `<button class="topics__item${t.active ? ' active' : ''}"
+          role="tab"
+          aria-selected="${t.active ? 'true' : 'false'}"
+          data-topic="${t.label}"
+        >${t.label}${t.active ? '<span style="display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--gold);margin-left:6px;vertical-align:middle;" aria-hidden="true"></span>' : ''}</button>`
+      ).join('');
+
+      topicsEl.querySelectorAll('.topics__item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          topicsEl.querySelectorAll('.topics__item').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+        });
+      });
+    }
+
+    /* ── Bento grid ─────────────────────────────────────────────────────── */
+    function makeBentoCard(article, sizeClass) {
+      const isHero = sizeClass === 'card--hero';
+      const isSm   = sizeClass === 'card--sm';
+      const thumbSize = isHero ? 48 : isSm ? 32 : 36;
+
+      return `
+        <article class="card ${sizeClass}" role="listitem">
+          <a href="/nieuws/${article.slug}" class="card__link" style="position:relative;display:flex;flex-direction:column;flex:1;text-decoration:none;color:inherit;" aria-label="${article.title}">
+            <div class="card__thumb">
+              <div class="card__accent" style="background:${article.catColor};"></div>
+              <div class="card__thumb-inner" style="background:${article.bg};">
+                ${categoryIcon(article.category, article.catColor, thumbSize)}
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="card__category" style="color:${article.catColor};">${article.category}</div>
+              <h${isHero ? '2' : '3'} class="card__title">${article.title}</h${isHero ? '2' : '3'}>
+              ${!isSm ? `<p class="card__excerpt">${article.excerpt}</p>` : ''}
+              <div class="card__meta">
+                ${isHero ? `<span>${article.author}</span><span class="card__meta-sep">·</span>` : ''}
+                <span>${article.date}</span>
+                <span class="card__meta-sep">·</span>
+                <span>${article.readTime} min</span>
+                <span class="card__read-more" aria-hidden="true">Lees meer →</span>
+              </div>
+            </div>
+          </a>
+        </article>`;
+    }
+
+    const bentoEl = document.getElementById('bento-grid');
+    if (bentoEl) {
+      bentoEl.innerHTML =
+        makeBentoCard(ARTICLES[0], 'card--hero') +
+        makeBentoCard(ARTICLES[1], 'card--md') +
+        makeBentoCard(ARTICLES[2], 'card--md') +
+        makeBentoCard(ARTICLES[3], 'card--sm') +
+        makeBentoCard(ARTICLES[4], 'card--sm') +
+        makeBentoCard(ARTICLES[5], 'card--sm');
+    }
+
+    /* ── Article list ───────────────────────────────────────────────────── */
+    const listEl = document.getElementById('article-list');
+    if (listEl) {
+      listEl.innerHTML = ARTICLES.map(a => `
+        <div class="article-row" role="listitem">
+          <a href="/nieuws/${a.slug}" class="article-row__link" style="display:contents;" aria-label="${a.title}">
+            <div class="article-row__thumb" style="background:${a.bg};">
+              ${categoryIcon(a.category, a.catColor, 30)}
+            </div>
+            <div>
+              <div class="article-row__category" style="color:${a.catColor};">${a.category}</div>
+              <div class="article-row__title">${a.title}</div>
+              <div class="article-row__meta">${a.date} · ${a.readTime} min lezen</div>
+              <span class="level-badge level-badge--${a.level}">${LEVEL_LABELS[a.level]}</span>
+            </div>
+          </a>
+        </div>`
+      ).join('');
+    }
+
+    /* ── Mobile hamburger ───────────────────────────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        const open = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!open));
+        mobileNav.classList.toggle('open', !open);
+      });
+      // Close on outside click
+      document.addEventListener('click', e => {
+        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.remove('open');
+        }
+      });
+      // Close on Escape
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.remove('open');
+          hamburger.focus();
+        }
+      });
+    }
+
+    /* ── Starfield canvas ───────────────────────────────────────────────── */
+    (function initStarfield() {
+      const canvas = document.getElementById('starfield');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H;
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const stars = Array.from({ length: 280 }, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: Math.random() * 0.9 + 0.15,
+        o: Math.random() * 0.45 + 0.08,
+        s: (Math.random() - 0.5) * (prefersReducedMotion ? 0 : 0.012),
+      }));
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      let raf;
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const s of stars) {
+          s.o += s.s;
+          if (s.o > 0.58 || s.o < 0.06) s.s *= -1;
+          ctx.beginPath();
+          ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(210,220,255,${s.o.toFixed(2)})`;
+          ctx.fill();
+        }
+        raf = requestAnimationFrame(draw);
+      }
+
+      resize();
+      draw();
+      window.addEventListener('resize', resize, { passive: true });
+    })();
+
+    /* ── ISS Live Tracker ───────────────────────────────────────────────── */
+    (function initISS() {
+      const dot  = document.getElementById('iss-dot');
+      const lat  = document.getElementById('iss-lat');
+      const lon  = document.getElementById('iss-lon');
+      const alt  = document.getElementById('iss-alt');
+
+      function update(data) {
+        const px = ((data.longitude + 180) / 360 * 100).toFixed(1);
+        const py = ((90 - data.latitude) / 180 * 100).toFixed(1);
+
+        if (dot) {
+          dot.style.left = px + '%';
+          dot.style.top  = py + '%';
+          dot.style.transition = 'left 2s linear, top 2s linear';
+        }
+        if (lat) lat.textContent = data.latitude.toFixed(1) + '°';
+        if (lon) lon.textContent = data.longitude.toFixed(1) + '°';
+        if (alt) alt.textContent = Math.round(data.altitude) + ' km';
+      }
+
+      function fetch_iss() {
+        fetch('https://api.wheretheiss.at/v1/satellites/25544')
+          .then(r => r.json())
+          .then(update)
+          .catch(() => {});
+      }
+
+      fetch_iss();
+      setInterval(fetch_iss, 5000);
+    })();
+
+    /* ── NASA APOD ──────────────────────────────────────────────────────── */
+    (function initAPOD() {
+      const heroImg    = document.getElementById('apod-img');
+      const heroBg     = document.querySelector('.hero__bg');
+      const heroTitle  = document.getElementById('hero-title');
+      const heroExcerpt= document.getElementById('hero-excerpt');
+      const apodThumb  = document.getElementById('apod-thumb');
+      const apodDate   = document.getElementById('apod-date');
+      const apodTitle  = document.getElementById('apod-title');
+      const apodText   = document.getElementById('apod-text');
+
+      fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+        .then(r => r.json())
+        .then(data => {
+          if (data.media_type === 'image') {
+            // Hero
+            if (heroImg) {
+              heroImg.src   = data.url;
+              heroImg.alt   = data.title;
+              heroImg.style.display = 'block';
+            }
+            // APOD sidebar
+            if (apodThumb) {
+              apodThumb.innerHTML = `<img src="${data.url}" alt="${data.title}" class="apod-img" loading="lazy" />`;
+            }
+          }
+          // Hero text
+          if (heroTitle)   heroTitle.textContent  = data.title;
+          if (heroExcerpt) heroExcerpt.textContent = data.explanation.slice(0, 200) + '…';
+          // Widget text
+          if (apodDate) {
+            apodDate.textContent = new Date(data.date).toLocaleDateString('nl-NL', {
+              day: 'numeric', month: 'long', year: 'numeric'
+            });
+          }
+          if (apodTitle) apodTitle.textContent = data.title;
+          if (apodText)  apodText.textContent  = data.explanation;
+          if (data.copyright && heroImg) {
+            const copy = document.createElement('div');
+            copy.className = 'hero__copyright';
+            copy.textContent = '© ' + data.copyright;
+            document.querySelector('.hero').appendChild(copy);
+          }
+        })
+        .catch(() => {});
+    })();
+  </script>
+
+</body>
+</html>
