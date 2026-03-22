@@ -37,7 +37,7 @@ interface Article {
 
 // ── Fallback articles ──────────────────────────────────────────────────────
 const FALLBACK_ARTICLES: Article[] = [
-  { slug: 'james-webb-k2-18b-biosignatuur', title: 'James Webb vindt mogelijke sporen van leven op K2-18b', excerpt: 'De JWST heeft dimethylsulfide gedetecteerd in de atmosfeer van K2-18b — een molecuul dat op Aarde uitsluitend door levende organismen wordt gemaakt.', category: 'James Webb', catColor: '#7aadff', bgColor: 'linear-gradient(135deg,#0a1030,#1a2860)', author: 'Dr. Mara Visser', date: '11 mrt 2026', readTime: 6, featured: true },
+  { slug: 'james-webb-k2-18b-biosignatuur', title: 'James Webb vindt mogelijke sporen van leven op K2-18b', excerpt: 'De JWST heeft dimethylsulfide gedetecteerd in de atmosfeer van K2-18b — een molecuul dat op Aarde uitsluitend door levende organismen wordt gemaakt.', category: 'James Webb', catColor: '#7aadff', bgColor: 'linear-gradient(135deg,#0a1030,#1a2860)', author: 'Redactie', date: '11 mrt 2026', readTime: 6, featured: true },
   { slug: 'desi-donkere-energie', title: 'DESI: donkere energie verzwakt al 4,5 miljard jaar', excerpt: 'De grootste 3D kaart van het heelal toont dat de kracht van donkere energie niet constant is — een potentiële revolutie in de kosmologie.', category: 'Kosmologie', catColor: '#c080ff', bgColor: 'linear-gradient(135deg,#0f0520,#1a0a35)', author: 'Redactie', date: '9 mrt 2026', readTime: 5, featured: false },
   { slug: 'starship-mechazilla', title: 'Starship IFT-7: booster gevangen door Mechazilla', excerpt: 'SpaceX\' mechanische arm ving opnieuw de Super Heavy booster op — een mijlpaal voor volledig herbruikbare ruimtevaart.', category: 'Missies', catColor: '#3dcfdf', bgColor: 'linear-gradient(135deg,#051a20,#0a3040)', author: 'Redactie', date: '7 mrt 2026', readTime: 4, featured: false },
   { slug: 'perseverance-mars', title: 'Perseverance vindt \'luipaardvlekken\' in Jezero krater', excerpt: 'Vreemde geologische patronen op Mars verbazen wetenschappers wereldwijd.', category: 'Mars', catColor: '#ff8a60', bgColor: 'linear-gradient(135deg,#1a0a05,#3a1510)', author: 'Redactie', date: '5 mrt 2026', readTime: 3, featured: false },
@@ -196,8 +196,8 @@ function SiteNav() {
     <>
       <nav aria-label="Hoofdnavigatie" style={{ position: 'sticky', top: 0, zIndex: 20, height: 'var(--nav-h)', background: 'rgba(7,8,13,0.96)', borderBottom: '1px solid #1c2035', backdropFilter: 'blur(16px)' }}>
         <div className="nav-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', height: '100%', display: 'flex', alignItems: 'center', gap: 40 }}>
-          <Link href="/" aria-label="CosmosNL — naar de startpagina" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.9rem', fontWeight: 700, color: '#f4f6ff', flexShrink: 0, letterSpacing: '-0.01em', textDecoration: 'none' }}>
-            Cosmos<em style={{ fontStyle: 'italic', color: '#d4a84b' }}>NL</em>
+          <Link href="/" aria-label="NightGazer — naar de startpagina" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.9rem', fontWeight: 700, color: '#f4f6ff', flexShrink: 0, letterSpacing: '-0.01em', textDecoration: 'none' }}>
+            Night<em style={{ fontStyle: 'italic', color: '#d4a84b' }}>Gazer</em>
           </Link>
           <ul className="nav-links" role="list" style={{ gap: 32, flex: 1, justifyContent: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map(({ href, label }) => (
@@ -581,7 +581,7 @@ function Newsletter() {
           <h2 id="newsletter-title" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem,3vw,2.8rem)', fontWeight: 700, color: '#f4f6ff', lineHeight: 1.1, marginBottom: 16 }}>Het heelal<br />in je inbox</h2>
           <p style={{ fontSize: '0.9rem', color: '#7a86a8', lineHeight: 1.75, maxWidth: 440 }}>Wekelijks de belangrijkste ontdekkingen, komende lanceringen en sterrenkijk-tips — uitgelegd op jouw niveau. Geen spam, altijd uitschrijfbaar.</p>
           <div style={{ display: 'flex', gap: 32, marginTop: 24, flexWrap: 'wrap' }}>
-            {[['4.200+', 'Abonnees'], ['Wekelijks', 'Frequentie'], ['Gratis', 'Altijd']].map(([val, lbl]) => (
+            {[['Wekelijks', 'Frequentie'], ['Gratis', 'Altijd']].map(([val, lbl]) => (
               <div key={lbl}>
                 <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.8rem', fontWeight: 700, color: '#d4a84b', lineHeight: 1 }}>{val}</div>
                 <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4a5278', marginTop: 2 }}>{lbl}</div>
@@ -622,13 +622,13 @@ function SiteFooter() {
       <div className="footer-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <div className="footer-grid">
           <div>
-            <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.7rem', fontWeight: 700, color: '#f4f6ff', marginBottom: 16 }}>Cosmos<em style={{ fontStyle: 'italic', color: '#d4a84b' }}>NL</em></div>
-            <p style={{ fontSize: '0.82rem', color: '#7a86a8', lineHeight: 1.75, maxWidth: 280, marginBottom: 24 }}>Het Nederlandse astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.</p>
+            <div style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.7rem', fontWeight: 700, color: '#f4f6ff', marginBottom: 16 }}>Night<em style={{ fontStyle: 'italic', color: '#d4a84b' }}>Gazer</em></div>
+            <p style={{ fontSize: '0.82rem', color: '#7a86a8', lineHeight: 1.75, maxWidth: 280, marginBottom: 24 }}>Nederlandstalig astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.</p>
             <div style={{ display: 'flex', gap: 10 }} aria-label="Sociale media">
               {[
-                { href: '#', label: 'CosmosNL op X', icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M12.6 1h2.4l-5.2 6 6.2 8H12l-3.7-4.9L3.8 15H1.4l5.5-6.3L.8 1H5l3.4 4.5L12.6 1z" /></svg> },
-                { href: '#', label: 'CosmosNL op Instagram', icon: <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" width="13" height="13"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" /><circle cx="8" cy="8" r="3" /><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor" stroke="none" /></svg> },
-                { href: '#', label: 'CosmosNL op YouTube', icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M14.5 4.5s-.2-1.2-.7-1.7c-.7-.7-1.4-.7-1.8-.8C10.5 2 8 2 8 2s-2.5 0-4 .1c-.4 0-1.1.1-1.8.8-.5.5-.7 1.7-.7 1.7S1.3 5.9 1.3 7.3v1.3c0 1.4.2 2.8.2 2.8s.2 1.2.7 1.7c.7.7 1.6.7 2 .7C5.5 14 8 14 8 14s2.5 0 4-.1c.4-.1 1.1-.1 1.8-.8.5-.5.7-1.7.7-1.7s.2-1.4.2-2.8V7.3C14.7 5.9 14.5 4.5 14.5 4.5zM6.5 10.2V5.8l4.5 2.2-4.5 2.2z" /></svg> },
+                { href: '#', label: 'NightGazer op X', icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M12.6 1h2.4l-5.2 6 6.2 8H12l-3.7-4.9L3.8 15H1.4l5.5-6.3L.8 1H5l3.4 4.5L12.6 1z" /></svg> },
+                { href: '#', label: 'NightGazer op Instagram', icon: <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" width="13" height="13"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" /><circle cx="8" cy="8" r="3" /><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor" stroke="none" /></svg> },
+                { href: '#', label: 'NightGazer op YouTube', icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M14.5 4.5s-.2-1.2-.7-1.7c-.7-.7-1.4-.7-1.8-.8C10.5 2 8 2 8 2s-2.5 0-4 .1c-.4 0-1.1.1-1.8.8-.5.5-.7 1.7-.7 1.7S1.3 5.9 1.3 7.3v1.3c0 1.4.2 2.8.2 2.8s.2 1.2.7 1.7c.7.7 1.6.7 2 .7C5.5 14 8 14 8 14s2.5 0 4-.1c.4-.1 1.1-.1 1.8-.8.5-.5.7-1.7.7-1.7s.2-1.4.2-2.8V7.3C14.7 5.9 14.5 4.5 14.5 4.5zM6.5 10.2V5.8l4.5 2.2-4.5 2.2z" /></svg> },
               ].map(({ href, label, icon }) => (
                 <a key={label} href={href} aria-label={label} style={{ width: 32, height: 32, border: '1px solid #252840', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5278', transition: 'border-color 0.15s, color 0.15s' }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = '#4a5278'; e.currentTarget.style.color = '#7a86a8' }}
@@ -652,7 +652,7 @@ function SiteFooter() {
           ))}
         </div>
         <div className="footer-bottom-row" style={{ borderTop: '1px solid #1c2035', paddingTop: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.54rem', letterSpacing: '0.06em', color: '#2a3050' }}>© 2026 CosmosNL — Astronomie voor iedereen</span>
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.54rem', letterSpacing: '0.06em', color: '#2a3050' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-dm-mono)', fontSize: '0.52rem', color: '#2a3050' }}>
             {[['Claude AI', '⬡'], ['NASA Open APIs', '★']].map(([label, icon]) => (
               <span key={label} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 8px', border: '1px solid #1c2035', borderRadius: 2 }}>

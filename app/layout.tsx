@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title:       { default: 'CosmosNL — Astronomie voor Iedereen', template: '%s | CosmosNL' },
-  description: 'Het Nederlandse astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.',
-  keywords:    ['astronomie', 'ruimtevaart', 'NASA', 'sterrenkijken', 'JWST', 'ruimte nieuws'],
+  title:       { default: 'NightGazer — Astronomie voor Iedereen', template: '%s | NightGazer' },
+  description: 'Nederlandstalig astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.',
+  keywords:    ['astronomie', 'ruimtevaart', 'NASA', 'sterrenkijken', 'JWST', 'ruimte nieuws', 'nightgazer'],
   openGraph: {
-    siteName: 'CosmosNL',
+    siteName: 'NightGazer',
     locale:   'nl_NL',
     type:     'website',
   },
