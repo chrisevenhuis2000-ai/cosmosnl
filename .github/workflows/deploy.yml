@@ -43,7 +43,7 @@ jobs:
           protocol:    ftp
           port:        21
           local-dir:   ./out/
-          server-dir:  /nightgazer.space/
+          server-dir:  /stargazing.crixium.net/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
