@@ -197,7 +197,7 @@ function SiteNav() {
       <nav aria-label="Hoofdnavigatie" style={{ position: 'sticky', top: 0, zIndex: 20, height: 'var(--nav-h)', background: 'rgba(26,26,46,0.96)', borderBottom: '1px solid #252858', backdropFilter: 'blur(16px)' }}>
         <div className="nav-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', height: '100%', display: 'flex', alignItems: 'center', gap: 40 }}>
           <Link href="/" aria-label="NightGazer — naar de startpagina" style={{ flexShrink: 0, textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <img src="/logo-dark.png" alt="NightGazer" height={36} style={{ height: 36, width: 'auto', display: 'block' }} />
+            <img src="/logo-dark.png" alt="NightGazer" style={{ height: 46, width: 'auto', display: 'block', mixBlendMode: 'screen' }} />
           </Link>
           <ul className="nav-links" role="list" style={{ gap: 32, flex: 1, justifyContent: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map(({ href, label }) => (
@@ -623,7 +623,7 @@ function SiteFooter() {
         <div className="footer-grid">
           <div>
             <div style={{ marginBottom: 16 }}>
-              <img src="/logo-dark.png" alt="NightGazer" style={{ height: 32, width: 'auto', display: 'block' }} />
+              <img src="/logo-dark.png" alt="NightGazer" style={{ height: 42, width: 'auto', display: 'block', mixBlendMode: 'screen' }} />
             </div>
             <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.75, maxWidth: 280, marginBottom: 24 }}>Nederlandstalig astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.</p>
             <div style={{ display: 'flex', gap: 10 }} aria-label="Sociale media">

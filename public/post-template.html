@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James Webb vindt mogelijke sporen van leven op K2-18b | NightGazer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & tokens ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:    #1A1A2E;
+      --orbit:    #185FA5;
+      --stellar:  #378ADD;
+      --starlight:#B5D4F4;
+      --border:   #252858;
+      --surface:  #12132A;
+      --muted:    #4A5A8A;
+      --secondary:#8A9BC4;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; color-scheme: dark; }
+
+    body {
+      background: var(--night);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Header / Nav ───────────────────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 60px;
+      background: rgba(26,26,46,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .logo img {
+      height: 46px;
+      width: auto;
+      display: block;
+      mix-blend-mode: screen;
+    }
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #fff; }
+    .header-spacer { flex: 1; }
+    .level-badge {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stellar);
+      border: 1px solid rgba(55,138,221,0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── Reading level toggle ────────────────────────────────────────────── */
+    .level-toggle {
+      position: sticky;
+      top: 60px;
+      z-index: 90;
+      background: rgba(26,26,46,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      gap: 20px;
+    }
+    .level-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .level-dot { color: #e05040; }
+    .level-buttons {
+      display: flex;
+      align-items: center;
+      background: #16173A;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .level-btn {
+      border: none;
+      border-radius: 36px;
+      padding: 6px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--muted);
+      background: transparent;
+    }
+    .level-btn.active {
+      background: #0F1028;
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    .level-btn:hover:not(.active) { color: var(--secondary); }
+    .level-status {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--stellar);
+    }
+
+    /* ── Article hero ───────────────────────────────────────────────────── */
+    .article-hero {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a1030, #1a2860);
+    }
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) saturate(1.1);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(26,26,46,1) 0%,
+        rgba(26,26,46,0.7) 40%,
+        rgba(26,26,46,0.1) 80%,
+        transparent 100%
+      );
+    }
+    .hero-content {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .article-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stellar);
+      border: 1px solid rgba(55,138,221,0.4);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .article-title-hero {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--secondary);
+      flex-wrap: wrap;
+    }
+    .hero-meta .sep { opacity: 0.3; }
+    .read-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(55,138,221,0.15);
+      color: var(--starlight);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+
+    /* ── Main layout ────────────────────────────────────────────────────── */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 24px 120px;
+      align-items: start;
+    }
+
+    /* ── Article body ────────────────────────────────────────────────────── */
+    .article-body {}
+
+    /* Author block */
+    .author-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .author-role {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .author-date {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    /* Level banner (shown when AI level is active) */
+    .level-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+      background: rgba(55,138,221,0.08);
+      border: 1px solid rgba(55,138,221,0.3);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      color: var(--starlight);
+    }
+
+    /* Paragraphs */
+    .article-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 1.6em;
+    }
+    .article-text p.lead {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.7;
+    }
+    .article-text h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 2.5em 0 0.8em;
+      line-height: 1.2;
+    }
+    .article-text h3 {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--starlight);
+      margin: 2em 0 0.6em;
+    }
+    .article-text blockquote {
+      border-left: 3px solid var(--stellar);
+      padding: 16px 24px;
+      background: rgba(55,138,221,0.06);
+      border-radius: 0 4px 4px 0;
+      margin: 2em 0;
+    }
+    .article-text blockquote p {
+      font-style: italic;
+      color: var(--starlight);
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    .article-text .fact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--stellar);
+      padding: 20px 24px;
+      border-radius: 0 0 4px 4px;
+      margin: 2em 0;
+    }
+    .article-text .fact-box h4 {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stellar);
+      margin-bottom: 12px;
+    }
+    .article-text .fact-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-text .fact-box li {
+      font-size: 0.88rem;
+      color: var(--secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .article-text .fact-box li::before {
+      content: '→';
+      color: var(--stellar);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Image within article */
+    .article-image {
+      margin: 2.5em 0;
+    }
+    .article-image img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      filter: brightness(0.9);
+    }
+    .article-image figcaption {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--muted);
+      padding: 8px 0;
+      letter-spacing: 0.06em;
+    }
+
+    /* Tags */
+    .article-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      background: rgba(55,138,221,0.1);
+      color: var(--starlight);
+      border-radius: 2px;
+      border: 1px solid rgba(55,138,221,0.2);
+    }
+
+    /* Share */
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .share-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .share-btn {
+      padding: 6px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--secondary);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .share-btn:hover { border-color: var(--stellar); color: var(--stellar); }
+
+    /* ── Sidebar ──────────────────────────────────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .sidebar-widget {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .widget-header {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .widget-body { padding: 18px; }
+
+    /* Progress widget */
+    .reading-progress-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .reading-progress-fill {
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, var(--orbit), var(--stellar));
+      border-radius: 2px;
+    }
+    .progress-text {
+      font-family: var(--font-mono);
+      font-size: 0.56rem;
+      color: var(--muted);
+    }
+
+    /* Key facts widget */
+    .key-facts { display: flex; flex-direction: column; gap: 14px; }
+    .key-fact {}
+    .key-fact-label {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .key-fact-value {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--stellar);
+      line-height: 1;
+    }
+    .key-fact-unit {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--secondary);
+      margin-top: 2px;
+    }
+
+    /* Related articles widget */
+    .related-list { display: flex; flex-direction: column; gap: 0; }
+    .related-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .related-item:last-child { border-bottom: none; }
+    .related-item:hover { opacity: 0.75; }
+    .related-thumb {
+      width: 54px;
+      height: 40px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .related-thumb-inner {
+      width: 100%;
+      height: 100%;
+    }
+    .related-info {}
+    .related-cat {
+      font-family: var(--font-mono);
+      font-size: 0.48rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stellar);
+      margin-bottom: 4px;
+    }
+    .related-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Newsletter widget */
+    .nl-form { display: flex; flex-direction: column; gap: 10px; }
+    .nl-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: #0F1028;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .nl-input:focus { border-color: var(--stellar); }
+    .nl-submit {
+      width: 100%;
+      padding: 10px;
+      background: var(--stellar);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .nl-submit:hover { background: #4A9DE8; }
+    .nl-fine {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-left {
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      color: #2A3060;
+    }
+    .footer-right {
+      display: flex;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      color: #2A3060;
+    }
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+
+    /* ── STORAGE INFO NOTE (dev only) ────────────────────────────────────── */
+    .storage-note {
+      max-width: 760px;
+      margin: 48px auto;
+      padding: 0 24px;
+      background: rgba(55,138,221,0.05);
+      border: 1px solid rgba(55,138,221,0.2);
+      border-left: 3px solid var(--stellar);
+      border-radius: 0 4px 4px 0;
+      padding: 24px 28px;
+    }
+    .storage-note h3 {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stellar);
+      margin-bottom: 16px;
+    }
+    .storage-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    .storage-table th {
+      font-family: var(--font-mono);
+      font-size: 0.54rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .storage-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(37,40,88,0.4);
+      color: var(--secondary);
+      font-size: 0.84rem;
+    }
+    .storage-table td:first-child { color: #fff; font-weight: 500; }
+    .storage-table td.good { color: #3ddf90; }
+    .storage-note p {
+      margin-top: 16px;
+      font-size: 0.84rem;
+      color: var(--secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+    @media (max-width: 640px) {
+      .header-inner { padding: 0 20px; }
+      .level-toggle { padding: 0 20px; }
+      .article-hero { height: 280px; }
+      .article-layout { padding: 36px 16px 80px; }
+      .site-footer { padding: 20px; flex-direction: column; }
+      .hero-content { padding: 0 16px; bottom: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── STORAGE EFFICIENCY NOTE (remove before shipping) ──────────────── -->
+  <div class="storage-note">
+    <h3>📊 Opslaganalyse — artikel architectuur</h3>
+    <table class="storage-table">
+      <thead>
+        <tr>
+          <th>Omvang</th>
+          <th>Markdown (.md)</th>
+          <th>Index JSON</th>
+          <th>Totaal</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nu (20 posts)</td>
+          <td>~105 KB</td>
+          <td>~20 KB</td>
+          <td>~125 KB</td>
+          <td class="good">✓ Uitstekend</td>
+        </tr>
+        <tr>
+          <td>50 posts</td>
+          <td>~260 KB</td>
+          <td>~50 KB</td>
+          <td>~310 KB</td>
+          <td class="good">✓ Uitstekend</td>
+        </tr>
+        <tr>
+          <td>200 posts</td>
+          <td>~1 MB</td>
+          <td>~200 KB</td>
+          <td>~1.2 MB</td>
+          <td class="good">✓ Nog prima</td>
+        </tr>
+        <tr>
+          <td>1.000 posts</td>
+          <td>~5 MB</td>
+          <td>~1 MB</td>
+          <td>~6 MB</td>
+          <td style="color:#d4a84b;">⚠ Index opsplitsen</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Conclusie:</strong> De huidige aanpak (Markdown per artikel + één articles-index.json) is efficiënt tot ~500 posts.
+      Op dat punt is het slim om de index op te splitsen per categorie (<code>index-james-webb.json</code> etc.) en paginering toe te voegen.
+      Markdown-bestanden zelf zijn altijd efficient — een artikel van 1.000 woorden is ~5KB. Bij 50 posts laadt de volledige index
+      in één HTTP-request (&lt;50KB), wat sneller is dan welke database-query ook.
+    </p>
+  </div>
+
+  <!-- ── SITE HEADER ────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="NightGazer — startpagina">
+        <!-- In productie: <img src="/logo-dark.png" alt="NightGazer"> -->
+        <svg height="46" viewBox="0 0 480 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Eye icon -->
+          <path d="M10 50 Q50 10 90 50 Q50 90 10 50Z" fill="none" stroke="white" stroke-width="5" stroke-linejoin="round"/>
+          <circle cx="50" cy="50" r="22" fill="#1A1A2E" stroke="white" stroke-width="3"/>
+          <path d="M50 33 L53.5 46.5 L67 50 L53.5 53.5 L50 67 L46.5 53.5 L33 50 L46.5 46.5 Z" fill="white"/>
+          <circle cx="63" cy="39" r="3.5" fill="white"/>
+          <!-- NIGHTGAZER text -->
+          <text x="110" y="58" font-family="Inter,sans-serif" font-weight="700" font-size="28" fill="white" letter-spacing="2">NIGHTGAZER</text>
+          <!-- .space -->
+          <text x="390" y="72" font-family="Inter,sans-serif" font-weight="500" font-size="16" fill="#378ADD">.space</text>
+        </svg>
+      </a>
+      <nav>
+        <a href="/" class="back-link">← Terug naar nieuws</a>
+      </nav>
+      <div class="header-spacer"></div>
+      <span class="level-badge">Origineel</span>
+    </div>
+  </header>
+
+  <!-- ── READING LEVEL TOGGLE ───────────────────────────────────────────── -->
+  <div class="level-toggle">
+    <div class="level-label">
+      <span class="level-dot">◈</span> Leesniveau
+    </div>
+    <div class="level-buttons">
+      <button class="level-btn active">📖 Origineel</button>
+      <button class="level-btn">🌱 Beginner</button>
+      <button class="level-btn">🔭 Amateur</button>
+      <button class="level-btn">⚗️ Pro</button>
+    </div>
+    <div class="level-status">
+      <div class="status-dot"></div>
+      Originele versie
+    </div>
+  </div>
+
+  <!-- ── ARTICLE HERO ───────────────────────────────────────────────────── -->
+  <div class="article-hero">
+    <!-- Hero image placeholder — in productie: NASA/ESA afbeelding -->
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1030 0%,#1a2860 40%,#0d1a40 100%);display:flex;align-items:center;justify-content:center;">
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" opacity="0.15">
+        <circle cx="60" cy="60" r="50" stroke="white" stroke-width="1"/>
+        <circle cx="60" cy="60" r="30" stroke="white" stroke-width="0.5"/>
+        <line x1="0" y1="60" x2="120" y2="60" stroke="white" stroke-width="0.5"/>
+        <line x1="60" y1="0" x2="60" y2="120" stroke="white" stroke-width="0.5"/>
+        <circle cx="60" cy="60" r="5" fill="white"/>
+      </svg>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="article-category">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+        James Webb
+      </div>
+      <h1 class="article-title-hero">
+        James Webb vindt mogelijke sporen van leven op K2-18b
+      </h1>
+      <div class="hero-meta">
+        <span>11 maart 2026</span>
+        <span class="sep">·</span>
+        <span>Redactie NightGazer</span>
+        <span class="sep">·</span>
+        <span class="read-time">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          6 min lezen
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ───────────────────────────────────────────────────── -->
+  <div class="article-layout">
+
+    <!-- LEFT: Article body -->
+    <article class="article-body">
+
+      <!-- Author -->
+      <div class="author-block">
+        <div class="author-avatar">🔭</div>
+        <div>
+          <div class="author-name">Redactie NightGazer</div>
+          <div class="author-role">NightGazer Redactie</div>
+        </div>
+        <div class="author-date">
+          11 mrt 2026<br>
+          <span style="color:var(--muted)">6 min lezen</span>
+        </div>
+      </div>
+
+      <!-- Level banner (shown when AI rewrites) -->
+      <div class="level-banner">
+        <span>🌱</span>
+        <span>Beginner versie — herschreven door AI op jouw niveau</span>
+      </div>
+
+      <!-- Article text -->
+      <div class="article-text">
+
+        <p class="lead">
+          De James Webb Space Telescope heeft voor het eerst dimethylsulfide gedetecteerd in de atmosfeer van exoplaneet K2-18b —
+          een molecuul dat op Aarde uitsluitend door levende organismen wordt geproduceerd.
+        </p>
+
+        <p>
+          De ontdekking werd gepubliceerd in <em>The Astrophysical Journal Letters</em> en is meteen de meest gedetailleerde
+          chemische vingerafdruk van een Hycean-planeet ooit. K2-18b bevindt zich op 120 lichtjaar afstand in het sterrenbeeld Leeuw,
+          en omcirkelt een rode dwergster in de bewoonbare zone.
+        </p>
+
+        <div class="fact-box">
+          <h4>✦ Kernfeiten</h4>
+          <ul>
+            <li>K2-18b is 8,6 keer zo zwaar als de Aarde</li>
+            <li>Atmosfeer bevat methaan, CO₂ én dimethylsulfide (DMS)</li>
+            <li>DMS is op Aarde uitsluitend van biologische oorsprong</li>
+            <li>Zekerheidsdrempel: 3-sigma — nog geen definitief bewijs</li>
+            <li>Vervolgobservaties gepland voor 2027</li>
+          </ul>
+        </div>
+
+        <h2>Wat is dimethylsulfide en waarom is het bijzonder?</h2>
+
+        <p>
+          Dimethylsulfide (DMS) is een organische zwavelverbinding met de formule (CH₃)₂S. Op Aarde wordt het
+          uitsluitend geproduceerd door marien fytoplankton — microscopische algen die in de oceaan leven.
+          Het molecuul speelt een belangrijke rol in de koolstofkringloop van de Aarde en is verantwoordelijk
+          voor de karakteristieke geur van de zee.
+        </p>
+
+        <blockquote>
+          <p>
+            "Als we DMS zien op een planeet met oceanen, moeten we serieus overwegen dat er leven aanwezig zou kunnen zijn.
+            Dit is geen bewijs, maar het is het sterkste signaal dat we ooit hebben gemeten."
+          </p>
+          <footer style="margin-top:8px;font-family:var(--font-mono);font-size:0.58rem;color:var(--muted)">
+            — Dr. Nikku Madhusudhan, Universiteit van Cambridge
+          </footer>
+        </blockquote>
+
+        <p>
+          De detectie door JWST's NIRSpec-instrument betreft een absorptiesignaal bij golflengtes die karakteristiek zijn
+          voor DMS. Het team analyseerde het licht dat door de atmosfeer van K2-18b filterde tijdens zeven transitpassages —
+          momenten waarop de planeet voor haar ster langsloopt.
+        </p>
+
+        <figure class="article-image">
+          <div style="width:100%;height:220px;background:linear-gradient(135deg,#0a1030,#1a2860,#0d1540);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.15em">NASA / ESA / James Webb Space Telescope</span>
+          </div>
+          <figcaption>Transmissiespectrum van K2-18b gemeten door JWST NIRSpec. De rode pijl wijst op de DMS-absorptiepiek. Credit: NASA/ESA/CSA</figcaption>
+        </figure>
+
+        <h2>Hycean-planeten: oceanen onder een waterstofatmosfeer</h2>
+
+        <p>
+          K2-18b is een zogenaamde 'Hycean' planeet (van <em>Hydrogen</em> + <em>Ocean</em>): een planeet met een dikke
+          waterstofatmosfeer bovenop een globale oceaan van vloeibaar water. Theoretisch kunnen microbische levensvormen
+          overleven in de bovenste waterlagen van zulke planeten, zelfs onder de enorme druk van de atmosfeer.
+        </p>
+
+        <p>
+          De temperatuur aan het oceaanoppervlak van K2-18b wordt geschat op 20–50°C — vergelijkbaar met tropische
+          aardse oceanen. De zwaartekracht is echter meer dan tweemaal die van de Aarde, wat de fysieke omstandigheden
+          sterk verschilt van wat wij op Aarde kennen.
+        </p>
+
+      </div><!-- /article-text -->
+
+      <!-- Tags -->
+      <div class="article-tags">
+        <span class="tag">James Webb</span>
+        <span class="tag">Exoplaneten</span>
+        <span class="tag">Astrobiologie</span>
+        <span class="tag">K2-18b</span>
+        <span class="tag">Buitenaards leven</span>
+      </div>
+
+      <!-- Share -->
+      <div class="share-row">
+        <span class="share-label">Deel:</span>
+        <button class="share-btn">X / Twitter</button>
+        <button class="share-btn">LinkedIn</button>
+        <button class="share-btn">Kopieer link</button>
+      </div>
+
+    </article>
+
+    <!-- RIGHT: Sidebar -->
+    <aside class="sidebar">
+
+      <!-- Reading progress -->
+      <div class="sidebar-widget">
+        <div class="widget-header">Voortgang</div>
+        <div class="widget-body">
+          <div class="reading-progress-bar">
+            <div class="reading-progress-fill"></div>
+          </div>
+          <div class="progress-text">~3 min resterend</div>
+        </div>
+      </div>
+
+      <!-- Key facts -->
+      <div class="sidebar-widget">
+        <div class="widget-header">Kerncijfers</div>
+        <div class="widget-body">
+          <div class="key-facts">
+            <div class="key-fact">
+              <div class="key-fact-label">Afstand tot K2-18b</div>
+              <div class="key-fact-value">120</div>
+              <div class="key-fact-unit">lichtjaar van de Aarde</div>
+            </div>
+            <div class="key-fact">
+              <div class="key-fact-label">Massa</div>
+              <div class="key-fact-value">8.6×</div>
+              <div class="key-fact-unit">zwaarder dan de Aarde</div>
+            </div>
+            <div class="key-fact">
+              <div class="key-fact-label">Zekerheid detectie</div>
+              <div class="key-fact-value">3σ</div>
+              <div class="key-fact-unit">nog geen definitief bewijs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related articles -->
+      <div class="sidebar-widget">
+        <div class="widget-header">Gerelateerde artikelen</div>
+        <div class="widget-body" style="padding:0 18px;">
+          <div class="related-list">
+            <a href="#" class="related-item">
+              <div class="related-thumb">
+                <div class="related-thumb-inner" style="background:linear-gradient(135deg,#0f0520,#1a0a35);"></div>
+              </div>
+              <div class="related-info">
+                <div class="related-cat">Kosmologie</div>
+                <div class="related-title">DESI: donkere energie verzwakt al 4,5 miljard jaar</div>
+              </div>
+            </a>
+            <a href="#" class="related-item">
+              <div class="related-thumb">
+                <div class="related-thumb-inner" style="background:linear-gradient(135deg,#051a20,#0a3040);"></div>
+              </div>
+              <div class="related-info">
+                <div class="related-cat">Missies</div>
+                <div class="related-title">Starship IFT-7: booster gevangen door Mechazilla</div>
+              </div>
+            </a>
+            <a href="#" class="related-item">
+              <div class="related-thumb">
+                <div class="related-thumb-inner" style="background:linear-gradient(135deg,#051a10,#0a2a1a);"></div>
+              </div>
+              <div class="related-info">
+                <div class="related-cat">Educatie</div>
+                <div class="related-title">Wat is een neutronenster? Uitleg in 3 niveaus</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-widget">
+        <div class="widget-header">Nieuwsbrief</div>
+        <div class="widget-body">
+          <p style="font-size:0.82rem;color:var(--secondary);margin-bottom:14px;line-height:1.6;">
+            Wekelijks het beste van de sterren­hemel in je inbox.
+          </p>
+          <div class="nl-form">
+            <input class="nl-input" type="email" placeholder="jouw@email.nl" />
+            <button class="nl-submit">Aanmelden →</button>
+          </div>
+          <p class="nl-fine" style="margin-top:8px;">Gratis · Altijd uitschrijfbaar</p>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-left">© 2026 NightGazer — Astronomie voor iedereen, uitgelegd op jouw niveau</div>
+    <div class="footer-right">
+      <span class="footer-badge"><span>⬡</span> Claude AI</span>
+      <span class="footer-badge"><span>★</span> NASA Open APIs</span>
+    </div>
+  </footer>
+
+</body>
+</html>

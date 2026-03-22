@@ -278,7 +278,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
       <header style={{ position: 'sticky', top: 0, zIndex: 40, background: 'rgba(26,26,46,0.96)', backdropFilter: 'blur(16px)', borderBottom: '1px solid #252858' }}>
         <div style={{ display: 'flex', alignItems: 'center', padding: '0 40px', height: 60, gap: 40, maxWidth: 1240, margin: '0 auto' }}>
           <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <img src="/logo-dark.png" alt="NightGazer" style={{ height: 32, width: 'auto', display: 'block' }} />
+            <img src="/logo-dark.png" alt="NightGazer" style={{ height: 44, width: 'auto', display: 'block', mixBlendMode: 'screen' }} />
           </a>
           <nav style={{ display: 'flex', gap: 24, flex: 1, fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>
             <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>← Terug</a>
