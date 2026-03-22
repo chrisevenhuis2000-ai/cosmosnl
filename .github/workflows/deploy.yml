@@ -34,16 +34,16 @@ jobs:
             cp "$f" "$slug/index.html"
           done
 
-      - name: 📁 Deploy via FTPS
+      - name: 📁 Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server:      ${{ secrets.FTP_HOST }}
           username:    ${{ secrets.FTP_USERNAME }}
           password:    ${{ secrets.FTP_PASSWORD }}
-          protocol:    ftps
+          protocol:    ftp
           port:        21
           local-dir:   ./out/
-          server-dir:  /stargazing.crixium.net/
+          server-dir:  /nightgazer.space/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
