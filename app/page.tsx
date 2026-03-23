@@ -489,15 +489,15 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
         <span aria-live="polite" aria-atomic="true" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>Realtime</span>
       </div>
       <div role="img" aria-label="ISS positie op wereldkaart" style={{ height: 160, background: '#050810', position: 'relative', overflow: 'hidden' }}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.2, filter: 'brightness(0.5) saturate(0) sepia(1) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
-        <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.12 }}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, filter: 'brightness(0.85) saturate(0.4) sepia(0.6) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
+        <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.28 }}>
           {[25, 50, 75].map(y => <line key={y} x1="0" y1={`${y}%`} x2="100%" y2={`${y}%`} stroke="#3dcfdf" strokeWidth="0.5" />)}
           {[16.6, 33.3, 50, 66.6, 83.3].map(x => <line key={x} x1={`${x}%`} y1="0" x2={`${x}%`} y2="100%" stroke="#3dcfdf" strokeWidth="0.5" />)}
           <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#3dcfdf" strokeWidth="1" opacity="0.4" />
         </svg>
         {iss && (
           <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-            <ellipse cx={`${px}%`} cy="50%" rx="18%" ry="28%" fill="none" stroke="#3ddf90" strokeWidth="0.8" strokeDasharray="3 4" opacity="0.25" />
+            <ellipse cx={`${px}%`} cy="50%" rx="18%" ry="28%" fill="none" stroke="#3ddf90" strokeWidth="1" strokeDasharray="3 4" opacity="0.5" />
           </svg>
         )}
         <div aria-hidden="true" style={{ position: 'absolute', left: `${px}%`, top: `${py}%`, width: 12, height: 12, transform: 'translate(-50%,-50%)', zIndex: 2, transition: 'left 2s linear, top 2s linear' }}>
