@@ -712,20 +712,23 @@ export default function HomePage() {
       .catch(() => {})
   }, [])
 
-  // Fetch NASA images for article cards that have no imageUrl.
-  // Multi-tier: slug → category fallback → generic space image.
+  // Fetch unique, article-specific NASA images for cards without imageUrl.
   useEffect(() => {
+    const STOP = new Set(['a','an','the','of','in','to','for','on','at','by','from','and','or',
+                          'with','is','are','was','its','it','as','be','do','go','up','no','so',
+                          'if','live','coverage','how','nasa','esas','nasas'])
+
     const CAT_QUERIES: Record<string, string> = {
-      'missies':       'rocket launch space mission NASA',
-      'missions':      'rocket launch space mission NASA',
-      'james-webb':    'james webb space telescope galaxy',
-      'kosmologie':    'hubble galaxy nebula deep space',
-      'cosmology':     'hubble galaxy nebula deep space',
-      'mars':          'mars surface rover perseverance',
-      'sterrenkijken': 'milky way night sky stars',
-      'observing':     'milky way night sky stars',
-      'educatie':      'NASA astronaut space station earth',
-      'education':     'NASA astronaut space station earth',
+      'missies':       'rocket launch spacecraft',
+      'missions':      'rocket launch spacecraft',
+      'james-webb':    'james webb telescope infrared galaxy',
+      'kosmologie':    'galaxy nebula hubble deep field',
+      'cosmology':     'galaxy nebula hubble deep field',
+      'mars':          'mars surface landscape rover',
+      'sterrenkijken': 'night sky milky way stars',
+      'observing':     'night sky milky way stars',
+      'educatie':      'astronaut earth orbit spacewalk',
+      'education':     'astronaut earth orbit spacewalk',
     }
 
     const toFetch = articles
@@ -735,24 +738,41 @@ export default function HomePage() {
     toFetch.forEach(a => nasaFetchedRef.current.add(a.slug))
 
     toFetch.forEach(async (a) => {
-      const cat      = a.category?.toLowerCase() || ''
-      const queries  = [
-        a.slug.replace(/-/g, ' ').slice(0, 60),
-        CAT_QUERIES[cat] || 'NASA space exploration',
-      ]
+      // Deterministic hash → unique page + result-index per article
+      const hash = a.slug.split('').reduce((acc: number, c: string) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
+      const page = (hash % 3) + 1
+
+      const keyWords = a.slug
+        .replace(/-/g, ' ')
+        .split(' ')
+        .filter((w: string) => w.length > 2 && !STOP.has(w))
+        .slice(0, 4)
+        .join(' ')
+
+      const cat      = (a.category || '').toLowerCase()
+      const catQuery = CAT_QUERIES[cat] || 'space exploration NASA'
+      const queries  = [keyWords, catQuery].filter(Boolean)
+
       for (const q of queries) {
-        try {
-          const res   = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=3`)
-          const data  = await res.json()
-          const items: any[] = data?.collection?.items || []
-          for (const item of items) {
-            const href: string = item?.links?.[0]?.href ?? ''
-            if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
-              setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
-              return
+        for (const pg of [page, 1]) {
+          try {
+            const res   = await fetch(
+              `https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=20&page=${pg}`
+            )
+            const data  = await res.json()
+            const items: any[] = data?.collection?.items || []
+            if (!items.length) continue
+            const start = hash % items.length
+            for (let i = 0; i < items.length; i++) {
+              const item = items[(start + i) % items.length]
+              const href: string = item?.links?.[0]?.href ?? ''
+              if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+                setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
+                return
+              }
             }
-          }
-        } catch {}
+          } catch {}
+        }
       }
     })
   }, [articles])

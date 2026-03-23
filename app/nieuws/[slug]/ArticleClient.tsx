@@ -443,36 +443,58 @@ export default function ArticleClient({ slug }: { slug: string }) {
       .catch(() => {})
   }, [article, slug])
 
-  // Fetch NASA image when article has no imageUrl.
-  // Uses a multi-tier query strategy for reliable results.
+  // Fetch a unique, article-specific NASA image when no imageUrl is set.
   useEffect(() => {
     if (!article || article.imageUrl) return
 
-    // Tier 1: explicit tags  →  Tier 2: slug words  →  Tier 3: category fallback
-    const CAT_QUERIES: Record<string, string> = {
-      'missies':       'rocket launch space mission',
-      'missions':      'rocket launch space mission',
-      'james-webb':    'james webb space telescope galaxy',
-      'kosmologie':    'hubble galaxy nebula cosmos deep space',
-      'cosmology':     'hubble galaxy nebula cosmos deep space',
-      'mars':          'mars surface rover perseverance',
-      'sterrenkijken': 'milky way night sky stars telescope',
-      'observing':     'milky way night sky stars telescope',
-      'educatie':      'NASA astronaut space station earth',
-      'education':     'NASA astronaut space station earth',
-    }
-    const cat        = article.category?.toLowerCase() || ''
-    const tagsQuery  = article.tags.slice(0, 2).join(' ')
-    const slugQuery  = slug.replace(/-/g, ' ').slice(0, 60)
-    const catQuery   = CAT_QUERIES[cat] || 'NASA space exploration earth'
-    const queries    = [tagsQuery, slugQuery, catQuery].filter(Boolean)
+    // Stop-words to strip from slug so only meaningful keywords remain
+    const STOP = new Set(['a','an','the','of','in','to','for','on','at','by','from','and','or',
+                          'with','is','are','was','its','it','as','be','do','go','up','no','so',
+                          'if','live','coverage','how','nasa','esas','nasas'])
 
-    async function tryFetch(q: string): Promise<boolean> {
+    // Deterministic hash of the slug → unique page + result-index per article
+    const hash = slug.split('').reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
+
+    // Extract 3-4 meaningful nouns from the slug
+    const keyWords = slug
+      .replace(/-/g, ' ')
+      .split(' ')
+      .filter(w => w.length > 2 && !STOP.has(w))
+      .slice(0, 4)
+      .join(' ')
+
+    // Tier 1: slug keywords (unique per article) + random page so different articles
+    //         with similar topics still get different images
+    // Tier 2: article title words as backup
+    // Tier 3: category-specific wide-net query
+    const CAT_QUERIES: Record<string, string> = {
+      'missies':       'rocket launch spacecraft',
+      'missions':      'rocket launch spacecraft',
+      'james-webb':    'james webb telescope infrared',
+      'kosmologie':    'galaxy nebula hubble deep field',
+      'cosmology':     'galaxy nebula hubble deep field',
+      'mars':          'mars surface landscape rover',
+      'sterrenkijken': 'night sky milky way stars',
+      'observing':     'night sky milky way stars',
+      'educatie':      'astronaut earth orbit spacewalk',
+      'education':     'astronaut earth orbit spacewalk',
+    }
+    const cat      = article.category?.toLowerCase() || ''
+    const catQuery = CAT_QUERIES[cat] || 'space exploration NASA earth'
+    const queries  = [keyWords, catQuery].filter(Boolean)
+
+    async function tryFetch(q: string, page: number): Promise<boolean> {
       try {
-        const res   = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=5`)
+        const res   = await fetch(
+          `https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=20&page=${page}`
+        )
         const data  = await res.json()
         const items: any[] = data?.collection?.items || []
-        for (const item of items) {
+        if (!items.length) return false
+        // Pick a deterministic but unique index so same query → different image per article
+        const startIdx = hash % items.length
+        for (let i = 0; i < items.length; i++) {
+          const item = items[(startIdx + i) % items.length]
           const href: string = item?.links?.[0]?.href ?? ''
           if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
             const photographer: string = item?.data?.[0]?.photographer ?? ''
@@ -486,8 +508,11 @@ export default function ArticleClient({ slug }: { slug: string }) {
     }
 
     ;(async () => {
+      // Try slug keywords on a slug-specific page first
+      const page = (hash % 3) + 1
       for (const q of queries) {
-        if (await tryFetch(q)) return
+        if (await tryFetch(q, page)) return
+        if (await tryFetch(q, 1))    return  // fallback to page 1 of same query
       }
     })()
   }, [article?.imageUrl, article?.tags, article?.title])
