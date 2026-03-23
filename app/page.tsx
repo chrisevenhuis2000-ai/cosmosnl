@@ -362,8 +362,14 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
           <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: article.catColor, zIndex: 2 }} />
           {/* Unique gradient background */}
           <div className="card-thumb-inner" style={{ width: '100%', height: '100%', background: gradient, position: 'relative' }}>
+            {/* Actual image when available */}
+            {article.imageUrl && (
+              <img src={`https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=700&h=${thumbH * 2}&fit=cover`} alt="" aria-hidden="true" loading="lazy"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7) saturate(1.1)' }}
+              />
+            )}
             {/* Glow circle — unique position per article */}
-            <div aria-hidden="true" style={{ position: 'absolute', left: `${cx}%`, top: `${cy}%`, width: 120, height: 120, borderRadius: '50%', background: article.catColor, opacity: 0.18, filter: 'blur(28px)', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />
+            {!article.imageUrl && <div aria-hidden="true" style={{ position: 'absolute', left: `${cx}%`, top: `${cy}%`, width: 120, height: 120, borderRadius: '50%', background: article.catColor, opacity: 0.18, filter: 'blur(28px)', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />}
             {/* Category badge */}
             <span style={{ position: 'absolute', bottom: 12, left: 14, fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: article.catColor, background: 'rgba(26,26,46,0.75)', backdropFilter: 'blur(8px)', padding: '3px 8px', borderRadius: 2, border: `1px solid ${article.catColor}30`, zIndex: 2 }}>
               {article.category}
@@ -410,8 +416,14 @@ function ArticleGridCard({ article }: { article: Article }) {
 
         {/* Thumbnail — unique gradient per article */}
         <div style={{ height: 140, position: 'relative', overflow: 'hidden', flexShrink: 0, background: gradient }}>
-          {/* Unique glow circle */}
-          <div aria-hidden="true" style={{ position: 'absolute', left: `${cx}%`, top: `${cy}%`, width: 100, height: 100, borderRadius: '50%', background: article.catColor, opacity: 0.2, filter: 'blur(24px)', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />
+          {/* Actual image when available */}
+          {article.imageUrl && (
+            <img src={`https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=600&h=280&fit=cover`} alt="" aria-hidden="true" loading="lazy"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65) saturate(1.1)' }}
+            />
+          )}
+          {/* Unique glow circle (only when no image) */}
+          {!article.imageUrl && <div aria-hidden="true" style={{ position: 'absolute', left: `${cx}%`, top: `${cy}%`, width: 100, height: 100, borderRadius: '50%', background: article.catColor, opacity: 0.2, filter: 'blur(24px)', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />}
           {/* Bottom fade into card */}
           <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 48, background: 'linear-gradient(to bottom, transparent, rgba(12,14,24,0.9))' }} />
           {/* Hover zoom effect */}
@@ -570,7 +582,7 @@ function AIPromoWidget() {
 // ── Newsletter ─────────────────────────────────────────────────────────────
 function Newsletter() {
   return (
-    <section aria-labelledby="newsletter-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858', borderBottom: '1px solid #252858', overflow: 'hidden' }}>
+    <section id="nieuwsbrief" aria-labelledby="newsletter-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858', borderBottom: '1px solid #252858', overflow: 'hidden' }}>
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 100% at 100% 50%, rgba(55,138,221,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
       <div className="newsletter-grid newsletter-inner" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '64px var(--sp-10)' }}>
         <div>
@@ -680,6 +692,15 @@ export default function HomePage() {
   const handleFilter = useCallback((topic: string) => {
     setActiveFilter(topic)
     setVisibleCount(PAGE_SIZE)
+  }, [])
+
+  // Read ?topic query param on mount
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get('topic')
+    if (param) {
+      const match = TOPICS.find(t => t.toLowerCase() === param.toLowerCase())
+      if (match) setActiveFilter(match)
+    }
   }, [])
 
   // Load articles from articles-index.json
