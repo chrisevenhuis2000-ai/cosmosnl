@@ -713,28 +713,47 @@ export default function HomePage() {
   }, [])
 
   // Fetch NASA images for article cards that have no imageUrl.
-  // Uses the article slug (English words) as search query for best results.
+  // Multi-tier: slug → category fallback → generic space image.
   useEffect(() => {
+    const CAT_QUERIES: Record<string, string> = {
+      'missies':       'rocket launch space mission NASA',
+      'missions':      'rocket launch space mission NASA',
+      'james-webb':    'james webb space telescope galaxy',
+      'kosmologie':    'hubble galaxy nebula deep space',
+      'cosmology':     'hubble galaxy nebula deep space',
+      'mars':          'mars surface rover perseverance',
+      'sterrenkijken': 'milky way night sky stars',
+      'observing':     'milky way night sky stars',
+      'educatie':      'NASA astronaut space station earth',
+      'education':     'NASA astronaut space station earth',
+    }
+
     const toFetch = articles
       .filter(a => !a.imageUrl && !nasaFetchedRef.current.has(a.slug))
-      .slice(0, 15) // limit concurrent requests
+      .slice(0, 15)
     if (!toFetch.length) return
-    // Mark as fetched immediately to prevent duplicate requests on re-render
     toFetch.forEach(a => nasaFetchedRef.current.add(a.slug))
+
     toFetch.forEach(async (a) => {
-      const query = a.slug.replace(/-/g, ' ').slice(0, 80)
-      try {
-        const res  = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=3`)
-        const data = await res.json()
-        const items: any[] = data?.collection?.items || []
-        for (const item of items) {
-          const href: string = item?.links?.[0]?.href ?? ''
-          if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
-            setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
-            return
+      const cat      = a.category?.toLowerCase() || ''
+      const queries  = [
+        a.slug.replace(/-/g, ' ').slice(0, 60),
+        CAT_QUERIES[cat] || 'NASA space exploration',
+      ]
+      for (const q of queries) {
+        try {
+          const res   = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=3`)
+          const data  = await res.json()
+          const items: any[] = data?.collection?.items || []
+          for (const item of items) {
+            const href: string = item?.links?.[0]?.href ?? ''
+            if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+              setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
+              return
+            }
           }
-        }
-      } catch {}
+        } catch {}
+      }
     })
   }, [articles])
 

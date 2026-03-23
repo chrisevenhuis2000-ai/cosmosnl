@@ -65,14 +65,20 @@ const IMG   = (url: string, w = 800, h = 450) =>
 // ── Markdown parser ────────────────────────────────────────────────────────
 
 function parseMarkdown(raw: string, slug: string): ArticleData {
+  // Normalise line endings (files may use \r\n on Windows)
+  raw = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+
   const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
   const fm: Record<string, string> = {}
   let body = raw
 
   if (fmMatch) {
     fmMatch[1].split('\n').forEach(line => {
-      const [key, ...rest] = line.split(':')
-      if (key && rest.length) fm[key.trim()] = rest.join(':').trim().replace(/^["']|["']$/g, '')
+      const colonIdx = line.indexOf(':')
+      if (colonIdx === -1) return
+      const key = line.slice(0, colonIdx).trim()
+      const val = line.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '')
+      if (key) fm[key] = val
     })
     body = fmMatch[2]
   }
@@ -437,30 +443,53 @@ export default function ArticleClient({ slug }: { slug: string }) {
       .catch(() => {})
   }, [article, slug])
 
-  // Fetch NASA image when article has no imageUrl
-  // Use the slug (English keywords) as the search query for better results.
+  // Fetch NASA image when article has no imageUrl.
+  // Uses a multi-tier query strategy for reliable results.
   useEffect(() => {
     if (!article || article.imageUrl) return
-    const slugQuery  = slug.replace(/-/g, ' ')
+
+    // Tier 1: explicit tags  →  Tier 2: slug words  →  Tier 3: category fallback
+    const CAT_QUERIES: Record<string, string> = {
+      'missies':       'rocket launch space mission',
+      'missions':      'rocket launch space mission',
+      'james-webb':    'james webb space telescope galaxy',
+      'kosmologie':    'hubble galaxy nebula cosmos deep space',
+      'cosmology':     'hubble galaxy nebula cosmos deep space',
+      'mars':          'mars surface rover perseverance',
+      'sterrenkijken': 'milky way night sky stars telescope',
+      'observing':     'milky way night sky stars telescope',
+      'educatie':      'NASA astronaut space station earth',
+      'education':     'NASA astronaut space station earth',
+    }
+    const cat        = article.category?.toLowerCase() || ''
     const tagsQuery  = article.tags.slice(0, 2).join(' ')
-    const query      = (tagsQuery || slugQuery).slice(0, 80)
-    fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=5`)
-      .then(r => r.json())
-      .then((data: any) => {
-        const items = data?.collection?.items
-        if (!items?.length) return
+    const slugQuery  = slug.replace(/-/g, ' ').slice(0, 60)
+    const catQuery   = CAT_QUERIES[cat] || 'NASA space exploration earth'
+    const queries    = [tagsQuery, slugQuery, catQuery].filter(Boolean)
+
+    async function tryFetch(q: string): Promise<boolean> {
+      try {
+        const res   = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=5`)
+        const data  = await res.json()
+        const items: any[] = data?.collection?.items || []
         for (const item of items) {
           const href: string = item?.links?.[0]?.href ?? ''
           if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
             const photographer: string = item?.data?.[0]?.photographer ?? ''
             const center: string       = item?.data?.[0]?.center ?? 'NASA'
-            const credit = photographer ? `${photographer} / ${center}` : center
-            setNasaImage({ url: href, credit })
-            return
+            setNasaImage({ url: href, credit: photographer ? `${photographer} / ${center}` : center })
+            return true
           }
         }
-      })
-      .catch(() => {})
+      } catch {}
+      return false
+    }
+
+    ;(async () => {
+      for (const q of queries) {
+        if (await tryFetch(q)) return
+      }
+    })()
   }, [article?.imageUrl, article?.tags, article?.title])
 
   // Reading progress (scroll-based)
