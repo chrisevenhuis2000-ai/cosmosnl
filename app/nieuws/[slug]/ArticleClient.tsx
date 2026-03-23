@@ -253,12 +253,13 @@ function Para({ text, isRewritten, level, loading, isLead }: {
 
 // ── Sidebar ────────────────────────────────────────────────────────────────
 
-function Sidebar({ article, enrichment, enrichLoading, readProgress, related }: {
+function Sidebar({ article, enrichment, enrichLoading, readProgress, related, currentSlug }: {
   article: ArticleData
   enrichment: Enrichment | null
   enrichLoading: boolean
   readProgress: number
   related: RelatedItem[]
+  currentSlug: string
 }) {
   const minsLeft = Math.max(1, Math.round(article.readTime * (1 - readProgress / 100)))
 
@@ -371,6 +372,11 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related }: 
         </div>
       </div>
 
+      {/* Sterrenveld */}
+      <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
+        <GalaxyMap currentSlug={currentSlug} compact />
+      </div>
+
       {/* Back */}
       <a href="/"
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px 20px', border: '1px solid #252858', borderRadius: 2, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
@@ -392,6 +398,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
   const [enrichLoading,setEnrichLoading]= useState(false)
   const [readProgress, setReadProgress] = useState(0)
   const [related,      setRelated]      = useState<RelatedItem[]>([])
+  const [nasaImage,    setNasaImage]    = useState<{ url: string; credit: string } | null>(null)
   const articleRef = useRef<HTMLElement>(null)
   const { rewrite } = useRewrite()
   const { enrich }  = useEnrich()
@@ -430,6 +437,29 @@ export default function ArticleClient({ slug }: { slug: string }) {
       .catch(() => {})
   }, [article, slug])
 
+  // Fetch NASA image when article has no imageUrl
+  useEffect(() => {
+    if (!article || article.imageUrl) return
+    const query = (article.tags.slice(0, 2).join(' ') || article.title).slice(0, 80)
+    fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=5`)
+      .then(r => r.json())
+      .then((data: any) => {
+        const items = data?.collection?.items
+        if (!items?.length) return
+        for (const item of items) {
+          const href: string = item?.links?.[0]?.href ?? ''
+          if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+            const photographer: string = item?.data?.[0]?.photographer ?? ''
+            const center: string       = item?.data?.[0]?.center ?? 'NASA'
+            const credit = photographer ? `${photographer} / ${center}` : center
+            setNasaImage({ url: href, credit })
+            return
+          }
+        }
+      })
+      .catch(() => {})
+  }, [article?.imageUrl, article?.tags, article?.title])
+
   // Reading progress (scroll-based)
   useEffect(() => {
     const onScroll = () => {
@@ -462,6 +492,9 @@ export default function ArticleClient({ slug }: { slug: string }) {
   )
 
   const col = LEVEL_COLORS[level]
+
+  const displayImageUrl    = article.imageUrl    || nasaImage?.url    || ''
+  const displayImageCredit = article.imageCredit || nasaImage?.credit || ''
 
   // Layout helpers
   const leadPara   = texts[0]
@@ -523,8 +556,8 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
       {/* ── Hero ───────────────────────────────────────────────────── */}
       <div style={{ position: 'relative', height: 'clamp(220px,35vw,420px)', overflow: 'hidden', background: `linear-gradient(135deg,#0a1030 0%,${article.catColor}22 60%,#0d1540 100%)` }}>
-        {article.imageUrl && (
-          <img src={IMG(article.imageUrl, 1400, 840)} alt={article.title}
+        {displayImageUrl && (
+          <img src={IMG(displayImageUrl, 1400, 840)} alt={article.title}
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.5) saturate(1.1)' }}
           />
         )}
@@ -621,16 +654,14 @@ export default function ArticleClient({ slug }: { slug: string }) {
           ))}
 
           {/* ── Inline image (after section 2) ── */}
-          {article.imageUrl && (
+          {displayImageUrl && (
             <figure style={{ margin: '2.5em 0' }}>
-              <img src={IMG(article.imageUrl, 860, 480)} alt={article.title}
+              <img src={IMG(displayImageUrl, 860, 480)} alt={article.title}
                 style={{ width: '100%', borderRadius: 4, display: 'block', filter: 'brightness(0.88)' }}
               />
-              {article.imageCredit && (
-                <figcaption style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', color: '#4A5A8A', padding: '8px 0', letterSpacing: '0.06em' }}>
-                  Credit: {article.imageCredit}
-                </figcaption>
-              )}
+              <figcaption style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', color: '#4A5A8A', padding: '8px 0', letterSpacing: '0.06em' }}>
+                📷 {displayImageCredit || 'NASA'}
+              </figcaption>
             </figure>
           )}
 
@@ -683,12 +714,11 @@ export default function ArticleClient({ slug }: { slug: string }) {
             enrichLoading={enrichLoading}
             readProgress={readProgress}
             related={related}
+            currentSlug={slug}
           />
         </div>
 
       </div>
-
-      <GalaxyMap currentSlug={slug} />
 
       {/* ── Footer ─────────────────────────────────────────────────── */}
       <footer style={{ borderTop: '1px solid #252858', background: '#12132A', padding: '20px clamp(16px,4vw,40px)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>

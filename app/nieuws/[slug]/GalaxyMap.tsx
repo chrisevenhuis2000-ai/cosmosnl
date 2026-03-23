@@ -25,6 +25,7 @@ interface DrawNode {
 
 interface Props {
   currentSlug: string
+  compact?: boolean
 }
 
 const CAT_COLORS: Record<string, string> = {
@@ -49,7 +50,7 @@ const CAT_EMOJI: Record<string, string> = {
   'educatie':      '⭐',
 }
 
-export default function GalaxyMap({ currentSlug }: Props) {
+export default function GalaxyMap({ currentSlug, compact = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const nodesRef  = useRef<DrawNode[]>([])
   const rafRef    = useRef<number>(0)
@@ -214,27 +215,36 @@ export default function GalaxyMap({ currentSlug }: Props) {
   const currentCat = articles.find(a=>a.slug===currentSlug)?.category??''
   const related    = articles.filter(a=>a.category===currentCat&&a.slug!==currentSlug)
 
+  const canvasHeight = compact ? 260 : 380
+
   return (
-    <div style={{marginTop:80,borderTop:'1px solid #1c2035'}}>
-      <div style={{padding:'28px 0 20px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-        <div>
-          <div style={{fontFamily:'DM Mono,monospace',fontSize:'0.58rem',letterSpacing:'0.22em',textTransform:'uppercase',color:'#4a5278',display:'flex',alignItems:'center',gap:10,marginBottom:6}}>
-            <span style={{color:CAT_COLORS[currentCat]??'#7aadff'}}>✦</span>
-            Sterrenveld — Verken gerelateerde artikelen
+    <div style={compact ? { marginTop: 0 } : { marginTop: 80, borderTop: '1px solid #1c2035' }}>
+      {!compact && (
+        <div style={{padding:'28px 0 20px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+          <div>
+            <div style={{fontFamily:'DM Mono,monospace',fontSize:'0.58rem',letterSpacing:'0.22em',textTransform:'uppercase',color:'#4a5278',display:'flex',alignItems:'center',gap:10,marginBottom:6}}>
+              <span style={{color:CAT_COLORS[currentCat]??'#7aadff'}}>✦</span>
+              Sterrenveld — Verken gerelateerde artikelen
+            </div>
+            <div style={{fontFamily:'Cormorant Garamond,serif',fontSize:'1.1rem',color:'#7a86a8'}}>
+              {related.length} gerelateerde artikelen in <span style={{color:CAT_COLORS[currentCat]??'#7aadff'}}>{currentCat}</span>
+            </div>
           </div>
-          <div style={{fontFamily:'Cormorant Garamond,serif',fontSize:'1.1rem',color:'#7a86a8'}}>
-            {related.length} gerelateerde artikelen in <span style={{color:CAT_COLORS[currentCat]??'#7aadff'}}>{currentCat}</span>
+          <div style={{fontFamily:'DM Mono,monospace',fontSize:'0.55rem',color:'#2a3050',letterSpacing:'0.1em',textAlign:'right',lineHeight:1.8}}>
+            HOVER om te verkennen<br/>KLIK om te navigeren
           </div>
         </div>
-        <div style={{fontFamily:'DM Mono,monospace',fontSize:'0.55rem',color:'#2a3050',letterSpacing:'0.1em',textAlign:'right',lineHeight:1.8}}>
-          HOVER om te verkennen<br/>KLIK om te navigeren
+      )}
+      {compact && (
+        <div style={{padding:'11px 18px',borderBottom:'1px solid #252858',fontFamily:'JetBrains Mono,monospace',fontSize:'0.54rem',letterSpacing:'0.16em',textTransform:'uppercase',color:CAT_COLORS[currentCat]??'#7aadff',display:'flex',alignItems:'center',gap:8}}>
+          ✦ Sterrenveld
         </div>
-      </div>
-      <div style={{position:'relative',width:'100%',height:380,borderRadius:8,overflow:'hidden',border:'1px solid #1c2035'}}>
+      )}
+      <div style={{position:'relative',width:'100%',height:canvasHeight,borderRadius:compact?0:8,overflow:'hidden',border:compact?'none':'1px solid #1c2035'}}>
         <canvas ref={canvasRef} style={{width:'100%',height:'100%',display:'block'}}
           onMouseMove={handleMouseMove} onMouseLeave={()=>{hovRef.current='';setHovered(null)}} onClick={handleClick} />
         {hovered && (
-          <div style={{position:'absolute',left:Math.min(tooltip.x+14,(canvasRef.current?.offsetWidth??400)-220),top:Math.max(tooltip.y-60,8),background:'rgba(7,8,13,0.95)',border:`1px solid ${CAT_COLORS[hovered.category]??'#1c2035'}55`,borderRadius:8,padding:'10px 14px',pointerEvents:'none',maxWidth:210,backdropFilter:'blur(8px)',zIndex:10}}>
+          <div style={{position:'absolute',left:Math.min(tooltip.x+14,(canvasRef.current?.offsetWidth??300)-180),top:Math.max(tooltip.y-60,8),background:'rgba(7,8,13,0.95)',border:`1px solid ${CAT_COLORS[hovered.category]??'#1c2035'}55`,borderRadius:8,padding:'10px 14px',pointerEvents:'none',maxWidth:180,backdropFilter:'blur(8px)',zIndex:10}}>
             <div style={{fontFamily:'DM Mono,monospace',fontSize:'0.52rem',letterSpacing:'0.15em',textTransform:'uppercase',color:CAT_COLORS[hovered.category]??'#7aadff',marginBottom:5}}>
               {CAT_EMOJI[hovered.category]??'🌌'} {hovered.category}
             </div>
