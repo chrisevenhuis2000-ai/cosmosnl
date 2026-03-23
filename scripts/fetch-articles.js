@@ -11,6 +11,8 @@
  *   - NASA News:       https://www.nasa.gov/rss/dyn/breaking_news.rss
  *   - SpaceFlightNow: https://spaceflightnow.com/feed/
  *   - ESA News:        https://www.esa.int/rssfeed/Our_Activities/Space_Science
+ *
+ * Images: extracted from RSS enclosure/media tags, with NASA Images API fallback.
  */
 
 const fs      = require('fs')
@@ -117,11 +119,75 @@ async function translateAndSummarise(title, content) {
   }
 }
 
+/**
+ * Extract image URL + credit from an RSS item.
+ * Tries: enclosure → media:thumbnail → media:content → media:group → NASA Images API.
+ */
+async function extractImage(item, title, source) {
+  // 1. RSS enclosure
+  if (item.enclosure?.url && /\.(jpg|jpeg|png|webp)/i.test(item.enclosure.url)) {
+    return { imageUrl: item.enclosure.url, imageAlt: title, imageCredit: source }
+  }
+
+  // 2. media:thumbnail
+  const thumb = item.mediaThumbnail?.['$']?.url || item.mediaThumbnail?.url
+  if (thumb) return { imageUrl: thumb, imageAlt: title, imageCredit: source }
+
+  // 3. media:content
+  const mediaUrl = item.mediaContent?.['$']?.url || item.mediaContent?.url
+  if (mediaUrl && /\.(jpg|jpeg|png|webp)/i.test(mediaUrl)) {
+    return { imageUrl: mediaUrl, imageAlt: title, imageCredit: source }
+  }
+
+  // 4. media:group first item
+  const groupItems = item.mediaGroup?.['media:content']
+  if (Array.isArray(groupItems) && groupItems[0]?.['$']?.url) {
+    return { imageUrl: groupItems[0]['$'].url, imageAlt: title, imageCredit: source }
+  }
+
+  // 5. Image inside content/description HTML
+  const html = item.content || item['content:encoded'] || item.description || ''
+  const imgMatch = html.match(/<img[^>]+src=["']([^"']+\.(jpg|jpeg|png|webp))[^"']*["']/i)
+  if (imgMatch) return { imageUrl: imgMatch[1], imageAlt: title, imageCredit: source }
+
+  // 6. NASA Images API fallback
+  try {
+    const query   = title.slice(0, 80)
+    const apiUrl  = `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=5`
+    const res     = await fetch(apiUrl)
+    const data    = await res.json()
+    const items   = data?.collection?.items || []
+    for (const it of items) {
+      const href = it?.links?.[0]?.href ?? ''
+      if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+        const photographer = it?.data?.[0]?.photographer ?? ''
+        const center       = it?.data?.[0]?.center ?? 'NASA'
+        return {
+          imageUrl:    href,
+          imageAlt:    title,
+          imageCredit: photographer ? `${photographer} / ${center}` : center,
+        }
+      }
+    }
+  } catch {}
+
+  return { imageUrl: '', imageAlt: '', imageCredit: '' }
+}
+
 async function main() {
   if (!fs.existsSync(ARTICLES_DIR)) fs.mkdirSync(ARTICLES_DIR, { recursive: true })
 
-  const parser  = new Parser({ timeout: 10000 })
-  let newCount  = 0
+  const parser = new Parser({
+    timeout: 10000,
+    customFields: {
+      item: [
+        ['media:thumbnail',  'mediaThumbnail'],
+        ['media:content',    'mediaContent'],
+        ['media:group',      'mediaGroup'],
+      ],
+    },
+  })
+  let newCount = 0
 
   for (const feed of FEEDS) {
     console.log(`\n📡 Fetching: ${feed.source}`)
@@ -153,7 +219,10 @@ async function main() {
       const content  = item.contentSnippet || item.summary || item.content || ''
       const category = guessCategory(title, feed.category)
 
-      const { titleNL, excerptNL, bodyNL } = await translateAndSummarise(title, content)
+      const [{ titleNL, excerptNL, bodyNL }, { imageUrl, imageAlt, imageCredit }] = await Promise.all([
+        translateAndSummarise(title, content),
+        extractImage(item, title, feed.source),
+      ])
 
       const frontmatter = `---
 title: "${titleNL.replace(/"/g, '\\"')}"
@@ -165,6 +234,9 @@ featured: false
 tags: []
 source: "${feed.source}"
 sourceUrl: "${item.link || ''}"
+imageUrl: "${imageUrl}"
+imageAlt: "${imageAlt.replace(/"/g, '\\"')}"
+imageCredit: "${imageCredit}"
 ---
 
 ${bodyNL}

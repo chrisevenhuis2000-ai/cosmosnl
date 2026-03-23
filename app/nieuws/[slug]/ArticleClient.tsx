@@ -438,9 +438,12 @@ export default function ArticleClient({ slug }: { slug: string }) {
   }, [article, slug])
 
   // Fetch NASA image when article has no imageUrl
+  // Use the slug (English keywords) as the search query for better results.
   useEffect(() => {
     if (!article || article.imageUrl) return
-    const query = (article.tags.slice(0, 2).join(' ') || article.title).slice(0, 80)
+    const slugQuery  = slug.replace(/-/g, ' ')
+    const tagsQuery  = article.tags.slice(0, 2).join(' ')
+    const query      = (tagsQuery || slugQuery).slice(0, 80)
     fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=5`)
       .then(r => r.json())
       .then((data: any) => {
@@ -555,7 +558,8 @@ export default function ArticleClient({ slug }: { slug: string }) {
       <LevelToggle level={level} loading={loading} onChange={handleLevelChange} />
 
       {/* ── Hero ───────────────────────────────────────────────────── */}
-      <div style={{ position: 'relative', height: 'clamp(220px,35vw,420px)', overflow: 'hidden', background: `linear-gradient(135deg,#0a1030 0%,${article.catColor}22 60%,#0d1540 100%)` }}>
+      <div style={{ position: 'relative', overflow: 'hidden', background: `linear-gradient(135deg,#0a1030 0%,${article.catColor}22 60%,#0d1540 100%)` }}>
+        <div style={{ height: 'clamp(220px,35vw,420px)', position: 'relative', overflow: 'hidden' }}>
         {displayImageUrl && (
           <img src={IMG(displayImageUrl, 1400, 840)} alt={article.title}
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.5) saturate(1.1)' }}
@@ -574,6 +578,14 @@ export default function ArticleClient({ slug }: { slug: string }) {
             {article.title}
           </h1>
         </div>
+        </div>{/* end inner hero height div */}
+        {/* ── Image credit below hero ── */}
+        {displayImageCredit && (
+          <div style={{ background: 'rgba(10,12,30,0.95)', borderBottom: '1px solid #1a1e40', padding: '5px clamp(16px,4vw,40px)', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#3A4A70', letterSpacing: '0.08em' }}>📷</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#3A4A70', letterSpacing: '0.06em' }}>{displayImageCredit}</span>
+          </div>
+        )}
       </div>
 
       {/* ── Two-column layout ──────────────────────────────────────── */}

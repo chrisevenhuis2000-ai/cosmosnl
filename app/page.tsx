@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -687,6 +687,7 @@ export default function HomePage() {
   const [articles,     setArticles]     = useState<Article[]>(FALLBACK_ARTICLES)
   const [activeFilter, setActiveFilter] = useState('Alles')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const nasaFetchedRef = useRef<Set<string>>(new Set())
 
   // Reset pagination when filter changes
   const handleFilter = useCallback((topic: string) => {
@@ -710,6 +711,32 @@ export default function HomePage() {
       .then((data: Article[]) => { if (Array.isArray(data) && data.length > 0) setArticles(data) })
       .catch(() => {})
   }, [])
+
+  // Fetch NASA images for article cards that have no imageUrl.
+  // Uses the article slug (English words) as search query for best results.
+  useEffect(() => {
+    const toFetch = articles
+      .filter(a => !a.imageUrl && !nasaFetchedRef.current.has(a.slug))
+      .slice(0, 15) // limit concurrent requests
+    if (!toFetch.length) return
+    // Mark as fetched immediately to prevent duplicate requests on re-render
+    toFetch.forEach(a => nasaFetchedRef.current.add(a.slug))
+    toFetch.forEach(async (a) => {
+      const query = a.slug.replace(/-/g, ' ').slice(0, 80)
+      try {
+        const res  = await fetch(`https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=3`)
+        const data = await res.json()
+        const items: any[] = data?.collection?.items || []
+        for (const item of items) {
+          const href: string = item?.links?.[0]?.href ?? ''
+          if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+            setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
+            return
+          }
+        }
+      } catch {}
+    })
+  }, [articles])
 
   // Fetch APOD
   useEffect(() => {
