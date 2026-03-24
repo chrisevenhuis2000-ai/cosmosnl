@@ -447,26 +447,42 @@ export default function ArticleClient({ slug }: { slug: string }) {
   useEffect(() => {
     if (!article || article.imageUrl) return
 
-    // Stop-words to strip from slug so only meaningful keywords remain
-    const STOP = new Set(['a','an','the','of','in','to','for','on','at','by','from','and','or',
-                          'with','is','are','was','its','it','as','be','do','go','up','no','so',
-                          'if','live','coverage','how','nasa','esas','nasas'])
+    // Stop-words: common words that don't help narrow an image search
+    const STOP = new Set([
+      'a','an','the','of','in','to','for','on','at','by','from','and','or',
+      'with','is','are','was','its','it','as','be','do','go','up','no','so',
+      'if','live','coverage','how','nasa','esas','nasas','spacex','esa',
+      // common title verbs / qualifiers that add no image-search value:
+      'makes','made','launches','launched','ready','preparing','gets','new',
+      'returns','second','first','third','next','last','latest','update','updates',
+      'invites','selects','selected','catches','finds','found','blog','sols',
+      'data','stream','added','daily','minor','plane','bit','wave','rolls',
+      'roll','oddly','high','rates','restless','unexpectedly','further',
+      'teases','another','shot','ahead','about','will','has','have','had',
+      'this','that','then','than','when','where','which',
+    ])
 
     // Deterministic hash of the slug → unique page + result-index per article
     const hash = slug.split('').reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
 
-    // Extract 3-4 meaningful nouns from the slug
-    const keyWords = slug
-      .replace(/-/g, ' ')
-      .split(' ')
-      .filter(w => w.length > 2 && !STOP.has(w))
-      .slice(0, 4)
+    // Extract meaningful keywords from article title (far more precise than slug).
+    // Preserve compound identifiers like X-59, F-16, Artemis-2 even when short.
+    const titleKeywords = (article.title || slug.replace(/-/g, ' '))
+      .toLowerCase()
+      .replace(/[''`'"]/g, '')
+      .replace(/[^a-z0-9\-]/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(w => {
+        if (!w || w.length < 2) return false
+        if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true  // keep "x-59", "artemis-2"
+        return w.length > 2 && !STOP.has(w)
+      })
+      .slice(0, 5)
       .join(' ')
 
-    // Tier 1: slug keywords (unique per article) + random page so different articles
-    //         with similar topics still get different images
-    // Tier 2: article title words as backup
-    // Tier 3: category-specific wide-net query
+    // Tier 1: title keywords (unique per article)
+    // Tier 2: category-specific wide-net query
     const CAT_QUERIES: Record<string, string> = {
       'missies':       'rocket launch spacecraft',
       'missions':      'rocket launch spacecraft',
@@ -481,7 +497,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
     }
     const cat      = article.category?.toLowerCase() || ''
     const catQuery = CAT_QUERIES[cat] || 'space exploration NASA earth'
-    const queries  = [keyWords, catQuery].filter(Boolean)
+    const queries  = [titleKeywords, catQuery].filter(Boolean)
 
     async function tryFetch(q: string, page: number): Promise<boolean> {
       try {
@@ -491,12 +507,26 @@ export default function ArticleClient({ slug }: { slug: string }) {
         const data  = await res.json()
         const items: any[] = data?.collection?.items || []
         if (!items.length) return false
-        // Pick a deterministic but unique index so same query → different image per article
+
+        // Meaningful terms from query (length > 3) used for relevance check
+        const qTerms = q.toLowerCase().split(/\s+/).filter(t => t.length > 3)
         const startIdx = hash % items.length
-        for (let i = 0; i < items.length; i++) {
-          const item = items[(startIdx + i) % items.length]
-          const href: string = item?.links?.[0]?.href ?? ''
-          if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+
+        // Two passes: first prefer results whose metadata mentions a query term,
+        // then fall back to any valid image so we never return empty-handed.
+        for (let pass = 0; pass < 2; pass++) {
+          for (let i = 0; i < items.length; i++) {
+            const item = items[(startIdx + i) % items.length]
+            const href: string = item?.links?.[0]?.href ?? ''
+            if (!href || !/\.(jpg|jpeg|png|webp)/i.test(href)) continue
+            if (pass === 0 && qTerms.length > 0) {
+              const meta = [
+                item?.data?.[0]?.title ?? '',
+                item?.data?.[0]?.description ?? '',
+                (item?.data?.[0]?.keywords ?? []).join(' '),
+              ].join(' ').toLowerCase()
+              if (!qTerms.some(t => meta.includes(t))) continue
+            }
             const photographer: string = item?.data?.[0]?.photographer ?? ''
             const center: string       = item?.data?.[0]?.center ?? 'NASA'
             setNasaImage({ url: href, credit: photographer ? `${photographer} / ${center}` : center })
@@ -508,7 +538,6 @@ export default function ArticleClient({ slug }: { slug: string }) {
     }
 
     ;(async () => {
-      // Try slug keywords on a slug-specific page first
       const page = (hash % 3) + 1
       for (const q of queries) {
         if (await tryFetch(q, page)) return

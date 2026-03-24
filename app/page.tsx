@@ -714,9 +714,18 @@ export default function HomePage() {
 
   // Fetch unique, article-specific NASA images for cards without imageUrl.
   useEffect(() => {
-    const STOP = new Set(['a','an','the','of','in','to','for','on','at','by','from','and','or',
-                          'with','is','are','was','its','it','as','be','do','go','up','no','so',
-                          'if','live','coverage','how','nasa','esas','nasas'])
+    const STOP = new Set([
+      'a','an','the','of','in','to','for','on','at','by','from','and','or',
+      'with','is','are','was','its','it','as','be','do','go','up','no','so',
+      'if','live','coverage','how','nasa','esas','nasas','spacex','esa',
+      'makes','made','launches','launched','ready','preparing','gets','new',
+      'returns','second','first','third','next','last','latest','update','updates',
+      'invites','selects','selected','catches','finds','found','blog','sols',
+      'data','stream','added','daily','minor','plane','bit','wave','rolls',
+      'roll','oddly','high','rates','restless','unexpectedly','further',
+      'teases','another','shot','ahead','about','will','has','have','had',
+      'this','that','then','than','when','where','which',
+    ])
 
     const CAT_QUERIES: Record<string, string> = {
       'missies':       'rocket launch spacecraft',
@@ -742,16 +751,25 @@ export default function HomePage() {
       const hash = a.slug.split('').reduce((acc: number, c: string) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
       const page = (hash % 3) + 1
 
-      const keyWords = a.slug
-        .replace(/-/g, ' ')
-        .split(' ')
-        .filter((w: string) => w.length > 2 && !STOP.has(w))
-        .slice(0, 4)
+      // Use article title for keywords (far more accurate than slug).
+      // Preserve compound identifiers like X-59, F-16, Artemis-2.
+      const titleKeywords = (a.title || a.slug.replace(/-/g, ' '))
+        .toLowerCase()
+        .replace(/[''`'"]/g, '')
+        .replace(/[^a-z0-9\-]/g, ' ')
+        .trim()
+        .split(/\s+/)
+        .filter((w: string) => {
+          if (!w || w.length < 2) return false
+          if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true
+          return w.length > 2 && !STOP.has(w)
+        })
+        .slice(0, 5)
         .join(' ')
 
       const cat      = (a.category || '').toLowerCase()
       const catQuery = CAT_QUERIES[cat] || 'space exploration NASA'
-      const queries  = [keyWords, catQuery].filter(Boolean)
+      const queries  = [titleKeywords, catQuery].filter(Boolean)
 
       for (const q of queries) {
         for (const pg of [page, 1]) {
@@ -762,11 +780,22 @@ export default function HomePage() {
             const data  = await res.json()
             const items: any[] = data?.collection?.items || []
             if (!items.length) continue
+            const qTerms = q.toLowerCase().split(/\s+/).filter((t: string) => t.length > 3)
             const start = hash % items.length
-            for (let i = 0; i < items.length; i++) {
-              const item = items[(start + i) % items.length]
-              const href: string = item?.links?.[0]?.href ?? ''
-              if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
+            // First pass: only images whose metadata mentions a query term
+            for (let pass = 0; pass < 2; pass++) {
+              for (let i = 0; i < items.length; i++) {
+                const item = items[(start + i) % items.length]
+                const href: string = item?.links?.[0]?.href ?? ''
+                if (!href || !/\.(jpg|jpeg|png|webp)/i.test(href)) continue
+                if (pass === 0 && qTerms.length > 0) {
+                  const meta = [
+                    item?.data?.[0]?.title ?? '',
+                    item?.data?.[0]?.description ?? '',
+                    (item?.data?.[0]?.keywords ?? []).join(' '),
+                  ].join(' ').toLowerCase()
+                  if (!qTerms.some((t: string) => meta.includes(t))) continue
+                }
                 setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
                 return
               }
