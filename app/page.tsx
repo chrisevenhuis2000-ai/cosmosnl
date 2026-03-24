@@ -717,7 +717,7 @@ export default function HomePage() {
     const STOP = new Set([
       'a','an','the','of','in','to','for','on','at','by','from','and','or',
       'with','is','are','was','its','it','as','be','do','go','up','no','so',
-      'if','live','coverage','how','nasa','esas','nasas','spacex','esa',
+      'if','live','coverage','how','nasa','esas','nasas',
       'makes','made','launches','launched','ready','preparing','gets','new',
       'returns','second','first','third','next','last','latest','update','updates',
       'invites','selects','selected','catches','finds','found','blog','sols',
@@ -728,16 +728,16 @@ export default function HomePage() {
     ])
 
     const CAT_QUERIES: Record<string, string> = {
-      'missies':       'rocket launch spacecraft',
-      'missions':      'rocket launch spacecraft',
-      'james-webb':    'james webb telescope infrared galaxy',
-      'kosmologie':    'galaxy nebula hubble deep field',
-      'cosmology':     'galaxy nebula hubble deep field',
-      'mars':          'mars surface landscape rover',
-      'sterrenkijken': 'night sky milky way stars',
-      'observing':     'night sky milky way stars',
-      'educatie':      'astronaut earth orbit spacewalk',
-      'education':     'astronaut earth orbit spacewalk',
+      'missies':       'space exploration cosmos universe',
+      'missions':      'space exploration cosmos universe',
+      'james-webb':    'james webb space telescope infrared',
+      'kosmologie':    'galaxy nebula cosmos deep space',
+      'cosmology':     'galaxy nebula cosmos deep space',
+      'mars':          'mars red planet surface landscape',
+      'sterrenkijken': 'telescope night sky astronomy stars',
+      'observing':     'telescope observatory astronomy',
+      'educatie':      'astronaut earth orbit space station',
+      'education':     'astronaut earth orbit space station',
     }
 
     const toFetch = articles
@@ -747,12 +747,9 @@ export default function HomePage() {
     toFetch.forEach(a => nasaFetchedRef.current.add(a.slug))
 
     toFetch.forEach(async (a) => {
-      // Deterministic hash → unique page + result-index per article
       const hash = a.slug.split('').reduce((acc: number, c: string) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
       const page = (hash % 3) + 1
 
-      // Use article title for keywords (far more accurate than slug).
-      // Preserve compound identifiers like X-59, F-16, Artemis-2.
       const titleKeywords = (a.title || a.slug.replace(/-/g, ' '))
         .toLowerCase()
         .replace(/[''`'"]/g, '')
@@ -768,38 +765,20 @@ export default function HomePage() {
         .join(' ')
 
       const cat      = (a.category || '').toLowerCase()
-      const catQuery = CAT_QUERIES[cat] || 'space exploration NASA'
+      const catQuery = CAT_QUERIES[cat] || 'space astronomy cosmos'
       const queries  = [titleKeywords, catQuery].filter(Boolean)
 
       for (const q of queries) {
         for (const pg of [page, 1]) {
           try {
-            const res   = await fetch(
-              `https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=20&page=${pg}`
+            const res = await fetch(
+              `/api/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}`
             )
-            const data  = await res.json()
-            const items: any[] = data?.collection?.items || []
-            if (!items.length) continue
-            const qTerms = q.toLowerCase().split(/\s+/).filter((t: string) => t.length > 3)
-            const start = hash % items.length
-            // First pass: only images whose metadata mentions a query term
-            for (let pass = 0; pass < 2; pass++) {
-              for (let i = 0; i < items.length; i++) {
-                const item = items[(start + i) % items.length]
-                const href: string = item?.links?.[0]?.href ?? ''
-                if (!href || !/\.(jpg|jpeg|png|webp)/i.test(href)) continue
-                if (pass === 0 && qTerms.length > 0) {
-                  const meta = [
-                    item?.data?.[0]?.title ?? '',
-                    item?.data?.[0]?.description ?? '',
-                    (item?.data?.[0]?.keywords ?? []).join(' '),
-                  ].join(' ').toLowerCase()
-                  if (!qTerms.some((t: string) => meta.includes(t))) continue
-                }
-                setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: href } : p))
-                return
-              }
-            }
+            if (!res.ok) continue
+            const data = await res.json()
+            if (!data?.url) continue
+            setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: data.url } : p))
+            return
           } catch {}
         }
       }

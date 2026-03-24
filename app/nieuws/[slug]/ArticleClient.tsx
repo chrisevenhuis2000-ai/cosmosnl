@@ -447,12 +447,11 @@ export default function ArticleClient({ slug }: { slug: string }) {
   useEffect(() => {
     if (!article || article.imageUrl) return
 
-    // Stop-words: common words that don't help narrow an image search
+    // Stop-words: common words that add no image-search value
     const STOP = new Set([
       'a','an','the','of','in','to','for','on','at','by','from','and','or',
       'with','is','are','was','its','it','as','be','do','go','up','no','so',
-      'if','live','coverage','how','nasa','esas','nasas','spacex','esa',
-      // common title verbs / qualifiers that add no image-search value:
+      'if','live','coverage','how','nasa','esas','nasas',
       'makes','made','launches','launched','ready','preparing','gets','new',
       'returns','second','first','third','next','last','latest','update','updates',
       'invites','selects','selected','catches','finds','found','blog','sols',
@@ -462,11 +461,10 @@ export default function ArticleClient({ slug }: { slug: string }) {
       'this','that','then','than','when','where','which',
     ])
 
-    // Deterministic hash of the slug → unique page + result-index per article
+    // Deterministic hash → unique page + index per article
     const hash = slug.split('').reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
 
-    // Extract meaningful keywords from article title (far more precise than slug).
-    // Preserve compound identifiers like X-59, F-16, Artemis-2 even when short.
+    // Keywords from article title (preserves compound tokens like "x-59", "artemis-2")
     const titleKeywords = (article.title || slug.replace(/-/g, ' '))
       .toLowerCase()
       .replace(/[''`'"]/g, '')
@@ -475,64 +473,39 @@ export default function ArticleClient({ slug }: { slug: string }) {
       .split(/\s+/)
       .filter(w => {
         if (!w || w.length < 2) return false
-        if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true  // keep "x-59", "artemis-2"
+        if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true
         return w.length > 2 && !STOP.has(w)
       })
       .slice(0, 5)
       .join(' ')
 
-    // Tier 1: title keywords (unique per article)
-    // Tier 2: category-specific wide-net query
+    // Category fallback queries — intentionally diverse to avoid rocket monotony
     const CAT_QUERIES: Record<string, string> = {
-      'missies':       'rocket launch spacecraft',
-      'missions':      'rocket launch spacecraft',
-      'james-webb':    'james webb telescope infrared',
-      'kosmologie':    'galaxy nebula hubble deep field',
-      'cosmology':     'galaxy nebula hubble deep field',
-      'mars':          'mars surface landscape rover',
-      'sterrenkijken': 'night sky milky way stars',
-      'observing':     'night sky milky way stars',
-      'educatie':      'astronaut earth orbit spacewalk',
-      'education':     'astronaut earth orbit spacewalk',
+      'missies':       'space exploration cosmos universe',
+      'missions':      'space exploration cosmos universe',
+      'james-webb':    'james webb space telescope infrared',
+      'kosmologie':    'galaxy nebula cosmos deep space',
+      'cosmology':     'galaxy nebula cosmos deep space',
+      'mars':          'mars red planet surface landscape',
+      'sterrenkijken': 'telescope night sky astronomy stars',
+      'observing':     'telescope observatory astronomy',
+      'educatie':      'astronaut earth orbit space station',
+      'education':     'astronaut earth orbit space station',
     }
     const cat      = article.category?.toLowerCase() || ''
-    const catQuery = CAT_QUERIES[cat] || 'space exploration NASA earth'
+    const catQuery = CAT_QUERIES[cat] || 'space astronomy cosmos'
     const queries  = [titleKeywords, catQuery].filter(Boolean)
 
     async function tryFetch(q: string, page: number): Promise<boolean> {
       try {
-        const res   = await fetch(
-          `https://images-api.nasa.gov/search?q=${encodeURIComponent(q)}&media_type=image&page_size=20&page=${page}`
+        const res = await fetch(
+          `/api/image-search?q=${encodeURIComponent(q)}&page=${page}&hash=${hash}`
         )
-        const data  = await res.json()
-        const items: any[] = data?.collection?.items || []
-        if (!items.length) return false
-
-        // Meaningful terms from query (length > 3) used for relevance check
-        const qTerms = q.toLowerCase().split(/\s+/).filter(t => t.length > 3)
-        const startIdx = hash % items.length
-
-        // Two passes: first prefer results whose metadata mentions a query term,
-        // then fall back to any valid image so we never return empty-handed.
-        for (let pass = 0; pass < 2; pass++) {
-          for (let i = 0; i < items.length; i++) {
-            const item = items[(startIdx + i) % items.length]
-            const href: string = item?.links?.[0]?.href ?? ''
-            if (!href || !/\.(jpg|jpeg|png|webp)/i.test(href)) continue
-            if (pass === 0 && qTerms.length > 0) {
-              const meta = [
-                item?.data?.[0]?.title ?? '',
-                item?.data?.[0]?.description ?? '',
-                (item?.data?.[0]?.keywords ?? []).join(' '),
-              ].join(' ').toLowerCase()
-              if (!qTerms.some(t => meta.includes(t))) continue
-            }
-            const photographer: string = item?.data?.[0]?.photographer ?? ''
-            const center: string       = item?.data?.[0]?.center ?? 'NASA'
-            setNasaImage({ url: href, credit: photographer ? `${photographer} / ${center}` : center })
-            return true
-          }
-        }
+        if (!res.ok) return false
+        const data = await res.json()
+        if (!data?.url) return false
+        setNasaImage({ url: data.url, credit: data.credit || '' })
+        return true
       } catch {}
       return false
     }
@@ -541,7 +514,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
       const page = (hash % 3) + 1
       for (const q of queries) {
         if (await tryFetch(q, page)) return
-        if (await tryFetch(q, 1))    return  // fallback to page 1 of same query
+        if (await tryFetch(q, 1))    return
       }
     })()
   }, [article?.imageUrl, article?.tags, article?.title])
