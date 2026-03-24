@@ -499,7 +499,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
     async function tryFetch(q: string, page: number): Promise<boolean> {
       try {
         const res = await fetch(
-          `/api/image-search?q=${encodeURIComponent(q)}&page=${page}&hash=${hash}`
+          `${PROXY}/image-search?q=${encodeURIComponent(q)}&page=${page}&hash=${hash}`
         )
         if (!res.ok) return false
         const data = await res.json()

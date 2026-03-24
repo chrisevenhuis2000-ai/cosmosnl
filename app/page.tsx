@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 
+const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+
 // ── Types ──────────────────────────────────────────────────────────────────
 interface APODData {
   title:       string
@@ -772,7 +774,7 @@ export default function HomePage() {
         for (const pg of [page, 1]) {
           try {
             const res = await fetch(
-              `/api/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}`
+              `${PROXY}/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}`
             )
             if (!res.ok) continue
             const data = await res.json()
