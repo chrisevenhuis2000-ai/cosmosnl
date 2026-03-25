@@ -193,6 +193,7 @@ kbd { background:rgba(37,40,88,.8); border:1px solid #252858; padding:1px 6px; b
   <div class="topbar-ctrls">
     <button class="cb on"  id="btn-panel"  onclick="togglePanel()">☰ Lijst</button>
     <button class="cb on"  id="btn-orbits" onclick="toggleOrbits()">Banen</button>
+    <button class="cb on"  id="btn-traj"   onclick="toggleTraject()">Trajecten</button>
     <button class="cb on"  id="btn-mlabels" onclick="toggleMLabels()">Labels</button>
     <button class="cb"     id="btn-reset"  onclick="resetCam()">⌖ Reset</button>
   </div>
@@ -721,6 +722,140 @@ MISSIONS.forEach(m => {
 })
 
 // ═══════════════════════════════════════════════════════════════════════════
+// MISSION TRAJECTORIES
+// ═══════════════════════════════════════════════════════════════════════════
+
+function d2r(d){ return d*Math.PI/180 }
+
+// Half-ellipse (Keplerian): perihelion r1_au at startDeg, aphelion r2_au at startDeg+180°
+function keplerArc(r1_au, r2_au, startDeg, nPts, yAmp) {
+  nPts=nPts||80; yAmp=yAmp||0
+  const r1=r1_au*SCALE, r2=r2_au*SCALE
+  const a=(r1+r2)/2, e=(r2-r1)/(r2+r1)
+  const pts=[]
+  for (let i=0; i<=nPts; i++) {
+    const theta=(i/nPts)*Math.PI
+    const r=a*(1-e*e)/(1+e*Math.cos(theta))
+    const ang=d2r(startDeg)+theta
+    pts.push(new THREE.Vector3(Math.cos(ang)*r, yAmp*Math.sin(theta), Math.sin(ang)*r))
+  }
+  return pts
+}
+
+function makeTL(pts, color, opacity) {
+  const line=new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(pts),
+    new THREE.LineBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:opacity||0.55})
+  )
+  scene.add(line); return line
+}
+
+function addFlybySphere(pos, color) {
+  const m=new THREE.Mesh(new THREE.SphereGeometry(0.13,8,8),new THREE.MeshBasicMaterial({color:new THREE.Color(color)}))
+  m.position.copy(pos); scene.add(m); return m
+}
+
+const mTrajLines = []   // {line, type:'fixed'|'earth'|'mars', flybyDots:[]}
+let   trajVis    = true
+
+// ── 1. Perseverance: Earth (285°) → Mars Hohmann transfer
+{
+  const c='#e2a060', pts=keplerArc(1.0, 1.524, 285, 80, 0.35)
+  const line=makeTL(pts, c, 0.6)
+  const flyby=addFlybySphere(pts[pts.length-1], c)
+  mTrajLines.push({line, type:'fixed', flybyDots:[flyby]})
+}
+
+// ── 2. Curiosity: Earth (183°) → Mars Hohmann transfer
+{
+  const c='#ff8a50', pts=keplerArc(1.0, 1.524, 183, 80, -0.28)
+  const line=makeTL(pts, c, 0.5)
+  mTrajLines.push({line, type:'fixed', flybyDots:[]})
+}
+
+// ── 3. JUICE: Earth launch → Earth flyby → Venus flyby → current (~0.85 AU)
+{
+  const c='#ffa040', all=[], la=25
+  // Leg 1: launch → Earth-Moon flyby (450 days, ~1.22 revolutions at ~1 AU)
+  for (let i=0; i<=50; i++) {
+    const t=i/50
+    const ang=d2r(la)+t*(Math.PI*2*1.22)
+    all.push(new THREE.Vector3(Math.cos(ang)*1.0*SCALE, t*0.55, Math.sin(ang)*1.0*SCALE))
+  }
+  const efAng=la+1.22*360
+  const efPt=new THREE.Vector3(Math.cos(d2r(efAng))*SCALE, 0.55, Math.sin(d2r(efAng))*SCALE)
+  const ef=addFlybySphere(efPt, c)
+  // Leg 2: Earth flyby → Venus flyby (inward to 0.72 AU)
+  for (let i=0; i<=40; i++) {
+    const t=i/40, r_au=1.0-t*0.28, ang=d2r(efAng)+t*Math.PI
+    all.push(new THREE.Vector3(Math.cos(ang)*r_au*SCALE, 0.55-t*0.55, Math.sin(ang)*r_au*SCALE))
+  }
+  const vfPt=all[all.length-1].clone()
+  const vf=addFlybySphere(vfPt, c)
+  const vfAng=efAng+180
+  // Leg 3: Venus flyby → current (heading outward to ~0.85 AU)
+  for (let i=0; i<=25; i++) {
+    const t=i/25, r_au=0.72+t*0.13, ang=d2r(vfAng)+t*0.5
+    all.push(new THREE.Vector3(Math.cos(ang)*r_au*SCALE, 0, Math.sin(ang)*r_au*SCALE))
+  }
+  const line=makeTL(all, c, 0.65)
+  mTrajLines.push({line, type:'fixed', flybyDots:[ef,vf]})
+}
+
+// ── 4. Voyager 1: Earth → Jupiter → Saturn → interstellar edge
+{
+  const c='#c080ff', all=[], la=110
+  const l1=keplerArc(1.0, 5.2, la, 70, 1.4)
+  all.push(...l1)
+  const jupPt=l1[l1.length-1]
+  const jd=addFlybySphere(jupPt, c)
+  // Jupiter → Saturn (gravity-assist bend)
+  const satAng=la+180+52
+  const satPt=new THREE.Vector3(Math.cos(d2r(satAng))*9.55*SCALE, 2.4, Math.sin(d2r(satAng))*9.55*SCALE)
+  const bm1=new THREE.Vector3().lerpVectors(jupPt,satPt,0.5); bm1.x+=0.6; bm1.y+=1.2
+  all.push(...new THREE.QuadraticBezierCurve3(jupPt,bm1,satPt).getPoints(48))
+  const sd=addFlybySphere(satPt, c)
+  // Saturn → interstellar edge
+  const edgePt=new THREE.Vector3(Math.cos(d2r(satAng+18))*92, 7.5, Math.sin(d2r(satAng+18))*92)
+  const bm2=new THREE.Vector3().lerpVectors(satPt,edgePt,0.42); bm2.y+=2.5
+  all.push(...new THREE.QuadraticBezierCurve3(satPt,bm2,edgePt).getPoints(55))
+  const line=makeTL(all, c, 0.7)
+  mTrajLines.push({line, type:'fixed', flybyDots:[jd,sd]})
+}
+
+// ── 5. JWST: L2 halo orbit around Earth (exaggerated for visibility)
+{
+  const c='#a0c4ff', pts=[]
+  for (let i=0;i<=64;i++) { const a=(i/64)*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*0.52, Math.sin(a)*0.15, Math.sin(a)*0.52)) }
+  mTrajLines.push({line:makeTL(pts,c,0.45), type:'earth', flybyDots:[]})
+}
+
+// ── 6. SMILE: highly elliptical Earth orbit
+{
+  const c='#3dcfdf', pts=[]
+  for (let i=0;i<=80;i++) { const a=(i/80)*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*0.88, Math.sin(a)*0.28, Math.sin(a)*1.28)) }
+  mTrajLines.push({line:makeTL(pts,c,0.42), type:'earth', flybyDots:[]})
+}
+
+// ── 7. Starship: LEO orbit
+{
+  const c='#378ADD', pts=[]
+  for (let i=0;i<=64;i++) { const a=(i/64)*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*0.76, 0, Math.sin(a)*0.76)) }
+  mTrajLines.push({line:makeTL(pts,c,0.38), type:'earth', flybyDots:[]})
+}
+
+// ── 8. Artemis II: free-return lunar trajectory (planned)
+{
+  const c='#5090dd', pts=[]
+  for (let i=0;i<=80;i++) {
+    const t=i/80, theta=t*Math.PI*2
+    const r=0.45+0.72*Math.abs(Math.sin(theta*0.5))
+    pts.push(new THREE.Vector3(Math.cos(theta)*r*0.9, Math.sin(theta)*0.08, Math.sin(theta)*r))
+  }
+  mTrajLines.push({line:makeTL(pts,c,0.3), type:'earth', flybyDots:[]})
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // HTML OVERLAY LABELS
 // ═══════════════════════════════════════════════════════════════════════════
 const overlay  = document.getElementById('overlay')
@@ -865,11 +1000,20 @@ function resetCam() {
 function togglePanel()   { panelOpen=!panelOpen; document.getElementById('mpanel').classList.toggle('hidden',!panelOpen); document.getElementById('btn-panel').classList.toggle('on',panelOpen) }
 function toggleOrbits()  { orbitsVis=!orbitsVis; orbitLines.forEach(l=>l.visible=orbitsVis); document.getElementById('btn-orbits').classList.toggle('on',orbitsVis) }
 function toggleMLabels() { mLabelsVis=!mLabelsVis; document.getElementById('btn-mlabels').classList.toggle('on',mLabelsVis) }
+function toggleTraject() {
+  trajVis=!trajVis
+  mTrajLines.forEach(t => {
+    t.line.visible=trajVis
+    t.flybyDots.forEach(d => { d.visible=trajVis })
+  })
+  document.getElementById('btn-traj').classList.toggle('on',trajVis)
+}
 function setSpd(v)       { speed=parseFloat(v); document.getElementById('spdv').textContent=v+'×' }
 
 window.togglePanel  = togglePanel
 window.toggleOrbits = toggleOrbits
 window.toggleMLabels= toggleMLabels
+window.toggleTraject= toggleTraject
 window.setSpd       = setSpd
 window.resetCam     = resetCam
 window.closeDp      = closeDp
@@ -1003,6 +1147,12 @@ function animate() {
     if (selId===m.id) { obj.mat.emissiveIntensity=1.6; obj.ring.scale.set(1.4,1.4,1.4) }
     else              { obj.ring.scale.set(1,1,1) }
   })
+
+  // Move Earth-orbit trajectories with Earth
+  if (trajVis) {
+    const ep = getPlanetPos(PLANET_DATA[2], elapsed)
+    mTrajLines.forEach(t => { if (t.type==='earth') t.line.position.copy(ep) })
+  }
 
   // Planet labels (always visible)
   PLANET_DATA.forEach(p => {
