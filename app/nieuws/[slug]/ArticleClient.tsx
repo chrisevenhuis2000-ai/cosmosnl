@@ -476,25 +476,42 @@ export default function ArticleClient({ slug }: { slug: string }) {
         if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true
         return w.length > 2 && !STOP.has(w)
       })
-      .slice(0, 5)
+      .slice(0, 6)
       .join(' ')
 
-    // Category fallback queries — intentionally diverse to avoid rocket monotony
+    // Tags give more specific search terms than the title alone
+    const tagKeywords = (article.tags || [])
+      .slice(0, 4)
+      .map(t => t.toLowerCase().replace(/[^a-z0-9\s\-]/g, '').trim())
+      .filter(t => t.length > 2 && !STOP.has(t))
+      .join(' ')
+
+    // Combined title + tag query (most specific)
+    const combinedQuery = [titleKeywords, tagKeywords]
+      .filter(Boolean)
+      .join(' ')
+      .split(/\s+/)
+      .filter((w, i, arr) => arr.indexOf(w) === i) // deduplicate
+      .slice(0, 7)
+      .join(' ')
+
+    // Category fallback queries — specific enough to match NASA image metadata
     const CAT_QUERIES: Record<string, string> = {
-      'missies':       'space exploration cosmos universe',
-      'missions':      'space exploration cosmos universe',
-      'james-webb':    'james webb space telescope infrared',
-      'kosmologie':    'galaxy nebula cosmos deep space',
-      'cosmology':     'galaxy nebula cosmos deep space',
-      'mars':          'mars red planet surface landscape',
-      'sterrenkijken': 'telescope night sky astronomy stars',
-      'observing':     'telescope observatory astronomy',
-      'educatie':      'astronaut earth orbit space station',
-      'education':     'astronaut earth orbit space station',
+      'missies':       'rocket launch spacecraft mission',
+      'missions':      'rocket launch spacecraft mission',
+      'james-webb':    'james webb space telescope',
+      'kosmologie':    'galaxy nebula deep space hubble',
+      'cosmology':     'galaxy nebula deep space hubble',
+      'mars':          'mars surface curiosity rover',
+      'sterrenkijken': 'telescope observatory night sky',
+      'observing':     'telescope observatory night sky',
+      'educatie':      'astronaut spacewalk earth orbit',
+      'education':     'astronaut spacewalk earth orbit',
     }
     const cat      = article.category?.toLowerCase() || ''
-    const catQuery = CAT_QUERIES[cat] || 'space astronomy cosmos'
-    const queries  = [titleKeywords, catQuery].filter(Boolean)
+    const catQuery = CAT_QUERIES[cat] || 'space telescope astronomy'
+    // Try: combined (title+tags) → title-only → category fallback
+    const queries  = [combinedQuery, titleKeywords, catQuery].filter((q, i, arr) => q && arr.indexOf(q) === i)
 
     async function tryFetch(q: string, page: number): Promise<boolean> {
       try {
