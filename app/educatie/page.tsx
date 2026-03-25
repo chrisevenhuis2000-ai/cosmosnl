@@ -337,8 +337,8 @@ function Leerpaden() {
                 {/* Read more */}
                 <div style={{ marginTop: 20, display: 'flex', alignItems: 'center', gap: 6 }}>
                   <Link href={`/nieuws?topic=${topic.title}`} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: topic.color, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'gap 0.15s' }}
-                    onMouseEnter={e => { const svg = e.currentTarget.querySelector('svg'); if (svg) (svg as HTMLElement).style.transform = 'translateX(3px)' }}
-                    onMouseLeave={e => { const svg = e.currentTarget.querySelector('svg'); if (svg) (svg as HTMLElement).style.transform = 'translateX(0)' }}
+                    onMouseEnter={e => { const svg = e.currentTarget.querySelector('svg'); if (svg) (svg as unknown as HTMLElement).style.transform = 'translateX(3px)' }}
+                    onMouseLeave={e => { const svg = e.currentTarget.querySelector('svg'); if (svg) (svg as unknown as HTMLElement).style.transform = 'translateX(0)' }}
                   >
                     Bekijk artikelen
                     <svg width="10" height="10" fill="none" viewBox="0 0 12 12" style={{ transition: 'transform 0.15s' }} aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
