@@ -472,23 +472,21 @@ function SiteFooter() {
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Pagina&apos;s</div>
-            {(['/', 'Home'], ['/nieuws', 'Nieuws'], ['/missies', 'Missies'], ['/sterrenkijken', 'Sterrenkijken'], ['/educatie', 'Educatie']).length > 0 &&
-              [['/', 'Home'], ['/nieuws', 'Nieuws'], ['/missies', 'Missies'], ['/sterrenkijken', 'Sterrenkijken'], ['/educatie', 'Educatie']].map(([href, label]) => (
-                <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
-                >{label}</Link>
-              ))}
+            {[['/', 'Home'], ['/nieuws', 'Nieuws'], ['/missies', 'Missies'], ['/sterrenkijken', 'Sterrenkijken'], ['/educatie', 'Educatie']].map(([href, label]) => (
+              <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
+              >{label}</Link>
+            ))}
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Tools</div>
-            {['/tools/herschrijver', 'AI Herschrijver'].length > 0 &&
-              [['/tools/herschrijver', 'AI Herschrijver'], ['/nieuwsbrief', 'Nieuwsbrief']].map(([href, label]) => (
-                <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
-                >{label}</Link>
-              ))}
+            {[['/tools/herschrijver', 'AI Herschrijver'], ['/nieuwsbrief', 'Nieuwsbrief']].map(([href, label]) => (
+              <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
+              >{label}</Link>
+            ))}
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Bronnen</div>
