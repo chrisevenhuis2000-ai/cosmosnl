@@ -1,6 +1,16 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import dynamic from 'next/dynamic'
+
+const DarkSkyMap = dynamic(() => import('./DarkSkyMap'), {
+  ssr:     false,
+  loading: () => (
+    <div style={{ width: '100%', height: '100%', background: '#0d1030', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Kaart laden...</span>
+    </div>
+  ),
+})
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
@@ -792,17 +802,37 @@ export default function SterrenkijkenPage() {
         {/* ── DARK SKY ─────────────────────────────────────────────────────── */}
         {tab === 'darksky' && (
           <div className="sk-panel">
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 8 }}>Gesorteerd op afstand vanaf {location.name}</div>
-              <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-                {['2–3', '3–4', '4'].map(b => (
-                  <div key={b} style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', color: '#4A5A8A' }}>
-                    <div style={{ width: 10, height: 10, borderRadius: 2, background: BORTLE_COLORS[b] }} />
-                    Bortle {b}
-                  </div>
-                ))}
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', color: '#4A5A8A' }}>Lager = donkerder</div>
+
+            {/* Interactive map */}
+            <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden', marginBottom: 24 }}>
+              <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>
+                  🌑 Dark sky kaart — Lichtvervuiling Nederland
+                </div>
+                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                  {['2–3', '3–4', '4'].map(b => (
+                    <div key={b} style={{ display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#8A9BC4' }}>
+                      <div style={{ width: 9, height: 9, borderRadius: '50%', background: BORTLE_COLORS[b], boxShadow: `0 0 4px ${BORTLE_COLORS[b]}88` }} />
+                      Bortle {b}
+                    </div>
+                  ))}
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#4A5A8A' }}>Lager = donkerder</div>
+                </div>
               </div>
+              <div style={{ height: 480, position: 'relative' }}>
+                <DarkSkyMap
+                  spots={darkSpotsSorted}
+                  userLat={location.lat}
+                  userLon={location.lon}
+                />
+              </div>
+              <div style={{ padding: '8px 18px', borderTop: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', color: '#4A5A8A' }}>
+                Klik op een pin voor details · Lichtoverlay: Falchi et al. World Atlas 2022 · Scroll om in te zoomen
+              </div>
+            </div>
+
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Gesorteerd op afstand vanaf {location.name}</div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 16 }}>
               {darkSpotsSorted.map((spot, i) => {
