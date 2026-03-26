@@ -197,7 +197,7 @@ function RatingStars({ rating }: { rating: number }) {
 
 export default function SterrenkijkenPage() {
   const [tab,          setTab]          = useState<'vanavond' | 'kalender' | 'darksky' | 'locatie'>('vanavond')
-  const [location,     setLocation]     = useState<Location>({ lat: 53.1439, lon: 6.2642, name: 'Marum, Groningen' })
+  const [location,     setLocation]     = useState<Location>({ lat: 52.3676, lon: 4.9041, name: 'Amsterdam' })
   const [scoreData,    setScoreData]    = useState<ScoreData | null>(null)
   const [weatherLoad,  setWeatherLoad]  = useState(true)
   const [gpsLoading,   setGpsLoading]   = useState(false)
@@ -208,13 +208,31 @@ export default function SterrenkijkenPage() {
 
   const curMonth = getCurrentMonth()
 
-  // Load saved location
+  // Load saved location, or auto-detect via GPS on first visit
   useEffect(() => {
     try {
       const saved = localStorage.getItem('nightgazer_stargazing_loc')
-      if (saved) setLocation(JSON.parse(saved))
+      if (saved) { setLocation(JSON.parse(saved)); return }
     } catch {}
-  }, [])
+
+    // No saved location — silently request GPS, fall back to Amsterdam on deny
+    if (!navigator.geolocation) return
+    navigator.geolocation.getCurrentPosition(
+      async pos => {
+        const { latitude: lat, longitude: lon } = pos.coords
+        let name = `${lat.toFixed(2)}°N, ${lon.toFixed(2)}°E`
+        try {
+          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10&accept-language=nl`)
+          const d = await r.json()
+          const a = d.address
+          name = a.city || a.town || a.village || a.municipality || name
+        } catch {}
+        saveLocation({ lat, lon, name })
+      },
+      () => { /* denied — Amsterdam default is already set, do nothing */ },
+      { timeout: 8000 }
+    )
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Fetch weather whenever location changes
   const fetchWeather = useCallback(async (loc: Location) => {
