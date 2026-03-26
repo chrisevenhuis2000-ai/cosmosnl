@@ -34,6 +34,7 @@ const TOPIC_DETAILS: Record<string, {
   pro: string
   keyFacts: string[]
   sources: { label: string; url: string }[]
+  glossary: { term: string; def: string }[]
 }> = {
   zonnestelsel: {
     featuredConcept: 'Planetaire beweging',
@@ -50,6 +51,15 @@ const TOPIC_DETAILS: Record<string, {
       { label: 'NASA Solar System Exploration', url: 'https://solarsystem.nasa.gov/' },
       { label: 'Wikipedia — Zonnestelsel', url: 'https://nl.wikipedia.org/wiki/Zonnestelsel' },
       { label: 'Wikipedia — Wetten van Kepler', url: 'https://nl.wikipedia.org/wiki/Wetten_van_Kepler' },
+    ],
+    glossary: [
+      { term: 'AU', def: 'Astronomische Eenheid — de gemiddelde afstand Aarde–Zon (149,6 miljoen km). Standaardmaat voor afstanden binnen het zonnestelsel.' },
+      { term: 'Ellips', def: 'Een gesloten ovaalvormige kromme. Planetaire banen zijn ellipsvormig met de zon in één van de twee brandpunten (1e wet van Kepler).' },
+      { term: 'Perihelium', def: 'Het punt in de baan van een planeet of komeet dat het dichtst bij de zon ligt. In het perihelium beweegt het object het snelst.' },
+      { term: 'Aphelium', def: 'Het punt in de baan het verst van de zon. In het aphelium is de baansnelheid het laagst.' },
+      { term: 'Dwergplaneet', def: 'Een hemellichaam dat om de zon draait en voldoende massa heeft voor een bolvorm, maar zijn baan niet heeft vrijgemaakt. Pluto en Ceres zijn voorbeelden.' },
+      { term: 'Oort-wolk', def: 'Een bolvormige wolk van ijsachtige objecten aan de rand van het zonnestelsel (tot ~100.000 AU). Geldt als de herkomst van langperiodieke kometen.' },
+      { term: 'Lagrangepunt', def: 'Eén van vijf punten (L1–L5) in een twee-lichamen-systeem waar een klein object stabiel kan meebewegen. L2 is de positie van de JWST-telescoop.' },
     ],
   },
   sterren: {
@@ -68,6 +78,15 @@ const TOPIC_DETAILS: Record<string, {
       { label: 'Wikipedia — Hertzsprung-Russell-diagram', url: 'https://nl.wikipedia.org/wiki/Hertzsprung-Russelldiagram' },
       { label: 'NASA — Life Cycle of a Star', url: 'https://science.nasa.gov/universe/stars/' },
     ],
+    glossary: [
+      { term: 'Kernfusie', def: 'Het samenvoegen van lichte atoomkernen tot een zwaardere kern, waarbij enorme energie vrijkomt (E = Δmc²). De energiebron van alle sterren.' },
+      { term: 'Hoofdreeks', def: 'De stabiele fase in het sterleven waarbij waterstof wordt gefuseerd tot helium. De zon bevindt zich al 4,6 miljard jaar op de hoofdreeks.' },
+      { term: 'HR-diagram', def: 'Hertzsprung-Russell-diagram: een grafiek die sterren indeelt op oppervlaktetemperatuur (x-as) en lichtkracht (y-as). Onthult evolutiestadia.' },
+      { term: 'Supernova', def: 'Een catastrofale sterexplosie aan het einde van het leven van een massieve ster (>8 M☉). Verspreidt zware elementen door de interstellaire ruimte.' },
+      { term: 'Neutronenster', def: 'Het compacte overblijfsel na een supernova: een bol van ~20 km doorsnede, vrijwel volledig uit neutronen opgebouwd, met dichtheid > 10¹⁷ kg/m³.' },
+      { term: 'Witte dwerg', def: 'Het eindstadium van een ster als de zon: een aardsgrote, hete kern van koolstof en zuurstof die langzaam afkoelt. Geen actieve fusie meer.' },
+      { term: 'Eventhorizon', def: 'De grens rond een zwart gat waarbinnen de ontsnappingssnelheid groter is dan de lichtsnelheid. Wat ervoorbij gaat, is voorgoed onbereikbaar.' },
+    ],
   },
   sterrenstelsels: {
     featuredConcept: 'Donkere materie',
@@ -84,6 +103,15 @@ const TOPIC_DETAILS: Record<string, {
       { label: 'Wikipedia — Donkere materie', url: 'https://nl.wikipedia.org/wiki/Donkere_materie' },
       { label: 'Wikipedia — Melkwegstelsel', url: 'https://nl.wikipedia.org/wiki/Melkwegstelsel' },
       { label: 'NASA — Dark Matter', url: 'https://science.nasa.gov/universe/dark-matter-dark-energy/' },
+    ],
+    glossary: [
+      { term: 'Sterrenstelsel', def: 'Een enorm systeem van sterren, gas, stof en donkere materie gebonden door zwaartekracht. De Melkweg telt 200–400 miljard sterren.' },
+      { term: 'Donkere materie', def: 'Onzichtbare materie die geen licht uitzendt of absorbeert, maar wel zwaartekracht uitoefent. Goed voor ~27% van de energie-inhoud van het heelal.' },
+      { term: 'Rotatiesnelheidscurve', def: 'Een grafiek van de baansnelheid van sterren als functie van de afstand tot het centrum van een sterrenstelsel. Vlakke curven wijzen op donkere materie.' },
+      { term: 'Gravitationele lensing', def: 'Het buigen van lichtstralen door een zware massa, conform Einsteins Algemene Relativiteitstheorie. Maakt onzichtbare massa zichtbaar.' },
+      { term: 'Spiraalstelsel', def: 'Een type sterrenstelsel met een centrale bult en uitgestrekte spiraalvormige armen van sterren en gas. De Melkweg en Andromeda zijn spiraalstelsels.' },
+      { term: 'Galactische kern', def: 'Het dichtst bevolkte, helderste centrale gebied van een sterrenstelsel. Bevat vaak een supermassief zwart gat (bij de Melkweg: Sgr A*, 4 miljoen M☉).' },
+      { term: 'WIMP', def: 'Weakly Interacting Massive Particle — een hypothetische donkere-materiedeeltje dat alleen via zwaartekracht en de zwakke kernkracht wisselwerkt.' },
     ],
   },
   kosmologie: {
@@ -102,6 +130,15 @@ const TOPIC_DETAILS: Record<string, {
       { label: 'ESA — Planck Mission', url: 'https://www.esa.int/Science_Exploration/Space_Science/Planck' },
       { label: 'NASA — Big Bang', url: 'https://science.nasa.gov/universe/overview/' },
     ],
+    glossary: [
+      { term: 'Oerknal', def: 'De theorie dat het heelal ±13,8 miljard jaar geleden begon vanuit een extreem hete, dichte toestand en sindsdien uitdijt en afkoelt.' },
+      { term: 'Roodverschuiving', def: 'De verschuiving van lichtgolven naar langere (roodere) golflengten doordat de bron van ons wegbeweegt of het heelal uitdijt. Symbool: z.' },
+      { term: 'CMB', def: 'Kosmische Achtergrondstraling (Cosmic Microwave Background) — reststraling van 380.000 jaar na de oerknal, nu zichtbaar als microgolven op T = 2,7 K.' },
+      { term: 'Donkere energie', def: 'Een onbekende vorm van energie die de uitdijing van het heelal versnelt. Goed voor ~68% van de totale energie-inhoud. Symbool: Λ (kosmologische constante).' },
+      { term: 'Inflatie', def: 'Een fase van extreem snelle, exponentiële uitdijing in het eerste 10⁻³² seconde na de oerknal. Verklaart de vlakheid en uniformiteit van het heelal.' },
+      { term: 'Hubble-constante (H₀)', def: 'De huidige uitdijingssnelheid van het heelal per afstandseenheid, uitgedrukt in km/s/Mpc. Actuele waarde: ~67–73 km/s/Mpc (Hubble-spanning).' },
+      { term: 'ΛCDM', def: 'Het standaardmodel van de kosmologie: Lambda (donkere energie) + Cold Dark Matter. Beschrijft de structuur en evolutie van het heelal met hoge nauwkeurigheid.' },
+    ],
   },
   exoplaneten: {
     featuredConcept: 'Detectiemethoden',
@@ -119,6 +156,15 @@ const TOPIC_DETAILS: Record<string, {
       { label: 'Wikipedia — Exoplaneet', url: 'https://nl.wikipedia.org/wiki/Exoplaneet' },
       { label: 'ESA — Exoplanets', url: 'https://www.esa.int/Science_Exploration/Space_Science/Exoplanets' },
     ],
+    glossary: [
+      { term: 'Exoplaneet', def: 'Een planeet die om een andere ster dan onze zon draait. Meer dan 5.800 exoplaneten zijn bevestigd (2025); miljarden worden geschat in de Melkweg.' },
+      { term: 'Transitmethode', def: 'Detectiemethode waarbij een planeet zijn ster gedeeltelijk verduistert. De helderheid daalt met (R_planeet/R_ster)². Kepler en TESS gebruiken deze methode.' },
+      { term: 'Radiale snelheidsmethode', def: 'Detectiemethode waarbij de slingerbewegingen van een ster door een planeet worden gemeten via dopplerverschuiving van spectraallijnen.' },
+      { term: 'Bewoonbare zone', def: 'Het gebied rond een ster waar de temperatuur vloeibaar water op een planeetoppervlak toelaat. Ook wel "Goudlokje-zone" genoemd.' },
+      { term: 'Biosignatuur', def: 'Een chemisch of fysisch signaal in een atmosfeer of oppervlak dat op de aanwezigheid van leven kan wijzen, zoals zuurstof, methaan of dimethylsulfide.' },
+      { term: 'Transmissiespectroscopie', def: 'Het analyseren van sterrenlicht dat door de atmosfeer van een exoplaneet filtert bij een transit. Onthult de chemische samenstelling van de atmosfeer.' },
+      { term: 'Super-Aarde', def: 'Een exoplaneet met een massa groter dan de Aarde (1–10 M⊕) maar kleiner dan Neptunus. Kunnen rotsachtig of gasachtig zijn.' },
+    ],
   },
   ruimtevaart: {
     featuredConcept: 'Orbitale mechanica',
@@ -135,6 +181,15 @@ const TOPIC_DETAILS: Record<string, {
       { label: 'NASA — Space Mission Design', url: 'https://www.nasa.gov/missions/' },
       { label: 'Wikipedia — Orbitale mechanica', url: 'https://nl.wikipedia.org/wiki/Baanmechanica' },
       { label: 'ESA — How to get to space', url: 'https://www.esa.int/Enabling_Support/Space_Transportation' },
+    ],
+    glossary: [
+      { term: 'Orbitale mechanica', def: 'De wetenschap van de beweging van objecten in de ruimte onder invloed van zwaartekracht. Gebaseerd op Newtons wetten en Keplers baanwetten.' },
+      { term: 'Δv (delta-v)', def: 'De totale verandering in snelheid die nodig is voor een ruimtemanoeuvre. Bepaalt de benodigde brandstofmassa via de raketformule van Tsiolkovsky.' },
+      { term: 'LEO', def: 'Low Earth Orbit — een baan om de Aarde op 200–2.000 km hoogte. De ISS bevindt zich op ~400 km. Vereist een snelheid van ~7,9 km/s.' },
+      { term: 'Hohmann-transferbaan', def: 'De meest brandstofzuinige baan tussen twee cirkelvormige banen: een ellips die de twee banen raakt. Gebruikt twee korte motorbranden.' },
+      { term: 'Ontsnappingssnelheid', def: 'De minimale snelheid om de zwaartekracht van een hemellichaam te ontsnappen zonder verdere aandrijving. Voor de Aarde: ~11,2 km/s.' },
+      { term: 'Gravitational assist', def: 'Een vluchtmanoeuvre waarbij de zwaartekracht van een planeet wordt gebruikt om een sonde te versnellen of van richting te veranderen zonder brandstof.' },
+      { term: 'Specifieke impuls (Isp)', def: 'Een maat voor de efficiëntie van een raketmotor: de stuwkracht per gewichtseenheid brandstof per seconde. Hogere Isp = zuiniger motor.' },
     ],
   },
 }
@@ -405,6 +460,7 @@ function LevelDemo() {
 function Leerpaden() {
   const [expanded, setExpanded] = useState<string | null>(null)
   const [topicLevel, setTopicLevel] = useState<Record<string, 'beg' | 'ama' | 'pro'>>({})
+  const [glossaryOpen, setGlossaryOpen] = useState<Record<string, boolean>>({})
 
   function getLvl(id: string): 'beg' | 'ama' | 'pro' {
     return topicLevel[id] ?? 'beg'
@@ -551,6 +607,35 @@ function Leerpaden() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Glossarium */}
+                    <div style={{ borderTop: `1px solid ${topic.color}15`, margin: '0 24px' }}>
+                      <button
+                        onClick={e => { e.stopPropagation(); setGlossaryOpen(prev => ({ ...prev, [topic.id]: !prev[topic.id] })) }}
+                        style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '14px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>📖 Begrippenlijst</span>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '1px 6px', borderRadius: 10 }}>{detail.glossary.length} termen</span>
+                        </div>
+                        <svg width="13" height="13" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ color: '#4A5A8A', flexShrink: 0, transition: 'transform 0.25s', transform: glossaryOpen[topic.id] ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                          <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      {glossaryOpen[topic.id] && (
+                        <div style={{ paddingBottom: 20, animation: 'fadeIn 0.2s ease both' }}>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
+                            {detail.glossary.map(entry => (
+                              <div key={entry.term} style={{ background: 'rgba(37,40,88,0.15)', border: '1px solid #252858', borderRadius: 2, padding: '12px 14px' }}>
+                                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 700, color: topic.color, letterSpacing: '0.06em', marginBottom: 5 }}>{entry.term}</div>
+                                <p style={{ fontSize: '0.78rem', color: '#8A9BC4', lineHeight: 1.65, margin: 0 }}>{entry.def}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
                   </div>
                 )}
               </div>
