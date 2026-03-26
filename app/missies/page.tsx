@@ -2,6 +2,16 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+
+const SolarSystemMap = dynamic(() => import('./SolarSystemMap'), {
+  ssr: false,
+  loading: () => (
+    <div style={{ height: 560, background: '#12132A', border: '1px solid #252858', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Kaart laden...</span>
+    </div>
+  ),
+})
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -571,6 +581,15 @@ export default function MissiesPage() {
       <AgenciesStrip />
 
       <main id="main-content" tabIndex={-1} className="main-pad" style={{ position: 'relative', zIndex: 1, maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+
+        {/* ── Solar system map ──────────────────────────────────────── */}
+        <section aria-labelledby="map-label" style={{ marginBottom: 80 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
+            <span id="map-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Positiekaart</span>
+            <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
+          </div>
+          <SolarSystemMap />
+        </section>
 
         {/* ── All missions ─────────────────────────────────────────── */}
         <section aria-labelledby="missies-label" id="alle-missies" style={{ marginBottom: 80 }}>
