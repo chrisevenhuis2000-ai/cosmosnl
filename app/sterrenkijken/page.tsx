@@ -25,6 +25,15 @@ interface ScoreData {
   weather: WeatherData | null
 }
 
+interface DayForecast {
+  date:      Date
+  score:     number
+  color:     string
+  label:     string
+  cloud:     number
+  moonPhase: number // 0–1
+}
+
 // ── Constants ───────────────────────────────────────────────────────────────
 
 const PRESET_LOCATIONS: Location[] = [
@@ -200,6 +209,82 @@ function RatingStars({ rating }: { rating: number }) {
   )
 }
 
+function WeekVoorspelling({ forecast, loading }: { forecast: DayForecast[]; loading: boolean }) {
+  const DAYS_NL_SHORT = ['Zo','Ma','Di','Wo','Do','Vr','Za']
+  const PHASE_EMOJIS  = ['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘']
+
+  return (
+    <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden', gridColumn: '1 / -1' }}>
+      <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>
+        ☁ 7-daagse sterrenkijk-voorspelling · 20:00
+      </div>
+      <div style={{ padding: '20px 18px 12px', display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 6 }}>
+        {loading
+          ? [1,2,3,4,5,6,7].map(i => (
+              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5 }}>
+                <div style={{ height: 9, width: 24, background: '#252858', borderRadius: 2 }} />
+                <div style={{ height: 8, width: 16, background: '#1e2050', borderRadius: 2 }} />
+                <div style={{ width: '70%', height: 80, background: '#1e2050', borderRadius: 3 }} />
+                <div style={{ height: 14, width: 22, background: '#252858', borderRadius: 2 }} />
+                <div style={{ height: 14, width: 18, background: '#1e2050', borderRadius: 2 }} />
+              </div>
+            ))
+          : forecast.map((day, i) => {
+              const isToday   = i === 0
+              const dayName   = DAYS_NL_SHORT[day.date.getDay()]
+              const dayNum    = day.date.getDate()
+              const phaseIdx  = Math.round(day.moonPhase * 8) % 8
+              const barH      = Math.max(4, Math.round(day.score * 0.8))
+              return (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                  {/* Day label */}
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: isToday ? '#378ADD' : '#8A9BC4', fontWeight: isToday ? 700 : 400 }}>
+                    {isToday ? 'Van.' : dayName}
+                  </div>
+                  {/* Date */}
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#4A5A8A' }}>{dayNum}</div>
+                  {/* Bar container */}
+                  <div style={{ width: '100%', height: 80, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                    <div
+                      title={`${day.label} · Score ${day.score}/100 · Bewolking ${day.cloud}%`}
+                      style={{
+                        width: '68%',
+                        height: barH,
+                        background: `linear-gradient(to top, ${day.color}cc, ${day.color}33)`,
+                        border: `1px solid ${day.color}55`,
+                        borderRadius: '3px 3px 2px 2px',
+                        boxShadow: isToday ? `0 0 10px ${day.color}44` : 'none',
+                        transition: 'height 0.8s ease',
+                      }}
+                    />
+                  </div>
+                  {/* Score */}
+                  <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1rem', fontWeight: 700, color: day.color, lineHeight: 1 }}>{day.score}</div>
+                  {/* Moon phase */}
+                  <div title={`Maanfase`} style={{ fontSize: '0.85rem', lineHeight: 1 }}>{PHASE_EMOJIS[phaseIdx]}</div>
+                </div>
+              )
+            })
+        }
+      </div>
+      {/* Legend */}
+      <div style={{ padding: '10px 18px', borderTop: '1px solid #252858', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+        {[
+          { c: '#3ddf90', l: 'Uitstekend ≥80' },
+          { c: '#d4a84b', l: 'Goed 60–79' },
+          { c: '#ff8a60', l: 'Matig 40–59' },
+          { c: '#e05040', l: 'Slecht <40' },
+        ].map(({ c, l }) => (
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{ width: 10, height: 10, borderRadius: 2, background: c, opacity: 0.85 }} />
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#8A9BC4' }}>{l}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function MaanKalender() {
   const now = new Date()
   const [viewDate, setViewDate] = useState(new Date(now.getFullYear(), now.getMonth(), 1))
@@ -311,6 +396,7 @@ export default function SterrenkijkenPage() {
   const [tab,          setTab]          = useState<'vanavond' | 'kalender' | 'darksky' | 'locatie'>('vanavond')
   const [location,     setLocation]     = useState<Location>({ lat: 52.3676, lon: 4.9041, name: 'Amsterdam' })
   const [scoreData,    setScoreData]    = useState<ScoreData | null>(null)
+  const [weekForecast, setWeekForecast] = useState<DayForecast[]>([])
   const [weatherLoad,  setWeatherLoad]  = useState(true)
   const [gpsLoading,   setGpsLoading]   = useState(false)
   const [manLat,       setManLat]       = useState('')
@@ -350,21 +436,47 @@ export default function SterrenkijkenPage() {
   const fetchWeather = useCallback(async (loc: Location) => {
     setWeatherLoad(true)
     setScoreData(null)
+    setWeekForecast([])
     try {
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m,visibility&forecast_days=1`
-      const res = await fetch(url)
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m,visibility&forecast_days=7`
+      const res  = await fetch(url)
       const data = await res.json()
-      const h = data.hourly
-      // use evening hours (20:00 = index 20)
-      const idx = 20
-      const weather: WeatherData = {
-        cloud_cover:          h.cloud_cover[idx],
-        temperature_2m:       h.temperature_2m[idx],
-        relative_humidity_2m: h.relative_humidity_2m[idx],
-        wind_speed_10m:       h.wind_speed_10m[idx],
-        visibility:           h.visibility?.[idx] ?? 10000,
+      const h    = data.hourly
+
+      // Tonight at 20:00 (index 20)
+      const todayWeather: WeatherData = {
+        cloud_cover:          h.cloud_cover[20],
+        temperature_2m:       h.temperature_2m[20],
+        relative_humidity_2m: h.relative_humidity_2m[20],
+        wind_speed_10m:       h.wind_speed_10m[20],
+        visibility:           h.visibility?.[20] ?? 10000,
       }
-      setScoreData(calcScore(weather))
+      setScoreData(calcScore(todayWeather))
+
+      // 7-day forecast — one entry per day at 20:00
+      const days: DayForecast[] = []
+      const now = new Date()
+      for (let d = 0; d < 7; d++) {
+        const idx = d * 24 + 20
+        const w: WeatherData = {
+          cloud_cover:          h.cloud_cover[idx]          ?? 100,
+          temperature_2m:       h.temperature_2m[idx]       ?? 5,
+          relative_humidity_2m: h.relative_humidity_2m[idx] ?? 80,
+          wind_speed_10m:       h.wind_speed_10m[idx]       ?? 10,
+          visibility:           h.visibility?.[idx]         ?? 10000,
+        }
+        const scored = calcScore(w)
+        const date   = new Date(now.getFullYear(), now.getMonth(), now.getDate() + d)
+        days.push({
+          date,
+          score:     scored.score,
+          color:     scored.color,
+          label:     scored.label,
+          cloud:     w.cloud_cover,
+          moonPhase: getMoonPhase(date),
+        })
+      }
+      setWeekForecast(days)
     } catch {
       setScoreData({ score: 0, label: 'Geen data', color: '#4A5A8A', weather: null })
     } finally {
@@ -514,6 +626,9 @@ export default function SterrenkijkenPage() {
         {/* ── VANAVOND ─────────────────────────────────────────────────────── */}
         {tab === 'vanavond' && (
           <div className="sk-panel" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 24 }}>
+
+            {/* 7-day forecast */}
+            <WeekVoorspelling forecast={weekForecast} loading={weatherLoad} />
 
             {/* Score + weather */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
