@@ -474,6 +474,160 @@ function ArticleGridCard({ article }: { article: Article }) {
   )
 }
 
+// ── Stargazing mini-widget ──────────────────────────────────────────────────
+const SK_DARK_SPOTS = [
+  { name: 'Terschelling',    lat: 53.43, lon: 5.35 },
+  { name: 'Spiekeroog (DE)', lat: 53.77, lon: 7.69 },
+  { name: 'Lauwersmeer',     lat: 53.36, lon: 6.20 },
+  { name: 'Bargerveen',      lat: 52.68, lon: 7.03 },
+  { name: 'Bourtangermoor',  lat: 53.01, lon: 7.20 },
+  { name: 'Fochteloërveen',  lat: 52.96, lon: 6.38 },
+]
+const SK_OBJECTS = [
+  { obj: 'Jupiter',          icon: '♃' },
+  { obj: 'Venus',            icon: '♀' },
+  { obj: 'Mars',             icon: '♂' },
+  { obj: 'Orionnevel (M42)', icon: '⭐' },
+]
+
+function skDist(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371, dLat = (lat2 - lat1) * Math.PI / 180, dLon = (lon2 - lon1) * Math.PI / 180
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2
+  return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)))
+}
+
+function StargazingWidget() {
+  const [score,    setScore]    = useState<number | null>(null)
+  const [label,    setLabel]    = useState('Laden…')
+  const [color,    setColor]    = useState('#4A5A8A')
+  const [clouds,   setClouds]   = useState<number | null>(null)
+  const [darkKm,   setDarkKm]   = useState<number | null>(null)
+  const [darkName, setDarkName] = useState('')
+  const [locName,  setLocName]  = useState('jouw locatie')
+  const [loading,  setLoading]  = useState(true)
+
+  useEffect(() => {
+    const fetch20h = async (lat: number, lon: number) => {
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m&forecast_days=1&timezone=auto`
+        const res = await fetch(url)
+        const d   = await res.json()
+        const idx = 20
+        const cc   = d.hourly.cloud_cover[idx]
+        const hum  = d.hourly.relative_humidity_2m[idx]
+        const wind = d.hourly.wind_speed_10m[idx]
+        const temp = d.hourly.temperature_2m[idx]
+
+        let s = 100
+        if (cc   > 80) s -= 50; else if (cc   > 60) s -= 35; else if (cc   > 40) s -= 20; else if (cc   > 20) s -= 8
+        if (hum  > 90) s -= 15; else if (hum  > 80) s -= 8
+        if (wind > 30) s -= 15; else if (wind > 20) s -= 8
+        if (temp < -5) s -= 5
+        s = Math.max(0, Math.min(100, s))
+
+        const lbl = s >= 80 ? 'Uitstekend' : s >= 60 ? 'Goed' : s >= 40 ? 'Matig' : s >= 20 ? 'Slecht' : 'Bewolkt'
+        const clr = s >= 80 ? '#3ddf90'    : s >= 60 ? '#d4a84b' : s >= 40 ? '#ff8a60' : '#e05040'
+
+        setScore(Math.round(s / 10))
+        setLabel(lbl)
+        setColor(clr)
+        setClouds(cc)
+
+        const nearest = SK_DARK_SPOTS.map(sp => ({ ...sp, km: skDist(lat, lon, sp.lat, sp.lon) })).sort((a, b) => a.km - b.km)[0]
+        setDarkKm(nearest.km)
+        setDarkName(nearest.name)
+      } catch { /* silent */ }
+      setLoading(false)
+    }
+
+    if (typeof navigator !== 'undefined' && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        pos => { setLocName('jouw locatie'); fetch20h(pos.coords.latitude, pos.coords.longitude) },
+        ()  => { setLocName('Amsterdam');    fetch20h(52.3676, 4.9041) },
+        { timeout: 5000 }
+      )
+    } else {
+      setLocName('Amsterdam')
+      fetch20h(52.3676, 4.9041)
+    }
+  }, [])
+
+  const topObj = SK_OBJECTS[0]
+  const circumference = 2 * Math.PI * 26 // r=26
+
+  return (
+    <div role="region" aria-labelledby="sk-widget-title" style={{ border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
+      {/* Header */}
+      <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span id="sk-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span aria-hidden="true">🌠</span>
+          Vanavond zichtbaar
+        </span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A' }}>{locName}</span>
+      </div>
+
+      {/* Score + highlights */}
+      <div style={{ padding: '16px 20px 14px', display: 'flex', alignItems: 'center', gap: 16 }}>
+        {/* Score ring */}
+        <div aria-label={`Sterrenkijk-score: ${score ?? '…'} van 10`} style={{ position: 'relative', width: 64, height: 64, flexShrink: 0 }}>
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="#252858" strokeWidth="5" />
+            <circle cx="32" cy="32" r="26" fill="none"
+              stroke={loading ? '#252858' : color}
+              strokeWidth="5"
+              strokeDasharray={`${loading ? 0 : ((score ?? 0) / 10) * circumference} ${circumference}`}
+              strokeLinecap="round"
+              transform="rotate(-90 32 32)"
+              style={{ transition: 'stroke-dasharray 0.9s ease, stroke 0.4s' }}
+            />
+          </svg>
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700, color: loading ? '#4A5A8A' : color, lineHeight: 1 }}>
+              {loading ? '…' : (score ?? '?')}
+            </span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>/10</span>
+          </div>
+        </div>
+
+        {/* Label + info rows */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: loading ? '#4A5A8A' : color, marginBottom: 6 }}>
+            {loading ? 'Ophalen…' : label}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span aria-hidden="true" style={{ color: '#ffa040' }}>{topObj.icon}</span>
+              {topObj.obj} zichtbaar
+            </span>
+            {clouds !== null && (
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: clouds < 20 ? '#3ddf90' : clouds < 50 ? '#d4a84b' : '#8A9BC4' }}>
+                ☁ {clouds}% bewolking vanavond
+              </span>
+            )}
+            {darkKm !== null && (
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4' }}>
+                🌑 Dark sky {darkKm} km · {darkName}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div style={{ borderTop: '1px solid #252858', padding: '10px 20px' }}>
+        <Link href="/sterrenkijken"
+          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+          onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+          onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
+        >
+          Volledig rapport
+          <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 // ── ISS Widget ─────────────────────────────────────────────────────────────
 function ISSWidget({ iss }: { iss: ISSData | null }) {
   const px = iss ? ((iss.longitude + 180) / 360 * 100) : 50
@@ -916,6 +1070,7 @@ export default function HomePage() {
 
           {/* Right: sticky sidebar */}
           <aside aria-label="Widgets" className="sidebar-grid" style={{ position: 'sticky', top: 'calc(var(--nav-h) + 24px)', alignSelf: 'start' }}>
+            <StargazingWidget />
             <ISSWidget iss={iss} />
             <APODWidget apod={apod} />
             <AIPromoWidget />
