@@ -111,6 +111,13 @@ function getCurrentMonth(): number {
   return new Date().getMonth() + 1
 }
 
+function getMoonPhase(date: Date): number {
+  // Returns 0–1: 0 = new moon, 0.25 = first quarter, 0.5 = full, 0.75 = last quarter
+  const KNOWN_NEW_MOON_MS = new Date('2000-01-06T18:14:00Z').getTime()
+  const SYNODIC_MS = 29.53059 * 24 * 3600 * 1000
+  return (((date.getTime() - KNOWN_NEW_MOON_MS) % SYNODIC_MS) + SYNODIC_MS) % SYNODIC_MS / SYNODIC_MS
+}
+
 // ── Sub-components ───────────────────────────────────────────────────────────
 
 function ScoreGauge({ scoreData, loading }: { scoreData: ScoreData | null; loading: boolean }) {
@@ -189,6 +196,111 @@ function RatingStars({ rating }: { rating: number }) {
       {[1,2,3,4,5].map(i => (
         <div key={i} style={{ width: 8, height: 8, borderRadius: '50%', background: i <= rating ? '#378ADD' : '#252858' }} />
       ))}
+    </div>
+  )
+}
+
+function MaanKalender() {
+  const now = new Date()
+  const [viewDate, setViewDate] = useState(new Date(now.getFullYear(), now.getMonth(), 1))
+
+  const year  = viewDate.getFullYear()
+  const month = viewDate.getMonth() // 0-indexed
+
+  const MONTHS_NL = ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December']
+  const DAYS_NL   = ['Ma','Di','Wo','Do','Vr','Za','Zo']
+  const PHASE_EMOJIS = ['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘']
+  const PHASE_NAMES  = ['Nieuwe maan','Wassende sikkel','Eerste kwartier','Wassend gibbeus','Volle maan','Afnemend gibbeus','Laatste kwartier','Afnemende sikkel']
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  let startDow = new Date(year, month, 1).getDay() - 1
+  if (startDow < 0) startDow = 6
+
+  const todayY = now.getFullYear(), todayM = now.getMonth(), todayD = now.getDate()
+
+  const cells: (number | null)[] = [...Array(startDow).fill(null)]
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d)
+  while (cells.length % 7 !== 0) cells.push(null)
+
+  const btnStyle: React.CSSProperties = { background: 'none', border: '1px solid #252858', borderRadius: 2, color: '#8A9BC4', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', width: 28, height: 28, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }
+
+  return (
+    <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden', gridColumn: '1 / -1' }}>
+      {/* Header */}
+      <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>🌙 Maankalender</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <button style={btnStyle} onClick={() => setViewDate(new Date(year, month - 1, 1))}>‹</button>
+          <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '0.95rem', fontWeight: 700, color: '#FFFFFF', minWidth: 160, textAlign: 'center' }}>{MONTHS_NL[month]} {year}</span>
+          <button style={btnStyle} onClick={() => setViewDate(new Date(year, month + 1, 1))}>›</button>
+        </div>
+      </div>
+
+      {/* Day-of-week headers */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', padding: '10px 18px 4px' }}>
+        {DAYS_NL.map(d => (
+          <div key={d} style={{ textAlign: 'center', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#4A5A8A' }}>{d}</div>
+        ))}
+      </div>
+
+      {/* Calendar grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4, padding: '4px 18px 16px' }}>
+        {cells.map((day, i) => {
+          if (!day) return <div key={i} />
+          const date     = new Date(year, month, day, 12)
+          const phase    = getMoonPhase(date)
+          const phaseIdx = Math.round(phase * 8) % 8
+          const emoji    = PHASE_EMOJIS[phaseIdx]
+          const isNew    = phaseIdx === 0
+          const isFull   = phaseIdx === 4
+          const isToday  = year === todayY && month === todayM && day === todayD
+          return (
+            <div
+              key={i}
+              title={`${day} ${MONTHS_NL[month]}: ${PHASE_NAMES[phaseIdx]}`}
+              style={{
+                textAlign: 'center',
+                padding: '6px 2px',
+                borderRadius: 3,
+                border: isNew  ? '1px solid rgba(61,223,144,0.5)'
+                      : isFull ? '1px solid rgba(224,80,64,0.4)'
+                      : isToday ? '1px solid rgba(55,138,221,0.4)'
+                      : '1px solid transparent',
+                background: isToday ? 'rgba(55,138,221,0.10)'
+                           : isNew  ? 'rgba(61,223,144,0.05)'
+                           : isFull ? 'rgba(224,80,64,0.05)'
+                           : 'transparent',
+                cursor: 'default',
+              }}
+            >
+              <div style={{ fontSize: '1rem', lineHeight: 1 }}>{emoji}</div>
+              <div style={{
+                fontFamily: 'JetBrains Mono, monospace',
+                fontSize: '0.48rem',
+                marginTop: 3,
+                color: isToday ? '#378ADD' : isNew ? '#3ddf90' : isFull ? '#e05040' : '#4A5A8A',
+                fontWeight: isToday ? 700 : 400,
+              }}>{day}</div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Legend */}
+      <div style={{ padding: '10px 18px', borderTop: '1px solid #252858', display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: '0.85rem' }}>🌑</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#3ddf90' }}>Nieuwe maan — beste kijkavond</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: '0.85rem' }}>🌕</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#e05040' }}>Volle maan — slechtste kijkavond</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 10, height: 10, borderRadius: 2, border: '1px solid rgba(55,138,221,0.5)', background: 'rgba(55,138,221,0.12)' }} />
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: '#378ADD' }}>Vandaag</span>
+        </div>
+      </div>
     </div>
   )
 }
@@ -481,6 +593,9 @@ export default function SterrenkijkenPage() {
         {/* ── KALENDER ─────────────────────────────────────────────────────── */}
         {tab === 'kalender' && (
           <div className="sk-panel" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 24 }}>
+
+            {/* Moon phase calendar */}
+            <MaanKalender />
 
             {/* Meteor showers */}
             <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
