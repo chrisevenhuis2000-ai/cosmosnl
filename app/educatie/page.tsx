@@ -26,6 +26,119 @@ const DEMO_CONCEPT = {
   pro: 'Een Kerr–Newman zwart gat wordt volledig beschreven door drie parameters: massa M, impulsmoment J en lading Q. De ergosphere buiten de Kerr-horizont maakt Penrose-processen mogelijk (energieonttrekking via frame-dragging). Hawking-straling (T_H = ℏc³/8πGMk_B) voorspelt zwarte-gatverdam­ping op tijdschalen τ ∝ M³. Bij SGR A* (M ≈ 4×10⁶ M☉) bevestigt het EHT-beeld de schaduwritmiek binnen GR-voorspellingen.',
 }
 
+// ── Topic educational detail (3-level content, key facts, sources) ──────────
+const TOPIC_DETAILS: Record<string, {
+  featuredConcept: string
+  beg: string
+  ama: string
+  pro: string
+  keyFacts: string[]
+  sources: { label: string; url: string }[]
+}> = {
+  zonnestelsel: {
+    featuredConcept: 'Planetaire beweging',
+    beg: 'De planeten bewegen in ellipsvormige banen om de zon. Hoe dichter een planeet bij de zon is, hoe sneller hij beweegt. De Aarde doet er 365 dagen over voor één ronde, Mars 687 dagen. De zwaartekracht van de zon trekt alle planeten naar zich toe en houdt ze zo in hun baan.',
+    ama: 'Kepler formuleerde drie wetten (1609–1619): (1) Planeten bewegen in ellipsen met de zon in één brandpunt. (2) De verbindingslijn ster–planeet bestrijkt gelijke oppervlakken in gelijke tijden (behoud van impulsmoment). (3) T² ∝ a³ — de omlooptijd in het kwadraat is evenredig met de halve grootas in de derde macht. Newton verklaarde dit later met F = GMm/r².',
+    pro: 'Afwijkingen van perfecte Kepler-ellipsen (seculareprecession) volgen uit N-body-storingen en, voor Mercurius, uit Algemene Relativiteitstheorie (43 boogseconden/eeuw). Lagrangepunten L1–L5 zijn evenwichtspunten in het beperkte drie-lichamenprobleem; L4/L5 zijn stabiel (Trojanen). De Tisserand-parameter T = a_J/a + 2√(a/a_J(1−e²))·cos(i) bepaalt de dynamische klasse van kleine lichamen.',
+    keyFacts: [
+      '8 planeten + 5 erkende dwergplaneten',
+      'Zon–Aarde-afstand = 1 AU = 149,6 miljoen km',
+      'Zonnestelsel gevormd ±4,6 miljard jaar geleden',
+      'Oort-wolk reikt tot ±100.000 AU',
+    ],
+    sources: [
+      { label: 'NASA Solar System Exploration', url: 'https://solarsystem.nasa.gov/' },
+      { label: 'Wikipedia — Zonnestelsel', url: 'https://nl.wikipedia.org/wiki/Zonnestelsel' },
+      { label: 'Wikipedia — Wetten van Kepler', url: 'https://nl.wikipedia.org/wiki/Wetten_van_Kepler' },
+    ],
+  },
+  sterren: {
+    featuredConcept: 'Kernfusie',
+    beg: 'In het hart van de zon smelten waterstofatomen samen tot helium. Dit heet kernfusie en levert enorm veel energie op — het is waarom de zon straalt. Elke seconde zet de zon 600 miljoen ton waterstof om. De zon doet dit al 4,6 miljard jaar en heeft nog minstens evenveel brandstof over.',
+    ama: 'In sterren zoals de zon verloopt fusie via de proton-protonketen (pp-keten): 4 ¹H → ⁴He + 2e⁺ + 2νe + 26,7 MeV. In zwaardere sterren (> 1,3 M☉) domineert de efficiëntere CNO-cyclus (T-gevoeligheid ∝ T²⁰). De kern heeft T ≈ 15 miljoen K en P ≈ 250 miljard atm. De zon produceert 3,8 × 10²⁶ W aan stralingsvermogen.',
+    pro: 'De pp-I keten levert ~85% van de zonneenergie. Neutrino-experimenten (Super-Kamiokande, SNO) bevestigen het standaard zonnemodel en losten het zonnige-neutrino-probleem op via neutrino-oscillatie. Na de hoofdreeks: heliumfusie via de triple-alpha-reactie (3 ⁴He → ¹²C) bij ~10⁸ K. Massieve sterren (>8 M☉) doorlopen snel Si-fusie tot een ijzerkern die implodeert als supernova type II.',
+    keyFacts: [
+      'Zon: oppervlaktetemperatuur ~5.778 K, kerntemperatuur ~15 miljoen K',
+      'HR-diagram: hoofdreeks, reuzen, witten dwergen',
+      'Ster met zon-massa leeft ±10 miljard jaar',
+      'Neutronensterren: diameter ~20 km, dichtheid > 10¹⁷ kg/m³',
+    ],
+    sources: [
+      { label: 'Wikipedia — Kernfusie', url: 'https://nl.wikipedia.org/wiki/Kernfusie' },
+      { label: 'Wikipedia — Hertzsprung-Russell-diagram', url: 'https://nl.wikipedia.org/wiki/Hertzsprung-Russelldiagram' },
+      { label: 'NASA — Life Cycle of a Star', url: 'https://science.nasa.gov/universe/stars/' },
+    ],
+  },
+  sterrenstelsels: {
+    featuredConcept: 'Donkere materie',
+    beg: 'Sterrenstelsels draaien op een vreemde manier. De buitenste sterren bewegen net zo snel als de binnenste — terwijl je zou verwachten dat ze langzamer gaan. Er moet dus onzichtbare materie zijn die extra zwaartekracht uitoefent. We noemen dit donkere materie. Het maakt ~27% van het heelal uit, maar straalt geen licht uit.',
+    ama: 'Vera Rubin ontdekte in de jaren 70 vlakke rotatiesnelheidscurven in spiraalgalaxieën. Zonder donkere materie zou v(r) ∝ 1/√r buiten de schijf. Geobserveerd: v(r) ≈ constant tot grote r. Galactische halo\'s bevatten M_DM ≈ 5–10 × M_visueel. Kandidaten: WIMPs, axionen, steriele neutrino\'s. Gravitationele lensing bevestigt donkere materie onafhankelijk van rotatiesnelheden.',
+    pro: 'Het NFW-haloprofiel ρ(r) = ρs / [(r/rs)(1+r/rs)²] past bij ΛCDM N-body-simulaties (Navarro, Frenk & White 1997). De Bullet Cluster (1E 0657-558) toont na galactische botsing scheiding van röntgengas (baryonen) en gravitationele massa (DM via lensing), wat MOND weerlegt. Directe detectie-experimenten LUX-ZEPLIN en XENONnT hebben WIMPs nog niet gevonden (σ_SI < 10⁻⁴⁷ cm²).',
+    keyFacts: [
+      'Donkere materie: ~27% van de energie-inhoud van het heelal',
+      'Melkweg: ±200–400 miljard sterren, diameter ~105.000 lj',
+      'Dichtstbijzijnde sterrenstelsel: Canis Major Dwarf (~25.000 lj)',
+      'Andromedastelsel botst in ±4,5 miljard jaar met de Melkweg',
+    ],
+    sources: [
+      { label: 'Wikipedia — Donkere materie', url: 'https://nl.wikipedia.org/wiki/Donkere_materie' },
+      { label: 'Wikipedia — Melkwegstelsel', url: 'https://nl.wikipedia.org/wiki/Melkwegstelsel' },
+      { label: 'NASA — Dark Matter', url: 'https://science.nasa.gov/universe/dark-matter-dark-energy/' },
+    ],
+  },
+  kosmologie: {
+    featuredConcept: 'Oerknal & uitdijend heelal',
+    beg: 'Het heelal begon 13,8 miljard jaar geleden vanuit een ongelooflijk hete, dichte toestand — de oerknal. Sindsdien dijt het uit. Verre sterrenstelsels bewegen van ons weg; hoe verder, hoe sneller. We zien dit aan roodverschuiving: licht van die stelsels verschuift naar rood, net als het geluid van een ambulance die wegrijdt.',
+    ama: 'Hubble (1929) toonde v = H₀·d aan, met H₀ ≈ 67–73 km/s/Mpc. De kosmische achtergrondstraling (CMB) op T = 2,725 K is reststraling van 380.000 jaar na de oerknal. Big Bang Nucleosynthese (BBN) voorspelt een H:He-massaverhouding van ≈3:1, wat overeenkomt met geobserveerde vroeg-heelal-abundanties. Het heelal is ±vlak: Ω_tot ≈ 1.',
+    pro: 'Het ΛCDM-model heeft zes vrije parameters (H₀, Ω_b, Ω_c, τ, n_s, A_s). Planck 2018 CMB-meting: H₀ = 67,4 ± 0,5 km/s/Mpc. De Hubble-spanning (>5σ verschil met lokale H₀ = 73 ± 1 km/s/Mpc via Cepheïden/Type Ia SN) suggereert mogelijke nieuwe fysica. Inflatie (exponentiële uitdijing t < 10⁻³² s) verklaart vlakheid, horizonprobleem en primordiale rimpels die CMB-anisotropieën zaaien.',
+    keyFacts: [
+      'Leeftijd heelal: 13,787 ± 0,020 miljard jaar (Planck 2018)',
+      'Zichtbaar universum: diameter ~93 miljard lichtjaar',
+      'Donkere energie: ~68%, donkere materie: ~27%, gewone materie: ~5%',
+      'CMB-temperatuur: 2,7255 K (roodverschuiving z ≈ 1100)',
+    ],
+    sources: [
+      { label: 'Wikipedia — Oerknal', url: 'https://nl.wikipedia.org/wiki/Oerknal' },
+      { label: 'ESA — Planck Mission', url: 'https://www.esa.int/Science_Exploration/Space_Science/Planck' },
+      { label: 'NASA — Big Bang', url: 'https://science.nasa.gov/universe/overview/' },
+    ],
+  },
+  exoplaneten: {
+    featuredConcept: 'Detectiemethoden',
+    beg: 'Exoplaneten zijn planeten om andere sterren. Ze zijn te ver weg om direct te zien, maar we detecteren ze indirect. De meest gebruikte methode: transitmethode. Als een planeet voor zijn ster passeert, wordt de ster ietsje donkerder. De NASA-telescoop Kepler vond zo 2.600+ planeten. TESS gaat verder met deze zoektocht.',
+    ama: 'Twee hoofdmethoden: (1) Transitmethode: ΔF/F = (R_p/R_*)² voor centrale transit. (2) Radiale snelheidsmethode: sterrewobble K = (2πG/P)^(1/3) × M_p sin(i) / (M_* + M_p)^(2/3) × 1/√(1−e²). Gecombineerd geeft men bulkdichtheid ρ_p. Andere methoden: directe imaging (HR 8799), microlensing (OGLE, Roman), astrometrie (Gaia DR3 bevat ±10.000 kandidaten).',
+    pro: 'Transmissiespectroscopie: ΔF(λ)/F = 2R_p H(λ) / R_*², waarbij H = kT_eq/μg de atmosferische schaallengte is. JWST heeft CO₂ (WASP-39b, 2022), SO₂, H₂O en C₂H₂ gedetecteerd. K2-18b-data (2023) suggereren dimethylsulfide (DMS, potentieel biosignatuur), onder voorbehoud. Het Earth Similarity Index (ESI) en habitability-modellen combineren T_eq, M_p, ρ_p en atmosferische retention via Jeans-parameter.',
+    keyFacts: [
+      '5.800+ bevestigde exoplaneten (2025, NASA Exoplanet Archive)',
+      'Dichtstbijzijnde: Proxima Centauri b (~4,2 lichtjaar)',
+      'Kepler-detecteerde dat ±20% van sterren een Aarde-achtige planeet heeft',
+      'Bewoonbare zone: gebied waar vloeibaar water op oppervlak mogelijk is',
+    ],
+    sources: [
+      { label: 'NASA Exoplanet Archive', url: 'https://exoplanetarchive.ipac.caltech.edu/' },
+      { label: 'Wikipedia — Exoplaneet', url: 'https://nl.wikipedia.org/wiki/Exoplaneet' },
+      { label: 'ESA — Exoplanets', url: 'https://www.esa.int/Science_Exploration/Space_Science/Exoplanets' },
+    ],
+  },
+  ruimtevaart: {
+    featuredConcept: 'Orbitale mechanica',
+    beg: 'Een raket in een baan om de Aarde valt eigenlijk constant — maar gaat zo snel zijwaarts dat de Aarde onder hem wegbogt. De ISS cirkelt op 400 km hoogte met 27.600 km/u. Om van baan te wisselen brandt je de motor even bij — zelfs om lager te gaan moet je afremmen. Dit voelt contra-intuïtief maar is pure fysica.',
+    ama: 'Tsiolkovsky\'s raketformule: Δv = v_e × ln(m₀/m_f). Eerste kosmische snelheid (LEO): v_c = √(GM/r) ≈ 7,9 km/s. Ontsnappingssnelheid: v_esc = √(2)·v_c ≈ 11,2 km/s. De Hohmann-transferbaan gebruikt twee motorbranden en is de meest energiezuinige overgang tussen twee cirkelbanen (Δv_totaal minimaal). Vis-viva: v² = GM(2/r − 1/a).',
+    pro: 'Gravitational assist: in het planetaire referentiestelsel is |v_∞| behouden; in het heliocentrische stelsel wint de sonde impuls (Voyager-missies). Low-thrust trajectories (ionaandrijving, Isp > 3.000 s) volgen spiraalvormige banen; Edelbaum-approximatie geeft Δv ≈ π/2 |v₁ − v₂| voor inclination changes. Station-keeping via J2-perturbaties (aardoblateness) vereist periodieke correcties. Tidal locking, Hill sphere en Lagrange L2 zijn sleutels voor moderne missieontwerp (bijv. JWST op L2).',
+    keyFacts: [
+      'ISS hoogte: ~400 km, omlooptijd: ~92 minuten',
+      'Maanvlucht Apollo 11: 3 dagen, 3 uur, 49 minuten',
+      'Mars: minimale afstand ~55 miljoen km, reistijd ±6–9 maanden',
+      'SpaceX Falcon 9: eerste herbruikbare orbital-class raket (2015)',
+    ],
+    sources: [
+      { label: 'NASA — Space Mission Design', url: 'https://www.nasa.gov/missions/' },
+      { label: 'Wikipedia — Orbitale mechanica', url: 'https://nl.wikipedia.org/wiki/Baanmechanica' },
+      { label: 'ESA — How to get to space', url: 'https://www.esa.int/Enabling_Support/Space_Transportation' },
+    ],
+  },
+}
+
 // ── Learning topics ──────────────────────────────────────────────────────────
 const TOPICS = [
   {
@@ -290,7 +403,16 @@ function LevelDemo() {
 
 // ── Leerpaden ────────────────────────────────────────────────────────────────
 function Leerpaden() {
-  const [hovered, setHovered] = useState<string | null>(null)
+  const [expanded, setExpanded] = useState<string | null>(null)
+  const [topicLevel, setTopicLevel] = useState<Record<string, 'beg' | 'ama' | 'pro'>>({})
+
+  function getLvl(id: string): 'beg' | 'ama' | 'pro' {
+    return topicLevel[id] ?? 'beg'
+  }
+  function setLvl(id: string, lvl: 'beg' | 'ama' | 'pro') {
+    setTopicLevel(prev => ({ ...prev, [id]: lvl }))
+  }
+
   return (
     <section id="leerpaden" aria-labelledby="leerpaden-title" style={{ position: 'relative', zIndex: 1, background: '#1A1A2E' }}>
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
@@ -304,49 +426,136 @@ function Leerpaden() {
             Kies je leerpad
           </h2>
           <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.75, maxWidth: 520 }}>
-            Elk leerpad biedt een gestructureerde route door een astronomie-onderwerp — van basis tot expert.
+            Elk leerpad biedt een gestructureerde route door een astronomie-onderwerp — van basis tot expert. Klik een kaart om de uitleg te openen.
           </p>
         </div>
 
         {/* Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
-          {TOPICS.map(topic => (
-            <div key={topic.id} style={{ background: hovered === topic.id ? '#16173A' : '#12132A', transition: 'background 0.25s', cursor: 'pointer', overflow: 'hidden' }}
-              onMouseEnter={() => setHovered(topic.id)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              {/* Top accent */}
-              <div aria-hidden="true" style={{ height: 2, background: topic.color }} />
-              <div style={{ padding: '24px' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, marginBottom: 16 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${topic.color}30`, background: `${topic.bg}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }} aria-hidden="true">
-                    {topic.icon}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {TOPICS.map(topic => {
+            const detail = TOPIC_DETAILS[topic.id]
+            const isOpen = expanded === topic.id
+            const lvl = getLvl(topic.id)
+            const activeLvl = LEVELS.find(l => l.key === lvl)!
+            const text = detail[lvl as 'beg' | 'ama' | 'pro']
+
+            return (
+              <div key={topic.id} style={{ border: '1px solid #252858', overflow: 'hidden', background: '#12132A' }}>
+                {/* Top accent */}
+                <div aria-hidden="true" style={{ height: 2, background: topic.color }} />
+
+                {/* Card header — always visible, click to toggle */}
+                <button
+                  aria-expanded={isOpen}
+                  onClick={() => setExpanded(isOpen ? null : topic.id)}
+                  style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, textAlign: 'left', transition: 'background 0.2s' }}
+                  onMouseEnter={e => (e.currentTarget.style.background = 'rgba(37,40,88,0.3)')}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'none')}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, flex: 1, minWidth: 0 }}>
+                    <div style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${topic.color}40`, background: topic.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }} aria-hidden="true">
+                      {topic.icon}
+                    </div>
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 4 }}>{topic.title}</div>
+                      <div style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{topic.desc}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 4 }}>{topic.title}</div>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: topic.color }}>{topic.concepts.length} onderwerpen</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+                    {/* Concept pills – desktop only */}
+                    <div className="nav-links" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                      {topic.concepts.map(c => (
+                        <span key={c} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4A5A8A', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '3px 8px', borderRadius: 2 }}>{c}</span>
+                      ))}
+                    </div>
+                    {/* Chevron */}
+                    <svg width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ color: topic.color, flexShrink: 0, transition: 'transform 0.3s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                      <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
-                </div>
-                <p style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.7, marginBottom: 16 }}>{topic.desc}</p>
-                {/* Concept pills */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {topic.concepts.map(c => (
-                    <span key={c} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4A5A8A', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '3px 8px', borderRadius: 2 }}>{c}</span>
-                  ))}
-                </div>
-                {/* Read more */}
-                <div style={{ marginTop: 20, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <Link href={`/nieuws?topic=${topic.title}`} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: topic.color, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'gap 0.15s' }}
-                    onMouseEnter={e => { const svg = e.currentTarget.querySelector('svg'); if (svg) (svg as unknown as HTMLElement).style.transform = 'translateX(3px)' }}
-                    onMouseLeave={e => { const svg = e.currentTarget.querySelector('svg'); if (svg) (svg as unknown as HTMLElement).style.transform = 'translateX(0)' }}
-                  >
-                    Bekijk artikelen
-                    <svg width="10" height="10" fill="none" viewBox="0 0 12 12" style={{ transition: 'transform 0.15s' }} aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </Link>
-                </div>
+                </button>
+
+                {/* Expanded educational panel */}
+                {isOpen && detail && (
+                  <div style={{ borderTop: `1px solid ${topic.color}20`, animation: 'fadeIn 0.25s ease both' }}>
+                    {/* Featured concept header */}
+                    <div style={{ padding: '16px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: topic.color, display: 'block', flexShrink: 0 }} aria-hidden="true" />
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: topic.color }}>Uitgelegd — {detail.featuredConcept}</span>
+                      </div>
+                      {/* Level toggle */}
+                      <div role="group" aria-label="Kies niveau" style={{ display: 'flex', gap: 4 }}>
+                        {LEVELS.map(l => (
+                          <button key={l.key} aria-pressed={lvl === l.key}
+                            onClick={e => { e.stopPropagation(); setLvl(topic.id, l.key as 'beg' | 'ama' | 'pro') }}
+                            style={{ padding: '5px 12px', fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${lvl === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: lvl === l.key ? l.color : '#4A5A8A', background: lvl === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
+                          >{l.label}</button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Level description bar */}
+                    <div style={{ margin: '12px 24px 0', padding: '8px 12px', background: activeLvl.bg, borderLeft: `2px solid ${activeLvl.color}` }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.06em', color: activeLvl.color }}>{activeLvl.desc}</span>
+                    </div>
+
+                    {/* Explanation text */}
+                    <div style={{ padding: '16px 24px 0' }}>
+                      <p style={{ fontSize: lvl === 'pro' ? '0.82rem' : '0.9rem', color: '#B5D4F4', lineHeight: 1.85, fontFamily: lvl === 'pro' ? 'var(--font-mono)' : 'var(--font-sans)', margin: 0 }}>
+                        {text}
+                      </p>
+                    </div>
+
+                    {/* Key facts + sources */}
+                    <div style={{ padding: '20px 24px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="content-split">
+                      {/* Key facts */}
+                      <div style={{ border: '1px solid #252858', background: 'rgba(37,40,88,0.2)', padding: 16, borderRadius: 2 }}>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: topic.color, marginBottom: 12 }}>Kernfeiten</div>
+                        <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                          {detail.keyFacts.map((fact, i) => (
+                            <li key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+                              <span style={{ width: 4, height: 4, borderRadius: '50%', background: topic.color, flexShrink: 0, marginTop: 6, display: 'block' }} aria-hidden="true" />
+                              <span style={{ fontSize: '0.78rem', color: '#8A9BC4', lineHeight: 1.6 }}>{fact}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Sources */}
+                      <div style={{ border: '1px solid #252858', background: 'rgba(37,40,88,0.2)', padding: 16, borderRadius: 2 }}>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 12 }}>Bronnen</div>
+                        <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                          {detail.sources.map((src, i) => (
+                            <li key={i}>
+                              <a href={src.url} target="_blank" rel="noopener noreferrer"
+                                style={{ fontSize: '0.78rem', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+                                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+                                onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
+                              >
+                                <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true" style={{ flexShrink: 0 }}><path d="M5 2H2a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V8M8 1h3m0 0v3m0-3L5 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                {src.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                        <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid #252858' }}>
+                          <Link href={`/nieuws?topic=${topic.title}`}
+                            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: topic.color, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+                            onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+                            onMouseLeave={e => (e.currentTarget.style.color = topic.color)}
+                          >
+                            Artikelen over {topic.title}
+                            <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
