@@ -972,6 +972,137 @@ function AIPromoWidget() {
   )
 }
 
+// ── Event countdown strip ───────────────────────────────────────────────────
+const SPACE_EVENTS = [
+  { id: 1,  date: '2026-04-09', title: 'ESA SMILE lancering',          icon: '🛰️', cat: 'Missie',  color: '#378ADD', desc: 'Solar wind Magnetosphere Ionosphere Link Explorer vertrekt vanuit Kourou.' },
+  { id: 2,  date: '2026-04-22', title: 'Lyriden meteorenstroom',        icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~18/u. Donkere hemel aanbevolen, beste na middernacht.' },
+  { id: 3,  date: '2026-04-28', title: 'Komeet C/2026 A1 piek',        icon: '🌠', cat: 'Komeet',  color: '#3ddf90', desc: 'Piekzichtbaarheid: mogelijk met blote oog in het westen na zonsondergang.' },
+  { id: 4,  date: '2026-05-06', title: 'Eta Aquariden',                 icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~50/u. Brokstukken van komeet Halley. Beste voor dageraad.' },
+  { id: 5,  date: '2026-06-20', title: 'Jupiter–Mars conjunctie',       icon: '♃', cat: 'Planeet', color: '#d4a84b', desc: 'Jupiter en Mars staan op minder dan 0,5° van elkaar — spectaculair met verrekijker.' },
+  { id: 6,  date: '2026-08-12', title: 'Totale zonsverduistering',      icon: '🌑', cat: 'Eclips',  color: '#c080ff', desc: 'Totaliteitspad over Groenland, IJsland, Spanje en Rusland.' },
+  { id: 7,  date: '2026-08-13', title: 'Perseïden piek',                icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~100/u. Nieuwe maan = ideale omstandigheden. BESTE KANS 2026.' },
+  { id: 8,  date: '2026-09-15', title: 'Artemis II (gepland)',          icon: '🚀', cat: 'Missie',  color: '#378ADD', desc: 'Eerste bemande vlucht om de Maan, vier astronauten, 10 dagen.' },
+  { id: 9,  date: '2026-11-17', title: 'Leoniden',                      icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~15/u. Halve maan, redelijke condities.' },
+  { id: 10, date: '2026-12-14', title: 'Geminiden piek',                icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~150/u. Grootste meteorenstroom van het jaar. Geen maanlicht.' },
+]
+
+const CAT_COLORS: Record<string, string> = {
+  Missie: '#378ADD', Meteor: '#ffa040', Komeet: '#3ddf90', Eclips: '#c080ff', Planeet: '#d4a84b',
+}
+
+function daysUntil(dateStr: string): number {
+  const target = new Date(dateStr + 'T00:00:00Z')
+  const now    = new Date(); now.setUTCHours(0,0,0,0)
+  return Math.ceil((target.getTime() - now.getTime()) / 86_400_000)
+}
+
+function EventCountdownStrip() {
+  const [now, setNow] = useState(0)
+  useEffect(() => { setNow(Date.now()) }, [])
+
+  const upcoming = SPACE_EVENTS
+    .map(e => ({ ...e, days: daysUntil(e.date) }))
+    .filter(e => e.days >= 0)
+    .sort((a, b) => a.days - b.days)
+
+  if (!upcoming.length) return null
+
+  return (
+    <section aria-label="Aankomende ruimte-evenementen" style={{ background: '#0F1028', borderBottom: '1px solid #252858', borderTop: '1px solid #252858', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '0 var(--sp-10)', display: 'flex', alignItems: 'stretch', gap: 0 }}>
+
+        {/* Left label — sticky */}
+        <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10, paddingRight: 20, borderRight: '1px solid #252858', paddingTop: 14, paddingBottom: 14 }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A5A8A', whiteSpace: 'nowrap' }}>
+            🗓️ Aankomend
+          </span>
+        </div>
+
+        {/* Scrollable cards */}
+        <div
+          role="list"
+          style={{ display: 'flex', gap: 0, overflowX: 'auto', flex: 1, scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ref={(el: any) => { if (el) el.style.setProperty('--webkit-overflow-scrolling', 'touch') }}
+        >
+          <style>{`.ev-scroll::-webkit-scrollbar{display:none}`}</style>
+          {upcoming.map((ev, i) => {
+            const clr   = CAT_COLORS[ev.cat] ?? '#8A9BC4'
+            const urgent = ev.days <= 7
+            const soon   = ev.days <= 30
+            const dayClr = urgent ? '#e05040' : soon ? '#d4a84b' : clr
+
+            return (
+              <div
+                key={ev.id}
+                role="listitem"
+                title={ev.desc}
+                style={{ flexShrink: 0, minWidth: 152, borderRight: '1px solid #252858', padding: '12px 18px', cursor: 'default', transition: 'background 0.2s', position: 'relative' }}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(37,40,88,0.4)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+              >
+                {/* Category dot + label */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7 }}>
+                  <span style={{ width: 5, height: 5, borderRadius: '50%', background: clr, flexShrink: 0, display: 'block' }} aria-hidden="true" />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: clr }}>{ev.cat}</span>
+                  {urgent && <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#e05040', marginLeft: 4 }}>SNEL!</span>}
+                </div>
+
+                {/* Event name */}
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.78rem', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.25, marginBottom: 8 }}>
+                  {ev.icon} {ev.title}
+                </div>
+
+                {/* Countdown + date */}
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+                  {now > 0 && (
+                    <>
+                      <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, color: dayClr, lineHeight: 1 }}>
+                        {ev.days === 0 ? 'Vandaag' : ev.days}
+                      </span>
+                      {ev.days > 0 && (
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+                          {ev.days === 1 ? 'dag' : 'dagen'}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#4A5A8A', marginTop: 2 }}>
+                  {new Date(ev.date + 'T00:00:00Z').toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </div>
+
+                {/* Bottom accent on hover via border-left */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 2, background: clr, opacity: 0, transition: 'opacity 0.2s' }}
+                  ref={(el) => {
+                    if (!el) return
+                    const parent = el.parentElement
+                    if (!parent) return
+                    parent.addEventListener('mouseenter', () => { el.style.opacity = '1' })
+                    parent.addEventListener('mouseleave', () => { el.style.opacity = '0' })
+                  }}
+                />
+              </div>
+            )
+          })}
+
+          {/* Missies link */}
+          <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', padding: '12px 20px' }}>
+            <Link href="/missies"
+              style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
+            >
+              Alle missies
+              <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ── Newsletter ─────────────────────────────────────────────────────────────
 function Newsletter() {
   return (
@@ -1217,6 +1348,7 @@ export default function HomePage() {
 
       {/* Topics — now functional filter */}
       <TopicsStrip active={activeFilter} onFilter={handleFilter} counts={counts} />
+      <EventCountdownStrip />
 
       {/* ── Main ─────────────────────────────────────────────────────────── */}
       <main id="main-content" tabIndex={-1} className="main-pad" style={{ position: 'relative', zIndex: 1, maxWidth: 'var(--max-w)', margin: '0 auto' }}>
