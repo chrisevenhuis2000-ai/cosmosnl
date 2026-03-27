@@ -25,13 +25,6 @@ jobs:
           NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
         run: npm run build
 
-      - name: 📋 Voeg standalone HTML pagina's toe aan out
-        run: |
-          # Standalone HTML bestanden in de root die niet via Next.js worden gebuild
-          for f in missies.html; do
-            [[ -f "$f" ]] && cp "$f" out/
-          done
-
       - name: 🔧 Pagina's en artikel slugs als index.html mappen
         run: |
           # Top-level pagina's (educatie, missies, sterrenkijken, etc.)
