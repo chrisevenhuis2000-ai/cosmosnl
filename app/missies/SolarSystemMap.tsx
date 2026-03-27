@@ -118,6 +118,48 @@ const BG_STARS = Array.from({ length: 90 }, (_, i) => ({
   o: 0.15 + (i % 5) * 0.08,
 }))
 
+// ── Mission dynamic positions ────────────────────────────────────────────────
+// Reference epoch: 26 Mar 2026 ≈ day 9581 since J2000
+const T0 = 9581
+
+function getMissionPos(m: Mission, t: number): { au: number; angle: number } {
+  const earthAng = planetAngle(100.46, 0.98560, t)
+  const marsAng  = planetAngle(355.45, 0.52403, t)
+  const jupAng   = planetAngle(34.40,  0.08309, t)
+  const dt       = t - T0   // days elapsed since reference
+
+  switch (m.id) {
+    // Earth-orbit / L2 missions — follow Earth's heliocentric angle
+    case 'jwst':     return { au: 1.010, angle: (earthAng + 3   + 360) % 360 }
+    case 'starship': return { au: 1.000, angle: (earthAng + 8   + 360) % 360 }
+    case 'smile':    return { au: 0.997, angle: (earthAng - 5   + 360) % 360 }
+    case 'artemis':  return { au: 1.003, angle: (earthAng - 10  + 360) % 360 }
+
+    // Mars-surface missions — follow Mars' heliocentric angle
+    case 'perseverance': return { au: 1.524, angle: (marsAng + 2  + 360) % 360 }
+    case 'curiosity':    return { au: 1.535, angle: (marsAng - 2  + 360) % 360 }
+
+    // JUICE: en route to Jupiter (arrival ~Jul 2031, ~1935 days from T0)
+    case 'juice': {
+      const frac  = Math.max(0, Math.min(1, dt / 1935))
+      // Angle sweeps from 222° toward Jupiter arrival angle
+      const arrivalAngle = (jupAng + 180) % 360
+      const delta = ((arrivalAngle - 222 + 540) % 360) - 180
+      return {
+        au:    1.10 + frac * (5.2 - 1.10),
+        angle: (222 + frac * delta + 360) % 360,
+      }
+    }
+
+    // Interstellar probes — drifting outward (speeds in AU/day)
+    case 'voyager1':    return { au: 158.6 + dt * 0.00981, angle: (m.angle + dt * 0.00015 + 360) % 360 }
+    case 'voyager2':    return { au: 132.2 + dt * 0.00812, angle: (m.angle - dt * 0.00018 + 360) % 360 }
+    case 'newhorizons': return { au: 57.5  + dt * 0.00563, angle: (m.angle + dt * 0.00030 + 360) % 360 }
+
+    default: return { au: m.au, angle: m.angle }
+  }
+}
+
 // ── Scale helpers ────────────────────────────────────────────────────────────
 function auToPx(au: number, R: number, z: Zoom): number {
   const { maxAU, log } = ZOOM_CFG[z]
@@ -260,11 +302,11 @@ export default function SolarSystemMap() {
       const [px, py] = auToXY(p.r, angle, cx, cy, R, z)
       const dotR     = z === 'inner' ? p.dot * 1.3 : z === 'interstellar' ? Math.max(p.dot * 0.8, 3) : p.dot
 
-      const glow = ctx.createRadialGradient(px, py, 0, px, py, dotR * 3.5)
-      glow.addColorStop(0,   p.color + 'CC')
-      glow.addColorStop(0.4, p.color + '55')
+      const glow = ctx.createRadialGradient(px, py, 0, px, py, dotR * 1.8)
+      glow.addColorStop(0,   p.color + '44')
+      glow.addColorStop(0.5, p.color + '16')
       glow.addColorStop(1,   p.color + '00')
-      ctx.beginPath(); ctx.arc(px, py, dotR * 3.5, 0, Math.PI * 2)
+      ctx.beginPath(); ctx.arc(px, py, dotR * 1.8, 0, Math.PI * 2)
       ctx.fillStyle = glow; ctx.fill()
 
       ctx.beginPath(); ctx.arc(px, py, dotR, 0, Math.PI * 2)
@@ -280,13 +322,14 @@ export default function SolarSystemMap() {
 
     // ── JUICE trajectory hint ─────────────────────────────────────────────
     if (z === 'inner' || z === 'outer') {
-      const juice = MISSIONS.find(m => m.id === 'juice')!
-      const jup   = PLANETS.find(p => p.id === 'jupiter')!
+      const juice    = MISSIONS.find(m => m.id === 'juice')!
+      const jup      = PLANETS.find(p => p.id === 'jupiter')!
+      const juicePos = getMissionPos(juice, t)
       if (ZOOM_CFG[z].showPlanets.includes('jupiter') || z === 'inner') {
-        const [jx, jy] = auToXY(juice.au, juice.angle, cx, cy, R, z)
-        const targetAU = Math.min(jup.r * 0.7, ZOOM_CFG[z].maxAU)
-        const targetAngle = juice.angle + 15
-        const [tx, ty]  = auToXY(targetAU, targetAngle, cx, cy, R, z)
+        const [jx, jy] = auToXY(juicePos.au, juicePos.angle, cx, cy, R, z)
+        const jupAngle  = planetAngle(jup.L0, jup.rate, t)
+        const targetAU  = Math.min(jup.r * 0.75, ZOOM_CFG[z].maxAU)
+        const [tx, ty]  = auToXY(targetAU, jupAngle, cx, cy, R, z)
         ctx.beginPath()
         ctx.setLineDash([4, 6])
         ctx.moveTo(jx, jy)
@@ -307,10 +350,11 @@ export default function SolarSystemMap() {
     const hits: HitEntry[] = []
 
     for (const m of MISSIONS.filter(m => m.zooms.includes(z))) {
-      const [mx, my] = auToXY(m.au, m.angle, cx, cy, R, z)
-      const isHover  = hoverRef.current === m.id
+      const { au: mAu, angle: mAngle } = getMissionPos(m, t)
+      const [mx, my] = auToXY(mAu, mAngle, cx, cy, R, z)
+      const isHover   = hoverRef.current === m.id
       const isPlanned = m.status === 'gepland'
-      const dotR     = isHover ? 8 : 6
+      const dotR      = isHover ? 8 : 6
 
       // Pulse ring
       const pulseR  = dotR + 4 + pulse * 8
@@ -329,14 +373,13 @@ export default function SolarSystemMap() {
         ctx.fillStyle = m.color + '30'; ctx.fill()
       } else {
         ctx.fillStyle = isHover ? m.color : m.color + 'DD'; ctx.fill()
-        // White center dot for active
         ctx.beginPath(); ctx.arc(mx, my, 2, 0, Math.PI * 2)
         ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.fill()
       }
 
-      // Label — offset outward from Sun
+      // Label — offset outward from Sun along mission's current angle
       const labelDist = dotR + 13
-      const rad = m.angle * DEG
+      const rad = mAngle * DEG
       const lx  = mx + Math.cos(rad) * labelDist
       const ly  = my - Math.sin(rad) * labelDist
       ctx.fillStyle  = isHover ? '#FFFFFF' : 'rgba(200,218,255,0.85)'
