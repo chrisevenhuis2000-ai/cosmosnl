@@ -138,17 +138,20 @@ type CanvasWithHits = HTMLCanvasElement & { _hits?: HitEntry[] }
 export default function SolarSystemMap() {
   const canvasRef     = useRef<CanvasWithHits>(null)
   const wrapRef       = useRef<HTMLDivElement>(null)
+  const containerRef  = useRef<HTMLDivElement>(null)
   const rafRef        = useRef(0)
   const timeRef       = useRef(0)
   const zoomRef       = useRef<Zoom>('inner')
   const hoverRef      = useRef<string | null>(null)
   const animRef       = useRef(false)
+  const isFullRef     = useRef(false)
 
   const [zoom,       setZoom]       = useState<Zoom>('inner')
   const [hoverId,    setHoverId]    = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState<[number,number] | null>(null)
   const [animating,  setAnimating]  = useState(false)
   const [mounted,    setMounted]    = useState(false)
+  const [isFull,     setIsFull]     = useState(false)
 
   useEffect(() => {
     timeRef.current = (Date.now() - J2000_MS) / MS_PER_DAY
@@ -364,6 +367,13 @@ export default function SolarSystemMap() {
     rafRef.current = requestAnimationFrame(draw)
   }, [])
 
+  // ── Fullscreen ─────────────────────────────────────────────────────────────
+  const toggleFullscreen = useCallback(() => {
+    if (!containerRef.current) return
+    if (document.fullscreenElement) document.exitFullscreen()
+    else containerRef.current.requestFullscreen().catch(() => {})
+  }, [])
+
   // ── Setup ──────────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!mounted) return
@@ -371,17 +381,30 @@ export default function SolarSystemMap() {
     const wrap   = wrapRef.current!
 
     const resize = () => {
-      const s = Math.min(wrap.clientWidth, 580)
-      canvas.width = s; canvas.height = s
+      if (isFullRef.current) {
+        canvas.width  = window.innerWidth
+        canvas.height = window.innerHeight - 52   // minus header bar
+      } else {
+        const s = Math.min(wrap.clientWidth, 580)
+        canvas.width = s; canvas.height = s
+      }
     }
     resize()
     const ro = new ResizeObserver(resize)
     ro.observe(wrap)
 
+    const onFsChange = () => {
+      const full = !!document.fullscreenElement
+      isFullRef.current = full
+      setIsFull(full)
+      resize()
+    }
+    document.addEventListener('fullscreenchange', onFsChange)
+
     cancelAnimationFrame(rafRef.current)
     draw()
 
-    return () => { ro.disconnect(); cancelAnimationFrame(rafRef.current) }
+    return () => { ro.disconnect(); cancelAnimationFrame(rafRef.current); document.removeEventListener('fullscreenchange', onFsChange) }
   }, [mounted, draw])
 
   // ── Mouse events ──────────────────────────────────────────────────────────
@@ -412,10 +435,10 @@ export default function SolarSystemMap() {
   const hovered = hoverId ? MISSIONS.find(m => m.id === hoverId) : null
 
   return (
-    <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
+    <div ref={containerRef} style={{ background: '#12132A', border: '1px solid #252858', borderRadius: isFull ? 0 : 4, overflow: 'hidden', ...(isFull ? { position: 'fixed' as const, inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column' as const } : {}) }}>
 
       {/* ── Header / controls ───────────────────────────────────────────── */}
-      <div style={{ padding: '12px 18px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
+      <div style={{ padding: '12px 18px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, flexShrink: 0 }}>
         <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>
           🗺 Missie-positiekaart — Zonnestelsel
         </div>
@@ -444,15 +467,26 @@ export default function SolarSystemMap() {
             {animating && <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3ddf90', flexShrink: 0, animation: 'livePulse 1s ease-in-out infinite', display: 'inline-block' }} />}
             {animating ? 'Animatie AAN' : '▷ Animeer'}
           </button>
+          <div style={{ width: 1, height: 16, background: '#252858', flexShrink: 0 }} />
+          <button onClick={toggleFullscreen} title={isFull ? 'Sluit volledig scherm' : 'Bekijk in volledig scherm'} style={{
+            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+            padding: '5px 11px',
+            border:     `1px solid ${isFull ? '#378ADD' : '#252858'}`,
+            background:  isFull ? 'rgba(55,138,221,0.14)' : 'transparent',
+            color:       isFull ? '#FFFFFF' : '#4A5A8A',
+            cursor: 'pointer', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
+          }}>
+            {isFull ? '⤡ Verkleinen' : '⤢ Volledig scherm'}
+          </button>
         </div>
       </div>
 
       {/* ── Canvas ──────────────────────────────────────────────────────── */}
-      <div ref={wrapRef} style={{ position: 'relative', maxWidth: 580, margin: '0 auto' }}>
+      <div ref={wrapRef} style={{ position: 'relative', maxWidth: isFull ? '100%' : 580, width: '100%', margin: '0 auto', flex: isFull ? '1' : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {mounted && (
           <canvas
             ref={canvasRef}
-            style={{ display: 'block', width: '100%', maxWidth: 580 }}
+            style={{ display: 'block', width: '100%', maxWidth: isFull ? '100%' : 580 }}
             onMouseMove={onMouseMove}
             onMouseLeave={onMouseLeave}
           />

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NightGazer · Ruimtemissies — 3D Zonnestelsel</title>
+<title>NightGazer · Ruimtemissies — 3D Zonnestelsels</title>
 <script type="importmap">
 {
   "imports": {
@@ -13,1416 +13,796 @@
 }
 </script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --night:#1A1A2E; --stellar:#378ADD; --cyan:#3dcfdf; --green:#3ddf90;
-  --purple:#c080ff; --orange:#ffa040; --red:#ff6050;
-  --muted:#8A9BC4; --dim:#4A5A8A; --border:#252858; --surface:#12132A;
-  --fm:'JetBrains Mono','Courier New',monospace;
-  --fd:'Georgia',serif;
-}
-html,body { width:100%; height:100%; overflow:hidden; background:#04050f; }
-canvas { display:block; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --night: #1A1A2E; --orbit: #185FA5; --stellar: #378ADD;
+    --cyan: #3dcfdf; --green: #3ddf90; --purple: #c080ff;
+    --orange: #ffa040; --red: #ff6050;
+    --text: #FFFFFF; --muted: #8A9BC4; --dim: #4A5A8A;
+    --border: #252858; --surface: #12132A;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --font-display: 'Georgia', serif;
+  }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #04050f; }
+  canvas { display: block; }
 
-/* ── Topbar ── */
-#topbar {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  height:54px; background:rgba(15,16,40,0.92); backdrop-filter:blur(16px);
-  border-bottom:1px solid #252858;
-  display:flex; align-items:center; justify-content:space-between; padding:0 20px; gap:12px;
-}
-.logo { display:flex; align-items:center; gap:10px; flex-shrink:0; }
-.logo img { height:32px; width:auto; }
-.logo-text .t { font-family:var(--fd); font-size:0.95rem; color:#fff; font-weight:700; }
-.logo-text .s { font-family:var(--fm); font-size:0.45rem; color:var(--dim); letter-spacing:.15em; text-transform:uppercase; }
-.topbar-stats { display:flex; gap:20px; }
-.stat { text-align:center; }
-.stat-v { font-family:var(--fm); font-size:1rem; font-weight:700; color:var(--stellar); line-height:1; }
-.stat-l { font-family:var(--fm); font-size:0.42rem; color:var(--dim); letter-spacing:.1em; text-transform:uppercase; margin-top:2px; }
-.topbar-ctrls { display:flex; gap:6px; flex-shrink:0; }
-.cb {
-  font-family:var(--fm); font-size:0.5rem; letter-spacing:.08em; text-transform:uppercase;
-  padding:5px 12px; border:1px solid var(--border); background:transparent;
-  color:var(--muted); cursor:pointer; border-radius:2px; transition:all .15s;
-}
-.cb:hover,.cb.on { background:rgba(55,138,221,.14); border-color:var(--stellar); color:#fff; }
+  /* ── Top bar ── */
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 56px; background: rgba(26,26,46,0.88);
+    backdrop-filter: blur(16px); border-bottom: 1px solid #252858;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; gap: 16px;
+  }
+  #topbar .logo { display: flex; align-items: center; gap: 12px; }
+  #topbar .logo img { height: 36px; width: auto; }
+  #topbar .title { font-family: var(--font-display); font-size: 1rem; color: #fff; font-weight: 700; }
+  #topbar .subtitle { font-family: var(--font-mono); font-size: 0.55rem; color: var(--dim); letter-spacing: 0.15em; text-transform: uppercase; }
+  #topbar .stats { display: flex; gap: 24px; }
+  #topbar .stat { text-align: center; }
+  #topbar .stat-val { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--stellar); }
+  #topbar .stat-lbl { font-family: var(--font-mono); font-size: 0.45rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
+  #topbar .controls { display: flex; gap: 8px; }
+  .ctrl-btn {
+    font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 6px 14px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); cursor: pointer; border-radius: 2px;
+    transition: all 0.15s;
+  }
+  .ctrl-btn:hover, .ctrl-btn.active { background: rgba(55,138,221,0.15); border-color: var(--stellar); color: #fff; }
 
-/* ── Left panel ── */
-#mpanel {
-  position:fixed; top:54px; left:0; bottom:0; z-index:90;
-  width:272px; background:rgba(12,13,34,0.94); backdrop-filter:blur(16px);
-  border-right:1px solid #252858; display:flex; flex-direction:column;
-  transition:transform .3s ease;
-}
-#mpanel.hidden { transform:translateX(-272px); }
-.ph {
-  padding:14px 18px 11px; border-bottom:1px solid #252858;
-  font-family:var(--fm); font-size:0.5rem; letter-spacing:.18em;
-  text-transform:uppercase; color:var(--dim);
-  display:flex; justify-content:space-between; align-items:center; flex-shrink:0;
-}
-.ph span:last-child { color:var(--stellar); }
-#mlist { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#252858 transparent; }
-.mi {
-  display:flex; align-items:flex-start; gap:10px; padding:13px 18px;
-  border-bottom:1px solid rgba(37,40,88,.4); cursor:pointer;
-  transition:background .15s; border-left:2px solid transparent;
-}
-.mi:hover { background:rgba(55,138,221,.07); }
-.mi.sel { background:rgba(55,138,221,.1); border-left-color:var(--stellar); }
-.mdot {
-  width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px;
-}
-.mdot.actief  { background:var(--green); animation:pdot 2s ease-in-out infinite; }
-.mdot.gepland { background:var(--stellar); }
-.mdot.voltooid{ background:var(--dim); }
-.mi-body { flex:1; min-width:0; }
-.mi-name { font-family:var(--fd); font-size:0.82rem; font-weight:700; color:#fff; line-height:1.25; }
-.mi-loc  { font-family:var(--fm); font-size:0.48rem; color:var(--dim); margin-top:2px; letter-spacing:.06em; }
-.mi-ag   { font-family:var(--fm); font-size:0.46rem; text-transform:uppercase; letter-spacing:.1em; margin-top:3px; }
-.sb {
-  font-family:var(--fm); font-size:0.42rem; letter-spacing:.1em; text-transform:uppercase;
-  padding:2px 7px; border-radius:2px; flex-shrink:0; margin-top:3px;
-}
-.sb.actief  { background:rgba(61,223,144,.1); color:var(--green);  border:1px solid rgba(61,223,144,.3); }
-.sb.gepland { background:rgba(55,138,221,.1); color:var(--stellar); border:1px solid rgba(55,138,221,.3); }
-.sb.voltooid{ background:rgba(74,90,138,.1);  color:var(--dim);    border:1px solid rgba(74,90,138,.3); }
+  /* ── Left panel – mission list ── */
+  #missions-panel {
+    position: fixed; top: 56px; left: 0; bottom: 0; z-index: 90;
+    width: 280px; background: rgba(18,19,42,0.92); backdrop-filter: blur(16px);
+    border-right: 1px solid var(--border); overflow-y: auto; scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    transition: transform 0.3s ease;
+  }
+  #missions-panel.hidden { transform: translateX(-280px); }
+  .panel-header {
+    padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--dim); display: flex; justify-content: space-between;
+    align-items: center;
+  }
+  .mission-item {
+    display: flex; align-items: flex-start; gap: 12; padding: 14px 20px;
+    border-bottom: 1px solid rgba(37,40,88,0.5); cursor: pointer;
+    transition: background 0.15s; gap: 12px;
+  }
+  .mission-item:hover, .mission-item.selected { background: rgba(55,138,221,0.08); }
+  .mission-item.selected { border-left: 2px solid var(--stellar); }
+  .mission-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .mission-dot.actief { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+  .mission-dot.gepland { background: var(--stellar); }
+  .mission-dot.voltooid { background: var(--dim); }
+  .mission-name { font-family: var(--font-display); font-size: 0.82rem; color: #fff; font-weight: 700; line-height: 1.3; }
+  .mission-sub { font-family: var(--font-mono); font-size: 0.5rem; color: var(--dim); margin-top: 3px; letter-spacing: 0.08em; }
+  .mission-agency { font-family: var(--font-mono); font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .status-badge {
+    font-family: var(--font-mono); font-size: 0.42rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 7px; border-radius: 2px; flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .status-badge.actief   { background: rgba(61,223,144,0.12); color: var(--green); border: 1px solid rgba(61,223,144,0.3); }
+  .status-badge.gepland  { background: rgba(55,138,221,0.12); color: var(--stellar); border: 1px solid rgba(55,138,221,0.3); }
+  .status-badge.voltooid { background: rgba(74,90,138,0.12); color: var(--dim); border: 1px solid rgba(74,90,138,0.3); }
 
-/* ── Detail panel ── */
-#dpanel {
-  position:fixed; top:54px; right:0; bottom:0; z-index:90;
-  width:308px; background:rgba(10,11,30,0.97); backdrop-filter:blur(20px);
-  border-left:1px solid #252858;
-  transform:translateX(308px); transition:transform .35s cubic-bezier(.4,0,.2,1);
-  display:flex; flex-direction:column; overflow:hidden;
-}
-#dpanel.open { transform:translateX(0); }
-.dcl {
-  position:absolute; top:14px; right:14px; width:26px; height:26px;
-  background:none; border:1px solid #252858; color:var(--muted);
-  cursor:pointer; border-radius:2px; display:flex; align-items:center; justify-content:center;
-  font-size:.9rem; z-index:2; transition:all .15s;
-}
-.dcl:hover { border-color:var(--stellar); color:#fff; }
-.dhero {
-  height:130px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  font-size:3.2rem; border-bottom:1px solid #252858; position:relative; overflow:hidden;
-}
-.dhero-bg { position:absolute; inset:0; }
-.dbody { padding:18px 18px 32px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#252858 transparent; }
-.dag  { font-family:var(--fm); font-size:0.48rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:6px; }
-.dtit { font-family:var(--fd); font-size:1.25rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:10px; }
-.ddesc { font-size:0.76rem; color:var(--muted); line-height:1.72; margin-bottom:18px; }
-.dmg { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
-.dmi { background:rgba(37,40,88,.35); padding:9px 11px; }
-.dml { font-family:var(--fm); font-size:0.42rem; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); margin-bottom:3px; }
-.dmv { font-family:var(--fm); font-size:0.6rem; color:#fff; }
-.dhl { background:rgba(55,138,221,.06); border-left:2px solid rgba(55,138,221,.35); padding:9px 13px; margin-bottom:18px; font-family:var(--fm); font-size:0.56rem; color:var(--muted); line-height:1.6; }
-.dsl { font-family:var(--fm); font-size:0.46rem; letter-spacing:.15em; text-transform:uppercase; color:var(--dim); margin-bottom:8px; }
-.dfacts { display:flex; flex-direction:column; gap:5px; }
-.dfact { font-size:0.71rem; color:var(--muted); line-height:1.55; padding-left:14px; position:relative; }
-.dfact::before { content:'▸'; position:absolute; left:0; color:var(--stellar); font-size:.55rem; top:2px; }
+  /* ── Detail panel ── */
+  #detail-panel {
+    position: fixed; top: 56px; right: 0; bottom: 0; z-index: 90;
+    width: 320px; background: rgba(18,19,42,0.95); backdrop-filter: blur(20px);
+    border-left: 1px solid var(--border); transform: translateX(320px);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  #detail-panel.open { transform: translateX(0); }
+  .detail-close {
+    position: absolute; top: 16px; right: 16px; width: 28px; height: 28px;
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    cursor: pointer; font-size: 1rem; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+  }
+  .detail-close:hover { border-color: var(--stellar); color: #fff; }
+  .detail-hero {
+    height: 140px; background: linear-gradient(135deg, #060c1a, #0a1428);
+    display: flex; align-items: center; justify-content: center; font-size: 3.5rem;
+    border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+  }
+  .detail-hero-glow {
+    position: absolute; width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(55,138,221,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .detail-body { padding: 20px 20px 40px; }
+  .detail-agency { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .detail-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 12px; }
+  .detail-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .detail-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .detail-meta-item { background: rgba(37,40,88,0.4); padding: 10px 12px; }
+  .detail-meta-lbl { font-family: var(--font-mono); font-size: 0.44rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .detail-meta-val { font-family: var(--font-mono); font-size: 0.62rem; color: #fff; }
+  .detail-highlight { background: rgba(55,138,221,0.07); border-left: 2px solid rgba(55,138,221,0.4); padding: 10px 14px; margin-bottom: 20px; }
+  .detail-highlight-text { font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); line-height: 1.6; }
+  .detail-section-lbl { font-family: var(--font-mono); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+  .detail-facts { display: flex; flex-direction: column; gap: 6px; }
+  .detail-fact { display: flex; align-items: flex-start; gap: 8px; font-size: 0.73rem; color: var(--muted); line-height: 1.5; }
+  .detail-fact::before { content: '▸'; color: var(--stellar); flex-shrink: 0; font-size: 0.6rem; margin-top: 2px; }
 
-/* ── Planet labels ── */
-.plabel {
-  position:absolute; pointer-events:none; transform:translate(-50%,-100%);
-  font-family:var(--fm); font-size:0.5rem; letter-spacing:.1em; text-transform:uppercase;
-  color:rgba(255,255,255,0.7); text-shadow:0 0 8px rgba(0,0,0,1),0 0 4px rgba(0,0,0,1);
-  display:flex; flex-direction:column; align-items:center; gap:2px; white-space:nowrap;
-}
-.plabel-line { width:1px; height:12px; background:rgba(255,255,255,.25); }
+  /* ── 3D labels ── */
+  .label3d {
+    position: absolute; pointer-events: none; transform: translate(-50%, -100%);
+    font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #fff; white-space: nowrap;
+    text-shadow: 0 0 8px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.7);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .label3d .lname { font-size: 0.54rem; font-weight: 700; }
+  .label3d .lagency { font-size: 0.44rem; opacity: 0.7; }
+  .label3d .lline { width: 1px; height: 16px; background: rgba(255,255,255,0.3); }
 
-/* ── Mission labels ── */
-.mlabel {
-  position:absolute; pointer-events:none; transform:translate(-50%,-100%);
-  font-family:var(--fm); font-size:0.48rem; letter-spacing:.08em;
-  text-shadow:0 0 10px rgba(0,0,0,1),0 0 5px rgba(0,0,0,1);
-  display:flex; flex-direction:column; align-items:center; gap:2px; white-space:nowrap;
-  transition:opacity .25s;
-}
-.mlabel-line { width:1px; height:14px; }
-.mlabel-name { font-size:0.5rem; font-weight:700; }
-.mlabel-ag   { font-size:0.42rem; opacity:.65; color:#fff; }
+  /* ── Help tooltip ── */
+  #help {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 80; font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.1em;
+    color: var(--dim); display: flex; gap: 20px; align-items: center;
+    background: rgba(18,19,42,0.7); padding: 8px 20px; border: 1px solid var(--border);
+    backdrop-filter: blur(8px); transition: opacity 0.5s;
+  }
+  #help span { display: flex; gap: 6px; align-items: center; }
+  #help kbd { background: rgba(37,40,88,0.8); border: 1px solid var(--border); padding: 2px 6px; border-radius: 2px; font-family: var(--font-mono); font-size: 0.48rem; color: #fff; }
 
-/* ── Speed bar ── */
-#speedbar {
-  position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
-  z-index:80; display:flex; align-items:center; gap:10px;
-  background:rgba(12,13,34,.8); padding:7px 18px;
-  border:1px solid #252858; backdrop-filter:blur(8px);
-}
-#speedbar label { font-family:var(--fm); font-size:0.48rem; color:var(--dim); letter-spacing:.1em; }
-#spd { width:90px; accent-color:var(--stellar); }
-#spdv { font-family:var(--fm); font-size:0.5rem; color:var(--stellar); width:28px; }
+  /* ── Speed control ── */
+  #speed-wrap {
+    position: fixed; bottom: 64px; left: 50%; transform: translateX(-50%);
+    z-index: 80; display: flex; align-items: center; gap: 12px;
+    background: rgba(18,19,42,0.75); padding: 8px 20px; border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+  #speed-wrap label { font-family: var(--font-mono); font-size: 0.5rem; color: var(--dim); letter-spacing: 0.1em; }
+  #speed-slider { width: 100px; accent-color: var(--stellar); }
+  #speed-val { font-family: var(--font-mono); font-size: 0.52rem; color: var(--stellar); width: 36px; }
 
-/* ── Help ── */
-#help {
-  position:fixed; bottom:58px; left:50%; transform:translateX(-50%);
-  z-index:80; font-family:var(--fm); font-size:0.47rem; letter-spacing:.08em;
-  color:var(--dim); display:flex; gap:18px; align-items:center;
-  background:rgba(12,13,34,.7); padding:7px 18px;
-  border:1px solid #252858; backdrop-filter:blur(8px); transition:opacity .6s;
-}
-#help span { display:flex; gap:5px; align-items:center; }
-kbd { background:rgba(37,40,88,.8); border:1px solid #252858; padding:1px 6px; border-radius:2px; font-family:var(--fm); font-size:0.44rem; color:#fff; }
+  /* ── Animations ── */
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 4px #3ddf90; opacity: 1; }
+    50% { box-shadow: 0 0 12px #3ddf90; opacity: 0.7; }
+  }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(4px); } to { opacity:1; transform: none; } }
+  .fade-in { animation: fadeIn 0.4s ease both; }
 
-/* ── Panel sections ── */
-.msec-head {
-  padding:7px 18px 5px; font-family:var(--fm); font-size:0.4rem;
-  letter-spacing:.16em; text-transform:uppercase; color:var(--dim);
-  border-bottom:1px solid rgba(37,40,88,.4); border-top:1px solid rgba(37,40,88,.4);
-  margin-top:4px;
-}
-.msec-toggle { cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; }
-.msec-arrow { color:var(--stellar); font-size:0.55rem; }
+  /* ── Focus ring ── */
+  :focus-visible { outline: 2px solid var(--stellar); outline-offset: 2px; }
 
-/* ── Live Stats ── */
-.dlive {
-  background:rgba(61,223,144,.04); border:1px solid rgba(61,223,144,.15);
-  border-radius:2px; padding:10px 13px; margin-bottom:16px;
-}
-.dlive-title { font-family:var(--fm); font-size:0.42rem; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-.dlive-pulse { display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--green); animation:pdot 1.2s ease-in-out infinite; flex-shrink:0; }
-.dlive-row { display:flex; justify-content:space-between; align-items:baseline; padding:3px 0; border-bottom:1px solid rgba(61,223,144,.07); }
-.dlive-row:last-child { border-bottom:none; }
-.dlive-lbl { font-family:var(--fm); font-size:0.46rem; color:var(--muted); }
-.dlive-val { font-family:var(--fm); font-size:0.6rem; color:var(--green); font-weight:700; }
-
-/* ── Animations ── */
-@keyframes pdot { 0%,100%{box-shadow:0 0 3px #3ddf90} 50%{box-shadow:0 0 10px #3ddf90;opacity:.7} }
-@keyframes fi { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
-.fi { animation:fi .35s ease both; }
-:focus-visible { outline:2px solid var(--stellar); outline-offset:2px; }
-::-webkit-scrollbar { width:3px; }
-::-webkit-scrollbar-thumb { background:#252858; border-radius:2px; }
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 </style>
 </head>
 <body>
 
+<!-- Top bar -->
 <header id="topbar">
   <div class="logo">
-    <img src="/logo-transparent.png" alt="NightGazer" onerror="this.style.display='none'">
-    <div class="logo-text">
-      <div class="t">Ruimtemissies</div>
-      <div class="s">Interactief 3D Zonnestelsel</div>
+    <img src="/logo-transparent.png" alt="NightGazer" onerror="this.style.display='none'" />
+    <div>
+      <div class="title">Ruimtemissies</div>
+      <div class="subtitle">Interactief 3D zonnestelsel</div>
     </div>
   </div>
-  <div class="topbar-stats">
-    <div class="stat"><div class="stat-v">5</div><div class="stat-l">Actief</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--cyan)">2</div><div class="stat-l">Gepland</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--dim)">7</div><div class="stat-l">Voltooid</div></div>
-    <div class="stat"><div class="stat-v" style="color:var(--purple)">15</div><div class="stat-l">Missies</div></div>
+  <div class="stats" id="stats">
+    <div class="stat"><div class="stat-val" id="stat-active">5</div><div class="stat-lbl">Actief</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--cyan)" id="stat-planned">2</div><div class="stat-lbl">Gepland</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--purple)" id="stat-total">8</div><div class="stat-lbl">Totaal</div></div>
   </div>
-  <div class="topbar-ctrls">
-    <button class="cb on"  id="btn-panel"  onclick="togglePanel()">☰ Lijst</button>
-    <button class="cb on"  id="btn-orbits" onclick="toggleOrbits()">Banen</button>
-    <button class="cb on"  id="btn-traj"   onclick="toggleTraject()">Trajecten</button>
-    <button class="cb on"  id="btn-mlabels" onclick="toggleMLabels()">Labels</button>
-    <button class="cb"     id="btn-reset"  onclick="resetCam()">⌖ Reset</button>
+  <div class="controls">
+    <button class="ctrl-btn active" id="btn-panel" onclick="togglePanel()">☰ Missies</button>
+    <button class="ctrl-btn" id="btn-orbits" onclick="toggleOrbits()">Banen</button>
+    <button class="ctrl-btn" id="btn-labels" onclick="toggleLabels()">Labels</button>
+    <button class="ctrl-btn" id="btn-reset" onclick="resetCamera()">⌖ Reset</button>
   </div>
 </header>
 
-<aside id="mpanel">
-  <div class="ph"><span>Missies</span><span>15</span></div>
-  <div id="mlist"></div>
+<!-- Left – mission list -->
+<aside id="missions-panel">
+  <div class="panel-header">
+    <span>Missies</span>
+    <span id="mission-count" style="color:var(--stellar)">8</span>
+  </div>
+  <div id="mission-list"></div>
 </aside>
 
-<aside id="dpanel">
-  <button class="dcl" onclick="closeDp()">✕</button>
-  <div id="dcontent"></div>
+<!-- Right – detail panel -->
+<aside id="detail-panel" role="complementary" aria-label="Missie detail">
+  <button class="detail-close" onclick="closeDetail()" aria-label="Sluiten">✕</button>
+  <div id="detail-content"></div>
 </aside>
 
-<div id="overlay" style="position:fixed;inset:0;pointer-events:none;z-index:50;"></div>
+<!-- Label overlay -->
+<div id="labels-overlay" style="position:fixed;inset:0;pointer-events:none;z-index:50;"></div>
 
-<div id="speedbar">
-  <label for="spd">Snelheid</label>
-  <input type="range" id="spd" min="0" max="8" step="0.1" value="1" oninput="setSpd(this.value)">
-  <span id="spdv">1×</span>
+<!-- Speed control -->
+<div id="speed-wrap">
+  <label for="speed-slider">Snelheid</label>
+  <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1" oninput="setSpeed(this.value)" />
+  <span id="speed-val">1×</span>
 </div>
 
+<!-- Help -->
 <div id="help">
-  <span><kbd>Slepen</kbd> roteer</span>
+  <span><kbd>Klik</kbd> missie selecteren</span>
   <span><kbd>Scroll</kbd> zoom</span>
-  <span><kbd>Rechts</kbd> pan</span>
-  <span><kbd>Esc</kbd> reset</span>
+  <span><kbd>Slepen</kbd> roteren</span>
+  <span><kbd>Rechts</kbd> pannen</span>
 </div>
 
 <script type="module">
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
-// ═══════════════════════════════════════════════════════════════════════════
-// PROCEDURAL PLANET TEXTURES
-// ═══════════════════════════════════════════════════════════════════════════
-function makeTex(w, h, fn) {
-  const c = document.createElement('canvas')
-  c.width = w; c.height = h
-  fn(c.getContext('2d'), w, h)
-  return new THREE.CanvasTexture(c)
-}
-
-// Noise helpers
-function noise(x, y, seed = 0) {
-  const s = Math.sin(x * 127.1 + y * 311.7 + seed) * 43758.5453
-  return s - Math.floor(s)
-}
-function fbm(x, y, oct = 5, seed = 0) {
-  let v = 0, a = 0.5, f = 1, mx = 0
-  for (let i = 0; i < oct; i++) {
-    v += a * noise(x * f, y * f, seed + i * 7)
-    mx += a; a *= 0.5; f *= 2.1
-  }
-  return v / mx
-}
-
-function makeSunTex() {
-  return makeTex(512, 256, (ctx, w, h) => {
-    const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w*0.6)
-    grad.addColorStop(0,   '#fff8c0')
-    grad.addColorStop(0.3, '#ffdd40')
-    grad.addColorStop(0.7, '#ff9910')
-    grad.addColorStop(1,   '#cc5500')
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h)
-    for (let i = 0; i < 60; i++) {
-      const x = Math.random() * w, y = Math.random() * h
-      const r = 4 + Math.random() * 18
-      const g2 = ctx.createRadialGradient(x, y, 0, x, y, r)
-      g2.addColorStop(0,   'rgba(140,60,0,0.55)')
-      g2.addColorStop(0.5, 'rgba(180,80,0,0.2)')
-      g2.addColorStop(1,   'rgba(0,0,0,0)')
-      ctx.fillStyle = g2
-      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill()
-    }
-  })
-}
-
-function makeMercuryTex() {
-  return makeTex(512, 256, (ctx, w, h) => {
-    const idata = ctx.createImageData(w, h)
-    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-      const n = fbm(x/w*4, y/h*4, 6, 1)
-      const v = Math.floor(100 + n * 90)
-      const i = (y * w + x) * 4
-      idata.data[i]   = v + 12
-      idata.data[i+1] = v + 5
-      idata.data[i+2] = v
-      idata.data[i+3] = 255
-    }
-    ctx.putImageData(idata, 0, 0)
-    // craters
-    for (let k = 0; k < 40; k++) {
-      const cx = Math.random() * w, cy = Math.random() * h
-      const r  = 3 + Math.random() * 18
-      const g  = ctx.createRadialGradient(cx, cy, r*0.3, cx, cy, r)
-      g.addColorStop(0,   'rgba(60,50,40,0.7)')
-      g.addColorStop(0.7, 'rgba(40,35,30,0.35)')
-      g.addColorStop(1,   'rgba(180,160,140,0.2)')
-      ctx.fillStyle = g
-      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fill()
-    }
-  })
-}
-
-function makeVenusTex() {
-  return makeTex(512, 256, (ctx, w, h) => {
-    ctx.fillStyle = '#c8a855'; ctx.fillRect(0, 0, w, h)
-    for (let y = 0; y < h; y++) {
-      const n1 = Math.sin(y * 0.08 + 1.2) * 0.4 + Math.sin(y * 0.17 + 2.5) * 0.3
-      const bright = 0.72 + n1 * 0.15
-      const col = `rgba(${Math.floor(200 * bright)},${Math.floor(160 * bright)},${Math.floor(60 * bright)},0.45)`
-      ctx.fillStyle = col
-      ctx.fillRect(0, y, w, 1)
-    }
-    // cloud swirls
-    for (let k = 0; k < 12; k++) {
-      const cx = Math.random() * w, cy = Math.random() * h, r = 20 + Math.random() * 60
-      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r)
-      g.addColorStop(0,   'rgba(255,240,180,0.3)')
-      g.addColorStop(1,   'rgba(0,0,0,0)')
-      ctx.fillStyle = g
-      ctx.beginPath(); ctx.ellipse(cx, cy, r, r * 0.35, 0, 0, Math.PI*2); ctx.fill()
-    }
-  })
-}
-
-function makeEarthTex() {
-  return makeTex(1024, 512, (ctx, w, h) => {
-    ctx.fillStyle = '#1040a0'; ctx.fillRect(0, 0, w, h)
-    const continents = [
-      // North America
-      [{x:.05,y:.25},{x:.22,y:.18},{x:.25,y:.38},{x:.16,y:.55},{x:.08,y:.52},{x:.04,y:.38}],
-      // South America
-      [{x:.16,y:.55},{x:.23,y:.52},{x:.25,y:.72},{x:.18,y:.82},{x:.12,y:.78},{x:.13,y:.62}],
-      // Europe
-      [{x:.44,y:.2},{x:.56,y:.17},{x:.57,y:.3},{x:.5,y:.35},{x:.42,y:.3}],
-      // Africa
-      [{x:.47,y:.33},{x:.58,y:.3},{x:.6,y:.55},{x:.55,y:.73},{x:.46,y:.72},{x:.43,y:.55}],
-      // Asia (large)
-      [{x:.56,y:.15},{x:.82,y:.1},{x:.9,y:.18},{x:.88,y:.38},{x:.78,y:.45},{x:.65,y:.48},{x:.57,y:.42},{x:.55,y:.28}],
-      // Australia
-      [{x:.74,y:.6},{x:.86,y:.58},{x:.9,y:.68},{x:.84,y:.75},{x:.74,y:.73}],
-      // Greenland
-      [{x:.24,y:.08},{x:.34,y:.06},{x:.37,y:.18},{x:.28,y:.22},{x:.22,y:.18}],
-    ]
-    continents.forEach(pts => {
-      ctx.beginPath()
-      ctx.moveTo(pts[0].x * w, pts[0].y * h)
-      pts.forEach(p => ctx.lineTo(p.x * w, p.y * h))
-      ctx.closePath()
-      ctx.fillStyle = '#2d6e28'
-      ctx.fill()
-      // elevated interior
-      const g = ctx.createLinearGradient(pts[0].x*w, pts[0].y*h, pts[2].x*w, pts[2].y*h)
-      g.addColorStop(0,   'rgba(100,150,60,0.3)')
-      g.addColorStop(0.5, 'rgba(60,100,30,0.15)')
-      g.addColorStop(1,   'rgba(0,0,0,0)')
-      ctx.fillStyle = g; ctx.fill()
-    })
-    // Sahara/desert tones
-    ctx.fillStyle = 'rgba(180,140,60,0.28)'
-    ctx.beginPath(); ctx.ellipse(0.5*w, 0.45*h, 70, 35, 0, 0, Math.PI*2); ctx.fill()
-    // North pole ice cap
-    const np = ctx.createRadialGradient(w/2, 0, 0, w/2, 0, h*0.16)
-    np.addColorStop(0,   'rgba(220,235,255,0.95)')
-    np.addColorStop(0.7, 'rgba(200,220,255,0.5)')
-    np.addColorStop(1,   'rgba(0,0,0,0)')
-    ctx.fillStyle = np; ctx.fillRect(0, 0, w, h * 0.16)
-    // South pole
-    const sp = ctx.createRadialGradient(w/2, h, 0, w/2, h, h*0.16)
-    sp.addColorStop(0,   'rgba(230,240,255,0.9)')
-    sp.addColorStop(1,   'rgba(0,0,0,0)')
-    ctx.fillStyle = sp; ctx.fillRect(0, h*0.86, w, h*0.14)
-    // cloud layer
-    for (let k = 0; k < 18; k++) {
-      const cx = Math.random()*w, cy = Math.random()*h, r = 25+Math.random()*80
-      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r)
-      g.addColorStop(0,   'rgba(255,255,255,0.18)')
-      g.addColorStop(1,   'rgba(0,0,0,0)')
-      ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(cx, cy, r, r*0.4, 0, 0, Math.PI*2); ctx.fill()
-    }
-    // Ocean shimmer
-    const og = ctx.createLinearGradient(0,0,0,h)
-    og.addColorStop(0, 'rgba(20,80,180,0.2)')
-    og.addColorStop(1, 'rgba(0,30,100,0.2)')
-    ctx.fillStyle = og; ctx.fillRect(0, 0, w, h)
-  })
-}
-
-function makeMarsTex() {
-  return makeTex(512, 256, (ctx, w, h) => {
-    const idata = ctx.createImageData(w, h)
-    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-      const n = fbm(x/w*3.5, y/h*3.5, 5, 3)
-      const i = (y * w + x) * 4
-      idata.data[i]   = Math.floor(160 + n*70)
-      idata.data[i+1] = Math.floor(60  + n*40)
-      idata.data[i+2] = Math.floor(20  + n*15)
-      idata.data[i+3] = 255
-    }
-    ctx.putImageData(idata, 0, 0)
-    // Valles Marineris canyon
-    ctx.strokeStyle = 'rgba(80,20,10,0.55)'; ctx.lineWidth = 6
-    ctx.beginPath(); ctx.moveTo(w*0.35, h*0.48); ctx.bezierCurveTo(w*0.5, h*0.46, w*0.65, h*0.5, w*0.75, h*0.52); ctx.stroke()
-    // North polar cap
-    const np = ctx.createRadialGradient(w/2, 0, 0, w/2, 0, h*0.18)
-    np.addColorStop(0,'rgba(240,230,220,0.9)'); np.addColorStop(1,'rgba(0,0,0,0)')
-    ctx.fillStyle = np; ctx.fillRect(0, 0, w, h*0.18)
-    // South polar cap
-    const sp = ctx.createRadialGradient(w/2, h, 0, w/2, h, h*0.14)
-    sp.addColorStop(0,'rgba(230,220,210,0.85)'); sp.addColorStop(1,'rgba(0,0,0,0)')
-    ctx.fillStyle = sp; ctx.fillRect(0, h*0.86, w, h*0.14)
-    // Olympus Mons region (darker elevated area)
-    const om = ctx.createRadialGradient(w*0.22, h*0.38, 0, w*0.22, h*0.38, 35)
-    om.addColorStop(0,'rgba(120,40,10,0.5)'); om.addColorStop(1,'rgba(0,0,0,0)')
-    ctx.fillStyle = om; ctx.beginPath(); ctx.arc(w*0.22, h*0.38, 35, 0, Math.PI*2); ctx.fill()
-  })
-}
-
-function makeJupiterTex() {
-  return makeTex(1024, 512, (ctx, w, h) => {
-    const bands = [
-      {y:0,   h:.06, c:'#c8a870'}, {y:.06, h:.05, c:'#a07840'}, {y:.11, h:.06, c:'#d4b880'},
-      {y:.17, h:.04, c:'#b88c50'}, {y:.21, h:.08, c:'#e0c488'}, {y:.29, h:.05, c:'#c09060'},
-      {y:.34, h:.10, c:'#dcc07a'}, {y:.44, h:.04, c:'#aa7848'}, {y:.48, h:.08, c:'#e4c882'},
-      {y:.56, h:.05, c:'#b88c5a'}, {y:.61, h:.07, c:'#d0b070'}, {y:.68, h:.04, c:'#a07035'},
-      {y:.72, h:.08, c:'#ddb878'}, {y:.80, h:.06, c:'#b08048'}, {y:.86, h:.07, c:'#c8a060'},
-      {y:.93, h:.07, c:'#a87838'},
-    ]
-    bands.forEach(b => {
-      ctx.fillStyle = b.c; ctx.fillRect(0, b.y*h, w, b.h*h)
-      // wavy edge
-      const wg = ctx.createLinearGradient(0, b.y*h, 0, b.y*h + b.h*h)
-      wg.addColorStop(0,'rgba(0,0,0,0.08)'); wg.addColorStop(0.5,'rgba(0,0,0,0)'); wg.addColorStop(1,'rgba(0,0,0,0.06)')
-      ctx.fillStyle = wg; ctx.fillRect(0, b.y*h, w, b.h*h)
-    })
-    // Great Red Spot
-    const grs = ctx.createRadialGradient(w*.62, h*.57, 0, w*.62, h*.57, 40)
-    grs.addColorStop(0,'rgba(180,60,40,0.85)'); grs.addColorStop(0.6,'rgba(160,50,30,0.55)'); grs.addColorStop(1,'rgba(0,0,0,0)')
-    ctx.fillStyle = grs; ctx.beginPath(); ctx.ellipse(w*.62, h*.57, 40, 25, 0, 0, Math.PI*2); ctx.fill()
-    const grs2 = ctx.createRadialGradient(w*.62, h*.57, 0, w*.62, h*.57, 20)
-    grs2.addColorStop(0,'rgba(220,100,70,0.6)'); grs2.addColorStop(1,'rgba(0,0,0,0)')
-    ctx.fillStyle = grs2; ctx.beginPath(); ctx.arc(w*.62, h*.57, 20, 0, Math.PI*2); ctx.fill()
-    // turbulence details
-    for (let k = 0; k < 30; k++) {
-      const cx = Math.random()*w, cy = Math.random()*h, r = 8+Math.random()*30
-      const g = ctx.createRadialGradient(cx,cy,0,cx,cy,r)
-      g.addColorStop(0,'rgba(100,60,20,0.12)'); g.addColorStop(1,'rgba(0,0,0,0)')
-      ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(cx,cy,r,r*0.3,0,0,Math.PI*2); ctx.fill()
-    }
-  })
-}
-
-function makeSaturnTex() {
-  return makeTex(512, 256, (ctx, w, h) => {
-    const bands = [
-      {y:0,  h:.08,c:'#e0cc90'},{y:.08,h:.06,c:'#c8a860'},{y:.14,h:.10,c:'#e8d898'},
-      {y:.24,h:.05,c:'#d0b870'},{y:.29,h:.12,c:'#eedca0'},{y:.41,h:.06,c:'#c4a45a'},
-      {y:.47,h:.10,c:'#e6d490'},{y:.57,h:.05,c:'#caa860'},{y:.62,h:.10,c:'#dcc880'},
-      {y:.72,h:.08,c:'#c0944e'},{y:.80,h:.12,c:'#dac478'},{y:.92,h:.08,c:'#b88840'},
-    ]
-    bands.forEach(b => { ctx.fillStyle=b.c; ctx.fillRect(0,b.y*h,w,b.h*h) })
-    for (let k=0;k<15;k++){
-      const cx=Math.random()*w,cy=Math.random()*h,r=5+Math.random()*20
-      const g=ctx.createRadialGradient(cx,cy,0,cx,cy,r)
-      g.addColorStop(0,'rgba(160,110,30,0.1)'); g.addColorStop(1,'rgba(0,0,0,0)')
-      ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(cx,cy,r,r*0.35,0,0,Math.PI*2); ctx.fill()
-    }
-  })
-}
-
-function makeMoonTex() {
-  return makeTex(512, 256, (ctx, w, h) => {
-    const idata = ctx.createImageData(w, h)
-    for (let y=0;y<h;y++) for (let x=0;x<w;x++){
-      const n = fbm(x/w*5, y/h*5, 4, 9)
-      const v = Math.floor(100+n*70)
-      const i = (y*w+x)*4
-      idata.data[i]=v+5; idata.data[i+1]=v+3; idata.data[i+2]=v+8; idata.data[i+3]=255
-    }
-    ctx.putImageData(idata, 0, 0)
-    // Mare (dark seas)
-    const mares = [{x:.3,y:.35,rx:60,ry:45},{x:.55,y:.4,rx:45,ry:35},{x:.45,y:.6,rx:35,ry:28}]
-    mares.forEach(m => {
-      const g=ctx.createRadialGradient(m.x*w,m.y*h,0,m.x*w,m.y*h,m.rx)
-      g.addColorStop(0,'rgba(50,45,55,0.55)'); g.addColorStop(1,'rgba(0,0,0,0)')
-      ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(m.x*w,m.y*h,m.rx,m.ry,0,0,Math.PI*2); ctx.fill()
-    })
-    for (let k=0;k<35;k++){
-      const cx=Math.random()*w,cy=Math.random()*h,r=2+Math.random()*12
-      const g=ctx.createRadialGradient(cx,cy,r*.2,cx,cy,r)
-      g.addColorStop(0,'rgba(50,45,55,0.5)'); g.addColorStop(.7,'rgba(40,35,45,.2)'); g.addColorStop(1,'rgba(180,175,185,.15)')
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill()
-    }
-  })
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// MISSION DATA
-// ═══════════════════════════════════════════════════════════════════════════
-// Scale: Earth orbit = 10 units. 1 AU ≈ 10 scene-units
-// Real AU distances: Mercury 0.39, Venus 0.72, Earth 1.0, Mars 1.52,
-//                   Jupiter 5.2, Saturn 9.5, Uranus 19.2, Neptune 30.1
-// Voyager 1: ~163 AU (off screen, shown at visual edge)
-// JUICE: launched Apr 2023, en route. Venus flyby Aug 2025, 2nd Earth flyby Nov 2026
-//        → as of Mar 2026: past Venus flyby, between 0.7-0.9 AU from Sun
-
+// ── Mission data ───────────────────────────────────────────────────────────
 const MISSIONS = [
   {
-    id:'voyager1', name:'Voyager 1', agency:'NASA', color:'#378ADD', status:'actief',
-    icon:'🌌', launched:'5 sep 1977', body:'Interstellaire ruimte (>163 AU)',
-    orbitAU:163, angle:2.1, visualR:90, // placed at visual edge
-    desc:'Voyager 1 is het verst verwijderde door mensen gemaakte object. In augustus 2012 passeerde het de heliopauze en reist nu door interstellaire ruimte. Radiogolven doen er meer dan 22 uur over om de Aarde te bereiken.',
-    facts:['Afstand: >163 AU (24,4 miljard km)','Snelheid: ~17 km/s','Signaalvertraging: >22 uur','Nucleaire batterijen (RTG)','Gouden plaat aan boord met aardse geluiden'],
-    hl:'Verst object ooit door mensen gemaakt — nu in interstellaire ruimte',
-    launched_meta:'5 sep 1977', dest_meta:'Interstellair (163+ AU)',
-    bgfrom:'#04060e', bgto:'#080c18',
+    id: 'voyager1', name: 'Voyager 1', agency: 'NASA', color: '#378ADD', status: 'actief',
+    icon: '🌌', launched: '5 sep 1977', body: 'Interstellair',
+    orbitRadius: 95, angle: 2.1, size: 0.25, orbitalPeriod: 0,
+    highlight: 'Verst object ooit gemaakt door mensen — >24 miljard km van de Zon',
+    desc: 'Voyager 1 is het verst van de Aarde verwijderde door mensen gemaakte object. In augustus 2012 passeerde het de heliopauze en bevindt zich nu in interstellaire ruimte. Radiosignalen doen er meer dan 22 uur over om de Aarde te bereiken.',
+    facts: ['Gelanceerd 5 september 1977', 'Snelheid: ~17 km/s', 'Signaalvertraging: >22 uur', 'Nog steeds wetenschappelijke data sturen', 'Gouden plaat aan boord met aardse geluiden'],
+    highlight2: 'NASA/JPL',
   },
   {
-    id:'jwst', name:'James Webb ST', agency:'NASA/ESA/CSA', color:'#c080ff', status:'actief',
-    icon:'🔭', launched:'25 dec 2021', body:'L2-punt — 1,5 miljoen km van Aarde',
-    // L2 is 0.01 AU beyond Earth — essentially at Earth in our scale
-    // Placed slightly behind Earth at same orbital radius
-    desc:'De James Webb Space Telescope opereert in het Sun–Earth L2-Lagrangepunt. Met een primaire spiegel van 6,5 meter observeert hij het vroegste heelal in infrarood en analyseert atmosferen van exoplaneten.',
-    facts:['Primaire spiegel: 6,5 meter (18 segmenten)','Werkingsgebied: 0,6–28 μm infrarood','Gekoeld tot –233°C','Kostprijs: ~$10 miljard','Ontdekte mogelijke biosignaturen op K2-18b'],
-    hl:'Detecteerde dimethylsulfide (mogelijke biosignatuur) op exoplaneet K2-18b',
-    launched_meta:'25 dec 2021', dest_meta:'L2-punt (1,5 Mkm v. Aarde)',
-    bgfrom:'#08041a', bgto:'#120828',
+    id: 'jwst', name: 'James Webb ST', agency: 'NASA/ESA/CSA', color: '#c080ff', status: 'actief',
+    icon: '🔭', launched: '25 dec 2021', body: 'L2-punt (1,5M km)',
+    orbitRadius: 10.2, angle: 0.8, size: 0.3, orbitalPeriod: 365,
+    highlight: 'Detecteerde mogelijke biosignaturen (DMS) op exoplaneet K2-18b',
+    desc: 'De James Webb Space Telescope is een infrarood ruimtetelescoop in het Lagrangepunt L2, op 1,5 miljoen kilometer van de Aarde. Met een primaire spiegel van 6,5 meter observeert hij de vroegste sterrenstelsels en atmosferen van exoplaneten.',
+    facts: ['Primaire spiegel: 6,5 meter', 'Golflengte: 0.6–28 μm infrarood', 'Operationeel since jul 2022', 'Koelt af tot –233°C', 'Kostprijs: ~$10 miljard'],
+    highlight2: 'NASA/ESA/CSA',
   },
   {
-    id:'starship', name:'Starship IFT', agency:'SpaceX', color:'#3dcfdf', status:'actief',
-    icon:'🚀', launched:'IFT-7 · Mrt 2026', body:'Lage Aardeomloopbaan',
-    desc:'Starship is het volledig herbruikbare tweefasige lanceersysteem van SpaceX. Super Heavy (booster) + Starship (bovenstuk) samen de hoogste raket ooit. Bestemd voor cargo en bemande missies naar de Maan en Mars.',
-    facts:['Hoogte volledig stapel: 121 m','Super Heavy: 33 Raptor V2 motoren','Starship: 6 Raptor-motoren','Maximale lading LEO: >100 ton','IFT-7: booster succesvol gevangen door Mechazilla'],
-    hl:'Mechazilla-arm ving Super Heavy booster op bij IFT-7 (Mrt 2026)',
-    launched_meta:'IFT-7 · Mrt 2026', dest_meta:'Lage Aardeomloopbaan',
-    bgfrom:'#040e14', bgto:'#0a2030',
+    id: 'starship', name: 'SpaceX Starship', agency: 'SpaceX', color: '#3dcfdf', status: 'actief',
+    icon: '🚀', launched: 'IFT-7 · Mrt 2026', body: 'Aardebaan',
+    orbitRadius: 10.15, angle: 2.9, size: 0.28, orbitalPeriod: 0.003,
+    highlight: 'Mechazilla-arm ving boosterkrap op bij IFT-7 testvlucht',
+    desc: 'Starship is het volledig herbruikbare, tweefasige ruimtevaartuig van SpaceX. Het Super Heavy-booster met 33 Raptor-motoren brengt het Starship-voertuig in een baan rond de Aarde. Uiteindelijk bestemd voor lanceringen naar de Maan en Mars.',
+    facts: ['Hoogte: 121 meter (volledig)', 'Super Heavy: 33 Raptor V2 motoren', 'Starship: 6 Raptor-motoren', 'Lading naar LEO: >100 ton', 'Volledig herbruikbaar ontwerp'],
+    highlight2: 'SpaceX',
   },
   {
-    id:'smile', name:'ESA SMILE', agency:'ESA/CAS', color:'#ffa040', status:'gepland',
-    icon:'🛰️', launched:'9 apr 2026', body:'Elliptische Aardeomloopbaan',
-    desc:'SMILE (Solar wind Magnetosphere Ionosphere Link Explorer) is een gezamenlijke ESA/CAS-missie. De satelliet zal de koppeling tussen zonnewind en aardse magneetsfeer bestuderen met röntgen- en UV-cameras tegelijkertijd.',
-    facts:['Lancering: 9 april 2026','Wetenschappelijke orbit: 3-daagse ellips','Instrumenten: SXI, UVI, LIA, MAG','Nominale levensduur: 3 jaar','Eerste simultane magneetsfeer+aurora imaging'],
-    hl:'Eerste satelliet die magneetsfeer én aurora-ringen gelijktijdig observeert',
-    launched_meta:'9 apr 2026 (gepland)', dest_meta:'Elliptische Aardeomloopbaan',
-    bgfrom:'#0e0a04', bgto:'#1e1408',
+    id: 'smile', name: 'ESA SMILE', agency: 'ESA/CAS', color: '#ffa040', status: 'gepland',
+    icon: '🛰️', launched: '9 apr 2026', body: 'Aardebaan (elliptisch)',
+    orbitRadius: 10.18, angle: 4.5, size: 0.22, orbitalPeriod: 0.5,
+    highlight: 'Eerste satelliet die magneetsfeer én aurora simultaan in beeld brengt',
+    desc: 'SMILE (Solar wind Magnetosphere Ionosphere Link Explorer) is een ESA/CAS-missie die de dynamische koppeling tussen de zonnewind en de aardse magneetsfeer zal bestuderen met zachte röntgenkameras en UV-aurora-imaging tegelijkertijd.',
+    facts: ['Lancering: 9 april 2026', 'Wetenschap-orbit: 3-daagse ellips', 'Instrumenten: SXI, UVI, LIA, MAG', 'Levensduur: 3 jaar nominaal', 'Partners: ESA + Chinese Academy of Sciences'],
+    highlight2: 'ESA/CAS',
   },
   {
-    id:'perseverance', name:'Perseverance', agency:'NASA/JPL', color:'#ff6050', status:'actief',
-    icon:'🤖', launched:'30 jul 2020', body:'Mars — Jezero-krater',
-    desc:'Perseverance is de meest geavanceerde rover op Mars. Hij zoekt naar biosignaturen in Jezero-krater — ooit een meer gevoed door een rivierdelta. Aan boord: de Ingenuity-helikopter voor aangedreven vluchten in de dunne Marsatmosfeer.',
-    facts:['Landde: 18 februari 2021','Massa: 1.025 kg','23+ rotsmonsters opgeslagen in buisjes','Ingenuity helikopter: >70 vluchten gemaakt','Zuurstofproductie getest met MOXIE-instrument'],
-    hl:'>23 rotsmonsters verzameld voor toekomstige Mars Sample Return-missie',
-    launched_meta:'30 jul 2020', dest_meta:'Mars – Jezero-krater (18°N 77°E)',
-    bgfrom:'#140804', bgto:'#281408',
+    id: 'perseverance', name: 'Perseverance', agency: 'NASA/JPL', color: '#ff6050', status: 'actief',
+    icon: '🤖', launched: '30 jul 2020', body: 'Mars – Jezero-krater',
+    orbitRadius: 15.2, angle: 1.4, size: 0.24, orbitalPeriod: 687,
+    highlight: '>23 rotsmonsters verzameld voor mogelijke terugreis naar Aarde',
+    desc: 'Perseverance is de meest geavanceerde Mars-rover ooit. Hij zoekt naar tekenen van vroeger microbieel leven in de Jezero-krater, ooit een meer. Aan boord: de Ingenuity-helikopter (eerste aangedreven vlucht op een andere planeet).',
+    facts: ['Landde 18 februari 2021', 'Massa: 1.025 kg', 'Snelheid: max. 152 m/u', '23+ rotsmonsters in buisjes', 'Ingenuity maakte >70 vluchten'],
+    highlight2: 'NASA/JPL',
   },
   {
-    id:'curiosity', name:'Curiosity', agency:'NASA/JPL', color:'#ff8a50', status:'actief',
-    icon:'🤖', launched:'26 nov 2011', body:'Mars — Gale-krater',
-    desc:'Curiosity onderzoekt al meer dan 4.400 Marsdagen (sols) de Gale-krater op Mars. Hij bevestigde dat Mars vroeger vloeibaar water had. Curiosity klimt langzaam omhoog langs Mount Sharp om ouder geologisch gesteente te bestuderen.',
-    facts:['Landde: 6 augustus 2012','Massa: 899 kg','Energiebron: RTG (radioisotoop)','Rijafstand: >32 kilometer','Ontdekte complex organisch materiaal in gesteente'],
-    hl:'>4.400 Marsdagen actief — langstlopende Mars-rover in geschiedenis',
-    launched_meta:'26 nov 2011', dest_meta:'Mars – Gale-krater (5°S 138°E)',
-    bgfrom:'#140a04', bgto:'#241408',
+    id: 'curiosity', name: 'Curiosity', agency: 'NASA/JPL', color: '#ff8a50', status: 'actief',
+    icon: '🤖', launched: '26 nov 2011', body: 'Mars – Gale-krater',
+    orbitRadius: 15.2, angle: 2.8, size: 0.22, orbitalPeriod: 687,
+    highlight: '>4.400 Marsdagen actief — het langst actieve Mars-rover record',
+    desc: 'Curiosity onderzoekt de geologische geschiedenis van de Gale-krater. Hij bevestigde dat Mars vroeger vloeibaar water had en bewoonbare omstandigheden kende voor micro-organismen. Loopt op nucleaire energie (RTG) en heeft geen zonnecel-afhankelijkheid.',
+    facts: ['Landde 6 augustus 2012', 'Massa: 899 kg', 'Nucleaire energiebron (RTG)', 'Rijafstand: >32 km', 'Mount Sharp bestijging bezig'],
+    highlight2: 'NASA/JPL',
   },
   {
-    id:'juice', name:'ESA JUICE', agency:'ESA', color:'#ffa040', status:'actief',
-    icon:'🪐', launched:'14 apr 2023', body:'En route → Jupiter (aankomst 2031)',
-    // As of Mar 2026: completed Venus flyby (Aug 2025), heading for 2nd Earth flyby (Nov 2026)
-    // Currently between Venus and Earth orbit, ~0.85 AU from Sun
-    desc:'JUICE (Jupiter Icy Moons Explorer) is onderweg naar Jupiter via een serie zwaartekrachtassists. Na landing in 2031 onderzoekt het de ijsmanen Europa, Ganymede en Callisto op bewoonbare oceanen.',
-    facts:['Lancering: 14 april 2023','Venus flyby: aug 2025 (voltooid)','2e Aarde flyby: nov 2026','Jupiter aankomst: jul 2031','10 wetenschappelijke instrumenten aan boord'],
-    hl:'Venus flyby voltooid aug 2025 — nu koers naar 2e Aarde flyby (nov 2026)',
-    launched_meta:'14 apr 2023', dest_meta:'Jupiter-stelsel (aankomst 2031)',
-    bgfrom:'#0c0a04', bgto:'#1a160a',
+    id: 'juice', name: 'ESA JUICE', agency: 'ESA', color: '#ffa040', status: 'actief',
+    icon: '🪐', launched: '14 apr 2023', body: 'En route → Jupiter',
+    orbitRadius: 52, angle: 0.4, size: 0.27, orbitalPeriod: 4333,
+    highlight: 'Arriveert juli 2031 bij Jupiter na Venus+2×Aarde zwaartekrachtassist',
+    desc: 'JUICE (Jupiter Icy Moons Explorer) onderzoekt de potentieel bewoonbare oceanen onder het ijs van Europa, Ganymede en Callisto. Na aankomst bij Jupiter in 2031 zal het in een baan om Ganymede gaan — de enige door een sonde geomicrobeerde maan.',
+    facts: ['Lancering: 14 april 2023', 'Aankomst Jupiter: jul 2031', 'Massa: 6.070 kg (vol brandstof)', '10 wetenschappelijke instrumenten', 'Finale orbiet om Ganymede 2034'],
+    highlight2: 'ESA',
   },
   {
-    id:'artemis2', name:'Artemis II', agency:'NASA/CSA', color:'#378ADD', status:'gepland',
-    icon:'🌕', launched:'Q4 2026 (gepland)', body:'Vrije-retour maanbaan',
-    desc:'Artemis II neemt vier astronauten mee in een vrije-retour-baan om de Maan — de eerste bemande vlucht naar de Maan sinds Apollo 17 in 1972. De missie valideert Orion en SLS voor latere maanlandingen.',
-    facts:['Bemanning: 4 astro\'s (incl. 1e Canadees naar Maan)','Raket: SLS Block 1 + Orion MPCV','Duur: ~10 dagen','Traject: vrije-retour (geen landing)','Voorbereiding voor Artemis III maanlanding'],
-    hl:'Eerste bemande Maanmissie in 50 jaar — voorbereiding op Artemis III landing',
-    launched_meta:'Q4 2026 (gepland)', dest_meta:'Vrije-retour Maanbaan',
-    bgfrom:'#080812', bgto:'#141430',
-  },
-
-  // ── Voltooide missies (geen 3D marker) ──
-  {
-    id:'apollo11', name:'Apollo 11', agency:'NASA', color:'#c8b068', status:'voltooid', noScene:true,
-    icon:'🌕', launched:'16 jul 1969', body:'Maan — Sea of Tranquility',
-    desc:'Apollo 11 was de eerste bemande maanlanding in de geschiedenis. Op 20 juli 1969 zette Neil Armstrong als eerste mens voet op de Maan, gevolgd door Buzz Aldrin. Michael Collins bleef in de maanbaan. De missie duurde 8 dagen en keerde veilig terug op Aarde.',
-    facts:['Eerste maanlanding: 20 juli 1969','Moonwalk duur: 2 uur 31 min','21,5 kg maanstenen verzameld','Reistijd Aarde→Maan: ~76 uur','Terugkeer: 24 juli 1969'],
-    hl:'Neil Armstrong zette als eerste mens voet op de Maan — 20 juli 1969',
-    launched_meta:'16 jul 1969', dest_meta:'Maan – Sea of Tranquility',
-    bgfrom:'#0a0800', bgto:'#1a1400',
-  },
-  {
-    id:'cassini', name:'Cassini-Huygens', agency:'NASA/ESA/ASI', color:'#ffa040', status:'voltooid', noScene:true,
-    icon:'🪐', launched:'15 okt 1997', body:'Saturnus-stelsel (1997–2017)',
-    desc:'Cassini bestudeerde Saturnus en zijn manen 13 jaar lang vanuit een baan om de planeet. De Huygens-sonde landde op Titan in 2005 — de eerste landing op een hemellichaam in het buitenste zonnestelsel. In 2017 dook Cassini bewust in Saturnus om besmetting van manen te voorkomen.',
-    facts:['Lancering: 15 okt 1997','Saturnus aankomst: 1 jul 2004','Huygens landing Titan: 14 jan 2005','294 omloopbanen om Saturnus','Grand Finale: 15 sep 2017'],
-    hl:'Huygens-sonde landde op Titan — eerste landing in het buitenste zonnestelsel',
-    launched_meta:'15 okt 1997', dest_meta:'Saturnus-stelsel',
-    bgfrom:'#0e0a00', bgto:'#1e1400',
-  },
-  {
-    id:'rosetta', name:'Rosetta / Philae', agency:'ESA', color:'#3dcfdf', status:'voltooid', noScene:true,
-    icon:'☄️', launched:'2 mrt 2004', body:'Komeet 67P/Churyumov-Gerasimenko',
-    desc:'Rosetta was de eerste missie die een komeet in een baan volgde. De Philae-lander landde in november 2014 op komeet 67P — de eerste zachte landing op een komeet. Rosetta eindigde haar missie met een gecontroleerde inslag op de komeet in september 2016.',
-    facts:['Lancering: 2 mrt 2004','Komeet aankomst: aug 2014','Philae landing: 12 nov 2014','Eerste komeetbaan-missie','Missioneinde: 30 sep 2016'],
-    hl:'Philae landde als eerste sonde ooit op een komeet — 12 november 2014',
-    launched_meta:'2 mrt 2004', dest_meta:'Komeet 67P/Churyumov-Gerasimenko',
-    bgfrom:'#030a0a', bgto:'#081414',
-  },
-  {
-    id:'opportunity', name:'Opportunity', agency:'NASA/JPL', color:'#ff8a50', status:'voltooid', noScene:true,
-    icon:'🤖', launched:'7 jul 2003', body:'Mars — Meridiani Planum',
-    desc:'Opportunity landde op Mars op 25 januari 2004 voor een geplande missie van 90 sols. De rover bleef bijna 15 jaar actief en legde meer dan 45 kilometer af. Na een enorme stofstorm in 2018 verloor NASA contact en werd de missie in februari 2019 officieel beëindigd.',
-    facts:['Landde: 25 jan 2004','Missionduur: 5.352 sols (14,75 jaar)','Afgelegde afstand: 45,16 km','Bewijs gevonden voor oud vloeibaar water','Laatste contact: 10 jun 2018'],
-    hl:'15 jaar actief op Mars — verste afstand gereden door een rover ooit',
-    launched_meta:'7 jul 2003', dest_meta:'Mars – Meridiani Planum',
-    bgfrom:'#140804', bgto:'#241008',
-  },
-  {
-    id:'galileo', name:'Galileo', agency:'NASA', color:'#c080ff', status:'voltooid', noScene:true,
-    icon:'🪐', launched:'18 okt 1989', body:'Jupiter-stelsel (1995–2003)',
-    desc:'Galileo was de eerste sonde in een baan om Jupiter. Hij bestudeerde de planeet en zijn manen 8 jaar lang en ontdekte bewijs voor een vloeibare oceaan onder het ijsoppervlak van Europa. In 2003 dook Galileo bewust in Jupiter om besmetting van Europa te voorkomen.',
-    facts:['Lancering: 18 okt 1989','Jupiter aankomst: 7 dec 1995','Eerste Jupiter-orbiter','Oceaan ontdekt onder Europa\'s ijs','Missioneinde: 21 sep 2003'],
-    hl:'Ontdekte aanwijzingen voor een vloeibare oceaan onder het ijs van Europa',
-    launched_meta:'18 okt 1989', dest_meta:'Jupiter-stelsel',
-    bgfrom:'#0a0414', bgto:'#140828',
-  },
-  {
-    id:'messenger', name:'MESSENGER', agency:'NASA', color:'#ff6050', status:'voltooid', noScene:true,
-    icon:'☿', launched:'3 aug 2004', body:'Mercurius (2011–2015)',
-    desc:'MESSENGER was de eerste sonde in een baan om Mercurius. Na drie Mercurius-flybys bereikte hij een baan in 2011 en kartografeerde de hele planeet. Hij ontdekte ijs in permanent beschaduwde kraters aan de polen. De missie eindigde met een gecontroleerde inslag in 2015.',
-    facts:['Lancering: 3 aug 2004','Mercurius-baan: 18 mrt 2011','Volledige planeetkaart gemaakt','Waterijs in poolkraters ontdekt','Missioneinde: 30 apr 2015'],
-    hl:'Eerste sonde om Mercurius heen — ontdekte waterijs aan de polen',
-    launched_meta:'3 aug 2004', dest_meta:'Mercurius',
-    bgfrom:'#140604', bgto:'#240c08',
-  },
-  {
-    id:'dawn', name:'Dawn', agency:'NASA', color:'#378ADD', status:'voltooid', noScene:true,
-    icon:'🌑', launched:'27 sep 2007', body:'Vesta & Ceres (asteroïdengordel)',
-    desc:'Dawn was de eerste sonde die twee extraterrestrische lichamen buiten de Aarde-Maan omloopbaan bezocht. Hij orbiteerde de protoplaneet Vesta (2011–2012) en het dwergplaneet Ceres (2015–2018) in de asteroïdengordel. Op Ceres ontdekte hij heldere vlekken die zoutafzettingen bleken te zijn.',
-    facts:['Lancering: 27 sep 2007','Vesta-baan: 2011–2012','Ceres-baan: mrt 2015–okt 2018','Eerste dubbel-lichaam missie','Heldere zoutvlekken op Ceres ontdekt'],
-    hl:'Eerste sonde om twee hemellichamen te orbiteren — Vesta én Ceres',
-    launched_meta:'27 sep 2007', dest_meta:'Vesta & Ceres (asteroïdengordel)',
-    bgfrom:'#04080e', bgto:'#08101e',
+    id: 'artemis2', name: 'Artemis II', agency: 'NASA', color: '#378ADD', status: 'gepland',
+    icon: '🌕', launched: 'Q4 2026 (gepland)', body: 'Maanomloop',
+    orbitRadius: 10.38, angle: 5.8, size: 0.22, orbitalPeriod: 0.07,
+    highlight: 'Eerste bemande Maanmissie sinds Apollo 17 in 1972',
+    desc: 'Artemis II is de eerste bemande Artemis-missie: vier astronauten vliegen met de Orion capsule via de SLS-raket in een vrije-retour-baan om de Maan. De vlucht bereidt NASA voor op Artemis III, waarbij astronauten daadwerkelijk landen op de Maanpool.',
+    facts: ['Bemanning: 4 astronauten (incl. 1 Canadees)', 'Duur: ~10 dagen', 'Raket: SLS Block 1 + Orion MPCV', 'Traject: vrije-retour via Maan', 'Geen maanlanding — orbietale vlucht'],
+    highlight2: 'NASA/CSA',
   },
 ]
 
-// ═══════════════════════════════════════════════════════════════════════════
-// SCENE
-// ═══════════════════════════════════════════════════════════════════════════
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
-renderer.setSize(innerWidth, innerHeight)
-renderer.toneMapping    = THREE.ACESFilmicToneMapping
-renderer.toneMappingExposure = 0.85
+// ── Scene setup ────────────────────────────────────────────────────────────
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.shadowMap.enabled = true
-renderer.shadowMap.type    = THREE.PCFSoftShadowMap
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
+renderer.toneMapping = THREE.ACESFilmicToneMapping
+renderer.toneMappingExposure = 0.9
 document.body.appendChild(renderer.domElement)
 
 const scene  = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(48, innerWidth/innerHeight, 0.01, 3000)
-camera.position.set(0, 60, 95)
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 2000)
+camera.position.set(0, 55, 90)
 
 const controls = new OrbitControls(camera, renderer.domElement)
-controls.enableDamping  = true
-controls.dampingFactor  = 0.07
-controls.minDistance    = 3
-controls.maxDistance    = 700
+controls.enableDamping = true
+controls.dampingFactor = 0.07
+controls.minDistance   = 2
+controls.maxDistance   = 500
+controls.autoRotate    = false
+controls.autoRotateSpeed = 0.15
 
-// Lighting
-scene.add(new THREE.AmbientLight(0x111133, 0.5))
-const sunLight = new THREE.PointLight(0xfff5e0, 3.8, 500)
-sunLight.castShadow = true; sunLight.shadow.mapSize.set(2048, 2048)
+// ── Lighting ──────────────────────────────────────────────────────────────
+const ambient = new THREE.AmbientLight(0x111133, 0.6)
+scene.add(ambient)
+const sunLight = new THREE.PointLight(0xfff4e0, 3.5, 400)
+sunLight.castShadow = true
+sunLight.shadow.mapSize.set(2048, 2048)
+sunLight.shadow.camera.near = 0.1
+sunLight.shadow.camera.far  = 400
 scene.add(sunLight)
 
-// Stars
+// ── Stars ─────────────────────────────────────────────────────────────────
 {
-  const geo = new THREE.BufferGeometry()
-  const pos = [], col = []
-  for (let i = 0; i < 9000; i++) {
-    const r=600+Math.random()*900, t=Math.acos(2*Math.random()-1), p=Math.random()*Math.PI*2
-    pos.push(r*Math.sin(t)*Math.cos(p), r*Math.sin(t)*Math.sin(p), r*Math.cos(t))
-    const h=Math.random()
-    if(h<.12) col.push(.7,.8,1)
-    else if(h<.25) col.push(1,.95,.75)
-    else if(h<.35) col.push(1,.7,.45)
-    else { const b=.4+Math.random()*.6; col.push(b,b,b) }
+  const geo  = new THREE.BufferGeometry()
+  const pos  = []
+  const cols = []
+  for (let i = 0; i < 8000; i++) {
+    const r = 400 + Math.random() * 800
+    const t = Math.acos(2 * Math.random() - 1)
+    const p = Math.random() * Math.PI * 2
+    pos.push(r * Math.sin(t) * Math.cos(p), r * Math.sin(t) * Math.sin(p), r * Math.cos(t))
+    const br = 0.5 + Math.random() * 0.5
+    const hue = Math.random()
+    if      (hue < 0.15) cols.push(0.7, 0.8, 1.0)       // blue
+    else if (hue < 0.3)  cols.push(1.0, 0.95, 0.8)       // yellow
+    else if (hue < 0.4)  cols.push(1.0, 0.7, 0.5)        // orange
+    else                 cols.push(br, br, br)
   }
-  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos,3))
-  geo.setAttribute('color',    new THREE.Float32BufferAttribute(col,3))
-  scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size:.28, vertexColors:true, transparent:true, opacity:.9, sizeAttenuation:true })))
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3))
+  geo.setAttribute('color',    new THREE.Float32BufferAttribute(cols, 3))
+  scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.35, vertexColors: true, transparent: true, opacity: 0.9, sizeAttenuation: true })))
 }
 
-// Helper
-function hexCol(h){ const n=parseInt(h.replace('#',''),16); return new THREE.Color((n>>16)/255,((n>>8)&255)/255,(n&255)/255) }
-function glow(r,c,op=0.18){ return new THREE.Mesh(new THREE.SphereGeometry(r*1.55,24,24), new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:op,side:THREE.BackSide})) }
+// ── Helpers ────────────────────────────────────────────────────────────────
+function hexColor(hex) {
+  const n = parseInt(hex.replace('#',''), 16)
+  return new THREE.Color((n>>16)/255, ((n>>8)&0xff)/255, (n&0xff)/255)
+}
+function makeGlow(radius, color, opacity = 0.18) {
+  const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, side: THREE.BackSide })
+  return new THREE.Mesh(new THREE.SphereGeometry(radius * 1.6, 24, 24), mat)
+}
 
-// ═══════════════════════════════════════════════════════════════════════════
-// SUN
-// ═══════════════════════════════════════════════════════════════════════════
-const sun = new THREE.Mesh(
-  new THREE.SphereGeometry(2.6, 48, 48),
-  new THREE.MeshBasicMaterial({ map: makeSunTex() })
-)
+// ── Sun ───────────────────────────────────────────────────────────────────
+const sunGeo = new THREE.SphereGeometry(2.5, 48, 48)
+const sunMat = new THREE.MeshBasicMaterial({ color: 0xfff0a0 })
+const sun    = new THREE.Mesh(sunGeo, sunMat)
 scene.add(sun)
-sun.add(glow(2.6, new THREE.Color(1,.8,.2), .22))
-sun.add(glow(2.6, new THREE.Color(1,.5,.05),.10))
-// Make glow2 larger
-sun.children[1].scale.set(1.6,1.6,1.6)
+const sunGlow1 = makeGlow(2.5, new THREE.Color(1, 0.85, 0.3), 0.22)
+const sunGlow2 = makeGlow(2.5, new THREE.Color(1, 0.6, 0.1), 0.10)
+sunGlow2.scale.set(1.5, 1.5, 1.5)
+sun.add(sunGlow1, sunGlow2)
 
-// ═══════════════════════════════════════════════════════════════════════════
-// PLANETS  (AU distances scaled × 10)
-// ═══════════════════════════════════════════════════════════════════════════
-const PLANET_DATA = [
-  { name:'Mercurius', au:.39,  r:.22, tex:makeMercuryTex(), rot:.03,  period:88    },
-  { name:'Venus',     au:.72,  r:.50, tex:makeVenusTex(),   rot:.002, period:225   },
-  { name:'Aarde',     au:1.0,  r:.55, tex:makeEarthTex(),   rot:.41,  period:365   },
-  { name:'Mars',      au:1.52, r:.33, tex:makeMarsTex(),    rot:.44,  period:687   },
-  { name:'Jupiter',   au:5.2,  r:1.4, tex:makeJupiterTex(), rot:.05,  period:4333  },
-  { name:'Saturnus',  au:9.55, r:1.1, tex:makeSaturnTex(),  rot:.47,  period:10759, rings:true },
+// ── Planets ────────────────────────────────────────────────────────────────
+const PLANETS = [
+  { name: 'Mercurius', r: 0.25, a: 3.9,  tilt: 0.03,  color: 0x8a7a6a, period: 88   },
+  { name: 'Venus',     r: 0.55, a: 7.2,  tilt: 0.05,  color: 0xe8c060, period: 225  },
+  { name: 'Aarde',     r: 0.6,  a: 10,   tilt: 0.41,  color: 0x4488cc, period: 365  },
+  { name: 'Mars',      r: 0.38, a: 15.2, tilt: 0.44,  color: 0xcc5533, period: 687  },
+  { name: 'Jupiter',   r: 1.5,  a: 52,   tilt: 0.05,  color: 0xc8a060, period: 4333 },
+  { name: 'Saturnus',  r: 1.2,  a: 95,   tilt: 0.47,  color: 0xd4b878, period: 10759, rings: true },
 ]
-const SCALE = 10   // 1 AU → 10 scene units
 
 const planetMeshes = {}
 const orbitLines   = []
-
-PLANET_DATA.forEach(p => {
-  const a = p.au * SCALE
+PLANETS.forEach(p => {
   // orbit ring
   const pts = []
-  for (let i=0;i<=128;i++) { const ang=i/128*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(ang)*a,0,Math.sin(ang)*a)) }
-  const oLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({color:0x252858,transparent:true,opacity:.35}))
-  scene.add(oLine); orbitLines.push(oLine)
-
-  const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(p.r, 36, 36),
-    new THREE.MeshStandardMaterial({ map:p.tex, roughness:.7, metalness:.05 })
-  )
-  mesh.castShadow = true; mesh.receiveShadow = true
-  mesh.add(glow(p.r, new THREE.Color(p.tex?0x8899bb:0x8899bb), .08))
-  scene.add(mesh)
-  planetMeshes[p.name] = { mesh, data:p }
-
-  if (p.rings) {
-    const rg = new THREE.RingGeometry(p.r*1.35, p.r*2.35, 80)
-    // Add radial UV variation for ring coloring
-    const rm = new THREE.MeshBasicMaterial({ color:0xc8b068, side:THREE.DoubleSide, transparent:true, opacity:.55 })
-    const ring = new THREE.Mesh(rg, rm)
-    ring.rotation.x = Math.PI/2.1
-    mesh.add(ring)
-    // inner dark band
-    const rg2 = new THREE.RingGeometry(p.r*1.35, p.r*1.65, 80)
-    const rm2 = new THREE.MeshBasicMaterial({ color:0x8a6030, side:THREE.DoubleSide, transparent:true, opacity:.3 })
-    mesh.add(new THREE.Mesh(rg2, rm2))
+  for (let i = 0; i <= 128; i++) {
+    const a = (i / 128) * Math.PI * 2
+    pts.push(new THREE.Vector3(Math.cos(a) * p.a, 0, Math.sin(a) * p.a))
   }
-})
-
-// Moon
-const moonMesh = new THREE.Mesh(
-  new THREE.SphereGeometry(.16, 24, 24),
-  new THREE.MeshStandardMaterial({ map:makeMoonTex(), roughness:.9 })
-)
-scene.add(moonMesh)
-
-// ═══════════════════════════════════════════════════════════════════════════
-// MISSION MARKERS
-// ═══════════════════════════════════════════════════════════════════════════
-const missionObjs = {}
-MISSIONS.forEach(m => {
-  if (m.noScene) return
-  const c = hexCol(m.color)
-  const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(.22, 18, 18),
-    new THREE.MeshStandardMaterial({ color:c, emissive:c, emissiveIntensity:.8, roughness:.2, metalness:.3 })
-  )
-  const ring = new THREE.Mesh(
-    new THREE.RingGeometry(.32, .42, 32),
-    new THREE.MeshBasicMaterial({ color:c, transparent:true, opacity:.45, side:THREE.DoubleSide })
-  )
-  ring.rotation.x = Math.PI/2
-  mesh.add(ring)
-  mesh.add(new THREE.PointLight(c, .4, 4))
-  scene.add(mesh)
-  missionObjs[m.id] = { mesh, mat:mesh.material, ring, col:c, pt:Math.random()*Math.PI*2 }
-})
-
-// ═══════════════════════════════════════════════════════════════════════════
-// MISSION TRAJECTORIES
-// ═══════════════════════════════════════════════════════════════════════════
-
-function d2r(d){ return d*Math.PI/180 }
-
-// Half-ellipse (Keplerian): perihelion r1_au at startDeg, aphelion r2_au at startDeg+180°
-function keplerArc(r1_au, r2_au, startDeg, nPts, yAmp) {
-  nPts=nPts||80; yAmp=yAmp||0
-  const r1=r1_au*SCALE, r2=r2_au*SCALE
-  const a=(r1+r2)/2, e=(r2-r1)/(r2+r1)
-  const pts=[]
-  for (let i=0; i<=nPts; i++) {
-    const theta=(i/nPts)*Math.PI
-    const r=a*(1-e*e)/(1+e*Math.cos(theta))
-    const ang=d2r(startDeg)+theta
-    pts.push(new THREE.Vector3(Math.cos(ang)*r, yAmp*Math.sin(theta), Math.sin(ang)*r))
-  }
-  return pts
-}
-
-function makeTL(pts, color, opacity) {
-  const line=new THREE.Line(
+  const orb = new THREE.Line(
     new THREE.BufferGeometry().setFromPoints(pts),
-    new THREE.LineBasicMaterial({color:new THREE.Color(color),transparent:true,opacity:opacity||0.55})
+    new THREE.LineBasicMaterial({ color: 0x252858, transparent: true, opacity: 0.4 })
   )
-  scene.add(line); return line
-}
+  scene.add(orb)
+  orbitLines.push(orb)
 
-function addFlybySphere(pos, color) {
-  const m=new THREE.Mesh(new THREE.SphereGeometry(0.13,8,8),new THREE.MeshBasicMaterial({color:new THREE.Color(color)}))
-  m.position.copy(pos); scene.add(m); return m
-}
+  // planet sphere
+  const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(p.r, 32, 32),
+    new THREE.MeshStandardMaterial({ color: p.color, roughness: 0.75, metalness: 0.1 })
+  )
+  mesh.castShadow = true
+  mesh.receiveShadow = true
+  // atmosphere glow
+  mesh.add(makeGlow(p.r, new THREE.Color(p.color), 0.12))
+  scene.add(mesh)
+  planetMeshes[p.name] = { mesh, data: p }
 
-const mTrajLines = []   // {line, type:'fixed'|'earth'|'mars', flybyDots:[]}
-let   trajVis    = true
-
-// ── 1. Perseverance: Earth (285°) → Mars Hohmann transfer
-{
-  const c='#e2a060', pts=keplerArc(1.0, 1.524, 285, 80, 0.35)
-  const line=makeTL(pts, c, 0.6)
-  const flyby=addFlybySphere(pts[pts.length-1], c)
-  mTrajLines.push({line, type:'fixed', flybyDots:[flyby]})
-}
-
-// ── 2. Curiosity: Earth (183°) → Mars Hohmann transfer
-{
-  const c='#ff8a50', pts=keplerArc(1.0, 1.524, 183, 80, -0.28)
-  const line=makeTL(pts, c, 0.5)
-  mTrajLines.push({line, type:'fixed', flybyDots:[]})
-}
-
-// ── 3. JUICE: Earth launch → Earth flyby → Venus flyby → current (~0.85 AU)
-{
-  const c='#ffa040', all=[], la=25
-  // Leg 1: launch → Earth-Moon flyby (450 days, ~1.22 revolutions at ~1 AU)
-  for (let i=0; i<=50; i++) {
-    const t=i/50
-    const ang=d2r(la)+t*(Math.PI*2*1.22)
-    all.push(new THREE.Vector3(Math.cos(ang)*1.0*SCALE, t*0.55, Math.sin(ang)*1.0*SCALE))
+  // Saturn rings
+  if (p.rings) {
+    const rGeo = new THREE.RingGeometry(p.r * 1.4, p.r * 2.4, 64)
+    const rMat = new THREE.MeshBasicMaterial({ color: 0xc8a870, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })
+    const ring = new THREE.Mesh(rGeo, rMat)
+    ring.rotation.x = Math.PI / 2.2
+    mesh.add(ring)
   }
-  const efAng=la+1.22*360
-  const efPt=new THREE.Vector3(Math.cos(d2r(efAng))*SCALE, 0.55, Math.sin(d2r(efAng))*SCALE)
-  const ef=addFlybySphere(efPt, c)
-  // Leg 2: Earth flyby → Venus flyby (inward to 0.72 AU)
-  for (let i=0; i<=40; i++) {
-    const t=i/40, r_au=1.0-t*0.28, ang=d2r(efAng)+t*Math.PI
-    all.push(new THREE.Vector3(Math.cos(ang)*r_au*SCALE, 0.55-t*0.55, Math.sin(ang)*r_au*SCALE))
-  }
-  const vfPt=all[all.length-1].clone()
-  const vf=addFlybySphere(vfPt, c)
-  const vfAng=efAng+180
-  // Leg 3: Venus flyby → current (heading outward to ~0.85 AU)
-  for (let i=0; i<=25; i++) {
-    const t=i/25, r_au=0.72+t*0.13, ang=d2r(vfAng)+t*0.5
-    all.push(new THREE.Vector3(Math.cos(ang)*r_au*SCALE, 0, Math.sin(ang)*r_au*SCALE))
-  }
-  const line=makeTL(all, c, 0.65)
-  mTrajLines.push({line, type:'fixed', flybyDots:[ef,vf]})
-}
-
-// ── 4. Voyager 1: Earth → Jupiter → Saturn → interstellar edge
-{
-  const c='#c080ff', all=[], la=110
-  const l1=keplerArc(1.0, 5.2, la, 70, 1.4)
-  all.push(...l1)
-  const jupPt=l1[l1.length-1]
-  const jd=addFlybySphere(jupPt, c)
-  // Jupiter → Saturn (gravity-assist bend)
-  const satAng=la+180+52
-  const satPt=new THREE.Vector3(Math.cos(d2r(satAng))*9.55*SCALE, 2.4, Math.sin(d2r(satAng))*9.55*SCALE)
-  const bm1=new THREE.Vector3().lerpVectors(jupPt,satPt,0.5); bm1.x+=0.6; bm1.y+=1.2
-  all.push(...new THREE.QuadraticBezierCurve3(jupPt,bm1,satPt).getPoints(48))
-  const sd=addFlybySphere(satPt, c)
-  // Saturn → interstellar edge
-  const edgePt=new THREE.Vector3(Math.cos(d2r(satAng+18))*92, 7.5, Math.sin(d2r(satAng+18))*92)
-  const bm2=new THREE.Vector3().lerpVectors(satPt,edgePt,0.42); bm2.y+=2.5
-  all.push(...new THREE.QuadraticBezierCurve3(satPt,bm2,edgePt).getPoints(55))
-  const line=makeTL(all, c, 0.7)
-  mTrajLines.push({line, type:'fixed', flybyDots:[jd,sd]})
-}
-
-// ── 5. JWST: L2 halo orbit around Earth (exaggerated for visibility)
-{
-  const c='#a0c4ff', pts=[]
-  for (let i=0;i<=64;i++) { const a=(i/64)*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*0.52, Math.sin(a)*0.15, Math.sin(a)*0.52)) }
-  mTrajLines.push({line:makeTL(pts,c,0.45), type:'earth', flybyDots:[]})
-}
-
-// ── 6. SMILE: highly elliptical Earth orbit
-{
-  const c='#3dcfdf', pts=[]
-  for (let i=0;i<=80;i++) { const a=(i/80)*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*0.88, Math.sin(a)*0.28, Math.sin(a)*1.28)) }
-  mTrajLines.push({line:makeTL(pts,c,0.42), type:'earth', flybyDots:[]})
-}
-
-// ── 7. Starship: LEO orbit
-{
-  const c='#378ADD', pts=[]
-  for (let i=0;i<=64;i++) { const a=(i/64)*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(a)*0.76, 0, Math.sin(a)*0.76)) }
-  mTrajLines.push({line:makeTL(pts,c,0.38), type:'earth', flybyDots:[]})
-}
-
-// ── 8. Artemis II: free-return lunar trajectory (planned)
-{
-  const c='#5090dd', pts=[]
-  for (let i=0;i<=80;i++) {
-    const t=i/80, theta=t*Math.PI*2
-    const r=0.45+0.72*Math.abs(Math.sin(theta*0.5))
-    pts.push(new THREE.Vector3(Math.cos(theta)*r*0.9, Math.sin(theta)*0.08, Math.sin(theta)*r))
-  }
-  mTrajLines.push({line:makeTL(pts,c,0.3), type:'earth', flybyDots:[]})
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// HTML OVERLAY LABELS
-// ═══════════════════════════════════════════════════════════════════════════
-const overlay  = document.getElementById('overlay')
-const pLabels  = {}   // planet labels
-const mLabels  = {}   // mission labels
-
-PLANET_DATA.forEach(p => {
-  const el = document.createElement('div')
-  el.className = 'plabel'
-  el.innerHTML = `<div class="plabel-line"></div><div>${p.name}</div>`
-  overlay.appendChild(el)
-  pLabels[p.name] = el
 })
-// Moon label
-const moonLbl = document.createElement('div')
-moonLbl.className = 'plabel'
-moonLbl.style.fontSize = '.42rem'
-moonLbl.innerHTML = `<div class="plabel-line"></div><div>Maan</div>`
-overlay.appendChild(moonLbl)
+
+// Aarde – Maan
+const moon = new THREE.Mesh(
+  new THREE.SphereGeometry(0.18, 24, 24),
+  new THREE.MeshStandardMaterial({ color: 0x888899, roughness: 0.9 })
+)
+scene.add(moon)
+
+// ── Mission markers ────────────────────────────────────────────────────────
+const missionObjects = {}
+const raycasterTargets = []
 
 MISSIONS.forEach(m => {
-  if (m.noScene) return
+  const col = hexColor(m.color)
+  const geo = new THREE.SphereGeometry(m.size, 20, 20)
+  const mat = new THREE.MeshStandardMaterial({ color: col, emissive: col, emissiveIntensity: 0.7, roughness: 0.3, metalness: 0.2 })
+  const mesh = new THREE.Mesh(geo, mat)
+  mesh.userData = { missionId: m.id }
+
+  // outer ring
+  const ring = new THREE.Mesh(
+    new THREE.RingGeometry(m.size * 1.5, m.size * 1.9, 32),
+    new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.4, side: THREE.DoubleSide })
+  )
+  ring.rotation.x = Math.PI / 2
+  mesh.add(ring)
+
+  // point light
+  const pl = new THREE.PointLight(col, 0.5, 5)
+  mesh.add(pl)
+
+  scene.add(mesh)
+  missionObjects[m.id] = { mesh, ring, mat, col, pulseT: Math.random() * Math.PI * 2 }
+  raycasterTargets.push(mesh)
+})
+
+// ── Label elements ─────────────────────────────────────────────────────────
+const overlay = document.getElementById('labels-overlay')
+const labelEls = {}
+MISSIONS.forEach(m => {
   const el = document.createElement('div')
-  el.className = 'mlabel'
-  el.style.opacity = '1'
+  el.className = 'label3d'
   el.innerHTML = `
-    <div class="mlabel-line" style="background:${m.color}80"></div>
-    <div class="mlabel-name" style="color:${m.color}">${m.name}</div>
-    <div class="mlabel-ag">${m.agency}</div>
+    <div class="lline"></div>
+    <div class="lname" style="color:${m.color}">${m.name}</div>
+    <div class="lagency">${m.agency}</div>
   `
   overlay.appendChild(el)
-  mLabels[m.id] = el
+  labelEls[m.id] = el
 })
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MISSION LIST
-// ═══════════════════════════════════════════════════════════════════════════
-function makeMissionItem(m) {
-  const el = document.createElement('div')
-  el.className = 'mi'
-  el.id = `mi-${m.id}`
-  el.innerHTML = `
-    <div class="mdot ${m.status}"></div>
-    <div class="mi-body">
-      <div class="mi-name">${m.name}</div>
-      <div class="mi-loc">${m.body}</div>
-      <div class="mi-ag" style="color:${m.color}">${m.agency}</div>
+// ── Build mission list ─────────────────────────────────────────────────────
+const listEl = document.getElementById('mission-list')
+MISSIONS.forEach(m => {
+  const item = document.createElement('div')
+  item.className = 'mission-item'
+  item.id = `ml-${m.id}`
+  item.innerHTML = `
+    <div class="mission-dot ${m.status}"></div>
+    <div style="flex:1">
+      <div class="mission-name">${m.name}</div>
+      <div class="mission-sub">${m.body}</div>
+      <div class="mission-agency" style="color:${m.color}">${m.agency}</div>
     </div>
-    <span class="sb ${m.status}">${m.status}</span>
+    <span class="status-badge ${m.status}">${m.status}</span>
   `
-  el.addEventListener('click', () => selectMission(m.id))
-  return el
-}
-
-const mListEl = document.getElementById('mlist')
-const active   = MISSIONS.filter(m => !m.noScene)
-const archived = MISSIONS.filter(m =>  m.noScene)
-
-// Section: Huidig
-const activeHead = document.createElement('div')
-activeHead.className = 'msec-head'
-activeHead.textContent = 'Huidig & Gepland'
-mListEl.appendChild(activeHead)
-active.forEach(m => mListEl.appendChild(makeMissionItem(m)))
-
-// Section: Archief (collapsible)
-const archiveHead = document.createElement('div')
-archiveHead.className = 'msec-head'
-archiveHead.innerHTML = `<div class="msec-toggle"><span>Voltooide missies</span><span class="msec-arrow">▾ ${archived.length}</span></div>`
-mListEl.appendChild(archiveHead)
-
-const archiveBody = document.createElement('div')
-archiveBody.style.display = 'none'
-archived.forEach(m => archiveBody.appendChild(makeMissionItem(m)))
-mListEl.appendChild(archiveBody)
-
-archiveHead.querySelector('.msec-toggle').addEventListener('click', () => {
-  const open = archiveBody.style.display !== 'none'
-  archiveBody.style.display = open ? 'none' : 'block'
-  archiveHead.querySelector('.msec-arrow').textContent = (open ? '▾ ' : '▴ ') + archived.length
+  item.addEventListener('click', () => selectMission(m.id))
+  listEl.appendChild(item)
 })
 
-// ═══════════════════════════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════════════════════════
-let selId       = null
-let liveInterval = null
+// ── State ──────────────────────────────────────────────────────────────────
+let showOrbits  = true
+let showLabels  = false
+let selectedId  = null
+let speedFactor = 1
 let panelOpen   = true
-let orbitsVis   = true
-let labelsVis   = true
-let mLabelsVis  = true
-let speed       = 1
-let elapsed     = 0
-const clock     = new THREE.Clock()
 
-let flyT = 1, flyDur = 1.4
-const flyFrom = new THREE.Vector3(), flyFromLook = new THREE.Vector3()
-let flyTarget = null
-const defCam  = new THREE.Vector3(0, 60, 95)
+const clock = new THREE.Clock()
+let elapsed = 0
 
-// ═══════════════════════════════════════════════════════════════════════════
-// CAMERA FLY-TO
-// ═══════════════════════════════════════════════════════════════════════════
-function eio(t){ return t<.5?2*t*t:-1+(4-2*t)*t }
+// ── Raycaster ──────────────────────────────────────────────────────────────
+const raycaster = new THREE.Raycaster()
+const mouse     = new THREE.Vector2()
+raycaster.params.Points = { threshold: 0.5 }
 
-function flyTo(targetPos, lookPos, dur=1.4) {
+renderer.domElement.addEventListener('click', e => {
+  const rect = renderer.domElement.getBoundingClientRect()
+  mouse.x =  ((e.clientX - rect.left)  / rect.width)  * 2 - 1
+  mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
+  raycaster.setFromCamera(mouse, camera)
+  const hits = raycaster.intersectObjects(raycasterTargets)
+  if (hits.length) {
+    const id = hits[0].object.userData.missionId
+    selectMission(id)
+  }
+})
+
+// ── Camera fly-to ──────────────────────────────────────────────────────────
+let flyTarget    = null
+let flyDuration  = 1.4
+let flyT         = 1
+let flyFrom      = new THREE.Vector3()
+let flyFromLook  = new THREE.Vector3()
+const defaultCamPos = new THREE.Vector3(0, 55, 90)
+
+function selectMission(id) {
+  selectedId = id
+  const obj = missionObjects[id]
+  if (!obj) return
+
+  // update list highlight
+  document.querySelectorAll('.mission-item').forEach(el => el.classList.remove('selected'))
+  const li = document.getElementById(`ml-${id}`)
+  if (li) { li.classList.add('selected'); li.scrollIntoView({ behavior: 'smooth', block: 'nearest' }) }
+
+  // fly camera to mission
   flyFrom.copy(camera.position)
   flyFromLook.copy(controls.target)
-  flyTarget = { pos:targetPos.clone(), look:lookPos.clone() }
-  flyT = 0; flyDur = dur
+  const mPos = obj.mesh.position
+  const dist = camera.position.distanceTo(mPos)
+  const targetDist = Math.max(4, obj.mesh.geometry.parameters.radius * 18)
+  const dir = new THREE.Vector3().subVectors(camera.position, mPos).normalize()
+  flyTarget   = { pos: mPos.clone().addScaledVector(dir, targetDist).add(new THREE.Vector3(0, targetDist * 0.5, 0)), look: mPos.clone() }
+  flyT        = 0
+  flyDuration = Math.max(0.8, Math.min(2, dist * 0.015))
+
+  // show detail
+  showDetail(id)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MISSION SELECTION (panel only)
-// ═══════════════════════════════════════════════════════════════════════════
-function selectMission(id) {
-  selId = id
-  document.querySelectorAll('.mi').forEach(e => e.classList.remove('sel'))
-  const li = document.getElementById(`mi-${id}`)
-  if (li) { li.classList.add('sel'); li.scrollIntoView({ behavior:'smooth', block:'nearest' }) }
-
-  // fly camera
-  const obj = missionObjs[id]
-  if (obj) {
-    const mp  = obj.mesh.position
-    const dir = new THREE.Vector3().subVectors(camera.position, mp).normalize()
-    const td  = Math.max(5, mp.length() * 0.18 + 3)
-    flyTo(
-      mp.clone().addScaledVector(dir, td).add(new THREE.Vector3(0, td*.45, 0)),
-      mp.clone(),
-      Math.max(1, Math.min(2.5, camera.position.distanceTo(mp) * 0.012))
-    )
-  }
-  renderDetail(id)
-}
-
-function renderDetail(id) {
-  const m = MISSIONS.find(x => x.id===id)
+function showDetail(id) {
+  const m = MISSIONS.find(x => x.id === id)
   if (!m) return
-  const liveStats = getLiveStats(id)
-  const liveHtml  = liveStats ? buildLiveHTML(liveStats) : ''
-  document.getElementById('dcontent').innerHTML = `
-    <div class="dhero fi">
-      <div class="dhero-bg" style="background:linear-gradient(135deg,${m.bgfrom},${m.bgto})"></div>
-      <div style="position:relative;z-index:1;font-size:3.2rem">${m.icon}</div>
+  const dp = document.getElementById('detail-panel')
+  document.getElementById('detail-content').innerHTML = `
+    <div class="detail-hero fade-in">
+      <div class="detail-hero-glow"></div>
+      <span style="font-size:3.5rem;position:relative;z-index:1">${m.icon}</span>
     </div>
-    <div class="dbody fi">
-      <div class="dag" style="color:${m.color}">${m.agency}</div>
-      <h2 class="dtit">${m.name}</h2>
-      <span class="sb ${m.status}" style="margin-bottom:14px;display:inline-flex">${m.status}</span>
-      <p class="ddesc">${m.desc}</p>
-      ${liveHtml}
-      <div class="dmg">
-        <div class="dmi"><div class="dml">Lancering</div><div class="dmv">${m.launched_meta}</div></div>
-        <div class="dmi"><div class="dml">Bestemming</div><div class="dmv">${m.dest_meta}</div></div>
+    <div class="detail-body fade-in">
+      <div class="detail-agency" style="color:${m.color}">${m.agency}</div>
+      <h2 class="detail-title">${m.name}</h2>
+      <span class="status-badge ${m.status}" style="margin-bottom:16px;display:inline-flex">${m.status}</span>
+      <p class="detail-desc">${m.desc}</p>
+      <div class="detail-meta-grid">
+        <div class="detail-meta-item">
+          <div class="detail-meta-lbl">Lancering</div>
+          <div class="detail-meta-val">${m.launched}</div>
+        </div>
+        <div class="detail-meta-item">
+          <div class="detail-meta-lbl">Bestemming</div>
+          <div class="detail-meta-val">${m.body}</div>
+        </div>
       </div>
-      <div class="dhl">✦ ${m.hl}</div>
-      <div class="dsl">Kernfeiten</div>
-      <div class="dfacts">${m.facts.map(f=>`<div class="dfact">${f}</div>`).join('')}</div>
+      <div class="detail-highlight">
+        <div class="detail-highlight-text">✦ ${m.highlight}</div>
+      </div>
+      <div class="detail-section-lbl">Kernfeiten</div>
+      <div class="detail-facts">
+        ${m.facts.map(f => `<div class="detail-fact">${f}</div>`).join('')}
+      </div>
     </div>
   `
-  document.getElementById('dpanel').classList.add('open')
-  startLiveTicker(id)
+  dp.classList.add('open')
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// LIVE STATS
-// ═══════════════════════════════════════════════════════════════════════════
-const LIVE_REF = {
-  voyager1:     { refTime: new Date('2026-03-27T00:00:00Z').getTime(), refDistKm: 24_435_000_000, speedKmS: 17.012 },
-  perseverance: { landedMs: new Date('2021-02-18T20:55:00Z').getTime(), solS: 88642.7 },
-  curiosity:    { landedMs: new Date('2012-08-06T05:18:00Z').getTime(), solS: 88642.7 },
-  jwst:         { launchedMs: new Date('2021-12-25T12:20:00Z').getTime() },
-  juice:        { launchedMs: new Date('2023-04-14T12:14:00Z').getTime(), jupiterMs: new Date('2031-07-01T00:00:00Z').getTime() },
-}
-function fmtNL(n) { return Math.round(n).toLocaleString('nl-NL') }
-function getLiveStats(id) {
-  const now = Date.now()
-  switch(id) {
-    case 'voyager1': {
-      const r = LIVE_REF.voyager1
-      const dt = (now - r.refTime) / 1000
-      const dist = r.refDistKm + r.speedKmS * dt
-      return [
-        { lbl:'Afstand van de Zon', val: fmtNL(dist) + ' km' },
-        { lbl:'Snelheid', val: '17,012 km/s' },
-        { lbl:'Signaalvertraging', val: Math.round(dist / 299792 / 60) + ' min' },
-      ]
-    }
-    case 'perseverance': {
-      const r = LIVE_REF.perseverance
-      const sols = (now - r.landedMs) / 1000 / r.solS
-      const secs = Math.floor((now - r.landedMs) / 1000)
-      return [
-        { lbl:'Mars-dagen (sols) actief', val: sols.toFixed(2) },
-        { lbl:'Seconden actief', val: fmtNL(secs) },
-      ]
-    }
-    case 'curiosity': {
-      const r = LIVE_REF.curiosity
-      const sols = (now - r.landedMs) / 1000 / r.solS
-      return [
-        { lbl:'Mars-dagen (sols) actief', val: sols.toFixed(2) },
-        { lbl:'Kilometer gereden', val: '>32 km' },
-      ]
-    }
-    case 'jwst': {
-      const r = LIVE_REF.jwst
-      const days = (now - r.launchedMs) / 1000 / 86400
-      return [
-        { lbl:'Dagen in de ruimte', val: Math.floor(days).toLocaleString('nl-NL') },
-        { lbl:'Afstand van Aarde', val: '~1.500.000 km' },
-      ]
-    }
-    case 'juice': {
-      const r = LIVE_REF.juice
-      const days = (now - r.launchedMs) / 1000 / 86400
-      const toJup = Math.max(0, (r.jupiterMs - now) / 1000 / 86400)
-      return [
-        { lbl:'Dagen onderweg', val: Math.floor(days).toLocaleString('nl-NL') },
-        { lbl:'Dagen tot Jupiter', val: Math.floor(toJup).toLocaleString('nl-NL') },
-      ]
-    }
-    default: return null
-  }
-}
-function buildLiveHTML(stats) {
-  const rows = stats.map((s, i) => `
-    <div class="dlive-row">
-      <span class="dlive-lbl">${s.lbl}</span>
-      <span class="dlive-val" id="dlv-${i}">${s.val}</span>
-    </div>`).join('')
-  return `<div class="dlive">
-    <div class="dlive-title"><span class="dlive-pulse"></span>Live data</div>
-    ${rows}
-  </div>`
-}
-function startLiveTicker(id) {
-  if (liveInterval) { clearInterval(liveInterval); liveInterval = null }
-  const stats = getLiveStats(id)
-  if (!stats) return
-  liveInterval = setInterval(() => {
-    const fresh = getLiveStats(id)
-    fresh.forEach((s, i) => { const el = document.getElementById(`dlv-${i}`); if (el) el.textContent = s.val })
-  }, 1000)
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open')
+  document.querySelectorAll('.mission-item').forEach(el => el.classList.remove('selected'))
+  selectedId = null
 }
 
-function closeDp() {
-  document.getElementById('dpanel').classList.remove('open')
-  document.querySelectorAll('.mi').forEach(e=>e.classList.remove('sel'))
-  if (liveInterval) { clearInterval(liveInterval); liveInterval = null }
-  selId = null
+function resetCamera() {
+  flyFrom.copy(camera.position)
+  flyFromLook.copy(controls.target)
+  flyTarget  = { pos: defaultCamPos.clone(), look: new THREE.Vector3(0, 0, 0) }
+  flyT       = 0
+  flyDuration = 1.5
+  closeDetail()
 }
-function resetCam() {
-  flyTo(defCam, new THREE.Vector3(0,0,0), 1.6)
-  closeDp()
-}
-function togglePanel()   { panelOpen=!panelOpen; document.getElementById('mpanel').classList.toggle('hidden',!panelOpen); document.getElementById('btn-panel').classList.toggle('on',panelOpen) }
-function toggleOrbits()  { orbitsVis=!orbitsVis; orbitLines.forEach(l=>l.visible=orbitsVis); document.getElementById('btn-orbits').classList.toggle('on',orbitsVis) }
-function toggleMLabels() { mLabelsVis=!mLabelsVis; document.getElementById('btn-mlabels').classList.toggle('on',mLabelsVis) }
-function toggleTraject() {
-  trajVis=!trajVis
-  mTrajLines.forEach(t => {
-    t.line.visible=trajVis
-    t.flybyDots.forEach(d => { d.visible=trajVis })
-  })
-  document.getElementById('btn-traj').classList.toggle('on',trajVis)
-}
-function setSpd(v)       { speed=parseFloat(v); document.getElementById('spdv').textContent=v+'×' }
 
+function togglePanel() {
+  panelOpen = !panelOpen
+  document.getElementById('missions-panel').classList.toggle('hidden', !panelOpen)
+  document.getElementById('btn-panel').classList.toggle('active', panelOpen)
+}
+
+function toggleOrbits() {
+  showOrbits = !showOrbits
+  orbitLines.forEach(l => l.visible = showOrbits)
+  document.getElementById('btn-orbits').classList.toggle('active', showOrbits)
+}
+
+function toggleLabels() {
+  showLabels = !showLabels
+  document.getElementById('btn-labels').classList.toggle('active', showLabels)
+  Object.values(labelEls).forEach(el => el.style.opacity = showLabels ? '1' : '0')
+}
+
+function setSpeed(v) {
+  speedFactor = parseFloat(v)
+  document.getElementById('speed-val').textContent = v + '×'
+}
+
+// Expose globals
 window.togglePanel  = togglePanel
 window.toggleOrbits = toggleOrbits
-window.toggleMLabels= toggleMLabels
-window.toggleTraject= toggleTraject
-window.setSpd       = setSpd
-window.resetCam     = resetCam
-window.closeDp      = closeDp
+window.toggleLabels = toggleLabels
+window.resetCamera  = resetCamera
+window.setSpeed     = setSpeed
+window.closeDetail  = closeDetail
 
-// ═══════════════════════════════════════════════════════════════════════════
-// PLANET POSITIONS
-// ═══════════════════════════════════════════════════════════════════════════
-function getPlanetPos(p, t) {
-  const a   = p.au * SCALE
-  const spd = (Math.PI * 2) / p.period
-  const ang = spd * t
-  return new THREE.Vector3(Math.cos(ang) * a, 0, Math.sin(ang) * a)
+// ── Easing ─────────────────────────────────────────────────────────────────
+function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t }
+
+// ── Planet position ────────────────────────────────────────────────────────
+function planetPos(p, t) {
+  const speed = p.period > 0 ? (Math.PI * 2) / p.period : 0
+  const angle = speed * t
+  return new THREE.Vector3(Math.cos(angle) * p.a, 0, Math.sin(angle) * p.a)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MISSION POSITIONS (accurate)
-// ═══════════════════════════════════════════════════════════════════════════
-function getMissionPos(m, t) {
-  const earth   = getPlanetPos(PLANET_DATA[2], t)    // Aarde
-  const mars    = getPlanetPos(PLANET_DATA[3], t)    // Mars
-  const jupiter = getPlanetPos(PLANET_DATA[4], t)    // Jupiter
-  const venus   = getPlanetPos(PLANET_DATA[1], t)    // Venus
-
-  switch (m.id) {
-    case 'voyager1': {
-      // Interstellar space — place far in consistent direction
-      const ang = 2.1
-      return new THREE.Vector3(Math.cos(ang)*90, Math.sin(t*0.00006)*8, Math.sin(ang)*90)
-    }
-    case 'jwst': {
-      // L2: 1.5M km past Earth along Earth-Sun line (0.01 AU = 0.1 scene units)
-      const dir = earth.clone().normalize()
-      return earth.clone().add(dir.multiplyScalar(0.5))
-    }
-    case 'starship': {
-      // Low Earth orbit: tight orbit around Earth
-      const a = t * (Math.PI*2 / 0.003) // very fast orbit
-      return earth.clone().add(new THREE.Vector3(Math.cos(a)*.75, Math.sin(a*.2)*.1, Math.sin(a)*.75))
-    }
-    case 'smile': {
-      // Highly elliptical Earth orbit (up to 120k km) — show as wide ellipse
-      const a = t * (Math.PI*2 / 0.5)
-      return earth.clone().add(new THREE.Vector3(Math.cos(a)*1.2, Math.sin(a*.35)*.25, Math.sin(a)*1.2))
-    }
-    case 'perseverance': {
-      // On Mars surface
-      const a = t * 0.008
-      return mars.clone().add(new THREE.Vector3(Math.cos(a)*.48, 0, Math.sin(a)*.48))
-    }
-    case 'curiosity': {
-      // On Mars surface, different longitude
-      const a = t * 0.006 + 2.2
-      return mars.clone().add(new THREE.Vector3(Math.cos(a)*.58, 0, Math.sin(a)*.58))
-    }
-    case 'juice': {
-      // As of Mar 2026: past Venus flyby (Aug 2025), heading toward 2nd Earth flyby (Nov 2026)
-      // Approx 0.85 AU from Sun, between Venus and Earth orbits
-      // We'll slowly move it from Venus orbit toward Earth orbit
-      const yearFrac  = (t % 365) / 365
-      const venusR    = .72 * SCALE
-      const earthR    = 1.0 * SCALE
-      // JUICE journey overall: ~8.3 years Earth→Earth (Nov 2026)
-      // From launch Apr 2023 to now Mar 2026 = ~2.9 years / 8.3 = 35% of journey
-      const tripFrac  = Math.min(1, t / (365 * 8.3))
-      const curR      = venusR + (earthR - venusR) * Math.min(1, tripFrac * 3)
-      const ang       = 0.4 + t * .0003
-      return new THREE.Vector3(Math.cos(ang)*curR, Math.sin(t*.00008)*1.5, Math.sin(ang)*curR)
-    }
-    case 'artemis2': {
-      // Planned — show near Moon as orbiting mission
-      const earthP = getPlanetPos(PLANET_DATA[2], t)
-      const ma     = t * 0.22
-      const moonP  = earthP.clone().add(new THREE.Vector3(Math.cos(ma)*1.15, Math.sin(ma*.1)*.05, Math.sin(ma)*1.15))
-      // Artemis orbit is 3-day free-return — show around Moon
-      const a2 = t * 0.5
-      return moonP.clone().add(new THREE.Vector3(Math.cos(a2)*.6, Math.sin(a2*.3)*.15, Math.sin(a2)*.6))
-    }
-    default:
-      return earth.clone()
+// ── Mission world position ────────────────────────────────────────────────
+function missionPos(m, t) {
+  if (m.id === 'voyager1') {
+    // slowly drift outward
+    const base = new THREE.Vector3(
+      Math.cos(m.angle + t * 0.0001) * m.orbitRadius,
+      Math.sin(t * 0.00003) * 8,
+      Math.sin(m.angle + t * 0.0001) * m.orbitRadius
+    )
+    return base
   }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// PROJECT 3D → 2D
-// ═══════════════════════════════════════════════════════════════════════════
-const tmp3 = new THREE.Vector3()
-function project(pos) {
-  tmp3.copy(pos).project(camera)
-  return {
-    x: (tmp3.x *  .5 + .5) * innerWidth,
-    y: (tmp3.y * -.5 + .5) * innerHeight,
-    behind: tmp3.z > 1
+  if (m.id === 'juice') {
+    // en route to Jupiter — interpolate between Earth distance and Jupiter
+    const frac  = Math.min(1, t / (365 * 8)) // ~8 year trip
+    const r     = 10 + frac * (52 - 10)
+    const angle = m.angle + t * 0.0003
+    return new THREE.Vector3(Math.cos(angle) * r, Math.sin(t * 0.0001) * 2, Math.sin(angle) * r)
   }
+  if (m.id === 'jwst') {
+    // L2 point — follow Earth + offset
+    const earth = planetPos(PLANETS.find(p => p.name === 'Aarde'), t)
+    const dir   = earth.clone().normalize()
+    return earth.clone().add(dir.multiplyScalar(0.4))
+  }
+  if (m.id === 'smile' || m.id === 'starship') {
+    const earth = planetPos(PLANETS.find(p => p.name === 'Aarde'), t)
+    const orbitR = m.id === 'starship' ? 0.9 : 1.3
+    const a = m.angle + t * (Math.PI * 2 / (m.orbitalPeriod || 1))
+    return earth.clone().add(new THREE.Vector3(Math.cos(a) * orbitR, Math.sin(a * 0.3) * 0.2, Math.sin(a) * orbitR))
+  }
+  if (m.id === 'perseverance' || m.id === 'curiosity') {
+    const mars = planetPos(PLANETS.find(p => p.name === 'Mars'), t)
+    const a = m.angle + t * 0.01
+    const r = m.id === 'perseverance' ? 0.65 : 0.8
+    return mars.clone().add(new THREE.Vector3(Math.cos(a) * r, 0, Math.sin(a) * r))
+  }
+  if (m.id === 'artemis2') {
+    const earth = planetPos(PLANETS.find(p => p.name === 'Aarde'), t)
+    const a = m.angle + t * 0.3
+    return earth.clone().add(new THREE.Vector3(Math.cos(a) * 1.5, Math.sin(a * 0.5) * 0.3, Math.sin(a) * 1.5))
+  }
+  // fallback
+  const a = m.angle + t * (Math.PI * 2 / (m.orbitalPeriod || 1))
+  return new THREE.Vector3(Math.cos(a) * m.orbitRadius, 0, Math.sin(a) * m.orbitRadius)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ANIMATE
-// ═══════════════════════════════════════════════════════════════════════════
+// ── Animate ────────────────────────────────────────────────────────────────
+const tmpV = new THREE.Vector3()
 function animate() {
   requestAnimationFrame(animate)
   const dt = clock.getDelta()
-  elapsed += dt * speed * 60
+  elapsed += dt * speedFactor * 60
 
-  // Planets
-  PLANET_DATA.forEach(p => {
-    const pm = planetMeshes[p.name]
-    if (!pm) return
-    pm.mesh.position.copy(getPlanetPos(p, elapsed))
-    pm.mesh.rotation.y += dt * (Math.PI*2 / (p.period||1)) * speed * 8
+  // planets
+  PLANETS.forEach(p => {
+    const m = planetMeshes[p.name]
+    if (!m) return
+    const pos = planetPos(p, elapsed)
+    m.mesh.position.copy(pos)
+    m.mesh.rotation.y += dt * (2 * Math.PI / (p.period || 1)) * speedFactor * 10
   })
 
   // Moon
   {
-    const ep = getPlanetPos(PLANET_DATA[2], elapsed)
+    const earth = planetPos(PLANETS.find(p => p.name === 'Aarde'), elapsed)
     const ma = elapsed * 0.18
-    moonMesh.position.set(ep.x+Math.cos(ma)*1.15, Math.sin(ma*.08)*.04, ep.z+Math.sin(ma)*1.15)
+    moon.position.set(earth.x + Math.cos(ma) * 1.2, Math.sin(ma * 0.1) * 0.05, earth.z + Math.sin(ma) * 1.2)
   }
 
-  // Sun
-  sun.rotation.y += dt * 0.04
-
-  // Missions
+  // missions
   MISSIONS.forEach(m => {
-    const obj = missionObjs[m.id]
+    const obj = missionObjects[m.id]
     if (!obj) return
-    obj.pt += dt * 2.2
-    obj.mesh.position.copy(getMissionPos(m, elapsed))
-    const p = Math.sin(obj.pt)*.3+.7
-    obj.mat.emissiveIntensity = m.status==='actief' ? p*.9 : .3
-    obj.ring.material.opacity = m.status==='actief' ? p*.5 : .18
-    if (selId===m.id) { obj.mat.emissiveIntensity=1.6; obj.ring.scale.set(1.4,1.4,1.4) }
-    else              { obj.ring.scale.set(1,1,1) }
+    obj.pulseT += dt * 2.5
+    const pos = missionPos(m, elapsed)
+    obj.mesh.position.copy(pos)
+
+    // pulse emissive
+    const pulse = Math.sin(obj.pulseT) * 0.3 + 0.7
+    obj.mat.emissiveIntensity = m.status === 'actief' ? pulse * 0.9 : 0.3
+    obj.ring.material.opacity = m.status === 'actief' ? pulse * 0.45 : 0.15
+
+    // selected highlight
+    if (selectedId === m.id) {
+      obj.mat.emissiveIntensity = 1.4
+      obj.ring.scale.set(1.3, 1.3, 1.3)
+    } else {
+      obj.ring.scale.set(1, 1, 1)
+    }
   })
 
-  // Move Earth-orbit trajectories with Earth
-  if (trajVis) {
-    const ep = getPlanetPos(PLANET_DATA[2], elapsed)
-    mTrajLines.forEach(t => { if (t.type==='earth') t.line.position.copy(ep) })
+  // label positions
+  if (showLabels) {
+    MISSIONS.forEach(m => {
+      const obj = missionObjects[m.id]
+      const el  = labelEls[m.id]
+      if (!obj || !el) return
+      tmpV.copy(obj.mesh.position).project(camera)
+      const x = (tmpV.x *  0.5 + 0.5) * window.innerWidth
+      const y = (tmpV.y * -0.5 + 0.5) * window.innerHeight
+      el.style.left = x + 'px'
+      el.style.top  = y + 'px'
+    })
   }
 
-  // Planet labels (always visible)
-  PLANET_DATA.forEach(p => {
-    const pm = planetMeshes[p.name]
-    const el = pLabels[p.name]
-    if (!pm||!el) return
-    const tp = pm.mesh.position.clone().add(new THREE.Vector3(0, p.r+.4, 0))
-    const sc = project(tp)
-    if (sc.behind) { el.style.display='none'; return }
-    el.style.display='flex'; el.style.left=sc.x+'px'; el.style.top=sc.y+'px'
-  })
-  // Moon label
-  {
-    const mp = moonMesh.position.clone().add(new THREE.Vector3(0,.3,0))
-    const sc = project(mp)
-    moonLbl.style.display = sc.behind ? 'none' : 'flex'
-    moonLbl.style.left=sc.x+'px'; moonLbl.style.top=sc.y+'px'
-  }
-
-  // Mission labels
-  MISSIONS.forEach(m => {
-    const obj = missionObjs[m.id]
-    const el  = mLabels[m.id]
-    if (!obj||!el) return
-    el.style.display = mLabelsVis ? 'flex' : 'none'
-    if (!mLabelsVis) return
-    const tp = obj.mesh.position.clone().add(new THREE.Vector3(0,.45,0))
-    const sc = project(tp)
-    if (sc.behind) { el.style.display='none'; return }
-    el.style.left=sc.x+'px'; el.style.top=sc.y+'px'
-    // fade by distance
-    const dist = camera.position.distanceTo(obj.mesh.position)
-    el.style.opacity = Math.max(0, Math.min(1, (80-dist)/60)).toString()
-  })
-
-  // Camera fly-to
+  // camera fly-to
   if (flyTarget && flyT < 1) {
-    flyT = Math.min(1, flyT + dt/flyDur)
-    const e = eio(flyT)
+    flyT = Math.min(1, flyT + dt / flyDuration)
+    const e = easeInOut(flyT)
     camera.position.lerpVectors(flyFrom, flyTarget.pos, e)
     controls.target.lerpVectors(flyFromLook, flyTarget.look, e)
-    if (flyT>=1) flyTarget=null
+    if (flyT >= 1) flyTarget = null
   }
+
+  // sun rotation
+  sun.rotation.y += dt * 0.05
 
   controls.update()
   renderer.render(scene, camera)
 }
 
-// Resize
+// ── Resize ─────────────────────────────────────────────────────────────────
 window.addEventListener('resize', () => {
-  camera.aspect = innerWidth/innerHeight
+  camera.aspect = window.innerWidth / window.innerHeight
   camera.updateProjectionMatrix()
-  renderer.setSize(innerWidth, innerHeight)
+  renderer.setSize(window.innerWidth, window.innerHeight)
 })
 
-// Keyboard
+// ── Keyboard ──────────────────────────────────────────────────────────────
 window.addEventListener('keydown', e => {
-  if (e.key==='Escape') { closeDp(); resetCam() }
-  if (e.key==='l'||e.key==='L') toggleMLabels()
-  if (e.key==='o'||e.key==='O') toggleOrbits()
-  if (e.key==='m'||e.key==='M') togglePanel()
+  if (e.key === 'Escape') { closeDetail(); resetCamera() }
+  if (e.key === 'l' || e.key === 'L') toggleLabels()
+  if (e.key === 'o' || e.key === 'O') toggleOrbits()
+  if (e.key === 'm' || e.key === 'M') togglePanel()
 })
 
+// ── Start ──────────────────────────────────────────────────────────────────
 animate()
-setTimeout(()=>{ document.getElementById('help').style.opacity='0' }, 8000)
+
+// Auto-hide help after 7s
+setTimeout(() => { document.getElementById('help').style.opacity = '0' }, 7000)
 </script>
 </body>
 </html>
