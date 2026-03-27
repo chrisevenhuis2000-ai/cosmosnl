@@ -167,19 +167,26 @@ canvas { display:block; }
 kbd { background:rgba(37,40,88,.8); border:1px solid #252858; padding:1px 6px; border-radius:2px; font-family:var(--fm); font-size:0.44rem; color:#fff; }
 
 /* ── Panel sections ── */
-.msec-head { padding:7px 18px 5px; font-family:var(--fm); font-size:0.4rem; letter-spacing:.18em; text-transform:uppercase; color:var(--dim); border-bottom:1px solid rgba(37,40,88,.5); display:flex; justify-content:space-between; align-items:center; margin-top:2px; flex-shrink:0; }
-.msec-toggle { cursor:pointer; user-select:none; }
-.msec-toggle:hover { background:rgba(55,138,221,.05); color:var(--muted); }
+.msec-head {
+  padding:7px 18px 5px; font-family:var(--fm); font-size:0.4rem;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--dim);
+  border-bottom:1px solid rgba(37,40,88,.4); border-top:1px solid rgba(37,40,88,.4);
+  margin-top:4px;
+}
+.msec-toggle { cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; }
 .msec-arrow { color:var(--stellar); font-size:0.55rem; }
 
 /* ── Live Stats ── */
-.dlive { background:rgba(61,223,144,.04); border:1px solid rgba(61,223,144,.15); padding:10px 13px; margin-bottom:16px; }
-.dlive-title { font-family:var(--fm); font-size:0.42rem; letter-spacing:.15em; text-transform:uppercase; color:var(--green); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-.dlive-pulse { display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--green); flex-shrink:0; animation:pdot 1.2s ease-in-out infinite; }
-.dlive-row { display:flex; justify-content:space-between; align-items:baseline; padding:5px 0; border-bottom:1px solid rgba(37,40,88,.3); }
+.dlive {
+  background:rgba(61,223,144,.04); border:1px solid rgba(61,223,144,.15);
+  border-radius:2px; padding:10px 13px; margin-bottom:16px;
+}
+.dlive-title { font-family:var(--fm); font-size:0.42rem; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.dlive-pulse { display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--green); animation:pdot 1.2s ease-in-out infinite; flex-shrink:0; }
+.dlive-row { display:flex; justify-content:space-between; align-items:baseline; padding:3px 0; border-bottom:1px solid rgba(61,223,144,.07); }
 .dlive-row:last-child { border-bottom:none; }
 .dlive-lbl { font-family:var(--fm); font-size:0.46rem; color:var(--muted); }
-.dlive-val { font-family:var(--fm); font-size:0.6rem; color:var(--green); font-weight:700; letter-spacing:.04em; }
+.dlive-val { font-family:var(--fm); font-size:0.6rem; color:var(--green); font-weight:700; }
 
 /* ── Animations ── */
 @keyframes pdot { 0%,100%{box-shadow:0 0 3px #3ddf90} 50%{box-shadow:0 0 10px #3ddf90;opacity:.7} }
@@ -598,69 +605,69 @@ const MISSIONS = [
     bgfrom:'#080812', bgto:'#141430',
   },
 
-  // ── Voltooide missies (archief) ─────────────────────────────────────────
+  // ── Voltooide missies (geen 3D marker) ──
   {
-    id:'apollo11', name:'Apollo 11', agency:'NASA', color:'#ffd700', status:'voltooid', noScene:true,
-    icon:'🌕', launched:'16 jul 1969', body:'Maan — Zee van Rust',
-    desc:'Apollo 11 was de eerste bemande maanlandingsmissie in de geschiedenis. Neil Armstrong en Buzz Aldrin betraden op 20 juli 1969 als eerste mensen ooit het maanoppervlak. Michael Collins orbiteerde in de commandomodule. De missie duurde 8 dagen en bracht 21,5 kg maanmonsters terug naar de Aarde.',
-    facts:['Lancering: 16 jul 1969 · Cape Kennedy','Landing: 20 jul 1969 20:17 UTC','Astronauten: Armstrong, Aldrin, Collins','Maanmonsters: 21,5 kg teruggebracht','Totale duur: 8 d 3 u 18 min'],
-    hl:'"That\'s one small step for man, one giant leap for mankind" — Neil Armstrong',
-    launched_meta:'16 jul 1969', dest_meta:'Maan – Zee van Rust',
-    bgfrom:'#0a0a04', bgto:'#181408',
+    id:'apollo11', name:'Apollo 11', agency:'NASA', color:'#c8b068', status:'voltooid', noScene:true,
+    icon:'🌕', launched:'16 jul 1969', body:'Maan — Sea of Tranquility',
+    desc:'Apollo 11 was de eerste bemande maanlanding in de geschiedenis. Op 20 juli 1969 zette Neil Armstrong als eerste mens voet op de Maan, gevolgd door Buzz Aldrin. Michael Collins bleef in de maanbaan. De missie duurde 8 dagen en keerde veilig terug op Aarde.',
+    facts:['Eerste maanlanding: 20 juli 1969','Moonwalk duur: 2 uur 31 min','21,5 kg maanstenen verzameld','Reistijd Aarde→Maan: ~76 uur','Terugkeer: 24 juli 1969'],
+    hl:'Neil Armstrong zette als eerste mens voet op de Maan — 20 juli 1969',
+    launched_meta:'16 jul 1969', dest_meta:'Maan – Sea of Tranquility',
+    bgfrom:'#0a0800', bgto:'#1a1400',
   },
   {
     id:'cassini', name:'Cassini-Huygens', agency:'NASA/ESA/ASI', color:'#ffa040', status:'voltooid', noScene:true,
     icon:'🪐', launched:'15 okt 1997', body:'Saturnus-stelsel (1997–2017)',
-    desc:'Cassini orbiteerde 13 jaar lang om Saturnus en maakte meer dan 453.000 foto\'s. De Huygens-lander van ESA daalde neer op Titan — 's maanlichaam met een dikke atmosfeer. In september 2017 stortte Cassini bewust in de atmosfeer van Saturnus bij de Grand Finale, om besmetting van de ijsmanen te voorkomen.',
-    facts:['293 omlopen om Saturnus voltooid','Huygens landde op Titan: 14 jan 2005','Actieve waterfontein ontdekt op Enceladus','4 miljard km afgelegd in totaal','Grand Finale: 15 sep 2017'],
-    hl:'Ontdekte actieve waterfonteinen op Enceladus — mogelijke bewoonbare oceaan',
+    desc:'Cassini bestudeerde Saturnus en zijn manen 13 jaar lang vanuit een baan om de planeet. De Huygens-sonde landde op Titan in 2005 — de eerste landing op een hemellichaam in het buitenste zonnestelsel. In 2017 dook Cassini bewust in Saturnus om besmetting van manen te voorkomen.',
+    facts:['Lancering: 15 okt 1997','Saturnus aankomst: 1 jul 2004','Huygens landing Titan: 14 jan 2005','294 omloopbanen om Saturnus','Grand Finale: 15 sep 2017'],
+    hl:'Huygens-sonde landde op Titan — eerste landing in het buitenste zonnestelsel',
     launched_meta:'15 okt 1997', dest_meta:'Saturnus-stelsel',
-    bgfrom:'#0e0a04', bgto:'#1e1408',
+    bgfrom:'#0e0a00', bgto:'#1e1400',
   },
   {
     id:'rosetta', name:'Rosetta / Philae', agency:'ESA', color:'#3dcfdf', status:'voltooid', noScene:true,
     icon:'☄️', launched:'2 mrt 2004', body:'Komeet 67P/Churyumov-Gerasimenko',
-    desc:'Rosetta was de eerste sonde die een komeet volgde en omcirkelde. Op 12 november 2014 landde lander Philae als eerste ooit op een komeet. De missie ontdekte glycine (een aminozuur) in het kometmateriaal — een aanwijzing dat bouwstenen van het leven kosmisch verspreid zijn.',
-    facts:['10 jaar, 7 maanden reis vanuit Aarde','Eerste komet-orbiter + lander ooit','Philae landing: 12 nov 2014','Glycine (aminozuur) gedetecteerd','Zending beëindigd: 30 sep 2016'],
-    hl:'Eerste zachte landing op een komeet — glycine aangetroffen in kometmateriaal',
-    launched_meta:'2 mrt 2004', dest_meta:'Komeet 67P',
-    bgfrom:'#04080e', bgto:'#081018',
+    desc:'Rosetta was de eerste missie die een komeet in een baan volgde. De Philae-lander landde in november 2014 op komeet 67P — de eerste zachte landing op een komeet. Rosetta eindigde haar missie met een gecontroleerde inslag op de komeet in september 2016.',
+    facts:['Lancering: 2 mrt 2004','Komeet aankomst: aug 2014','Philae landing: 12 nov 2014','Eerste komeetbaan-missie','Missioneinde: 30 sep 2016'],
+    hl:'Philae landde als eerste sonde ooit op een komeet — 12 november 2014',
+    launched_meta:'2 mrt 2004', dest_meta:'Komeet 67P/Churyumov-Gerasimenko',
+    bgfrom:'#030a0a', bgto:'#081414',
   },
   {
     id:'opportunity', name:'Opportunity', agency:'NASA/JPL', color:'#ff8a50', status:'voltooid', noScene:true,
     icon:'🤖', launched:'7 jul 2003', body:'Mars — Meridiani Planum',
-    desc:'Opportunity landde op 25 januari 2004 voor een geplande missie van 90 Marsdagen. Hij reed ruim 45 kilometer door de Marswoestijn en was actief tot juni 2018 — bijna 15 jaar. Een globe-omspannende stofstorm deed zijn zonnepanelen falen. NASA\'s laatste contactpoging was op 13 februari 2019.',
-    facts:['Landde: 25 jan 2004 · Meridiani Planum','Actief: 5.111 sols (≈14,7 jaar)','Gereden: 45,16 km','Meer dan 170 GB wetenschapsdata','Laatste transmissie: 10 jun 2018'],
-    hl:'Langst actieve Mars-rover ooit — 60× langer dan de geplande 90 dagen',
+    desc:'Opportunity landde op Mars op 25 januari 2004 voor een geplande missie van 90 sols. De rover bleef bijna 15 jaar actief en legde meer dan 45 kilometer af. Na een enorme stofstorm in 2018 verloor NASA contact en werd de missie in februari 2019 officieel beëindigd.',
+    facts:['Landde: 25 jan 2004','Missionduur: 5.352 sols (14,75 jaar)','Afgelegde afstand: 45,16 km','Bewijs gevonden voor oud vloeibaar water','Laatste contact: 10 jun 2018'],
+    hl:'15 jaar actief op Mars — verste afstand gereden door een rover ooit',
     launched_meta:'7 jul 2003', dest_meta:'Mars – Meridiani Planum',
-    bgfrom:'#140804', bgto:'#281408',
+    bgfrom:'#140804', bgto:'#241008',
   },
   {
     id:'galileo', name:'Galileo', agency:'NASA', color:'#c080ff', status:'voltooid', noScene:true,
     icon:'🪐', launched:'18 okt 1989', body:'Jupiter-stelsel (1995–2003)',
-    desc:'Galileo was de eerste sonde die in een baan om Jupiter ging en de manen uitgebreid bestudeerde. Hij liet een atmosferische sonde vallen die direct door de Jupiteratmosfeer registreerde tot een druk van 24 bar. Galileo leverde het eerste sterke bewijs voor een vloeibare waterlaag onder het ijs van Europa.',
-    facts:['In Jupiterbaan: 8 dec 1995','35 omlopen om Jupiter voltooid','Atmosferische sonde: 24 bar druk gemeten','Bewijs voor vloeibare oceaan Europa','Ingevlogen in Jupiter: 21 sep 2003'],
-    hl:'Eerste bewijs voor een vloeibare oceaan onder het ijs van Europa',
+    desc:'Galileo was de eerste sonde in een baan om Jupiter. Hij bestudeerde de planeet en zijn manen 8 jaar lang en ontdekte bewijs voor een vloeibare oceaan onder het ijsoppervlak van Europa. In 2003 dook Galileo bewust in Jupiter om besmetting van Europa te voorkomen.',
+    facts:['Lancering: 18 okt 1989','Jupiter aankomst: 7 dec 1995','Eerste Jupiter-orbiter','Oceaan ontdekt onder Europa\'s ijs','Missioneinde: 21 sep 2003'],
+    hl:'Ontdekte aanwijzingen voor een vloeibare oceaan onder het ijs van Europa',
     launched_meta:'18 okt 1989', dest_meta:'Jupiter-stelsel',
-    bgfrom:'#080418', bgto:'#100828',
+    bgfrom:'#0a0414', bgto:'#140828',
   },
   {
-    id:'messenger', name:'MESSENGER', agency:'NASA', color:'#5dc8d8', status:'voltooid', noScene:true,
-    icon:'☿', launched:'3 aug 2004', body:'Mercurius-baan (2011–2015)',
-    desc:'MESSENGER was de eerste ruimtesonde die in een baan om Mercurius orbiteerde. Na 6,5 jaar vliegen met talrijke zwaartekrachtassists kaarteerde hij het volledige Mercuriusoppervlak. In de permanent beschaduwde kraters bij de pool ontdekte hij waterijs — verassend dicht bij de zon.',
-    facts:['In Mercuriusbaan: 18 mrt 2011','4.104 omlopen om Mercurius','100% oppervlak gekarteerd','Waterijs ontdekt in polaire kraters','Crashte op Mercurius: 30 apr 2015'],
-    hl:'Eerste volledige kartografie van Mercurius — waterijs ontdekt bij de poolgebieden',
+    id:'messenger', name:'MESSENGER', agency:'NASA', color:'#ff6050', status:'voltooid', noScene:true,
+    icon:'☿', launched:'3 aug 2004', body:'Mercurius (2011–2015)',
+    desc:'MESSENGER was de eerste sonde in een baan om Mercurius. Na drie Mercurius-flybys bereikte hij een baan in 2011 en kartografeerde de hele planeet. Hij ontdekte ijs in permanent beschaduwde kraters aan de polen. De missie eindigde met een gecontroleerde inslag in 2015.',
+    facts:['Lancering: 3 aug 2004','Mercurius-baan: 18 mrt 2011','Volledige planeetkaart gemaakt','Waterijs in poolkraters ontdekt','Missioneinde: 30 apr 2015'],
+    hl:'Eerste sonde om Mercurius heen — ontdekte waterijs aan de polen',
     launched_meta:'3 aug 2004', dest_meta:'Mercurius',
-    bgfrom:'#040c0e', bgto:'#081818',
+    bgfrom:'#140604', bgto:'#240c08',
   },
   {
-    id:'dawn', name:'Dawn', agency:'NASA', color:'#a0c4ff', status:'voltooid', noScene:true,
-    icon:'🌌', launched:'27 sep 2007', body:'Vesta & Ceres (asteroïdengordel)',
-    desc:'Dawn was de eerste sonde die met ion-aandrijving twee hemellichamen buiten de Aarde omcirkelde: asteroïde Vesta (2011-2012) en dwergplaneet Ceres (2015-2018). Op Ceres ontdekte hij opvallend heldere vlekken in de Occator-krater — later geïdentificeerd als natriumcarbonaatzoutvlaktes.',
-    facts:['Eerste sonde met ion-aandrijving bij twee doelen','Vesta: jul 2011 – sep 2012','Ceres: mrt 2015 – nov 2018','Heldere vlekken = zoutafzettingen (Na₂CO₃)','Brandstof uitgeput: 1 nov 2018'],
-    hl:'Eerste sonde om twee hemellichamen te omcirkelen — zoutvlaktes ontdekt op Ceres',
-    launched_meta:'27 sep 2007', dest_meta:'Vesta & Ceres',
-    bgfrom:'#04060e', bgto:'#080c18',
+    id:'dawn', name:'Dawn', agency:'NASA', color:'#378ADD', status:'voltooid', noScene:true,
+    icon:'🌑', launched:'27 sep 2007', body:'Vesta & Ceres (asteroïdengordel)',
+    desc:'Dawn was de eerste sonde die twee extraterrestrische lichamen buiten de Aarde-Maan omloopbaan bezocht. Hij orbiteerde de protoplaneet Vesta (2011–2012) en het dwergplaneet Ceres (2015–2018) in de asteroïdengordel. Op Ceres ontdekte hij heldere vlekken die zoutafzettingen bleken te zijn.',
+    facts:['Lancering: 27 sep 2007','Vesta-baan: 2011–2012','Ceres-baan: mrt 2015–okt 2018','Eerste dubbel-lichaam missie','Heldere zoutvlekken op Ceres ontdekt'],
+    hl:'Eerste sonde om twee hemellichamen te orbiteren — Vesta én Ceres',
+    launched_meta:'27 sep 2007', dest_meta:'Vesta & Ceres (asteroïdengordel)',
+    bgfrom:'#04080e', bgto:'#08101e',
   },
 ]
 
@@ -975,8 +982,6 @@ MISSIONS.forEach(m => {
 // ═══════════════════════════════════════════════════════════════════════════
 // MISSION LIST
 // ═══════════════════════════════════════════════════════════════════════════
-const mListEl = document.getElementById('mlist')
-
 function makeMissionItem(m) {
   const el = document.createElement('div')
   el.className = 'mi'
@@ -994,27 +999,29 @@ function makeMissionItem(m) {
   return el
 }
 
-// Sectie: huidig (actief + gepland)
-const huidigHead = document.createElement('div')
-huidigHead.className = 'msec-head'
-huidigHead.innerHTML = '<span>Huidig</span>'
-mListEl.appendChild(huidigHead)
-MISSIONS.filter(m => !m.noScene).forEach(m => mListEl.appendChild(makeMissionItem(m)))
+const mListEl = document.getElementById('mlist')
+const active   = MISSIONS.filter(m => !m.noScene)
+const archived = MISSIONS.filter(m =>  m.noScene)
 
-// Sectie: archief (voltooid) — inklappbaar
-const archived = MISSIONS.filter(m => m.noScene)
+// Section: Huidig
+const activeHead = document.createElement('div')
+activeHead.className = 'msec-head'
+activeHead.textContent = 'Huidig & Gepland'
+mListEl.appendChild(activeHead)
+active.forEach(m => mListEl.appendChild(makeMissionItem(m)))
+
+// Section: Archief (collapsible)
 const archiveHead = document.createElement('div')
-archiveHead.className = 'msec-head msec-toggle'
-archiveHead.innerHTML = `<span>Archief</span><span class="msec-arrow">▾ ${archived.length}</span>`
+archiveHead.className = 'msec-head'
+archiveHead.innerHTML = `<div class="msec-toggle"><span>Voltooide missies</span><span class="msec-arrow">▾ ${archived.length}</span></div>`
 mListEl.appendChild(archiveHead)
 
 const archiveBody = document.createElement('div')
-archiveBody.id = 'archive-body'
 archiveBody.style.display = 'none'
 archived.forEach(m => archiveBody.appendChild(makeMissionItem(m)))
 mListEl.appendChild(archiveBody)
 
-archiveHead.addEventListener('click', () => {
+archiveHead.querySelector('.msec-toggle').addEventListener('click', () => {
   const open = archiveBody.style.display !== 'none'
   archiveBody.style.display = open ? 'none' : 'block'
   archiveHead.querySelector('.msec-arrow').textContent = (open ? '▾ ' : '▴ ') + archived.length
@@ -1024,7 +1031,7 @@ archiveHead.addEventListener('click', () => {
 // STATE
 // ═══════════════════════════════════════════════════════════════════════════
 let selId       = null
-let liveInterval= null
+let liveInterval = null
 let panelOpen   = true
 let orbitsVis   = true
 let labelsVis   = true
@@ -1074,97 +1081,11 @@ function selectMission(id) {
   renderDetail(id)
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// LIVE STATISTICS
-// ═══════════════════════════════════════════════════════════════════════════
-const LIVE_REF = {
-  voyager1:     { refTime: new Date('2026-03-27T00:00:00Z').getTime(), refDistKm: 24_435_000_000, speedKmS: 17.012 },
-  perseverance: { landedMs: new Date('2021-02-18T20:55:00Z').getTime(), solS: 88642.7 },
-  curiosity:    { landedMs: new Date('2012-08-06T05:18:00Z').getTime(), solS: 88642.7 },
-  jwst:         { launchedMs: new Date('2021-12-25T12:20:00Z').getTime() },
-  juice:        { launchedMs: new Date('2023-04-14T12:14:00Z').getTime(), jupiterMs: new Date('2031-07-01T00:00:00Z').getTime() },
-}
-
-function fmtNL(n) { return Math.round(n).toLocaleString('nl-NL') }
-
-function getLiveStats(id) {
-  const now = Date.now()
-  switch (id) {
-    case 'voyager1': {
-      const r = LIVE_REF.voyager1
-      const sec = (now - r.refTime) / 1000
-      const km  = r.refDistKm + sec * r.speedKmS
-      const delS = km / 299792.458
-      const dH = Math.floor(delS / 3600), dM = Math.floor((delS % 3600) / 60), dS = Math.floor(delS % 60)
-      return [
-        { lbl: 'Afstand van de zon', val: fmtNL(km) + ' km', pulse: true },
-        { lbl: 'Signaalvertraging',  val: `${dH}u ${dM}m ${dS}s` },
-        { lbl: 'Reissnelheid',       val: r.speedKmS.toFixed(3) + ' km/s' },
-      ]
-    }
-    case 'perseverance': {
-      const r   = LIVE_REF.perseverance
-      const sec = (now - r.landedMs) / 1000
-      return [
-        { lbl: 'Marssols actief',    val: fmtNL(Math.floor(sec / r.solS)) + ' sols', pulse: true },
-        { lbl: 'Aardse dagen',       val: fmtNL(Math.floor(sec / 86400)) + ' dagen' },
-      ]
-    }
-    case 'curiosity': {
-      const r   = LIVE_REF.curiosity
-      const sec = (now - r.landedMs) / 1000
-      return [
-        { lbl: 'Marssols actief',    val: fmtNL(Math.floor(sec / r.solS)) + ' sols', pulse: true },
-        { lbl: 'Aardse dagen',       val: fmtNL(Math.floor(sec / 86400)) + ' dagen' },
-      ]
-    }
-    case 'jwst': {
-      const sec = (now - LIVE_REF.jwst.launchedMs) / 1000
-      const d   = Math.floor(sec / 86400), h = Math.floor((sec % 86400) / 3600)
-      return [
-        { lbl: 'Actief in de ruimte', val: fmtNL(d) + ' dagen', pulse: true },
-        { lbl: 'Huidige operatieduur', val: `${fmtNL(d)}d ${h}u` },
-      ]
-    }
-    case 'juice': {
-      const r    = LIVE_REF.juice
-      const sec  = (now - r.launchedMs) / 1000
-      const toGo = Math.max(0, Math.floor((r.jupiterMs - now) / 86400000))
-      return [
-        { lbl: 'Onderweg',              val: fmtNL(Math.floor(sec / 86400)) + ' dagen', pulse: true },
-        { lbl: 'Nog tot Jupiter (est)', val: fmtNL(toGo) + ' dagen' },
-      ]
-    }
-    default: return null
-  }
-}
-
-function buildLiveHTML(stats) {
-  return `<div class="dlive">
-    <div class="dlive-title"><span class="dlive-pulse"></span>Live statistieken</div>
-    ${stats.map((s, i) => `<div class="dlive-row"><span class="dlive-lbl">${s.lbl}</span><span class="dlive-val" id="dlv-${i}">${s.val}</span></div>`).join('')}
-  </div>`
-}
-
-function startLiveTicker(id) {
-  if (liveInterval) { clearInterval(liveInterval); liveInterval = null }
-  const stats = getLiveStats(id)
-  if (!stats) return
-  liveInterval = setInterval(() => {
-    const fresh = getLiveStats(id)
-    if (!fresh) return
-    fresh.forEach((s, i) => {
-      const el = document.getElementById(`dlv-${i}`)
-      if (el) el.textContent = s.val
-    })
-  }, 1000)
-}
-
 function renderDetail(id) {
   const m = MISSIONS.find(x => x.id===id)
   if (!m) return
-  const stats    = getLiveStats(id)
-  const liveHtml = stats ? buildLiveHTML(stats) : ''
+  const liveStats = getLiveStats(id)
+  const liveHtml  = liveStats ? buildLiveHTML(liveStats) : ''
   document.getElementById('dcontent').innerHTML = `
     <div class="dhero fi">
       <div class="dhero-bg" style="background:linear-gradient(135deg,${m.bgfrom},${m.bgto})"></div>
@@ -1187,6 +1108,88 @@ function renderDetail(id) {
   `
   document.getElementById('dpanel').classList.add('open')
   startLiveTicker(id)
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LIVE STATS
+// ═══════════════════════════════════════════════════════════════════════════
+const LIVE_REF = {
+  voyager1:     { refTime: new Date('2026-03-27T00:00:00Z').getTime(), refDistKm: 24_435_000_000, speedKmS: 17.012 },
+  perseverance: { landedMs: new Date('2021-02-18T20:55:00Z').getTime(), solS: 88642.7 },
+  curiosity:    { landedMs: new Date('2012-08-06T05:18:00Z').getTime(), solS: 88642.7 },
+  jwst:         { launchedMs: new Date('2021-12-25T12:20:00Z').getTime() },
+  juice:        { launchedMs: new Date('2023-04-14T12:14:00Z').getTime(), jupiterMs: new Date('2031-07-01T00:00:00Z').getTime() },
+}
+function fmtNL(n) { return Math.round(n).toLocaleString('nl-NL') }
+function getLiveStats(id) {
+  const now = Date.now()
+  switch(id) {
+    case 'voyager1': {
+      const r = LIVE_REF.voyager1
+      const dt = (now - r.refTime) / 1000
+      const dist = r.refDistKm + r.speedKmS * dt
+      return [
+        { lbl:'Afstand van de Zon', val: fmtNL(dist) + ' km' },
+        { lbl:'Snelheid', val: '17,012 km/s' },
+        { lbl:'Signaalvertraging', val: Math.round(dist / 299792 / 60) + ' min' },
+      ]
+    }
+    case 'perseverance': {
+      const r = LIVE_REF.perseverance
+      const sols = (now - r.landedMs) / 1000 / r.solS
+      const secs = Math.floor((now - r.landedMs) / 1000)
+      return [
+        { lbl:'Mars-dagen (sols) actief', val: sols.toFixed(2) },
+        { lbl:'Seconden actief', val: fmtNL(secs) },
+      ]
+    }
+    case 'curiosity': {
+      const r = LIVE_REF.curiosity
+      const sols = (now - r.landedMs) / 1000 / r.solS
+      return [
+        { lbl:'Mars-dagen (sols) actief', val: sols.toFixed(2) },
+        { lbl:'Kilometer gereden', val: '>32 km' },
+      ]
+    }
+    case 'jwst': {
+      const r = LIVE_REF.jwst
+      const days = (now - r.launchedMs) / 1000 / 86400
+      return [
+        { lbl:'Dagen in de ruimte', val: Math.floor(days).toLocaleString('nl-NL') },
+        { lbl:'Afstand van Aarde', val: '~1.500.000 km' },
+      ]
+    }
+    case 'juice': {
+      const r = LIVE_REF.juice
+      const days = (now - r.launchedMs) / 1000 / 86400
+      const toJup = Math.max(0, (r.jupiterMs - now) / 1000 / 86400)
+      return [
+        { lbl:'Dagen onderweg', val: Math.floor(days).toLocaleString('nl-NL') },
+        { lbl:'Dagen tot Jupiter', val: Math.floor(toJup).toLocaleString('nl-NL') },
+      ]
+    }
+    default: return null
+  }
+}
+function buildLiveHTML(stats) {
+  const rows = stats.map((s, i) => `
+    <div class="dlive-row">
+      <span class="dlive-lbl">${s.lbl}</span>
+      <span class="dlive-val" id="dlv-${i}">${s.val}</span>
+    </div>`).join('')
+  return `<div class="dlive">
+    <div class="dlive-title"><span class="dlive-pulse"></span>Live data</div>
+    ${rows}
+  </div>`
+}
+function startLiveTicker(id) {
+  if (liveInterval) { clearInterval(liveInterval); liveInterval = null }
+  const stats = getLiveStats(id)
+  if (!stats) return
+  liveInterval = setInterval(() => {
+    const fresh = getLiveStats(id)
+    fresh.forEach((s, i) => { const el = document.getElementById(`dlv-${i}`); if (el) el.textContent = s.val })
+  }, 1000)
 }
 
 function closeDp() {
