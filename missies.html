@@ -166,6 +166,15 @@ canvas { display:block; }
 #help span { display:flex; gap:5px; align-items:center; }
 kbd { background:rgba(37,40,88,.8); border:1px solid #252858; padding:1px 6px; border-radius:2px; font-family:var(--fm); font-size:0.44rem; color:#fff; }
 
+/* ── Live Stats ── */
+.dlive { background:rgba(61,223,144,.04); border:1px solid rgba(61,223,144,.15); padding:10px 13px; margin-bottom:16px; }
+.dlive-title { font-family:var(--fm); font-size:0.42rem; letter-spacing:.15em; text-transform:uppercase; color:var(--green); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.dlive-pulse { display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--green); flex-shrink:0; animation:pdot 1.2s ease-in-out infinite; }
+.dlive-row { display:flex; justify-content:space-between; align-items:baseline; padding:5px 0; border-bottom:1px solid rgba(37,40,88,.3); }
+.dlive-row:last-child { border-bottom:none; }
+.dlive-lbl { font-family:var(--fm); font-size:0.46rem; color:var(--muted); }
+.dlive-val { font-family:var(--fm); font-size:0.6rem; color:var(--green); font-weight:700; letter-spacing:.04em; }
+
 /* ── Animations ── */
 @keyframes pdot { 0%,100%{box-shadow:0 0 3px #3ddf90} 50%{box-shadow:0 0 10px #3ddf90;opacity:.7} }
 @keyframes fi { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
@@ -914,6 +923,7 @@ MISSIONS.forEach(m => {
 // STATE
 // ═══════════════════════════════════════════════════════════════════════════
 let selId       = null
+let liveInterval= null
 let panelOpen   = true
 let orbitsVis   = true
 let labelsVis   = true
@@ -963,9 +973,97 @@ function selectMission(id) {
   renderDetail(id)
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// LIVE STATISTICS
+// ═══════════════════════════════════════════════════════════════════════════
+const LIVE_REF = {
+  voyager1:     { refTime: new Date('2026-03-27T00:00:00Z').getTime(), refDistKm: 24_435_000_000, speedKmS: 17.012 },
+  perseverance: { landedMs: new Date('2021-02-18T20:55:00Z').getTime(), solS: 88642.7 },
+  curiosity:    { landedMs: new Date('2012-08-06T05:18:00Z').getTime(), solS: 88642.7 },
+  jwst:         { launchedMs: new Date('2021-12-25T12:20:00Z').getTime() },
+  juice:        { launchedMs: new Date('2023-04-14T12:14:00Z').getTime(), jupiterMs: new Date('2031-07-01T00:00:00Z').getTime() },
+}
+
+function fmtNL(n) { return Math.round(n).toLocaleString('nl-NL') }
+
+function getLiveStats(id) {
+  const now = Date.now()
+  switch (id) {
+    case 'voyager1': {
+      const r = LIVE_REF.voyager1
+      const sec = (now - r.refTime) / 1000
+      const km  = r.refDistKm + sec * r.speedKmS
+      const delS = km / 299792.458
+      const dH = Math.floor(delS / 3600), dM = Math.floor((delS % 3600) / 60), dS = Math.floor(delS % 60)
+      return [
+        { lbl: 'Afstand van de zon', val: fmtNL(km) + ' km', pulse: true },
+        { lbl: 'Signaalvertraging',  val: `${dH}u ${dM}m ${dS}s` },
+        { lbl: 'Reissnelheid',       val: r.speedKmS.toFixed(3) + ' km/s' },
+      ]
+    }
+    case 'perseverance': {
+      const r   = LIVE_REF.perseverance
+      const sec = (now - r.landedMs) / 1000
+      return [
+        { lbl: 'Marssols actief',    val: fmtNL(Math.floor(sec / r.solS)) + ' sols', pulse: true },
+        { lbl: 'Aardse dagen',       val: fmtNL(Math.floor(sec / 86400)) + ' dagen' },
+      ]
+    }
+    case 'curiosity': {
+      const r   = LIVE_REF.curiosity
+      const sec = (now - r.landedMs) / 1000
+      return [
+        { lbl: 'Marssols actief',    val: fmtNL(Math.floor(sec / r.solS)) + ' sols', pulse: true },
+        { lbl: 'Aardse dagen',       val: fmtNL(Math.floor(sec / 86400)) + ' dagen' },
+      ]
+    }
+    case 'jwst': {
+      const sec = (now - LIVE_REF.jwst.launchedMs) / 1000
+      const d   = Math.floor(sec / 86400), h = Math.floor((sec % 86400) / 3600)
+      return [
+        { lbl: 'Actief in de ruimte', val: fmtNL(d) + ' dagen', pulse: true },
+        { lbl: 'Huidige operatieduur', val: `${fmtNL(d)}d ${h}u` },
+      ]
+    }
+    case 'juice': {
+      const r    = LIVE_REF.juice
+      const sec  = (now - r.launchedMs) / 1000
+      const toGo = Math.max(0, Math.floor((r.jupiterMs - now) / 86400000))
+      return [
+        { lbl: 'Onderweg',              val: fmtNL(Math.floor(sec / 86400)) + ' dagen', pulse: true },
+        { lbl: 'Nog tot Jupiter (est)', val: fmtNL(toGo) + ' dagen' },
+      ]
+    }
+    default: return null
+  }
+}
+
+function buildLiveHTML(stats) {
+  return `<div class="dlive">
+    <div class="dlive-title"><span class="dlive-pulse"></span>Live statistieken</div>
+    ${stats.map((s, i) => `<div class="dlive-row"><span class="dlive-lbl">${s.lbl}</span><span class="dlive-val" id="dlv-${i}">${s.val}</span></div>`).join('')}
+  </div>`
+}
+
+function startLiveTicker(id) {
+  if (liveInterval) { clearInterval(liveInterval); liveInterval = null }
+  const stats = getLiveStats(id)
+  if (!stats) return
+  liveInterval = setInterval(() => {
+    const fresh = getLiveStats(id)
+    if (!fresh) return
+    fresh.forEach((s, i) => {
+      const el = document.getElementById(`dlv-${i}`)
+      if (el) el.textContent = s.val
+    })
+  }, 1000)
+}
+
 function renderDetail(id) {
   const m = MISSIONS.find(x => x.id===id)
   if (!m) return
+  const stats    = getLiveStats(id)
+  const liveHtml = stats ? buildLiveHTML(stats) : ''
   document.getElementById('dcontent').innerHTML = `
     <div class="dhero fi">
       <div class="dhero-bg" style="background:linear-gradient(135deg,${m.bgfrom},${m.bgto})"></div>
@@ -976,6 +1074,7 @@ function renderDetail(id) {
       <h2 class="dtit">${m.name}</h2>
       <span class="sb ${m.status}" style="margin-bottom:14px;display:inline-flex">${m.status}</span>
       <p class="ddesc">${m.desc}</p>
+      ${liveHtml}
       <div class="dmg">
         <div class="dmi"><div class="dml">Lancering</div><div class="dmv">${m.launched_meta}</div></div>
         <div class="dmi"><div class="dml">Bestemming</div><div class="dmv">${m.dest_meta}</div></div>
@@ -986,11 +1085,13 @@ function renderDetail(id) {
     </div>
   `
   document.getElementById('dpanel').classList.add('open')
+  startLiveTicker(id)
 }
 
 function closeDp() {
   document.getElementById('dpanel').classList.remove('open')
   document.querySelectorAll('.mi').forEach(e=>e.classList.remove('sel'))
+  if (liveInterval) { clearInterval(liveInterval); liveInterval = null }
   selId = null
 }
 function resetCam() {
