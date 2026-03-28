@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { MISSIONS, type MissionDetail as Mission, type MissionStatus } from '@/lib/missions-data'
 
 const SolarSystemMap = dynamic(() => import('./SolarSystemMap'), {
   ssr: false,
@@ -29,81 +30,7 @@ interface Article {
   imageUrl?: string
 }
 
-// ── Missions data ──────────────────────────────────────────────────────────
-type MissionStatus = 'actief' | 'gepland' | 'voltooid'
-interface Mission {
-  id:          string
-  name:        string
-  agency:      string
-  agencyColor: string
-  status:      MissionStatus
-  launched:    string
-  objective:   string
-  body:        string
-  highlight:   string
-  icon:        string
-  bgFrom:      string
-  bgTo:        string
-}
-
-const MISSIONS: Mission[] = [
-  {
-    id: 'starship', name: 'SpaceX Starship', agency: 'SpaceX', agencyColor: '#3dcfdf',
-    status: 'actief', launched: 'IFT-7 · Mrt 2026',
-    objective: 'Volledig herbruikbare super-heavy raket testen voor Maan & Mars-missies.',
-    body: 'Aardebaan', highlight: 'Mechazilla-arm ving booster op bij IFT-7',
-    icon: '🚀', bgFrom: '#040e14', bgTo: '#0a2030',
-  },
-  {
-    id: 'artemis', name: 'NASA Artemis II', agency: 'NASA', agencyColor: '#378ADD',
-    status: 'gepland', launched: 'Q4 2026',
-    objective: 'Eerste bemande vlucht rond de Maan sinds Apollo 17 (1972).',
-    body: 'Maan', highlight: 'Vier astronauten vliegen de Orion capsule',
-    icon: '🌕', bgFrom: '#080812', bgTo: '#141430',
-  },
-  {
-    id: 'perseverance', name: 'Mars 2020 Perseverance', agency: 'NASA', agencyColor: '#378ADD',
-    status: 'actief', launched: '30 jul 2020',
-    objective: 'Zoeken naar tekenen van vroeger microbieel leven in Jezero-krater.',
-    body: 'Mars', highlight: 'Heeft >23 rotsmonsters verzameld voor toekomstige terugreis',
-    icon: '🤖', bgFrom: '#140804', bgTo: '#281408',
-  },
-  {
-    id: 'jwst', name: 'James Webb ST', agency: 'NASA / ESA / CSA', agencyColor: '#c080ff',
-    status: 'actief', launched: '25 dec 2021',
-    objective: 'Infrarood telescoop in L2-punt — het vroegste heelal en exoplaneet-atmosferen.',
-    body: 'L2-punt', highlight: 'Detecteerde mogelijke biosignaturen op K2-18b',
-    icon: '🔭', bgFrom: '#08041a', bgTo: '#120828',
-  },
-  {
-    id: 'smile', name: 'ESA SMILE', agency: 'ESA / CAS', agencyColor: '#ffa040',
-    status: 'gepland', launched: '9 apr 2026',
-    objective: 'Solar wind–Magnetosphere–Ionosphere Link Explorer: sondeert aardse magneetsfeer.',
-    body: 'Aardebaan (elliptisch)', highlight: 'Eerste satelliet die auroragebieden simultaan in beeld brengt',
-    icon: '🛰️', bgFrom: '#0e0a04', bgTo: '#1e1408',
-  },
-  {
-    id: 'juice', name: 'ESA JUICE', agency: 'ESA', agencyColor: '#ffa040',
-    status: 'actief', launched: '14 apr 2023',
-    objective: 'Jupiter Icy Moons Explorer — onderzoekt Europa, Ganymede en Callisto op bewoonbaarheid.',
-    body: 'Jupiter-stelsel', highlight: 'Arriveert in 2031 bij Jupiter na Venus+Aarde-zwaartekrachtassist',
-    icon: '🪐', bgFrom: '#0c0a04', bgTo: '#1a160a',
-  },
-  {
-    id: 'curiosity', name: 'MSL Curiosity', agency: 'NASA', agencyColor: '#378ADD',
-    status: 'actief', launched: '26 nov 2011',
-    objective: 'Onderzoekt geologische geschiedenis van Gale-krater op Mars.',
-    body: 'Mars', highlight: 'Meer dan 4400 Mars-dagen actief — recordhouder',
-    icon: '🤖', bgFrom: '#140a04', bgTo: '#241408',
-  },
-  {
-    id: 'voyager1', name: 'Voyager 1', agency: 'NASA', agencyColor: '#378ADD',
-    status: 'actief', launched: '5 sep 1977',
-    objective: 'Verkenning buitenste planeten, nu door interstellaire ruimte.',
-    body: 'Interstellair', highlight: 'Verst object door mensen gemaakt — >24 miljard km van de Zon',
-    icon: '🌌', bgFrom: '#04060e', bgTo: '#080c18',
-  },
-]
+// MISSIONS and MissionStatus are imported from @/lib/missions-data
 
 const STATUS_STYLE: Record<MissionStatus, { bg: string; color: string; label: string }> = {
   actief:   { bg: 'rgba(61,223,144,0.15)',  color: '#3ddf90', label: 'Actief' },
@@ -356,6 +283,7 @@ function MissionCard({ mission }: { mission: Mission }) {
   const [hovered, setHovered] = useState(false)
   const st = STATUS_STYLE[mission.status]
   return (
+    <Link href={`/missies/${mission.id}`} style={{ textDecoration: 'none', display: 'block' }}>
     <article
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -409,7 +337,12 @@ function MissionCard({ mission }: { mission: Mission }) {
         </svg>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#8A9BC4', lineHeight: 1.55 }}>{mission.highlight}</span>
       </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 4, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: mission.agencyColor, opacity: 0.7 }}>
+        Lees meer
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      </div>
     </article>
+    </Link>
   )
 }
 
