@@ -190,6 +190,12 @@ function MissiesHero() {
     <section aria-labelledby="hero-title" style={{ position: 'relative', zIndex: 1, minHeight: '75vh', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(145deg, #04060f 0%, #0a0e1e 40%, #060c18 70%, #04080e 100%)' }} />
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(37,40,88,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(37,40,88,0.35) 1px, transparent 1px)', backgroundSize: '60px 60px', maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.5) 70%, transparent 100%)' }} />
+      {/* Planet — upper right, partially offscreen */}
+      <div aria-hidden="true" style={{ position: 'absolute', right: '-10%', top: '-22%', width: 'clamp(280px, 52vw, 720px)', height: 'clamp(280px, 52vw, 720px)', borderRadius: '50%', background: 'radial-gradient(circle at 33% 40%, #0d1b2e 0%, #060d1a 48%, #030609 100%)', pointerEvents: 'none' }} />
+      {/* Planet atmosphere / rim light */}
+      <div aria-hidden="true" style={{ position: 'absolute', right: '-10%', top: '-22%', width: 'clamp(280px, 52vw, 720px)', height: 'clamp(280px, 52vw, 720px)', borderRadius: '50%', boxShadow: 'inset -22px 18px 80px rgba(55,138,221,0.18), inset -45px 35px 130px rgba(30,70,160,0.09)', pointerEvents: 'none' }} />
+      {/* Nebula wisps — upper half */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 46% 32% at 28% 14%, rgba(55,138,221,0.08) 0%, transparent 70%), radial-gradient(ellipse 20% 36% at 10% 28%, rgba(192,128,255,0.06) 0%, transparent 65%), radial-gradient(ellipse 30% 18% at 50% 6%, rgba(61,207,223,0.05) 0%, transparent 75%)', pointerEvents: 'none' }} />
       {/* Decorative orbit rings */}
       <div aria-hidden="true" style={{ position: 'absolute', right: '4%', top: '50%', transform: 'translateY(-50%)', width: 540, height: 540, borderRadius: '50%', border: '1px solid rgba(55,138,221,0.1)', pointerEvents: 'none' }} />
       <div aria-hidden="true" style={{ position: 'absolute', right: '8%', top: '50%', transform: 'translateY(-50%)', width: 370, height: 370, borderRadius: '50%', border: '1px solid rgba(61,207,223,0.09)', pointerEvents: 'none' }} />
