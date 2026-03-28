@@ -5,7 +5,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { MISSIONS, type MissionDetail as Mission, type MissionStatus } from '@/lib/missions-data'
 
-const SolarSystemMap = dynamic(() => import('./SolarSystemMap'), {
+const SolarSystemMap    = dynamic(() => import('./SolarSystemMap'), {
   ssr: false,
   loading: () => (
     <div style={{ height: 560, background: '#12132A', border: '1px solid #252858', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -13,6 +13,7 @@ const SolarSystemMap = dynamic(() => import('./SolarSystemMap'), {
     </div>
   ),
 })
+const MissionTimeline   = dynamic(() => import('./MissionTimeline'), { ssr: false })
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -523,6 +524,9 @@ export default function MissiesPage() {
           </div>
           <SolarSystemMap />
         </section>
+
+        {/* ── Mission launch timeline ───────────────────────────── */}
+        <MissionTimeline />
 
         {/* ── All missions ─────────────────────────────────────────── */}
         <section aria-labelledby="missies-label" id="alle-missies" style={{ marginBottom: 80 }}>
