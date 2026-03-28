@@ -25,8 +25,9 @@ const EVENTS: TLEvent[] = [
   { id: 'curiosity',    abbr: 'Curiosity',    icon: '🤖', date: new Date(2011, 10, 26), color: '#378ADD', above: true,  extraUp: false },
   { id: 'perseverance', abbr: 'Perseverance', icon: '🤖', date: new Date(2020,  6, 30), color: '#4fa6e8', above: false, extraUp: false },
   { id: 'jwst',         abbr: 'James Webb',   icon: '🔭', date: new Date(2021, 11, 25), color: '#c080ff', above: true,  extraUp: false },
-  { id: 'juice',        abbr: 'JUICE',        icon: '🪐', date: new Date(2023,  3, 14), color: '#ffa040', above: false, extraUp: false },
-  { id: 'starship',     abbr: 'Starship',     icon: '🚀', date: new Date(2026,  2,  1), color: '#3dcfdf', above: true,  extraUp: true  },
+  { id: 'juice',          abbr: 'JUICE',          icon: '🪐', date: new Date(2023,  3, 14), color: '#ffa040', above: false, extraUp: false },
+  { id: 'europa-clipper', abbr: 'Europa Clipper', icon: '🌊', date: new Date(2024,  9, 14), color: '#378ADD', above: true,  extraUp: false },
+  { id: 'starship',       abbr: 'Starship',       icon: '🚀', date: new Date(2026,  2,  1), color: '#3dcfdf', above: true,  extraUp: true  },
   { id: 'smile',        abbr: 'SMILE',        icon: '🛰️', date: new Date(2026,  3,  9), color: '#ffa040', above: true,  extraUp: false },
   { id: 'artemis',      abbr: 'Artemis II',   icon: '🌕', date: new Date(2026,  9,  1), color: '#378ADD', above: false, extraUp: false },
 ]
