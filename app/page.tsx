@@ -996,6 +996,100 @@ function daysUntil(dateStr: string): number {
   return Math.ceil((target.getTime() - now.getTime()) / 86_400_000)
 }
 
+// ── This week widget ───────────────────────────────────────────────────────
+function ThisWeekWidget() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  const upcoming = SPACE_EVENTS
+    .map(e => ({ ...e, days: daysUntil(e.date) }))
+    .filter(e => e.days >= 0)
+    .sort((a, b) => a.days - b.days)
+    .slice(0, 3)
+
+  const first = upcoming[0]?.days ?? 999
+  const heading =
+    first <= 7  ? 'Deze week in de sterrenkunde' :
+    first <= 31 ? 'Deze maand in de sterrenkunde' :
+                  'Binnenkort in de sterrenkunde'
+
+  if (!upcoming.length) return null
+
+  return (
+    <div role="region" aria-labelledby="thisweek-title" style={{ border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
+      {/* Header */}
+      <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span aria-hidden="true">🗓️</span>
+        <span id="thisweek-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4' }}>
+          {mounted ? heading : 'Binnenkort in de sterrenkunde'}
+        </span>
+      </div>
+
+      {/* Event rows */}
+      {upcoming.map((ev, i) => {
+        const clr    = CAT_COLORS[ev.cat] ?? '#8A9BC4'
+        const urgent = ev.days <= 7
+        const dayBadge =
+          ev.days === 0 ? 'VANDAAG' :
+          ev.days === 1 ? 'MORGEN'  :
+          `${ev.days}d`
+        const badgeColor = urgent ? '#e05040' : clr
+        const badgeBg    = urgent ? 'rgba(224,80,64,0.10)' : `${clr}14`
+
+        return (
+          <div key={ev.id} style={{ padding: '13px 20px', borderBottom: i < upcoming.length - 1 ? '1px solid #1e1f42' : 'none', transition: 'background 0.2s' }}
+            onMouseEnter={e => (e.currentTarget.style.background = 'rgba(37,40,88,0.35)')}
+            onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+          >
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 11 }}>
+              {/* Icon */}
+              <span style={{ fontSize: '1.15rem', lineHeight: 1, flexShrink: 0, marginTop: 1 }} aria-hidden="true">{ev.icon}</span>
+
+              {/* Body */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {/* Title + badge */}
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.2 }}>{ev.title}</span>
+                  {mounted && (
+                    <span style={{ flexShrink: 0, fontFamily: 'var(--font-mono)', fontSize: '0.44rem', letterSpacing: '0.08em', color: badgeColor, background: badgeBg, border: `1px solid ${badgeColor}30`, padding: '2px 6px', borderRadius: 2, whiteSpace: 'nowrap' }}>
+                      {dayBadge}
+                    </span>
+                  )}
+                </div>
+
+                {/* Category + date */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
+                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: clr, flexShrink: 0, display: 'block' }} aria-hidden="true" />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.45rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: clr }}>{ev.cat}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.45rem', color: '#4A5A8A' }}>·</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.45rem', color: '#4A5A8A' }}>
+                    {new Date(ev.date + 'T12:00:00Z').toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p style={{ fontSize: '0.72rem', color: '#6A7BAA', lineHeight: 1.55, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{ev.desc}</p>
+              </div>
+            </div>
+          </div>
+        )
+      })}
+
+      {/* Footer */}
+      <div style={{ borderTop: '1px solid #252858', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060' }}>Lanceringen & verschijnselen</span>
+        <Link href="/missies"
+          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, transition: 'color 0.15s' }}
+          onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+          onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
+        >
+          Alle evenementen →
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 function EventCountdownStrip() {
   const [now, setNow] = useState(0)
   useEffect(() => { setNow(Date.now()) }, [])
@@ -1440,6 +1534,7 @@ export default function HomePage() {
           {/* Right: sticky sidebar */}
           <aside aria-label="Widgets" className="sidebar-grid" style={{ position: 'sticky', top: 'calc(var(--nav-h) + 24px)', alignSelf: 'start' }}>
             <StargazingWidget />
+            <ThisWeekWidget />
             <DailyQuizWidget />
             <ISSWidget iss={iss} />
             <APODWidget apod={apod} />
