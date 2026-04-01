@@ -25,16 +25,25 @@ jobs:
           NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
         run: npm run build
 
-      - name: 🔧 Artikel slugs als index.html mappen
+      - name: 🔧 Pagina's en artikel slugs als index.html mappen
         run: |
-          cd out/nieuws
+          # Top-level pagina's (educatie, missies, sterrenkijken, etc.)
+          cd out
+          for f in *.html; do
+            [[ "$f" == "index.html" || "$f" == "404.html" || "$f" == "500.html" ]] && continue
+            slug="${f%.html}"
+            mkdir -p "$slug"
+            [[ -f "$slug/index.html" ]] || cp "$f" "$slug/index.html"
+          done
+          # Nieuws artikel slugs
+          cd nieuws
           for f in *.html; do
             slug="${f%.html}"
             mkdir -p "$slug"
             cp "$f" "$slug/index.html"
           done
 
-      - name: 📁 Deploy via FTPS
+      - name: 📁 Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server:      ${{ secrets.FTP_HOST }}
@@ -49,3 +58,9 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
+
+      - name: ☁️ Deploy Cloudflare Worker
+        working-directory: cf-worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler deploy

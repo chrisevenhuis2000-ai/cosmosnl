@@ -44,14 +44,17 @@ const CAT_BG = {
 }
 
 function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---/)
+  // Normalise line endings (files may have \r\n on Windows)
+  const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+  const match = normalised.match(/^---\n([\s\S]*?)\n---/)
   if (!match) return {}
   const fm = {}
   match[1].split('\n').forEach(line => {
-    const [key, ...rest] = line.split(':')
-    if (key && rest.length) {
-      fm[key.trim()] = rest.join(':').trim().replace(/^["']|["']$/g, '')
-    }
+    const colonIdx = line.indexOf(':')
+    if (colonIdx === -1) return
+    const key = line.slice(0, colonIdx).trim()
+    const val = line.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '')
+    if (key) fm[key] = val
   })
   return fm
 }
