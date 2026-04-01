@@ -509,7 +509,7 @@ export default function HomePage() {
               Recent
               <div style={{ flex: 1, height: 1, background: '#1c2035' }} />
             </div>
-            {articles.map((a, i) => (
+            {articles.slice(0, 12).map((a, i) => (
               <div key={i} onClick={() => window.location.href = `/nieuws/${a.slug}`}
                 style={{ display: 'grid', gridTemplateColumns: '72px 1fr', gap: 16, padding: '18px 0', borderBottom: '1px solid #1c2035', cursor: 'pointer' }}>
                 <div style={{ width: 72, height: 72, background: a.bgColor, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', flexShrink: 0 }}>{a.emoji}</div>
