@@ -53,6 +53,7 @@ jobs:
           local-dir:   ./out/
           server-dir:  /nightgazer.space/
           dangerous-clean-slate: false
+          timeout:     60000
           exclude: |
             **/.git*
             **/.git*/**
