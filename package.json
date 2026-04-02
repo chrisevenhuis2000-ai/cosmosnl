@@ -10,7 +10,7 @@
     "fetch-articles": "node scripts/fetch-articles.js",
     "backfill-images": "node scripts/backfill-images.js",
     "type-check": "tsc --noEmit",
-    "prebuild": "node scripts/generate-index.js && mkdir -p public/content/articles && cp content/articles/*.md public/content/articles/"
+    "prebuild": "node scripts/generate-index.js && node scripts/generate-sitemap.js && mkdir -p public/content/articles && cp content/articles/*.md public/content/articles/"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",

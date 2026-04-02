@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://nightgazer.space'),
   title:       { default: 'NightGazer — Astronomie voor Iedereen', template: '%s | NightGazer' },
   description: 'Nederlandstalig astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.',
   keywords:    ['astronomie', 'ruimtevaart', 'NASA', 'sterrenkijken', 'JWST', 'ruimte nieuws', 'nightgazer'],
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     siteName: 'NightGazer',
     locale:   'nl_NL',
     type:     'website',
+    images:   [{ url: '/og-image.png', width: 1200, height: 630, alt: 'NightGazer — Astronomie voor Iedereen' }],
   },
   twitter: { card: 'summary_large_image' },
 }
