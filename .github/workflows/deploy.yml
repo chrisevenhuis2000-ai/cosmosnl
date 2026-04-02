@@ -21,7 +21,6 @@ jobs:
 
       - name: 🔨 Statische build maken
         env:
-          NEXT_PUBLIC_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
         run: npm run build
 
