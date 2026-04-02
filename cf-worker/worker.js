@@ -1,11 +1,20 @@
-const ALLOWED_ORIGIN = 'https://stargazing.crixium.net'
+const ALLOWED_ORIGINS = [
+  'https://nightgazer.space',
+  'https://www.nightgazer.space',
+  'https://stargazing.crixium.net',  // legacy — remove after migration
+]
 
-function cors(body, status = 200, extra = {}) {
+function getAllowedOrigin(request) {
+  const origin = request.headers.get('Origin') || ''
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+}
+
+function cors(request, body, status = 200, extra = {}) {
   return new Response(body, {
     status,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      'Access-Control-Allow-Origin': getAllowedOrigin(request),
       ...extra,
     },
   })
@@ -19,7 +28,7 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         headers: {
-          'Access-Control-Allow-Origin':  ALLOWED_ORIGIN,
+          'Access-Control-Allow-Origin':  getAllowedOrigin(request),
           'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type, x-api-key, anthropic-version',
           'Access-Control-Max-Age':       '86400',
@@ -61,7 +70,7 @@ export default {
               }
               const photographer = item?.data?.[0]?.photographer ?? ''
               const center       = item?.data?.[0]?.center ?? 'NASA'
-              return cors(JSON.stringify({
+              return cors(request, JSON.stringify({
                 url:    href,
                 credit: photographer ? `${photographer} / ${center}` : center,
                 source: 'nasa',
@@ -94,7 +103,7 @@ export default {
                     const alt = (photo.alt || '').toLowerCase()
                     if (!qTerms.some(t => alt.includes(t))) continue
                   }
-                  return cors(JSON.stringify({
+                  return cors(request, JSON.stringify({
                     url:    imgUrl,
                     credit: `${photo.photographer} / Pexels`,
                     source: 'pexels',
@@ -106,7 +115,7 @@ export default {
         } catch { /* fall through */ }
       }
 
-      return cors(JSON.stringify({ url: null, credit: null }), 404)
+      return cors(request, JSON.stringify({ url: null, credit: null }), 404)
     }
 
     // ── POST / → Anthropic proxy (existing) ──────────────────────────────
@@ -122,9 +131,9 @@ export default {
         body: JSON.stringify(body),
       })
       const data = await response.json()
-      return cors(JSON.stringify(data))
+      return cors(request, JSON.stringify(data))
     }
 
-    return cors(JSON.stringify({ error: 'Not found' }), 404)
+    return cors(request, JSON.stringify({ error: 'Not found' }), 404)
   },
 }

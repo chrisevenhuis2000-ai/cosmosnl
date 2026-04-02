@@ -58,7 +58,7 @@ const LEVEL_COLORS: Record<ReadingLevel, { border: string; bg: string; text: str
   pro:      { border: '#2a3a8a', bg: 'rgba(42,58,138,0.08)', text: '#a0b4ff',  dot: '#3dcfdf' },
 }
 
-const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+const PROXY = 'https://api.nightgazer.space'
 const IMG   = (url: string, w = 800, h = 450) =>
   `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${w}&h=${h}&fit=cover`
 

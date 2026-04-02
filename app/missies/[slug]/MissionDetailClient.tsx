@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { getMissionBySlug, MISSIONS } from '@/lib/missions-data'
 
-const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+const PROXY = 'https://api.nightgazer.space'
 
 interface Article {
   slug:      string

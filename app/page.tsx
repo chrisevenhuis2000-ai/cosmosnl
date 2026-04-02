@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 
-const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+const PROXY = 'https://api.nightgazer.space'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface APODData {
