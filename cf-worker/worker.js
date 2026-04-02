@@ -36,11 +36,13 @@ export default {
       })
     }
 
-    // ── GET /image-search?q=...&page=1&hash=12345 ─────────────────────────
+    // ── GET /image-search?q=...&page=1&hash=12345&exclude=url1,url2 ──────
     if (request.method === 'GET' && url.pathname === '/image-search') {
-      const q    = url.searchParams.get('q')    || 'space astronomy'
-      const page = Math.max(1, parseInt(url.searchParams.get('page') || '1'))
-      const hash = Math.abs(parseInt(url.searchParams.get('hash') || '0'))
+      const q       = url.searchParams.get('q')    || 'space astronomy'
+      const page    = Math.max(1, parseInt(url.searchParams.get('page') || '1'))
+      const hash    = Math.abs(parseInt(url.searchParams.get('hash') || '0'))
+      // Excluded URLs passed by client to prevent duplicate images across articles
+      const exclude = new Set((url.searchParams.get('exclude') || '').split(',').filter(Boolean))
 
       // 1. NASA Images API (primary — most relevant for space/astronomy content)
       try {
@@ -50,20 +52,21 @@ export default {
         if (res.ok) {
           const data   = await res.json()
           const items  = data?.collection?.items || []
-          const qTerms = q.toLowerCase().split(/\s+/).filter(t => t.length > 2)
+          const qTerms = q.toLowerCase().split(/\s+/).filter(t => t.length > 3)
           const start  = hash % (items.length || 1)
           for (let pass = 0; pass < 2; pass++) {
             for (let i = 0; i < items.length; i++) {
               const item = items[(start + i) % items.length]
               const href = item?.links?.[0]?.href ?? ''
               if (!href || !/\.(jpg|jpeg|png|webp)/i.test(href)) continue
+              // Skip excluded URLs
+              if (exclude.has(href)) continue
               if (pass === 0 && qTerms.length > 0) {
                 const meta = [
                   item?.data?.[0]?.title ?? '',
                   item?.data?.[0]?.description ?? '',
                   (item?.data?.[0]?.keywords ?? []).join(' '),
                 ].join(' ').toLowerCase()
-                // Require at least 2 matching terms (or 1 if query has ≤2 terms) for pass 0
                 const matchCount = qTerms.filter(t => meta.includes(t)).length
                 const threshold  = qTerms.length <= 2 ? 1 : 2
                 if (matchCount < threshold) continue
@@ -85,20 +88,21 @@ export default {
       if (pexelsKey) {
         try {
           const res = await fetch(
-            `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&per_page=15&page=${page}&orientation=landscape`,
+            `https://api.pexels.com/v1/search?query=${encodeURIComponent(q)}&per_page=20&page=${page}&orientation=landscape`,
             { headers: { Authorization: pexelsKey } },
           )
           if (res.ok) {
             const data    = await res.json()
             const photos  = data?.photos || []
             if (photos.length > 0) {
-              const qTerms = q.toLowerCase().split(/\s+/).filter(t => t.length > 2)
+              const qTerms = q.toLowerCase().split(/\s+/).filter(t => t.length > 3)
               const start  = hash % photos.length
               for (let pass = 0; pass < 2; pass++) {
                 for (let i = 0; i < photos.length; i++) {
                   const photo = photos[(start + i) % photos.length]
                   const imgUrl = photo?.src?.large2x || photo?.src?.large
                   if (!imgUrl) continue
+                  if (exclude.has(imgUrl)) continue
                   if (pass === 0 && qTerms.length > 0) {
                     const alt = (photo.alt || '').toLowerCase()
                     if (!qTerms.some(t => alt.includes(t))) continue

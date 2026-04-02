@@ -3,6 +3,44 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 
+const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+
+const STOP_WORDS = new Set([
+  'a','an','the','of','in','to','for','on','at','by','from','and','or',
+  'with','is','are','was','its','it','as','be','do','go','up','no','so',
+  'if','live','coverage','how','nasa','esas','nasas','makes','made',
+  'launches','launched','ready','new','returns','first','second','next',
+  'last','latest','update','updates','finds','found','blog','data',
+  'will','has','have','had','this','that','then','than','when','where','which',
+])
+
+const CAT_QUERIES: Record<string, string> = {
+  'missies':       'rocket launch space exploration',
+  'missions':      'rocket launch space exploration',
+  'james-webb':    'james webb space telescope deep field',
+  'kosmologie':    'galaxy nebula deep space hubble',
+  'cosmology':     'galaxy nebula deep space cosmos',
+  'mars':          'mars surface red planet rover landscape',
+  'sterrenkijken': 'night sky stars observatory telescope',
+  'observing':     'telescope observatory stars milky way',
+  'educatie':      'astronaut earth orbit international space station',
+  'education':     'astronaut earth orbit space station',
+}
+
+function slugHash(s: string): number {
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0
+  return Math.abs(h)
+}
+
+function buildQuery(title: string, excerpt: string, category: string): string {
+  const text = `${title} ${excerpt}`.toLowerCase().replace(/[''`'"]/g, '').replace(/[^a-z0-9\s-]/g, ' ')
+  const keywords = text.split(/\s+/).filter(w => w.length > 3 && !STOP_WORDS.has(w)).slice(0, 4)
+  if (keywords.length >= 2) return keywords.join(' ')
+  const cat = category?.toLowerCase() || ''
+  return CAT_QUERIES[cat] || 'space astronomy cosmos'
+}
+
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Article {
   slug:        string
@@ -244,13 +282,59 @@ export default function NieuwsClient() {
   const [articles,    setArticles]    = useState<Article[]>([])
   const [filter,      setFilter]      = useState('Alles')
   const [visibleCount,setVisibleCount]= useState(18)
+  const fetchedRef  = useRef<Set<string>>(new Set())
+  const usedUrls    = useRef<Set<string>>(new Set())
 
+  // Load article index
   useEffect(() => {
     fetch('/content/articles-index.json')
       .then(r => r.json())
-      .then((data: Article[]) => { if (Array.isArray(data)) setArticles(data) })
+      .then((data: Article[]) => {
+        if (Array.isArray(data)) {
+          setArticles(data)
+          // Pre-populate usedUrls with already-known images to avoid duplicates
+          data.forEach(a => { if (a.imageUrl) usedUrls.current.add(a.imageUrl) })
+        }
+      })
       .catch(() => {})
   }, [])
+
+  // Fetch images for articles without one — staggered to avoid overwhelming the worker
+  useEffect(() => {
+    const toFetch = articles.filter(a => !a.imageUrl && !fetchedRef.current.has(a.slug)).slice(0, 20)
+    if (!toFetch.length) return
+    toFetch.forEach(a => fetchedRef.current.add(a.slug))
+
+    toFetch.forEach(async (a, idx) => {
+      // Stagger requests: 150ms apart so the worker doesn't get hammered
+      await new Promise(r => setTimeout(r, idx * 150))
+
+      const hash  = slugHash(a.slug)
+      // Spread across 8 pages for much more variety
+      const page  = (hash % 8) + 1
+      const q1    = buildQuery(a.title, a.excerpt, a.category)
+      const cat   = (a.category || '').toLowerCase()
+      const q2    = CAT_QUERIES[cat] || 'space astronomy cosmos'
+      const queries = q1 !== q2 ? [q1, q2] : [q1]
+
+      for (const q of queries) {
+        for (const pg of [page, ((page % 8) + 1)]) {
+          try {
+            // Send up to 10 already-used URLs so the worker can skip them
+            const excludeParam = [...usedUrls.current].slice(0, 10).join(',')
+            const res = await fetch(`${PROXY}/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}&exclude=${encodeURIComponent(excludeParam)}`)
+            if (!res.ok) continue
+            const data = await res.json()
+            if (!data?.url) continue
+            if (usedUrls.current.has(data.url)) continue
+            usedUrls.current.add(data.url)
+            setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: data.url } : p))
+            return
+          } catch {}
+        }
+      }
+    })
+  }, [articles])
 
   const filtered = filter === 'Alles'
     ? articles

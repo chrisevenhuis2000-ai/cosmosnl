@@ -1354,13 +1354,17 @@ export default function HomePage() {
 
     const toFetch = articles
       .filter(a => !a.imageUrl && !nasaFetchedRef.current.has(a.slug))
-      .slice(0, 15)
+      .slice(0, 20)
     if (!toFetch.length) return
     toFetch.forEach(a => nasaFetchedRef.current.add(a.slug))
 
-    toFetch.forEach(async (a) => {
+    toFetch.forEach(async (a, idx) => {
+      // Stagger requests 150ms apart
+      await new Promise(r => setTimeout(r, idx * 150))
+
       const hash = a.slug.split('').reduce((acc: number, c: string) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
-      const page = (hash % 3) + 1
+      // Spread across 8 pages for much more variety
+      const page = (hash % 8) + 1
 
       const titleKeywords = (a.title || a.slug.replace(/-/g, ' '))
         .toLowerCase()
@@ -1371,9 +1375,9 @@ export default function HomePage() {
         .filter((w: string) => {
           if (!w || w.length < 2) return false
           if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true
-          return w.length > 2 && !STOP.has(w)
+          return w.length > 3 && !STOP.has(w)
         })
-        .slice(0, 5)
+        .slice(0, 4)
         .join(' ')
 
       const cat      = (a.category || '').toLowerCase()
@@ -1381,7 +1385,7 @@ export default function HomePage() {
       const queries  = [titleKeywords, catQuery].filter(Boolean)
 
       for (const q of queries) {
-        for (const pg of [page, 1]) {
+        for (const pg of [page, ((page % 8) + 1)]) {
           try {
             const res = await fetch(
               `${PROXY}/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}`
