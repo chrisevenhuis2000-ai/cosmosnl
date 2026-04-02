@@ -51,6 +51,15 @@ const CAT_COLORS: Record<string, string> = {
   'default':       '#7aadff',
 }
 
+const CATEGORY_TO_MISSION: Record<string, { slug: string; name: string; icon: string; agency: string; agencyColor: string }> = {
+  'james-webb':  { slug: 'jwst',          name: 'James Webb',       icon: '🔭', agency: 'NASA/ESA', agencyColor: '#7aadff' },
+  'jwst':        { slug: 'jwst',          name: 'James Webb',       icon: '🔭', agency: 'NASA/ESA', agencyColor: '#7aadff' },
+  'missies':     { slug: 'starship',      name: 'SpaceX Starship',  icon: '🚀', agency: 'SpaceX',   agencyColor: '#3dcfdf' },
+  'mars':        { slug: 'perseverance',  name: 'Perseverance',     icon: '🤖', agency: 'NASA',     agencyColor: '#ff8a60' },
+  'artemis':     { slug: 'artemis',       name: 'Artemis',          icon: '🌙', agency: 'NASA',     agencyColor: '#3ddf90' },
+  'kosmologie':  { slug: 'jwst',          name: 'James Webb',       icon: '🔭', agency: 'NASA/ESA', agencyColor: '#7aadff' },
+}
+
 const LEVEL_COLORS: Record<ReadingLevel, { border: string; bg: string; text: string; dot: string }> = {
   original: { border: '#252858', bg: 'transparent',          text: '#FFFFFF',  dot: '#4A5A8A' },
   beginner: { border: '#c4390a', bg: 'rgba(196,57,10,0.08)', text: '#ffb4a0',  dot: '#e05040' },
@@ -244,6 +253,29 @@ function LevelToggle({ level, loading, onChange }: {
   )
 }
 
+// ── Observable card ───────────────────────────────────────────────────────
+
+const OBSERVABLE_TAGS = ['meteorenregen', 'maansverduistering', 'komeet', 'conjunctie', 'zonsverduistering', 'aurora', 'noorderlicht', 'meteoor']
+
+function ObservableCard({ tags }: { tags: string[] }) {
+  const isObservable = tags.some(t => OBSERVABLE_TAGS.some(ot => t.toLowerCase().includes(ot)))
+  if (!isObservable) return null
+  return (
+    <div style={{ background: 'rgba(61,207,144,0.08)', border: '1px solid rgba(61,207,144,0.25)', borderRadius: 6, padding: '16px 20px', marginBottom: 24, display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+      <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>🔭</span>
+      <div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 6 }}>Zelf te zien</div>
+        <div style={{ fontSize: '0.85rem', color: '#c0e8d4', lineHeight: 1.5, marginBottom: 10 }}>
+          Dit verschijnsel is (mogelijk) met het blote oog of een telescoop te zien vanuit Nederland.
+        </div>
+        <a href="/sterrenkijken" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#3ddf90', textDecoration: 'none' }}>
+          Bekijk kijkomstandigheden →
+        </a>
+      </div>
+    </div>
+  )
+}
+
 // ── Paragraph block ────────────────────────────────────────────────────────
 
 function Para({ text, isRewritten, level, loading, isLead }: {
@@ -268,9 +300,29 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
   currentSlug: string
 }) {
   const minsLeft = Math.max(1, Math.round(article.readTime * (1 - readProgress / 100)))
+  const relatedMission = CATEGORY_TO_MISSION[article.category?.toLowerCase() || '']
 
   return (
     <aside style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+      {/* Gerelateerde Missie */}
+      {relatedMission && (
+        <a href={`/missies/${relatedMission.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+          <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden', transition: 'border-color 0.15s' }}
+               onMouseEnter={e => (e.currentTarget.style.borderColor = relatedMission.agencyColor)}
+               onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}>
+            <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>Gerelateerde Missie</div>
+            <div style={{ padding: 18, display: 'flex', alignItems: 'center', gap: 14 }}>
+              <span style={{ fontSize: '1.8rem' }}>{relatedMission.icon}</span>
+              <div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: relatedMission.agencyColor, marginBottom: 4 }}>{relatedMission.agency}</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#fff' }}>{relatedMission.name}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#4A5A8A', marginTop: 4 }}>Bekijk missie →</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      )}
 
       {/* Voortgang */}
       <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
@@ -565,6 +617,11 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
   return (
     <>
+      {/* Fixed reading progress bar */}
+      <div aria-hidden="true" style={{ position: 'fixed', top: 0, left: 0, right: 0, height: 3, zIndex: 9999, background: '#0a0b1a' }}>
+        <div style={{ height: '100%', width: `${readProgress}%`, background: 'linear-gradient(90deg, #185FA5, #378ADD)', transition: 'width 0.2s ease' }} />
+      </div>
+
       <style>{`
         * { margin:0; padding:0; box-sizing:border-box; }
         body { background:#1A1A2E; color:#fff; font-family:'Inter',system-ui,sans-serif; }
@@ -666,6 +723,9 @@ export default function ArticleClient({ slug }: { slug: string }) {
               <span>{LEVELS[level].description} — herschreven door AI</span>
             </div>
           )}
+
+          {/* ── Observable card ── */}
+          <ObservableCard tags={article.tags} />
 
           {/* ── Lead paragraph ── */}
           {leadPara && <Para text={leadPara} isRewritten={level !== 'original'} level={level} loading={loading && !leadPara} isLead />}

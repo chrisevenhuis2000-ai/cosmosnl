@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
+import { MISSIONS } from '@/lib/missions-data'
 
 const PROXY = 'https://api.nightgazer.space'
 
@@ -211,6 +212,17 @@ function SiteNav() {
             ))}
           </ul>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }))}
+              aria-label="Zoeken (Ctrl+K)"
+              style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: 'rgba(42,48,96,0.5)', border: '1px solid #252858', borderRadius: 6, cursor: 'pointer', transition: 'border-color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = '#378ADD')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}
+            >
+              <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>🔍</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.08em' }}>Zoek…</span>
+              <kbd style={{ fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#2A3060', background: '#1a1c42', border: '1px solid #252858', borderRadius: 3, padding: '1px 5px' }}>⌘K</kbd>
+            </button>
             <button className="nav-hamburger" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? 'Menu sluiten' : 'Menu openen'} onClick={() => setMobileOpen(o => !o)} style={{ flexDirection: 'column', gap: 5, padding: 8, background: 'none', border: 'none', cursor: 'pointer' }}>
               {[0, 1, 2].map(i => (
                 <span key={i} style={{ display: 'block', width: 22, height: 2, background: '#8A9BC4', borderRadius: 1, transition: 'transform 0.25s, opacity 0.25s', transform: mobileOpen ? i === 0 ? 'rotate(45deg) translate(5px,5px)' : i === 2 ? 'rotate(-45deg) translate(5px,-5px)' : 'none' : 'none', opacity: mobileOpen && i === 1 ? 0 : 1 }} />
@@ -396,6 +408,41 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
 
 // ── Article grid card ──────────────────────────────────────────────────────
 // Replaces the old list row — richer card with unique visual + full excerpt
+// ── Missies strip ──────────────────────────────────────────────────────────
+function MissiesStrip() {
+  const active = MISSIONS.filter(m => m.status === 'actief').slice(0, 5)
+  return (
+    <section aria-labelledby="missies-strip-label" style={{ margin: '32px 0 8px', borderTop: '1px solid #252858', paddingTop: 28 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <span id="missies-strip-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Actieve Missies</span>
+          <div aria-hidden="true" style={{ width: 48, height: 1, background: '#2A2E62' }} />
+        </div>
+        <Link href="/missies" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none' }}>
+          Alle missies →
+        </Link>
+      </div>
+      <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 4 }}>
+        {active.map(m => (
+          <Link key={m.id} href={`/missies/${m.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
+            <div style={{ background: `linear-gradient(135deg, ${m.bgFrom}, ${m.bgTo})`, border: '1px solid #252858', borderRadius: 6, padding: '14px 18px', minWidth: 160, maxWidth: 200, transition: 'border-color 0.15s' }}
+                 onMouseEnter={e => (e.currentTarget.style.borderColor = m.agencyColor)}
+                 onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}>
+              <div style={{ fontSize: '1.5rem', marginBottom: 8 }}>{m.icon}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: m.agencyColor, marginBottom: 4 }}>{m.agency}</div>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: 6 }}>{m.name}</div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'rgba(61,207,111,0.12)', border: '1px solid rgba(61,207,111,0.25)', borderRadius: 20, padding: '2px 8px' }}>
+                <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#3ddf90' }} />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#3ddf90', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Actief</span>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ArticleGridCard({ article }: { article: Article }) {
   const { gradient, cx, cy } = articleVisual(article)
   const lvl  = getLevel(article.category)
@@ -1410,6 +1457,8 @@ export default function HomePage() {
           {gridArticles[4] && <BentoCard article={gridArticles[4]} size="sm" />}
           {gridArticles[5] && <BentoCard article={gridArticles[5]} size="sm" />}
         </div>
+
+        <MissiesStrip />
 
         {/* ── Article grid + sidebar ────────────────────────────────────── */}
         <div className="content-split">

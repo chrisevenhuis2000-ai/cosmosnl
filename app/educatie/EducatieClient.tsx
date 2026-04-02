@@ -445,10 +445,27 @@ function LevelDemo() {
 }
 
 // ── Leerpaden ────────────────────────────────────────────────────────────────
+const TOPIC_TAGS: Record<string, string[]> = {
+  zonnestelsel:    ['zonnestelsel', 'maan', 'mars', 'venus', 'jupiter', 'planeet'],
+  sterren:         ['ster', 'supernova', 'neutron', 'zwart gat', 'black hole'],
+  sterrenstelsels: ['sterrenstelsel', 'melkweg', 'galaxy', 'quasar'],
+  kosmologie:      ['kosmologie', 'oerknal', 'donkere', 'heelal', 'cosmology'],
+  exoplaneten:     ['exoplaneet', 'exoplanet', 'biosignaat', 'bewoonbaar'],
+  ruimtevaart:     ['lancering', 'raket', 'nasa', 'esa', 'astronaut', 'missie'],
+}
+
 function Leerpaden() {
   const [expanded, setExpanded] = useState<string | null>(null)
   const [topicLevel, setTopicLevel] = useState<Record<string, 'beg' | 'ama' | 'pro'>>({})
   const [glossaryOpen, setGlossaryOpen] = useState<Record<string, boolean>>({})
+  const [newsIndex, setNewsIndex] = useState<any[]>([])
+
+  useEffect(() => {
+    fetch('/content/index.json')
+      .then(r => r.json())
+      .then(data => setNewsIndex(Array.isArray(data) ? data : []))
+      .catch(() => {})
+  }, [])
 
   function getLvl(id: string): 'beg' | 'ama' | 'pro' {
     return topicLevel[id] ?? 'beg'
@@ -623,6 +640,29 @@ function Leerpaden() {
                         </div>
                       )}
                     </div>
+
+                    {/* In het nieuws */}
+                    {(() => {
+                      const terms = TOPIC_TAGS[topic.id] || []
+                      const matches = newsIndex
+                        .filter(a => terms.some(t => (a.title + ' ' + a.category).toLowerCase().includes(t)))
+                        .slice(0, 2)
+                      if (!matches.length) return null
+                      return (
+                        <div style={{ margin: '0 24px 24px', borderTop: '1px solid #252858', paddingTop: 16 }}>
+                          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 10 }}>📰 In het nieuws</div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                            {matches.map((a: any) => (
+                              <a key={a.slug} href={`/nieuws/${a.slug}`} style={{ fontSize: '0.8rem', color: '#8A9CC0', textDecoration: 'none', lineHeight: 1.4, transition: 'color 0.15s' }}
+                                 onMouseEnter={e => (e.currentTarget.style.color = '#378ADD')}
+                                 onMouseLeave={e => (e.currentTarget.style.color = '#8A9CC0')}>
+                                → {a.title}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    })()}
 
                   </div>
                 )}
