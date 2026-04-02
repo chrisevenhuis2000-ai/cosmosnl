@@ -172,7 +172,6 @@ function Topbar() {
       </div>
       <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.58rem', flexShrink: 0 }}>
         <Link href="/" style={{ color: '#FFFFFF' }} aria-current="true">NL</Link>
-        <Link href="/en" style={{ color: '#4A5A8A' }}>EN</Link>
       </nav>
     </div>
   )
@@ -210,13 +209,8 @@ function SiteNav() {
                 >{label}</Link>
               </li>
             ))}
-            <li><Link href="/tools/herschrijver" style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none' }}>AI Tools</Link></li>
           </ul>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-            <Link href="/nieuwsbrief" className="btn-clip-sm" style={{ background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '9px 20px', textDecoration: 'none', display: 'inline-block', transition: 'background 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
-            >Nieuwsbrief</Link>
             <button className="nav-hamburger" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? 'Menu sluiten' : 'Menu openen'} onClick={() => setMobileOpen(o => !o)} style={{ flexDirection: 'column', gap: 5, padding: 8, background: 'none', border: 'none', cursor: 'pointer' }}>
               {[0, 1, 2].map(i => (
                 <span key={i} style={{ display: 'block', width: 22, height: 2, background: '#8A9BC4', borderRadius: 1, transition: 'transform 0.25s, opacity 0.25s', transform: mobileOpen ? i === 0 ? 'rotate(45deg) translate(5px,5px)' : i === 2 ? 'rotate(-45deg) translate(5px,-5px)' : 'none' : 'none', opacity: mobileOpen && i === 1 ? 0 : 1 }} />
@@ -227,7 +221,7 @@ function SiteNav() {
       </nav>
       {mobileOpen && (
         <div id="mobile-nav" role="navigation" aria-label="Mobiele navigatie" style={{ position: 'fixed', top: 'calc(var(--topbar-h) + var(--nav-h))', left: 0, right: 0, background: 'rgba(26,26,46,0.98)', borderBottom: '1px solid #252858', backdropFilter: 'blur(20px)', padding: '24px', zIndex: 19, display: 'flex', flexDirection: 'column', gap: 4, animation: 'fadeIn 0.2s ease both' }}>
-          {[...navLinks, { href: '/tools/herschrijver', label: 'AI Tools' }, { href: '/nieuwsbrief', label: 'Nieuwsbrief' }].map(({ href, label }) => (
+          {[...navLinks].map(({ href, label }) => (
             <Link key={href} href={href} onClick={close} style={{ display: 'block', padding: '12px 0', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', borderBottom: '1px solid #252858', textDecoration: 'none', transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
               onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
@@ -964,10 +958,6 @@ function AIPromoWidget() {
           >{l.label}</button>
         ))}
       </div>
-      <Link href="/tools/herschrijver" className="btn-clip" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '11px 20px', textDecoration: 'none', transition: 'background 0.15s' }}
-        onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
-        onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
-      >Probeer het nu →</Link>
     </div>
   )
 }
@@ -1197,55 +1187,12 @@ function EventCountdownStrip() {
   )
 }
 
-// ── Newsletter ─────────────────────────────────────────────────────────────
-function Newsletter() {
-  return (
-    <section id="nieuwsbrief" aria-labelledby="newsletter-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858', borderBottom: '1px solid #252858', overflow: 'hidden' }}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 100% at 100% 50%, rgba(55,138,221,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div className="newsletter-grid newsletter-inner" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '64px var(--sp-10)' }}>
-        <div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#378ADD', display: 'inline-block' }} />
-            Nieuwsbrief
-          </div>
-          <h2 id="newsletter-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,3vw,2.8rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.1, marginBottom: 16 }}>Het heelal<br />in je inbox</h2>
-          <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.75, maxWidth: 440 }}>Wekelijks de belangrijkste ontdekkingen, komende lanceringen en sterrenkijk-tips — uitgelegd op jouw niveau. Geen spam, altijd uitschrijfbaar.</p>
-          <div style={{ display: 'flex', gap: 32, marginTop: 24, flexWrap: 'wrap' }}>
-            {[['Wekelijks', 'Frequentie'], ['Gratis', 'Altijd']].map(([val, lbl]) => (
-              <div key={lbl}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontWeight: 700, color: '#378ADD', lineHeight: 1 }}>{val}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 2 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <form action="#" method="post" aria-label="Nieuwsbrief aanmelden" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div className="nl-input-wrap" style={{ display: 'flex', gap: 2, background: '#252858' }}>
-            <label htmlFor="nl-email" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>E-mailadres</label>
-            <input id="nl-email" type="email" name="email" placeholder="jouw@email.nl" required autoComplete="email" inputMode="email" style={{ flex: 1, background: '#0F1028', border: 'none', padding: '14px 18px', color: '#FFFFFF', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', outline: 'none' }}
-              onFocus={e => (e.currentTarget.style.background = '#141530')}
-              onBlur={e => (e.currentTarget.style.background = '#0F1028')}
-            />
-            <button type="submit" aria-label="Aanmelden voor nieuwsbrief" style={{ background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '14px 22px', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'background 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
-            >Aanmelden</button>
-          </div>
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: '#4A5A8A', lineHeight: 1.6 }}>
-            Door aan te melden ga je akkoord met onze <Link href="/privacy" style={{ color: '#8A9BC4', textDecoration: 'underline', textUnderlineOffset: 3 }}>privacyverklaring</Link>. Je kunt je altijd uitschrijven.
-          </p>
-        </form>
-      </div>
-    </section>
-  )
-}
-
 // ── Footer ─────────────────────────────────────────────────────────────────
 function SiteFooter() {
   const cols = [
     { title: 'Onderwerpen', links: [['James Webb', '/nieuws'], ['Mars Exploratie', '/nieuws'], ['Zwarte Gaten', '/nieuws'], ['Sterrenkijken', '/sterrenkijken'], ['Exoplaneten', '/nieuws']] },
-    { title: 'Tools',       links: [['AI Herschrijver', '/tools/herschrijver'], ['ISS Tracker', '/'], ['Sterrenkaart', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
-    { title: 'Over ons',    links: [['Redactie', '/over'], ['Nieuwsbrief', '/nieuwsbrief'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
+    { title: 'Tools',       links: [['ISS Tracker', '/'], ['Sterrenkaart', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
+    { title: 'Over ons',    links: [['Redactie', '/over'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
   ]
   return (
     <footer role="contentinfo" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
@@ -1544,7 +1491,6 @@ export default function HomePage() {
 
       </main>
 
-      <Newsletter />
       <SiteFooter />
     </>
   )

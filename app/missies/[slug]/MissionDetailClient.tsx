@@ -79,7 +79,6 @@ function Topbar() {
       <div style={{ flex: 1 }} />
       <nav style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.58rem', flexShrink: 0 }}>
         <Link href="/" style={{ color: '#FFFFFF' }}>NL</Link>
-        <Link href="/en" style={{ color: '#4A5A8A' }}>EN</Link>
       </nav>
     </div>
   )

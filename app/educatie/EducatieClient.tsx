@@ -279,13 +279,8 @@ function SiteNav() {
                 </li>
               )
             })}
-            <li><Link href="/tools/herschrijver" style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none' }}>AI Tools</Link></li>
           </ul>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-            <Link href="/nieuwsbrief" className="btn-clip-sm" style={{ background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '9px 20px', textDecoration: 'none', display: 'inline-block', transition: 'background 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
-            >Nieuwsbrief</Link>
             <button className="nav-hamburger" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? 'Menu sluiten' : 'Menu openen'} onClick={() => setMobileOpen(o => !o)} style={{ flexDirection: 'column', gap: 5, padding: 8, background: 'none', border: 'none', cursor: 'pointer' }}>
               {[0, 1, 2].map(i => (
                 <span key={i} style={{ display: 'block', width: 22, height: 2, background: '#8A9BC4', borderRadius: 1, transition: 'transform 0.25s, opacity 0.25s', transform: mobileOpen ? i === 0 ? 'rotate(45deg) translate(5px,5px)' : i === 2 ? 'rotate(-45deg) translate(5px,-5px)' : 'none' : 'none', opacity: mobileOpen && i === 1 ? 0 : 1 }} />
@@ -296,7 +291,7 @@ function SiteNav() {
       </nav>
       {mobileOpen && (
         <div id="mobile-nav" role="navigation" aria-label="Mobiele navigatie" style={{ position: 'fixed', top: 'calc(var(--topbar-h) + var(--nav-h))', left: 0, right: 0, background: 'rgba(26,26,46,0.98)', borderBottom: '1px solid #252858', backdropFilter: 'blur(20px)', padding: '24px', zIndex: 19, display: 'flex', flexDirection: 'column', gap: 4, animation: 'fadeIn 0.2s ease both' }}>
-          {[...NAV_LINKS, { href: '/tools/herschrijver', label: 'AI Tools' }, { href: '/nieuwsbrief', label: 'Nieuwsbrief' }].map(({ href, label }) => (
+          {NAV_LINKS.map(({ href, label }) => (
             <Link key={href} href={href} onClick={close} style={{ display: 'block', padding: '12px 0', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', borderBottom: '1px solid #252858', textDecoration: 'none', transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
               onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
@@ -373,13 +368,6 @@ function EducatieHero() {
             Start leren
             <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </a>
-          <Link href="/tools/herschrijver" style={{ fontSize: '0.72rem', color: '#8A9BC4', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
-          >
-            AI Herschrijver
-            <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </Link>
         </div>
       </div>
     </section>
@@ -708,68 +696,6 @@ function Kernconcepten() {
   )
 }
 
-// ── AI Tools CTA ─────────────────────────────────────────────────────────────
-function AIToolsCta() {
-  return (
-    <section aria-labelledby="ai-cta-title" style={{ position: 'relative', zIndex: 1, background: '#1A1A2E', borderTop: '1px solid #252858' }}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 100% at 50% 100%, rgba(55,138,221,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
-      <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--sp-8)', alignItems: 'stretch' }} className="content-split">
-          {/* AI Herschrijver */}
-          <div style={{ border: '1px solid rgba(55,138,221,0.3)', background: 'linear-gradient(135deg,rgba(16,17,42,0.95),rgba(20,25,60,0.95))', padding: 32, position: 'relative', overflow: 'hidden', borderRadius: 2, display: 'flex', flexDirection: 'column' }}>
-            <div aria-hidden="true" style={{ position: 'absolute', right: 16, top: 12, fontSize: '5rem', color: '#378ADD', opacity: 0.06, lineHeight: 1, pointerEvents: 'none' }}>⬡</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 16 }}>✦ AI Tool</div>
-            <h2 id="ai-cta-title" style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 12 }}>
-              AI Herschrijver
-            </h2>
-            <p style={{ fontSize: '0.84rem', color: '#8A9BC4', lineHeight: 1.75, marginBottom: 20, flex: 1 }}>
-              Plak elk astronomie-tekst en laat onze AI het herschrijven op Beginner-, Amateur- of Pro-niveau. Ideaal voor scholieren, studenten én professionals.
-            </p>
-            <div role="group" aria-label="Niveau opties" style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-              {LEVELS.map(l => (
-                <div key={l.key} style={{ flex: 1, padding: '6px 0', fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.06em', textTransform: 'uppercase', textAlign: 'center', border: `1px solid ${l.border}`, color: l.color, background: l.bg, borderRadius: 2 }}>{l.label}</div>
-              ))}
-            </div>
-            <Link href="/tools/herschrijver" className="btn-clip" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.64rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 24px', textDecoration: 'none', transition: 'background 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
-            >
-              Probeer nu
-              <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </Link>
-          </div>
-
-          {/* Nieuwsbrief */}
-          <div style={{ border: '1px solid rgba(61,223,144,0.2)', background: 'linear-gradient(135deg,rgba(4,18,8,0.95),rgba(8,26,14,0.95))', padding: 32, position: 'relative', overflow: 'hidden', borderRadius: 2, display: 'flex', flexDirection: 'column' }}>
-            <div aria-hidden="true" style={{ position: 'absolute', right: 16, top: 12, fontSize: '5rem', color: '#3ddf90', opacity: 0.06, lineHeight: 1, pointerEvents: 'none' }}>✦</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 16 }}>📬 Nieuwsbrief</div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 12 }}>
-              Wekelijks leren
-            </h2>
-            <p style={{ fontSize: '0.84rem', color: '#8A9BC4', lineHeight: 1.75, marginBottom: 20, flex: 1 }}>
-              Elke week een educatief astronomie-concept uitgelegd op jouw niveau, plus de nieuwste ontdekkingen en sterrenkijk-tips. Gratis, altijd uitschrijfbaar.
-            </p>
-            <div style={{ display: 'flex', gap: 32, marginBottom: 20, flexWrap: 'wrap' }}>
-              {[['Wekelijks', 'Frequentie'], ['Gratis', 'Altijd']].map(([val, lbl]) => (
-                <div key={lbl}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 700, color: '#3ddf90', lineHeight: 1 }}>{val}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 2 }}>{lbl}</div>
-                </div>
-              ))}
-            </div>
-            <Link href="/nieuwsbrief" className="btn-clip" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: '#3ddf90', color: '#04120a', fontFamily: 'var(--font-mono)', fontSize: '0.64rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 24px', textDecoration: 'none', transition: 'background 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#5aeaa6')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#3ddf90')}
-            >
-              Aanmelden
-              <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
 function FAQ() {
@@ -807,8 +733,8 @@ function FAQ() {
 function SiteFooter() {
   const cols = [
     { title: 'Onderwerpen', links: [['Zonnestelsel', '/nieuws'], ['Sterren & Leven', '/nieuws'], ['Kosmologie', '/nieuws'], ['Exoplaneten', '/nieuws'], ['Ruimtevaart', '/missies']] },
-    { title: 'Tools',       links: [['AI Herschrijver', '/tools/herschrijver'], ['Sterrenkijken', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
-    { title: 'Over ons',    links: [['Redactie', '/over'], ['Nieuwsbrief', '/nieuwsbrief'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
+    { title: 'Tools',       links: [['Sterrenkijken', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
+    { title: 'Over ons',    links: [['Redactie', '/over'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
   ]
   return (
     <footer role="contentinfo" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
@@ -872,7 +798,6 @@ export default function EducatiePage() {
         <LevelDemo />
         <Leerpaden />
         <Kernconcepten />
-        <AIToolsCta />
         <FAQ />
       </main>
       <SiteFooter />

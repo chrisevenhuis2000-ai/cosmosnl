@@ -311,27 +311,6 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
         </div>
       </div>
 
-      {/* Newsletter */}
-      <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>Nieuwsbrief</div>
-        <div style={{ padding: 18 }}>
-          <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.65, marginBottom: 14 }}>Wekelijks het beste van de sterrenhemel in je inbox.</p>
-          <form onSubmit={e => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <input type="email" placeholder="jouw@email.nl" required autoComplete="email"
-              style={{ width: '100%', padding: '10px 14px', background: '#0F1028', border: '1px solid #252858', borderRadius: 2, color: '#FFFFFF', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.68rem', outline: 'none' }}
-              onFocus={e => (e.currentTarget.style.borderColor = '#378ADD')}
-              onBlur={e  => (e.currentTarget.style.borderColor = '#252858')}
-            />
-            <button type="submit"
-              style={{ width: '100%', padding: '10px', background: '#378ADD', color: '#fff', border: 'none', borderRadius: 2, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, cursor: 'pointer' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
-            >Aanmelden →</button>
-          </form>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#4A5A8A', marginTop: 8 }}>Gratis · Altijd uitschrijfbaar</p>
-        </div>
-      </div>
-
       {/* Related articles */}
       {related.length > 0 && (
         <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
