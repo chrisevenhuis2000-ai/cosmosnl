@@ -15,7 +15,7 @@ const SolarSystemMap    = dynamic(() => import('./SolarSystemMap'), {
 })
 const MissionTimeline   = dynamic(() => import('./MissionTimeline'), { ssr: false })
 
-const PROXY = 'https://api.nightgazer.space'
+const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Article {
