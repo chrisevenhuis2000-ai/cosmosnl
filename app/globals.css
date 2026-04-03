@@ -135,9 +135,19 @@
 
   /* Shimmer loading */
   .shimmer {
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    background: linear-gradient(90deg, #12132A 0%, #1a1d40 50%, #12132A 100%);
     background-size: 600px 100%;
     animation: shimmer 1.4s infinite linear;
+  }
+
+  /* ── Article cards ── */
+  .article-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+  }
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(55,138,221,0.15);
+    border-color: #378ADD !important;
   }
 
   /* ── Navigation ── */
@@ -304,6 +314,10 @@
   .hero-content-pad  { padding: 0 20px 48px; }
   .topics-pad        { padding: 0 20px; }
   .footer-pad        { padding: 40px 20px 24px; }
+
+  /* Nieuws hero card: stack vertically on mobile */
+  .news-hero-card { grid-template-columns: 1fr !important; }
+  .news-hero-card > div:first-child { min-height: 220px !important; }
 
   /* Bento: full-width stack */
   .bento-grid {
