@@ -120,8 +120,52 @@ async function translateAndSummarise(title, content) {
 }
 
 /**
+ * Parse og:image / twitter:image from an HTML string.
+ * Returns an absolute URL or null.
+ */
+function parseOgImage(html, baseUrl) {
+  const patterns = [
+    /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i,
+    /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i,
+  ]
+  for (const re of patterns) {
+    const m = html.match(re)
+    if (m?.[1]) {
+      const url = m[1].trim()
+      if (url.startsWith('http')) return url
+      if (url.startsWith('//')) return 'https:' + url
+      if (url.startsWith('/') && baseUrl) {
+        try { return new URL(url, baseUrl).href } catch {}
+      }
+      return url
+    }
+  }
+  return null
+}
+
+/**
+ * Fetch the source article page and return its og:image URL or null.
+ */
+async function fetchOgImage(sourceUrl) {
+  if (!sourceUrl) return null
+  try {
+    const res = await fetch(sourceUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; CosmosNLBot/1.0)' },
+      signal:  AbortSignal.timeout(8000),
+    })
+    if (!res.ok) return null
+    const html = await res.text()
+    return parseOgImage(html, sourceUrl)
+  } catch {
+    return null
+  }
+}
+
+/**
  * Extract image URL + credit from an RSS item.
- * Tries: enclosure → media:thumbnail → media:content → media:group → NASA Images API.
+ * Tries: enclosure → media tags → HTML content → og:image from source page.
  */
 async function extractImage(item, title, source) {
   // 1. RSS enclosure
@@ -150,26 +194,9 @@ async function extractImage(item, title, source) {
   const imgMatch = html.match(/<img[^>]+src=["']([^"']+\.(jpg|jpeg|png|webp))[^"']*["']/i)
   if (imgMatch) return { imageUrl: imgMatch[1], imageAlt: title, imageCredit: source }
 
-  // 6. NASA Images API fallback
-  try {
-    const query   = title.slice(0, 80)
-    const apiUrl  = `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=5`
-    const res     = await fetch(apiUrl)
-    const data    = await res.json()
-    const items   = data?.collection?.items || []
-    for (const it of items) {
-      const href = it?.links?.[0]?.href ?? ''
-      if (href && /\.(jpg|jpeg|png|webp)/i.test(href)) {
-        const photographer = it?.data?.[0]?.photographer ?? ''
-        const center       = it?.data?.[0]?.center ?? 'NASA'
-        return {
-          imageUrl:    href,
-          imageAlt:    title,
-          imageCredit: photographer ? `${photographer} / ${center}` : center,
-        }
-      }
-    }
-  } catch {}
+  // 6. Scrape og:image from the source article page
+  const ogImage = await fetchOgImage(item.link)
+  if (ogImage) return { imageUrl: ogImage, imageAlt: title, imageCredit: source }
 
   return { imageUrl: '', imageAlt: '', imageCredit: '' }
 }
