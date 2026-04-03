@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft opnieuw een mijlpaal bereikt met een Falcon 9 booster die
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-01T08:15:19.308Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/30/falcon-9-booster-to-fly-for-record-34th-time-on-starlink-delivery-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/jsc2024e080750/jsc2024e080750~medium.jpg"
+imageAlt: "Falcon 9 booster vliegt voor recordbrekende 34e keer tijdens Starlink-missie"
+imageCredit: "SpaceX / JSC"
 ---
 
 SpaceX heeft opnieuw geschiedenis geschreven door een Falcon 9 booster voor de recordbrekende 34e keer te gebruiken. De lancering vond plaats om 23:15 Nederlandse tijd vanaf lanceercomplex 40 op Cape Canaveral Space Force Station in Florida.

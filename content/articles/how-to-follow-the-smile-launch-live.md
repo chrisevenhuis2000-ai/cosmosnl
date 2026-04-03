@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Smile/How_to_follow_the_Smile_launch_live"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20260320-PH-AJN01_0259/KSC-20260320-PH-AJN01_0259~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-2011-5474/KSC-2011-5474~medium.jpg"
 imageAlt: "Hoe de lancering van Smile live te volgen"
-imageCredit: "NASA/Amber Jean Notvest / KSC"
+imageCredit: "KSC"
 ---
 
 De Europese ruimtevaartorganisatie ESA zal live uitzenden wanneer de bijzondere Smile-missie wordt gelanceerd op donderdag 9 april 2026. De lancering is gepland voor 08:29 Midden-Europese zomertijd (07:29 BST, 03:29 lokale tijd).

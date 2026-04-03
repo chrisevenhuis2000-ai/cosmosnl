@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/14/nasa-administrator-teases-further-artemis-program-updates-in-one-on-one-interview/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-JBS01_0073/KSC-20220421-PH-JBS01_0073~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/MAF_20220830__KSC_Artemis1_epb_019/MAF_20220830__KSC_Artemis1_epb_019~medium.jpg"
 imageAlt: "NASA-directeur hint op verdere updates Artemis-programma in exclusief interview"
-imageCredit: "NASA/Ben Smegelsky / KSC"
+imageCredit: "NASA/Eric Bordelon / MSFC"
 ---
 
 De NASA-directeur heeft tijdens een exclusief interview aangegeven dat er binnenkort verdere updates komen over het Artemis-programma. Het gesprek vond plaats te midden van de lopende vluchtgereedheidstoets (Flight Readiness Review) voor de Artemis 2-missie.

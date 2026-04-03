@@ -6,9 +6,9 @@ author: "Dr. Mara Visser"
 publishedAt: "2026-03-11T09:00:00.000Z"
 readTime: "6"
 featured: "true"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000172/GSFC_20171208_Archive_e000172~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/PIA11195/PIA11195~thumb.jpg"
 imageAlt: "James Webb vindt mogelijke sporen van leven op planeet K2-18b"
-imageCredit: "GSFC"
+imageCredit: "JPL"
 tags: ["K2-18b", "exoplaneten", "biosignaturen", "JWST", "buitenaards leven"]
 ---
 

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/tropical-cyclone-narelle-crosses-australia/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunset at the pad 4/KSC - SLS_03302026_Artemis II sunset at the pad 4~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-07PD-2590/KSC-07PD-2590~medium.jpg"
 imageAlt: "Tropische Cycloon Narelle Trekt Over Australië"
-imageCredit: "NASA/ Sam Lott / MSFC"
+imageCredit: "NASA\ Tony Gray / KSC"
 ---
 
 Tropische cycloon Narelle heeft de afgelopen dagen een verwoestend spoor getrokken langs de noordelijke kust van Australië. De krachtige storm kwam meerdere keren aan land en bracht zware windstoten en intense regenval met zich mee, wat leidde tot wijdverspreide schade in de getroffen gebieden.

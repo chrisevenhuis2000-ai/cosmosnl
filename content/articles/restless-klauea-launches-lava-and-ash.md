@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/restless-kilauea-launches-lava-and-ash/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_4/SLS_KSC_Artemis II Rollout 1172026_4~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_7/SLS_KSC_Artemis II Rollout2 03192026_7~large.jpg"
 imageAlt: "Onrustige Kīlauea spuwt lava en as"
-imageCredit: "NASA/Sam Lott / MSFC"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 De Kīlauea-vulkaan op Hawaï heeft opnieuw indrukwekkende tekenen van leven gegeven tijdens wat wetenschappers episode 43 van de huidige uitbarsting noemen. De vulkaan, een van de meest actieve ter wereld, produceerde spectaculaire lavafontijnen die hoog de lucht in schoten, vergezeld door een uitgebreide verspreiding van vulkanische as.

@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/reunion-island-lava-reaches-the-sea/"
-imageUrl: "https://images-assets.nasa.gov/image/PIA03182/PIA03182~thumb.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/PIA22755/PIA22755~medium.jpg"
 imageAlt: "Lava van vulkaan op Réunion bereikt de zee"
 imageCredit: "JPL"
 ---

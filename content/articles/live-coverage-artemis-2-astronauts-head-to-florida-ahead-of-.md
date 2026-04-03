@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/27/live-coverage-artemis-2-astronauts-head-to-florida-ahead-of-april-1-launch-attempt/"
-imageUrl: "https://images-assets.nasa.gov/image/NHQ202604010232/NHQ202604010232~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/MAF_20220830__KSC_Artemis1_epb_005/MAF_20220830__KSC_Artemis1_epb_005~medium.jpg"
 imageAlt: "Artemis 2 astronauten vertrekken naar Florida voor lancering op 1 april"
-imageCredit: "NASA/Bill Ingalls / HQ"
+imageCredit: "NASA/Eric Bordelon / MSFC"
 ---
 
 De vier astronauten van NASA's langverwachte Artemis 2-missie zijn vrijdag vertrokken naar Florida, waar zij zich voorbereiden op hun historische reis rond de maan. De bemanning wordt verwacht rond 14:30 Nederlandse tijd (20:30 UTC) te landen op Kennedy Space Center.

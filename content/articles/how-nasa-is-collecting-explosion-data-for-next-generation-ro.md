@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/centers-and-facilities/stennis/collecting-explosion-data-for-next-generation-rockets/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-11/KSC-03202026-Artemis II_Second_Rollout-11~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-2011-8017/KSC-2011-8017~medium.jpg"
 imageAlt: "Hoe NASA explosiedata verzamelt voor de volgende generatie raketten"
-imageCredit: "NASA/Brandon Hancock / MSFC"
+imageCredit: "KSC"
 ---
 
 Commerciële lanceerdiensten maken grote sprongen voorwaarts in aandrijftechnologie, met een hernieuwde focus op raketten en ruimtevaartuigen aangedreven door vloeibare zuurstof en methaan. Naarmate deze systemen groter worden en miljoenen liters brandstof vervoeren, groeit ook de verantwoordelijkheid om het volledige veiligheidsprofiel te begrijpen.

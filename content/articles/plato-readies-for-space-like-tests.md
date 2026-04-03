@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Plato_readies_for_space-like_tests"
-imageUrl: "https://images-assets.nasa.gov/image/iss067e033745/iss067e033745~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/sl2-x9-747/sl2-x9-747~medium.jpg"
 imageAlt: "Plato bereidt zich voor op ruimte-achtige tests"
 imageCredit: "JSC"
 ---

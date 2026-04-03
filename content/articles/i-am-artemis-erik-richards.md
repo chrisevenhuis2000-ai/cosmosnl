@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/missions/artemis/i-am-artemis/i-am-artemis-erik-richards/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-04272026-Artemis II_Crew Arrival-24/KSC-04272026-Artemis II_Crew Arrival-24~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20210715-PH-KLS02_0023/KSC-20210715-PH-KLS02_0023~medium.jpg"
 imageAlt: "Ik Ben Artemis: Erik Richards"
-imageCredit: "NASA/Brandon Hancock / KSC"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 Erik Richards, Mission Manager van NASA's Near Space Network, beschouwt de ondersteuning van de eerste bemande Artemis-missie naar de Maan als het hoogtepunt van een carrière die volledig gewijd is aan ruimtevaartcommunicatie. Voor Richards betekent deze missie de vervulling van een jeugddroom die begon tijdens de hoogtijdagen van het Space Shuttle-programma.

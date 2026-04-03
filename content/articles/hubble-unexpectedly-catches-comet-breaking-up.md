@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Hubble_unexpectedly_catches_comet_breaking_up"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000226/GSFC_20171208_Archive_e000226~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001975/GSFC_20171208_Archive_e001975~small.jpg"
 imageAlt: "Hubble vangt onverwacht uiteenvallende komeet"
 imageCredit: "GSFC"
 ---

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Smile_fuelled_for_launch"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20190313-PH_JBS01_0023/KSC-20190313-PH_JBS01_0023~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/s73-27081/s73-27081~medium.jpg"
 imageAlt: "Smile getankt en klaar voor lancering"
-imageCredit: "NASA/Ben Smegelsky / KSC"
+imageCredit: "JSC"
 ---
 
 De Solar wind Magnetosphere Ionosphere Link Explorer (Smile) heeft een belangrijke mijlpaal bereikt in de voorbereiding op zijn ruimtemissie. Het ruimtevaartuig is volledig getankt en klaar voor transport naar de lanceerlocatie.

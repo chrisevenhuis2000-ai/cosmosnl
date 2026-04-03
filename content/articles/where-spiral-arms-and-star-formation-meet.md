@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Where_spiral_arms_and_star_formation_meet"
-imageUrl: "https://images-assets.nasa.gov/image/iss069e004397/iss069e004397~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000154/GSFC_20171208_Archive_e000154~small.jpg"
 imageAlt: "Waar spiraalstructuren en stervorming elkaar ontmoeten"
-imageCredit: "JSC"
+imageCredit: "GSFC"
 ---
 
 Astronomen hebben nieuwe inzichten verkregen in de fascinerende relatie tussen de spiraalstructuren van sterrenstelsels en de gebieden waar nieuwe sterren worden geboren. Deze onderzoeken werpen licht op een van de meest fundamentele processen in het universum.

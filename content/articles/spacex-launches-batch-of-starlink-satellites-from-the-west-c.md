@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol een nieuwe lading Starlink-satellieten gelancee
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-27T07:59:32.980Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/26/spacex-to-launch-batch-of-starlink-satellites-from-the-west-coast/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0042/KSC-20220421-PH-KLS01_0042~medium.jpg"
+imageAlt: "SpaceX lanceert nieuwe batch Starlink-satellieten vanaf de Amerikaanse westkust"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft opnieuw een batch Starlink-satellieten de ruimte in gestuurd tijdens de Starlink 17-17 missie. De lancering vond plaats vanaf Vandenberg Space Force Base in Californië om 4:03 lokale tijd (PDT), wat overeenkomt met 1:03 in de nacht Nederlandse tijd.

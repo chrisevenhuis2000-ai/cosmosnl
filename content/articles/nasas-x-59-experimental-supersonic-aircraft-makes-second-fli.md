@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/missions/quesst/nasas-x-59-experimental-supersonic-aircraft-makes-second-flight/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_21/SLS_KSC_Artemis II Rollout 1172026_21~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/AFRC2026-0048-41/AFRC2026-0048-41~large.jpg"
 imageAlt: "NASA's X-59 experimentele supersonische vliegtuig voltooit tweede testvlucht"
-imageCredit: "NASA/Sam Lott / MSFC"
+imageCredit: "NASA/Jim Ross / AFRC"
 ---
 
 NASA's revolutionaire X-59 experimentele vliegtuig heeft vrijdag zijn tweede testvlucht succesvol afgerond, ondanks dat de vlucht korter duurde dan gepland vanwege een technische storing. Het vliegtuig, dat is ontworpen om de kenmerkende knallen van supersonische vluchten aanzienlijk te verminderen, zet hiermee een belangrijke stap in het testprogramma.

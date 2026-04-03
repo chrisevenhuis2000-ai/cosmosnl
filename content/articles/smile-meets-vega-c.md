@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Smile_meets_Vega-C"
-imageUrl: "https://images-assets.nasa.gov/image/iss056e130515/iss056e130515~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/iss069e004389/iss069e004389~medium.jpg"
 imageAlt: "SMILE-satelliet ontmoet Vega-C draagraket"
-imageCredit: "Serena Auñón-Chancellor / JSC"
+imageCredit: "JSC"
 ---
 
 De langverwachte ontmoeting tussen de SMILE-satelliet (Solar wind Magnetosphere Ionosphere Link Explorer) en de Vega-C draagraket heeft plaatsgevonden, wat een belangrijke mijlpaal markeert in de voorbereiding van deze baanbrekende ruimtemissie.

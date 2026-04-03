@@ -4,9 +4,12 @@ excerpt: "SpaceX' mechanische arm ving opnieuw de Super Heavy booster op — een
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-07T14:00:00.000Z"
-readTime: 4
-featured: false
+readTime: "4"
+featured: "false"
 tags: ["SpaceX", "Starship", "Mechazilla", "ruimtevaart"]
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II at the pad/KSC - SLS_03302026_Artemis II at the pad~large.jpg"
+imageAlt: "Starship IFT-7: booster gevangen door Mechazilla"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 # Starship IFT-7: booster gevangen door Mechazilla

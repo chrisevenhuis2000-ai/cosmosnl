@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/nasa-selects-university-finalists-for-technology-concepts-competition/"
-imageUrl: "https://images-assets.nasa.gov/image/201108050004HQ/201108050004HQ~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_18/SLS_KSC_Artemis II Rollout 1172026_18~large.jpg"
 imageAlt: "NASA selecteert universiteitsteams voor innovatieve ruimtevaarttechnologie wedstrijd"
-imageCredit: "NASA/Bill Ingalls / HQ"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 NASA heeft veertien universiteitsteams uit heel Amerika geselecteerd als finalisten voor de Revolutionary Aerospace Systems Concepts – Academic Linkage (RASC-AL) wedstrijd van 2026. Deze prestigieuze NASA-competitie daagt studenten uit om baanbrekende concepten te ontwikkelen die het menselijk leven en werken op de Maan, Mars en andere hemellichamen kunnen ondersteunen.

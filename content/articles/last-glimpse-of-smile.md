@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Last_glimpse_of_Smile"
-imageUrl: "https://images-assets.nasa.gov/image/sts076-705-019/sts076-705-019~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000791/GSFC_20171208_Archive_e000791~small.jpg"
 imageAlt: "Laatste blik op Smile"
-imageCredit: "JSC"
+imageCredit: "GSFC"
 ---
 
 Wetenschappers hebben succesvol de laatste beelden vastgelegd van het astronomische verschijnsel dat bekend staat als 'Smile', voordat het definitief uit het bereik van onze telescopen verdween. Dit zeldzame kosmische fenomeen heeft astronomen maandenlang gefascineerd met zijn unieke eigenschappen en gedrag.

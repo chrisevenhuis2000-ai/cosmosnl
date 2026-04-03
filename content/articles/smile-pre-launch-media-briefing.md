@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Videos/2026/03/Smile_pre-launch_media_briefing"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-00pp1524/KSC-00pp1524~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/s73-27081/s73-27081~medium.jpg"
 imageAlt: "Smile pre-launch mediabriefing: gezamenlijke ESA-Chinese missie klaar voor lancering"
-imageCredit: "KSC"
+imageCredit: "JSC"
 ---
 
 De Europese ruimtevaartorganisatie ESA heeft een uitgebreide mediabriefing gehouden over de naderende lancering van de Smile-missie (Solar wind Magnetosphere Ionosphere Link Explorer). Deze bijzondere samenwerking tussen ESA en de Chinese Academie van Wetenschappen staat op het punt gelanceerd te worden vanaf Europa's ruimtehaven in Frans-Guyana.

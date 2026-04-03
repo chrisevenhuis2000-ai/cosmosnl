@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/wave-of-dust-rolls-through-texas/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_26/SLS_KSC_Artemis II Rollout 1172026_26~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_11/SLS_KSC_Artemis II Rollout2 03192026_11~large.jpg"
 imageAlt: "Stofgolf rolt over Texas"
-imageCredit: "NASA/Sam Lott / MSFC"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Een krachtig koufront heeft afgelopen dagen gezorgd voor een spectaculair natuurverschijnsel in Texas. Het front stuwde een massieve muur van stof en zand op die als een bruine golf over de hoogvlaktes rolde en tijdelijk het zicht drastisch verminderde.

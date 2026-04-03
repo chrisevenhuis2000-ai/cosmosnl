@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/news-release/liftoff-nasa-launches-astronauts-on-historic-artemis-moon-mission/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20240723-PH-ILW01_0156/KSC-20240723-PH-ILW01_0156~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20230807-PH-KLS01_0156/KSC-20230807-PH-KLS01_0156~medium.jpg"
 imageAlt: "Lift-off! NASA lanceert astronauten op historische Artemis-maanmissie"
-imageCredit: "NASA/Isaac Watson / KSC"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 NASA heeft een historische mijlpaal bereikt met de succesvolle lancering van vier astronauten op de Artemis II-missie, de eerste bemande maanvlucht sinds het Apollo-tijdperk. De krachtige Space Launch System (SLS) raket steeg woensdagavond om 18:35 lokale tijd op vanaf lanceerbasis 39B van het Kennedy Space Center in Florida.

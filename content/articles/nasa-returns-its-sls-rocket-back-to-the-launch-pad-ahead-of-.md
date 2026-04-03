@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/19/live-coverage-nasa-to-roll-its-sls-rocket-back-to-the-launch-pad-ahead-of-planned-april-flight-of-artemis-2/"
-imageUrl: "https://images-assets.nasa.gov/image/NHQ202209020008/NHQ202209020008~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202211040050/NHQ202211040050~medium.jpg"
 imageAlt: "NASA rolt SLS-raket terug naar lanceerplatform voor geplande Artemis 2-vlucht in april"
 imageCredit: "NASA/Joel Kowsky / HQ"
 ---

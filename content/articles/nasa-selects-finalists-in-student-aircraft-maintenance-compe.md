@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/aeronautics/nasa-selects-finalists-in-student-aircraft-maintenance-competition/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_21/SLS_KSC_Artemis II Rollout 1172026_21~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/DSC00134/DSC00134~medium.jpg"
 imageAlt: "NASA selecteert finalisten in studentenwedstrijd voor vliegtuigonderhoud"
-imageCredit: "NASA/Sam Lott / MSFC"
+imageCredit: "Brandon Hancock / MSFC"
 ---
 
 NASA heeft acht studententeams uit de hele Verenigde Staten geselecteerd als finalisten voor de Gateways to Blue Skies Competition 2026. Deze prestigieuze wedstrijd geeft studenten de middelen om een van de meest urgente uitdagingen in de Amerikaanse luchtvaart aan te pakken: het onderhoud van vliegtuigen.

@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/artemis-ii-astronauts-launch-to-moon/"
-imageUrl: "https://images-assets.nasa.gov/image/MAF_20220130_LH2 CS2 Move to 110-34/MAF_20220130_LH2 CS2 Move to 110-34~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/MAF_20220130_LH2 CS2 Move to 110-5/MAF_20220130_LH2 CS2 Move to 110-5~medium.jpg"
 imageAlt: "Artemis II-astronauten vertrekken naar de Maan"
 imageCredit: "Jared Lyons / MAF"
 ---

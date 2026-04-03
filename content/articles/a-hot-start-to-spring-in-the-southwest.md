@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/a-hot-start-to-spring-in-the-southwest/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunrise at the pad 4/KSC - SLS_03302026_Artemis II sunrise at the pad 4~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II at the pad/KSC - SLS_03302026_Artemis II at the pad~large.jpg"
 imageAlt: "Recordbrekende hitte markeert begin van lente in Zuidwest-Amerika"
 imageCredit: "NASA/ Sam Lott / MSFC"
 ---

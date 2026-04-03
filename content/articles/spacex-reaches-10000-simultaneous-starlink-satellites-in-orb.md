@@ -4,10 +4,13 @@ excerpt: "SpaceX heeft een historische mijlpaal bereikt met 10.000 Starlink-sate
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-17T07:53:12.909Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/16/live-coverage-spacex-to-launch-25-starlink-satellites-on-falcon-9-rocket-from-california/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0042/KSC-20220421-PH-KLS01_0042~medium.jpg"
+imageAlt: "SpaceX bereikt mijlpaal van 10.000 gelijktijdige Starlink-satellieten in omloopbaan"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft maandagavond een belangrijke mijlpaal bereikt in de uitbouw van het Starlink-satellietnetwerk. Na de succesvolle lancering van de Starlink 17-24 missie draaien er nu voor het eerst 10.000 Starlink-satellieten gelijktijdig in een baan om de aarde.

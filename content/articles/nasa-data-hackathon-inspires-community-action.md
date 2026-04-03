@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/get-involved/citizen-science/nasa-data-hackathon-inspires-community-action/"
-imageUrl: "https://images-assets.nasa.gov/image/201411210019HQ/201411210019HQ~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_11/SLS_KSC_Artemis II Rollout2 03192026_11~large.jpg"
 imageAlt: "NASA Data Hackathon Inspireert Gemeenschapsactie"
-imageCredit: "NASA/Aubrey Gemignani / HQ"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Een bijzondere samenwerking tussen wetenschap en gemeenschap vond plaats op 31 januari in de Marston Science Library van de Universiteit van Florida. Daar organiseerde NASA de Environmental Monitoring through Education, Research, and Geospatial Engagement (EMERGE) Data Hackathon, een evenement dat bibliotheken, docenten en individuen de kans biedt om zich bezig te houden met volksgezondheid en milieuwetenschappen.

@@ -7,9 +7,9 @@ publishedAt: "2026-03-01T10:00:00.000Z"
 readTime: "5"
 featured: "false"
 tags: ["neutronenster", "educatie", "uitleg"]
-imageUrl: "https://images-assets.nasa.gov/image/iss034e063091/iss034e063091~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000273/GSFC_20171208_Archive_e000273~small.jpg"
 imageAlt: "Wat is een neutronenster? Uitleg in 3 niveaus"
-imageCredit: "Tom Marshburn / JSC"
+imageCredit: "GSFC"
 ---
 
 # Wat is een neutronenster? Uitleg in 3 niveaus

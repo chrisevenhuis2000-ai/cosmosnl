@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/blog/curiosity-blog-sols-4832-4837-driving-the-contact-line/"
-imageUrl: "https://images-assets.nasa.gov/image/PIA18581/PIA18581~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/PIA14254/PIA14254~medium.jpg"
 imageAlt: "Curiosity Blog, Sols 4832-4837: Het rijden van de (contact)lijn!"
 imageCredit: "JPL"
 ---

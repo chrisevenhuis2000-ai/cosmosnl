@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/solar-system/skywatching/night-sky-network/dim-delights-in-cancer/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-14/KSC-03202026-Artemis II_Second_Rollout-14~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_3/SLS_KSC_Artemis II Rollout2 03192026_3~large.jpg"
 imageAlt: "Zwakke schatten in het sterrenbeeld Kreeft"
-imageCredit: "NASA/Brandon Hancock / MSFC"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Het sterrenbeeld Kreeft (Cancer) staat niet bekend om zijn heldere sterren, maar dat maakt dit bescheiden sterrenbeeld zeker niet minder interessant. Tussen de opvallendere buursterrenbeelden Tweelingen en Leeuw verscholen, bevat Kreeft enkele van de meest bijzondere objecten aan onze nachtelijke hemel.

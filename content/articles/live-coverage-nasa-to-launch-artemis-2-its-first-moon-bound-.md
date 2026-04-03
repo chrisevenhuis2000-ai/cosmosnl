@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/01/live-coverage-nasa-to-launch-artemis-2-its-first-moon-bound-mission-with-astronauts-since-1972/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20220317-PH-KLS03_0149/KSC-20220317-PH-KLS03_0149~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/MAF_20240715_VG_Pegasus_EPB_03/MAF_20240715_VG_Pegasus_EPB_03~medium.jpg"
 imageAlt: "Live verslag: NASA lanceert Artemis 2, eerste bemande maanmissie sinds 1972"
-imageCredit: "NASA/Kim Shiflett / KSC"
+imageCredit: "NASA/Eric Bordelon / MAF"
 ---
 
 NASA bereidt zich voor op een historische lancering die de terugkeer van bemande maanvluchten markeert. De Artemis 2-missie, gepland voor woensdag 1 april om 00:24 Nederlandse tijd, zal de eerste keer zijn sinds 1972 dat astronauten opnieuw richting de maan reizen.

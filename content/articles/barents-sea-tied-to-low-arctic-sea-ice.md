@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/barents-sea-tied-to-low-arctic-sea-ice/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-13/KSC-03202026-Artemis II_Second_Rollout-13~large.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/201007040002HQ/201007040002HQ~medium.jpg"
 imageAlt: "Barentszzee draagt bij aan record laag Arctisch zee-ijs"
-imageCredit: "NASA/Brandon Hancock / MSFC"
+imageCredit: "(NASA/Kathryn Hansen) / HQ"
 ---
 
 De Arctische Oceaan heeft in maart 2026 opnieuw een zorgwekkend dieptepunt bereikt qua zee-ijsbedekking. Satellietmetingen tonen aan dat de maximale ijsuitbreiding gelijk staat aan het laagste niveau dat ooit is geregistreerd sinds de start van satellietwaarnemingen.

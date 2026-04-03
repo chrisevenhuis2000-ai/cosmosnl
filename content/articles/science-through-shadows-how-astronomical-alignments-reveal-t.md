@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/learning-resources/science-activation/science-through-shadows-how-astronomical-alignments-reveal-the-universe/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-08pd2467/KSC-08pd2467~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-01172026-Artemis II_Rollout-27/KSC-01172026-Artemis II_Rollout-27~large.jpg"
 imageAlt: "Wetenschap door schaduwen: Hoe astronomische uitlijningen het heelal onthullen"
-imageCredit: "KSC"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 Wanneer het ene hemellichaam voor het andere langs beweegt, kan er een schaduw ontstaan die door de ruimte reist – en soms zelfs over de aarde. Deze momenten van uitlijning, bekend als eclipsen, occultaties en transits, stellen wetenschappers in staat om verre objecten op bijzondere manieren te bestuderen.

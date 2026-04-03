@@ -7,9 +7,9 @@ publishedAt: "2026-03-03T08:00:00.000Z"
 readTime: "3"
 featured: "false"
 tags: ["komeet", "sterrenkijken", "blote oog"]
-imageUrl: "https://images-assets.nasa.gov/image/PIA18879/PIA18879~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000984/GSFC_20171208_Archive_e000984~medium.jpg"
 imageAlt: "Komeet C/2026 A1 mogelijk zichtbaar met blote oog"
-imageCredit: "JPL"
+imageCredit: "GSFC"
 ---
 
 # Komeet C/2026 A1 mogelijk zichtbaar met blote oog

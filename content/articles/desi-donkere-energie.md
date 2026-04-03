@@ -4,9 +4,12 @@ excerpt: "De grootste 3D kaart van het heelal toont dat de kracht van donkere en
 category: "kosmologie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-09T10:00:00.000Z"
-readTime: 5
-featured: false
+readTime: "5"
+featured: "false"
 tags: ["donkere energie", "DESI", "kosmologie", "heelal"]
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001206/GSFC_20171208_Archive_e001206~medium.jpg"
+imageAlt: "DESI: donkere energie verzwakt al 4,5 miljard jaar"
+imageCredit: "GSFC"
 ---
 
 # DESI: donkere energie verzwakt al 4,5 miljard jaar

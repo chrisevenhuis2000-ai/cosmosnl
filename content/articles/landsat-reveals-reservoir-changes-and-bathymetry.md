@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/missions/landsat/landsat-reveals-reservoir-changes-and-bathymetry/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20210811-PH-RNB01_0041/KSC-20210811-PH-RNB01_0041~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001083/GSFC_20171208_Archive_e001083~medium.jpg"
 imageAlt: "Landsat onthult veranderingen en bodemstructuur van stuwmeren"
-imageCredit: "NASA/Randy Beaudoin / KSC"
+imageCredit: "GSFC"
 ---
 
 Wetenschappers hebben in twee baanbrekende onderzoeken aangetoond hoe waardevol Landsat-satellietgegevens zijn voor het bestuderen van stuwmeren wereldwijd. Deze studies vullen belangrijke kennislacunes op het gebied van reservoirstructuur en -dynamiek.

@@ -4,10 +4,13 @@ excerpt: "SpaceX heeft op maandagochtend 29 nieuwe Starlink V2 Mini satellieten 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-18T07:50:56.789Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/16/live-coverage-spacex-to-launch-a-falcon-9-rocket-on-st-patricks-day-morning/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0054/KSC-20220421-PH-KLS01_0054~medium.jpg"
+imageAlt: "SpaceX lanceert 29 Starlink-satellieten op St. Patrick's Day"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 Op St. Patrick's Day heeft SpaceX succesvol 29 nieuwe Starlink-satellieten de ruimte in gestuurd met een Falcon 9-raket. De lancering, aangeduid als missie Starlink 10-46, vond plaats om 15:27 Nederlandse tijd vanaf lanceerplatform 40 op Cape Canaveral Space Force Station in Florida.

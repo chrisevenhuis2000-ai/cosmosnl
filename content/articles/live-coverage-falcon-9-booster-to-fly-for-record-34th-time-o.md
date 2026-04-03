@@ -4,13 +4,13 @@ excerpt: "SpaceX staat op het punt een nieuw herbruikbaarheidsrecord te vestigen
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-31T08:07:27.125Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/30/falcon-9-booster-to-fly-for-record-34th-time-on-starlink-delivery-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20201121-PH-SPX01_0004/KSC-20201121-PH-SPX01_0004~medium.jpg"
+imageAlt: "Live verslag: Falcon 9 booster vliegt recordbrekende 34e missie voor Starlink-satellietlancering"
+imageCredit: "SpaceX / KSC"
 ---
 
 SpaceX bereidt zich voor op een historische mijlpaal in de ruimtevaart met de lancering van een Falcon 9-raket die voor de recordbrekende 34e keer zal worden ingezet. De missie staat gepland om 23:15 Nederlandse tijd vanaf lanceerbasis 40 op Cape Canaveral Space Force Station in Florida.

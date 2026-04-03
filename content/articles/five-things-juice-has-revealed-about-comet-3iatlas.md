@@ -4,13 +4,13 @@ excerpt: "De Jupiter Icy Moons Explorer (Juice) van de Europese ruimtevaartorgan
 category: "kometen"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-03T08:01:41.308Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Juice/Five_things_Juice_has_revealed_about_Comet_3I_ATLAS"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001975/GSFC_20171208_Archive_e001975~small.jpg"
+imageAlt: "Vijf dingen die Juice heeft onthuld over Komeet 3I/ATLAS"
+imageCredit: "GSFC"
 ---
 
 De European Space Agency's Jupiter Icy Moons Explorer (Juice) heeft opmerkelijke waarnemingen gedaan van Komeet 3I/ATLAS tijdens zijn reis naar Jupiter. De ruimtesonde, die in 2023 werd gelanceerd, kon unieke gegevens verzamelen over deze bijzondere komeet die ons zonnestelsel doorkruist.
