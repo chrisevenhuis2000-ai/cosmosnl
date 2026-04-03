@@ -1,0 +1,47 @@
+name: 🖼️ Backfill Images (eenmalig)
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Re-fetch ook artikelen die al een imageUrl hebben'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run image backfill
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            node scripts/backfill-images.js --force
+          else
+            node scripts/backfill-images.js
+          fi
+
+      - name: Commit updated frontmatter
+        run: |
+          git config --local user.email "bot@cosmosnl.nl"
+          git config --local user.name "CosmosNL Bot"
+          git add content/articles/
+          git diff --staged --quiet || git commit -m "🖼️ Backfill: afbeeldingen opgeslagen in frontmatter"
+          git push

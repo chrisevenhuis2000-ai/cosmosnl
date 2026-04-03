@@ -41,7 +41,19 @@ jobs:
           git push
         continue-on-error: true
 
+      - name: Backfill images for new articles
+        run: node scripts/backfill-images.js
+
+      - name: Commit image updates
+        run: |
+          git config --local user.email "bot@cosmosnl.nl"
+          git config --local user.name "CosmosNL Bot"
+          git add content/articles/
+          git diff --staged --quiet || git commit -m "🖼️ Auto-backfill: afbeeldingen bijgewerkt $(date '+%Y-%m-%d')"
+          git push
+        continue-on-error: true
+
       - name: Trigger Vercel/Cloudflare deployment
         # Uncomment and add your deploy hook URL as a secret
         # run: curl -X POST "${{ secrets.DEPLOY_HOOK_URL }}"
-        run: echo "✅ Articles fetched and committed"
+        run: echo "✅ Articles fetched, images backfilled and committed"
