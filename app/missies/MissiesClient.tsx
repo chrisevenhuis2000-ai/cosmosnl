@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { MISSIONS, type MissionDetail as Mission, type MissionStatus } from '@/lib/missions-data'
@@ -347,6 +347,53 @@ function MissionCard({ mission }: { mission: Mission }) {
   )
 }
 
+// ── Spotlight card (featured active mission) ───────────────────────────────
+function SpotlightCard({ mission }: { mission: Mission }) {
+  const st = STATUS_STYLE[mission.status]
+  return (
+    <Link href={`/missies/${mission.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', marginBottom: 24 }}>
+      <article
+        className="news-hero-card article-card"
+        style={{ background: `linear-gradient(145deg, ${mission.bgFrom} 0%, ${mission.bgTo} 100%)`, border: '1px solid rgba(55,138,221,0.2)', borderRadius: 4, overflow: 'hidden', display: 'grid', gridTemplateColumns: '40% 1fr' }}
+      >
+        {/* Left: visual */}
+        <div style={{ position: 'relative', minHeight: 280, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          {/* Orbit rings decoratief */}
+          {[180, 240, 310].map((size, i) => (
+            <div key={i} aria-hidden="true" style={{ position: 'absolute', width: size, height: size, borderRadius: '50%', border: `1px solid ${mission.agencyColor}`, opacity: 0.08 - i * 0.02 }} />
+          ))}
+          <div style={{ fontSize: '5rem', zIndex: 1, filter: 'drop-shadow(0 0 32px rgba(55,138,221,0.3))' }}>{mission.icon}</div>
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(transparent, rgba(4,6,15,0.7))' }} />
+        </div>
+
+        {/* Right: content */}
+        <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: `3px solid ${mission.agencyColor}` }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: mission.agencyColor }}>★ Spotlight · {mission.agency}</span>
+            <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 4 }}>
+              {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} aria-hidden="true" />}
+              {st.label}
+            </span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 12, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+            {mission.name}
+          </h2>
+          <div style={{ display: 'flex', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4' }}>🚀 {mission.launched}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4' }}>📍 {mission.body}</span>
+          </div>
+          <p style={{ fontSize: '0.85rem', color: '#8A9CC0', lineHeight: 1.65, marginBottom: 20, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
+            {mission.objective}
+          </p>
+          <span style={{ alignSelf: 'flex-start', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: mission.agencyColor, borderBottom: `1px solid ${mission.agencyColor}60`, paddingBottom: 2 }}>
+            Bekijk missie →
+          </span>
+        </div>
+      </article>
+    </Link>
+  )
+}
+
 // ── Mission filter strip ───────────────────────────────────────────────────
 type MissionFilter = 'Alles' | 'Actief' | 'Gepland' | 'Voltooid'
 const MISSION_FILTERS: MissionFilter[] = ['Alles', 'Actief', 'Gepland', 'Voltooid']
@@ -370,34 +417,59 @@ function MissionFilterStrip({ active, onFilter, counts }: { active: MissionFilte
   )
 }
 
+// ── Article skeleton ──────────────────────────────────────────────────────
+function ArticleSkeleton() {
+  return (
+    <div style={{ background: '#12132A', border: '1px solid #252858', overflow: 'hidden' }}>
+      <div className="shimmer" style={{ height: 160, background: '#1a1d40' }} />
+      <div style={{ padding: '16px 18px 20px' }}>
+        <div className="shimmer" style={{ height: 9, width: '40%', marginBottom: 12, borderRadius: 2, background: '#1a1d40' }} />
+        <div className="shimmer" style={{ height: 13, marginBottom: 8, borderRadius: 2, background: '#1a1d40' }} />
+        <div className="shimmer" style={{ height: 13, width: '75%', borderRadius: 2, background: '#1a1d40' }} />
+      </div>
+    </div>
+  )
+}
+
 // ── Article card ───────────────────────────────────────────────────────────
 function ArticleCard({ article }: { article: Article }) {
-  const [hovered, setHovered] = useState(false)
   return (
-    <Link href={`/nieuws/${article.slug}`} className="card-wrap" style={{ textDecoration: 'none', display: 'block', border: `1px solid ${hovered ? 'rgba(55,138,221,0.3)' : 'transparent'}`, transition: 'border-color 0.2s', background: '#12132A', overflow: 'hidden' }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {article.imageUrl ? (
-        <div style={{ height: 160, overflow: 'hidden', position: 'relative' }}>
-          <img src={`https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=640&h=320&fit=cover`} alt="" loading="lazy" className="card-thumb-inner" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.75 }} />
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(18,19,42,0.9) 0%, transparent 60%)' }} />
+    <Link href={`/nieuws/${article.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+      <article className="article-card" style={{ background: '#12132A', border: '1px solid #252858', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ position: 'relative', height: 160, overflow: 'hidden', flexShrink: 0 }}>
+          {article.imageUrl ? (
+            <img
+              src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`}
+              alt="" loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }}
+              onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+            />
+          ) : (
+            <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #080c1a, #101828)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span aria-hidden="true" style={{ fontSize: '1.8rem', opacity: 0.3 }}>🚀</span>
+            </div>
+          )}
+          {/* Gradient overlay */}
+          <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 70, background: 'linear-gradient(transparent, rgba(10,16,48,0.85))' }} />
+          {/* Category badge */}
+          {article.category && (
+            <span style={{ position: 'absolute', top: 10, left: 10, fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: article.catColor || '#3dcfdf', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
+              {article.category}
+            </span>
+          )}
+          {/* Read time badge */}
+          <span style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#8A9CC0', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
+            {article.readTime ?? 3} min
+          </span>
         </div>
-      ) : (
-        <div style={{ height: 120, background: 'linear-gradient(135deg, #080c1a, #101828)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span aria-hidden="true" style={{ fontSize: '1.8rem', opacity: 0.3 }}>🚀</span>
+        <div style={{ padding: '16px 18px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.35, marginBottom: 8 }}>{article.title}</h3>
+          <p style={{ fontSize: '0.75rem', color: '#8A9BC4', lineHeight: 1.6, flex: 1, margin: 0, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>{article.excerpt}</p>
+          {article.date && (
+            <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', display: 'block', marginTop: 12 }}>{article.date}</time>
+          )}
         </div>
-      )}
-      <div style={{ padding: '16px 18px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: article.catColor || '#378ADD' }}>{article.category}</span>
-          <span style={{ color: '#252858' }}>·</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>{article.readTime} min</span>
-          <span className="card-read-more">Lees →</span>
-        </div>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.35, marginBottom: 8 }}>{article.title}</h3>
-        <p style={{ fontSize: '0.75rem', color: '#8A9BC4', lineHeight: 1.6, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{article.excerpt}</p>
-      </div>
+      </article>
     </Link>
   )
 }
@@ -446,6 +518,7 @@ function SiteFooter() {
 export default function MissiesPage() {
   const [missionFilter, setMissionFilter] = useState<MissionFilter>('Alles')
   const [articles, setArticles]           = useState<Article[]>([])
+  const [showTop, setShowTop]             = useState(false)
   const nasaFetchedRef = useRef<Set<string>>(new Set())
 
   useEffect(() => {
@@ -462,6 +535,12 @@ export default function MissiesPage() {
         setArticles(filtered.length > 0 ? filtered : data.slice(0, 6))
       })
       .catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    const handler = () => setShowTop(window.scrollY > 600)
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
   }, [])
 
   useEffect(() => {
@@ -496,6 +575,17 @@ export default function MissiesPage() {
     Voltooid: MISSIONS.filter(m => m.status === 'voltooid').length,
   }
 
+  // Spotlight: eerste actieve missie, alleen bij "Alles" of "Actief" filter
+  const spotlightMission = useMemo(() =>
+    (missionFilter === 'Alles' || missionFilter === 'Actief')
+      ? MISSIONS.find(m => m.status === 'actief') ?? null
+      : null,
+    [missionFilter]
+  )
+  const gridMissions = spotlightMission
+    ? filteredMissions.filter(m => m.id !== spotlightMission.id)
+    : filteredMissions
+
   return (
     <>
       <a href="#main-content" className="skip-link">Ga naar hoofdinhoud</a>
@@ -526,8 +616,13 @@ export default function MissiesPage() {
             <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
           </div>
           <MissionFilterStrip active={missionFilter} onFilter={setMissionFilter} counts={missionCounts} />
+          {spotlightMission && <SpotlightCard mission={spotlightMission} />}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
-            {filteredMissions.map(m => <MissionCard key={m.id} mission={m} />)}
+            {gridMissions.map((m, i) => (
+              <div key={m.id} className="animate-fadeUp" style={{ animationDelay: `${Math.min(i * 0.06, 0.48)}s` }}>
+                <MissionCard mission={m} />
+              </div>
+            ))}
           </div>
         </section>
 
@@ -555,27 +650,49 @@ export default function MissiesPage() {
         </section>
 
         {/* ── Mission news ─────────────────────────────────────────── */}
-        {articles.length > 0 && (
-          <section aria-labelledby="nieuws-label" id="nieuws" style={{ marginBottom: 64 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, gap: 16 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                <span id="nieuws-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Missie nieuws</span>
-                <div aria-hidden="true" style={{ width: 48, height: 1, background: '#252858' }} />
-              </div>
-              <Link href="/?topic=Missies" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em', transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
-              >Alle missie-artikelen →</Link>
+        <section aria-labelledby="nieuws-label" id="nieuws" style={{ marginBottom: 64 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, gap: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <span id="nieuws-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Missie nieuws</span>
+              {articles.length > 0 && (
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#252858', background: '#1a1d40', padding: '2px 8px', borderRadius: 2 }}>
+                  {articles.length} artikelen
+                </span>
+              )}
+              <div aria-hidden="true" style={{ width: 48, height: 1, background: '#252858' }} />
             </div>
+            <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em', transition: 'color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
+            >Alle artikelen →</Link>
+          </div>
+          {articles.length === 0 ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, background: '#252858', border: '1px solid #252858' }}>
+              {[0, 1, 2].map(i => <ArticleSkeleton key={i} />)}
+            </div>
+          ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, background: '#252858', border: '1px solid #252858' }}>
               {articles.slice(0, 6).map(a => <ArticleCard key={a.slug} article={a} />)}
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
       </main>
 
       <SiteFooter />
+
+      {/* Back-to-top */}
+      {showTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Terug naar boven"
+          style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 50, width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#12132A', border: '1px solid #378ADD', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem', color: '#378ADD', boxShadow: '0 4px 20px rgba(55,138,221,0.2)', transition: 'transform 0.15s, box-shadow 0.15s', animation: 'fadeIn 0.2s ease both' }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(55,138,221,0.35)' }}
+          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(55,138,221,0.2)' }}
+        >
+          ↑
+        </button>
+      )}
     </>
   )
 }
