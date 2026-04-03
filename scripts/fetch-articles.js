@@ -123,6 +123,17 @@ async function translateAndSummarise(title, content) {
  * Parse og:image / twitter:image from an HTML string.
  * Returns an absolute URL or null.
  */
+// Only accept URLs that are definitely images (not GIFs, not extensionless)
+function isValidImageUrl(url) {
+  if (!url) return false
+  try {
+    const path = new URL(url).pathname.toLowerCase()
+    return /\.(jpg|jpeg|png|webp)(\?|$)/.test(path)
+  } catch {
+    return false
+  }
+}
+
 function parseOgImage(html, baseUrl) {
   const patterns = [
     /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i,
@@ -194,9 +205,9 @@ async function extractImage(item, title, source) {
   const imgMatch = html.match(/<img[^>]+src=["']([^"']+\.(jpg|jpeg|png|webp))[^"']*["']/i)
   if (imgMatch) return { imageUrl: imgMatch[1], imageAlt: title, imageCredit: source }
 
-  // 6. Scrape og:image from the source article page
+  // 6. Scrape og:image from the source article page (skip GIFs and extensionless URLs)
   const ogImage = await fetchOgImage(item.link)
-  if (ogImage) return { imageUrl: ogImage, imageAlt: title, imageCredit: source }
+  if (ogImage && isValidImageUrl(ogImage)) return { imageUrl: ogImage, imageAlt: title, imageCredit: source }
 
   return { imageUrl: '', imageAlt: '', imageCredit: '' }
 }

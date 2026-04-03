@@ -277,7 +277,7 @@ function ArticleSkeleton() {
 function FeaturedCard({ article }: { article: Article }) {
   const mins = articleReadTime(article.slug)
   const imgSrc = article.imageUrl
-    ? `https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=900&h=540&fit=cover`
+    ? `${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`
     : null
 
   return (
@@ -289,7 +289,7 @@ function FeaturedCard({ article }: { article: Article }) {
         {/* Left: image */}
         <div style={{ position: 'relative', minHeight: 320, overflow: 'hidden' }}>
           {imgSrc ? (
-            <img src={imgSrc} alt="" loading="eager" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} />
+            <img src={imgSrc} alt="" loading="eager" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
           ) : (
             <div style={{ width: '100%', height: '100%', minHeight: 320, background: 'linear-gradient(135deg, #0a1030, #1a2860)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
               {article.emoji || '🌌'}
@@ -333,7 +333,7 @@ function FeaturedCard({ article }: { article: Article }) {
 function ArticleCard({ article }: { article: Article }) {
   const mins = articleReadTime(article.slug)
   const imgSrc = article.imageUrl
-    ? `https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=600&h=360&fit=cover`
+    ? `${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`
     : null
 
   return (
@@ -343,7 +343,7 @@ function ArticleCard({ article }: { article: Article }) {
         {/* Image with overlays */}
         <div style={{ position: 'relative', height: 180, overflow: 'hidden', flexShrink: 0 }}>
           {imgSrc ? (
-            <img src={imgSrc} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} />
+            <img src={imgSrc} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
           ) : (
             <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #0a1030, #1a2860)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>
               {article.emoji || '🌌'}

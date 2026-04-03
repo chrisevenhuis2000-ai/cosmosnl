@@ -18,6 +18,17 @@ const ARTICLES_DIR = path.join(__dirname, '..', 'content', 'articles')
 const PROXY        = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 const FORCE        = process.argv.includes('--force')
 
+// Only accept URLs that are definitely images (not GIFs, not extensionless)
+function isValidImageUrl(url) {
+  if (!url) return false
+  try {
+    const path = new URL(url).pathname.toLowerCase()
+    return /\.(jpg|jpeg|png|webp)(\?|$)/.test(path)
+  } catch {
+    return false
+  }
+}
+
 // ── og:image scraping ─────────────────────────────────────────────────────────
 
 function parseOgImage(html, baseUrl) {
@@ -196,7 +207,8 @@ async function main() {
     let imageCredit = fm.source || 'Bron'
 
     if (sourceUrl) {
-      imageUrl = await fetchOgImage(sourceUrl)
+      const rawOg = await fetchOgImage(sourceUrl)
+      imageUrl = (rawOg && isValidImageUrl(rawOg)) ? rawOg : null
       if (imageUrl) {
         console.log(`  🌐 og:image: ${imageUrl.slice(0, 70)}`)
       }

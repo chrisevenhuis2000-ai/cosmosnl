@@ -122,6 +122,46 @@ export default {
       return cors(request, JSON.stringify({ url: null, credit: null }), 404)
     }
 
+    // ── GET /image-proxy?url=... ──────────────────────────────────────────
+    // Fetches an image server-side and re-serves it with proper CORS headers,
+    // bypassing browser ORB restrictions on ESA/NASA cross-origin images.
+    if (request.method === 'GET' && url.pathname === '/image-proxy') {
+      const imageUrl = url.searchParams.get('url')
+      if (!imageUrl) return cors(request, JSON.stringify({ error: 'No URL' }), 400)
+
+      // Only allow http(s) URLs
+      if (!/^https?:\/\//i.test(imageUrl)) {
+        return cors(request, JSON.stringify({ error: 'Invalid URL' }), 400)
+      }
+
+      try {
+        const upstream = await fetch(imageUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)',
+            'Accept': 'image/webp,image/jpeg,image/png,image/*',
+          },
+          redirect: 'follow',
+        })
+
+        const ct = upstream.headers.get('Content-Type') || ''
+        if (!ct.startsWith('image/')) {
+          return cors(request, JSON.stringify({ error: 'Not an image' }), 415)
+        }
+
+        const body = await upstream.arrayBuffer()
+        return new Response(body, {
+          status: 200,
+          headers: {
+            'Content-Type':                ct,
+            'Cache-Control':               'public, max-age=86400, stale-while-revalidate=604800',
+            'Access-Control-Allow-Origin': '*',
+          },
+        })
+      } catch (e) {
+        return cors(request, JSON.stringify({ error: 'Upstream fetch failed' }), 502)
+      }
+    }
+
     // ── POST / → Anthropic proxy (existing) ──────────────────────────────
     if (request.method === 'POST' && url.pathname === '/') {
       const body     = await request.json()
