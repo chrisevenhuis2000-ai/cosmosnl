@@ -4,13 +4,13 @@ excerpt: "April 2026 biedt sterrenliefhebbers een spektakel met Mercurius op zij
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-27T07:59:08.995Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/solar-system/whats-up-april-2026-skywatching-tips-from-nasa/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/PIA18899/PIA18899~medium.jpg"
+imageAlt: "Sterrenkijktips voor april 2026: Mercurius, Lyriden en een nieuwe komeet"
+imageCredit: "JPL"
 ---
 
 De maand april 2026 belooft een bijzonder spektakel te worden voor liefhebbers van de sterrenhemel. NASA wijst op drie hoogtepunten die deze maand de moeite waard maken om naar buiten te kijken.

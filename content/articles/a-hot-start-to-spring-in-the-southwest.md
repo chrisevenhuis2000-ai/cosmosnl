@@ -4,13 +4,13 @@ excerpt: "Temperaturen stegen in maart 2026 boven de 37 graden Celsius in versch
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-26T08:00:51.104Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/a-hot-start-to-spring-in-the-southwest/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunrise at the pad 4/KSC - SLS_03302026_Artemis II sunrise at the pad 4~large.jpg"
+imageAlt: "Recordbrekende hitte markeert begin van lente in Zuidwest-Amerika"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Het zuidwesten van de Verenigde Staten heeft in maart 2026 te maken gehad met uitzonderlijk hoge temperaturen, waarbij het kwik op verschillende locaties boven de 37 graden Celsius uitkwam. Deze extreme warmte markeert een opvallend hete start van het lenteseizoen in de regio.

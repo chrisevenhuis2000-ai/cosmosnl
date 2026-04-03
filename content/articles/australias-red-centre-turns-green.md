@@ -4,10 +4,13 @@ excerpt: "Overvloedige regenval in februari en maart 2026 heeft het woestijnland
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-19T07:44:35.948Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/australias-red-centre-turns-green/"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_5/SLS_KSC_Artemis II Rollout2 03192026_5~large.jpg"
+imageAlt: "Australië's 'Rode Hart' kleurt groen"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Het iconische 'Red Centre' van Australië heeft een opmerkelijke gedaanteverwisseling ondergaan. Na uitzonderlijk veel neerslag in de eerste maanden van 2026 is het normaal gesproken dorre woestijnlandschap van Centraal-Australië veranderd in een weelderig groen tapijt.

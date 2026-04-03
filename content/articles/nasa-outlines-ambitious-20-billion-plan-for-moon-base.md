@@ -4,13 +4,13 @@ excerpt: "NASA heeft een grootschalig plan onthuld voor de bouw van een permanen
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-25T07:51:21.772Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/25/nasa-outlines-ambitious-20-billion-plan-for-moon-base/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-2009-2984/KSC-2009-2984~medium.jpg"
+imageAlt: "NASA presenteert ambitieus plan van 20 miljard dollar voor maanbasis"
+imageCredit: "KSC"
 ---
 
 De Amerikaanse ruimtevaartorganisatie NASA heeft een ambitieus plan gepresenteerd voor de bouw van een permanente maanbasis met een totaalbudget van 20 miljard dollar. Dit grootschalige project markeert een nieuwe fase in de menselijke ruimteverkenning en vormt een belangrijke stap richting toekomstige bemande missies naar Mars.

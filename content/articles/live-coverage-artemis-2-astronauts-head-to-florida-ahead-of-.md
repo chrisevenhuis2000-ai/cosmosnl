@@ -4,13 +4,13 @@ excerpt: "De bemanning van NASA's Artemis 2 maanmissie is onderweg naar Florida 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-28T07:43:00.006Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/27/live-coverage-artemis-2-astronauts-head-to-florida-ahead-of-april-1-launch-attempt/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220902-PH-SBS02_0122/KSC-20220902-PH-SBS02_0122~medium.jpg"
+imageAlt: "Artemis 2 astronauten vertrekken naar Florida voor lancering op 1 april"
+imageCredit: "NASA/Steven Seipel / KSC"
 ---
 
 De vier astronauten van NASA's langverwachte Artemis 2-missie zijn vrijdag vertrokken naar Florida, waar zij zich voorbereiden op hun historische reis rond de maan. De bemanning wordt verwacht rond 14:30 Nederlandse tijd (20:30 UTC) te landen op Kennedy Space Center.

@@ -4,10 +4,13 @@ excerpt: "NASA heeft 14 universiteitsteams uit de Verenigde Staten geselecteerd 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-21T07:31:22.228Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/nasa-selects-university-finalists-for-technology-concepts-competition/"
+imageUrl: "https://images-assets.nasa.gov/image/201108050004HQ/201108050004HQ~medium.jpg"
+imageAlt: "NASA selecteert universiteitsteams voor innovatieve ruimtevaarttechnologie wedstrijd"
+imageCredit: "NASA/Bill Ingalls / HQ"
 ---
 
 NASA heeft veertien universiteitsteams uit heel Amerika geselecteerd als finalisten voor de Revolutionary Aerospace Systems Concepts – Academic Linkage (RASC-AL) wedstrijd van 2026. Deze prestigieuze NASA-competitie daagt studenten uit om baanbrekende concepten te ontwikkelen die het menselijk leven en werken op de Maan, Mars en andere hemellichamen kunnen ondersteunen.

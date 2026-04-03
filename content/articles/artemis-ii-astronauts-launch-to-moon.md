@@ -4,13 +4,13 @@ excerpt: "NASA's Artemis II-missie is succesvol gelanceerd met vier astronauten 
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-03T08:01:03.984Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/artemis-ii-astronauts-launch-to-moon/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20200413-PH-JBS01_0036/KSC-20200413-PH-JBS01_0036~medium.jpg"
-imageAlt: "Artemis II Astronauts Launch to Moon"
-imageCredit: "NASA/Ben Smegelsky / KSC"
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202503280063/NHQ202503280063~medium.jpg"
+imageAlt: "Artemis II-astronauten vertrekken naar de Maan"
+imageCredit: "NASA/Joel Kowsky / HQ"
 ---
 
 Op 1 april 2026 is NASA's langverwachte Artemis II-missie van start gegaan, waarbij de krachtige Space Launch System-raket en het Orion-ruimtevaartuig succesvol zijn opgestegen. Deze historische lancering markeert een belangrijke mijlpaal in de terugkeer van de mensheid naar de Maan.

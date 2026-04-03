@@ -4,13 +4,13 @@ excerpt: "NASA's Ames Research Center in Silicon Valley nodigt media uit voor in
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-26T08:01:14.281Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/general/nasa-ames-experts-available-for-artemis-ii-flight-test-interviews/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20230602-PH-GEB01-0056/KSC-20230602-PH-GEB01-0056~medium.jpg"
+imageAlt: "NASA Ames-experts beschikbaar voor interviews over Artemis II-testvlucht"
+imageCredit: "NASA/Glenn Benson / KSC"
 ---
 
 NASA's Ames Research Center in Silicon Valley opent vrijdag 27 maart zijn deuren voor de media om interviews te houden met lokale experts over de aanstaande Artemis II-missie. Van 10:00 tot 14:00 uur kunnen journalisten en mediavertegenwoordigers spreken met specialisten die betrokken zijn bij deze historische ruimtemissie.

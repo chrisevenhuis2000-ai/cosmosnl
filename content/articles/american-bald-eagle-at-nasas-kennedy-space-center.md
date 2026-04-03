@@ -4,10 +4,13 @@ excerpt: "Een Amerikaanse zeearend is gefotografeerd terwijl deze wegvliegt van 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-20T07:43:30.008Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/american-bald-eagle-at-nasas-kennedy-space-center/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-01172026-Artemis II_Rollout-3/KSC-01172026-Artemis II_Rollout-3~large.jpg"
+imageAlt: "Amerikaanse Zeearend bij NASA's Kennedy Space Center"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 Een indrukwekkende Amerikaanse zeearend is vastgelegd op camera terwijl het majestueuze dier wegvliegt van zijn nest bij NASA's Kennedy Space Center in Florida, afgelopen vrijdag 13 maart 2026.

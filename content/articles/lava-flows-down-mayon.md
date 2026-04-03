@@ -4,10 +4,13 @@ excerpt: "De Landsat 8 satelliet heeft een zeldzame, heldere opname gemaakt van 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-19T07:44:58.883Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/lava-flows-down-mayon/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-14/KSC-03202026-Artemis II_Second_Rollout-14~large.jpg"
+imageAlt: "Lavastromen razen naar beneden langs Mayon vulkaan"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 De Operational Land Imager (OLI) aan boord van de Landsat 8 satelliet heeft op 26 februari 2026 een zeldzame, relatief heldere opname gemaakt van Mayon, de meest actieve vulkaan van de Filipijnen. Het natuurlijke kleurenbeeld is gecombineerd met infraroodwaarnemingen om de hittesignatuur van de lava te benadrukken.

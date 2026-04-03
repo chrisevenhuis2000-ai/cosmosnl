@@ -4,10 +4,13 @@ excerpt: "NASA heeft acht studententeams geselecteerd als finalisten voor de Gat
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-16T08:06:42.673Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/aeronautics/nasa-selects-finalists-in-student-aircraft-maintenance-competition/"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_21/SLS_KSC_Artemis II Rollout 1172026_21~large.jpg"
+imageAlt: "NASA selecteert finalisten in studentenwedstrijd voor vliegtuigonderhoud"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 NASA heeft acht studententeams uit de hele Verenigde Staten geselecteerd als finalisten voor de Gateways to Blue Skies Competition 2026. Deze prestigieuze wedstrijd geeft studenten de middelen om een van de meest urgente uitdagingen in de Amerikaanse luchtvaart aan te pakken: het onderhoud van vliegtuigen.

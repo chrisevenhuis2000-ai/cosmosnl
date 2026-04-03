@@ -4,13 +4,13 @@ excerpt: "Open water in de Barentszzee heeft bijgedragen aan een recordlaag zee-
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-03T08:00:41.286Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/barents-sea-tied-to-low-arctic-sea-ice/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-13/KSC-03202026-Artemis II_Second_Rollout-13~large.jpg"
+imageAlt: "Barentszzee draagt bij aan record laag Arctisch zee-ijs"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 De Arctische Oceaan heeft in maart 2026 opnieuw een zorgwekkend dieptepunt bereikt qua zee-ijsbedekking. Satellietmetingen tonen aan dat de maximale ijsuitbreiding gelijk staat aan het laagste niveau dat ooit is geregistreerd sinds de start van satellietwaarnemingen.

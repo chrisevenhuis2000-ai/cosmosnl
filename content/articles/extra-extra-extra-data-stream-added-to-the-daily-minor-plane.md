@@ -4,10 +4,13 @@ excerpt: "Het citizen science project Daily Minor Planet breidt uit met gegevens
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-16T08:06:32.763Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/get-involved/citizen-science/extra-extra-extra-data-stream-added-to-the-daily-minor-planet/"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_5/SLS_KSC_Artemis II Rollout2 03192026_5~large.jpg"
+imageAlt: "Extra! Nieuwe datastroom toegevoegd aan Daily Minor Planet project"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Het Daily Minor Planet citizen science project krijgt er een belangrijke uitbreiding bij. Het wetenschappelijke team verwerkt nu niet alleen de nachtelijke gegevens van de Mt. Lemmon telescoop van de Catalina Sky Survey in Arizona, maar ook beelden van de indrukwekkende Bok 2.3-meter telescoop op het Kitt Peak National Observatory.

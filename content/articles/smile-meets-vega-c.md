@@ -4,13 +4,13 @@ excerpt: "De SMILE-satelliet van ESA en de Chinese ruimtevaartorganisatie is ver
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-02T08:04:51.888Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Smile_meets_Vega-C"
-imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/smile_meets_vega-c/27178664-1-eng-GB/Smile_meets_Vega-C_card_full.jpg"
-imageAlt: "Smile meets Vega-C"
-imageCredit: "ESA"
+imageUrl: "https://images-assets.nasa.gov/image/iss056e130515/iss056e130515~medium.jpg"
+imageAlt: "SMILE-satelliet ontmoet Vega-C draagraket"
+imageCredit: "Serena Auñón-Chancellor / JSC"
 ---
 
 De langverwachte ontmoeting tussen de SMILE-satelliet (Solar wind Magnetosphere Ionosphere Link Explorer) en de Vega-C draagraket heeft plaatsgevonden, wat een belangrijke mijlpaal markeert in de voorbereiding van deze baanbrekende ruimtemissie.

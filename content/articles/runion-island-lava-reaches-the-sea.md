@@ -4,13 +4,13 @@ excerpt: "De uitbarsting van Piton de la Fournaise in februari 2026 duurt langer
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-02T08:04:16.853Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/reunion-island-lava-reaches-the-sea/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/PIA03182/PIA03182~thumb.jpg"
+imageAlt: "Lava van vulkaan op Réunion bereikt de zee"
+imageCredit: "JPL"
 ---
 
 De vulkaan Piton de la Fournaise op het Franse eiland Réunion in de Indische Oceaan zorgt opnieuw voor spectaculaire beelden. De uitbarsting die in februari 2026 begon, heeft een uitzonderlijk karakter vergeleken met eerdere erupties van deze bekende vulkaan.

@@ -4,13 +4,13 @@ excerpt: "Erik Richards, Mission Manager van het Near Space Network, ziet de bem
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-28T07:42:25.780Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/missions/artemis/i-am-artemis/i-am-artemis-erik-richards/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-04272026-Artemis II_Crew Arrival-24/KSC-04272026-Artemis II_Crew Arrival-24~large.jpg"
+imageAlt: "Ik Ben Artemis: Erik Richards"
+imageCredit: "NASA/Brandon Hancock / KSC"
 ---
 
 Erik Richards, Mission Manager van NASA's Near Space Network, beschouwt de ondersteuning van de eerste bemande Artemis-missie naar de Maan als het hoogtepunt van een carrière die volledig gewijd is aan ruimtevaartcommunicatie. Voor Richards betekent deze missie de vervulling van een jeugddroom die begon tijdens de hoogtijdagen van het Space Shuttle-programma.

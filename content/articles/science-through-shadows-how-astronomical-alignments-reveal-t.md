@@ -4,13 +4,13 @@ excerpt: "Wanneer hemellichamen voor elkaar langs bewegen, ontstaan er schaduwen
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-24T07:52:46.625Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/learning-resources/science-activation/science-through-shadows-how-astronomical-alignments-reveal-the-universe/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-08pd2467/KSC-08pd2467~medium.jpg"
+imageAlt: "Wetenschap door schaduwen: Hoe astronomische uitlijningen het heelal onthullen"
+imageCredit: "KSC"
 ---
 
 Wanneer het ene hemellichaam voor het andere langs beweegt, kan er een schaduw ontstaan die door de ruimte reist – en soms zelfs over de aarde. Deze momenten van uitlijning, bekend als eclipsen, occultaties en transits, stellen wetenschappers in staat om verre objecten op bijzondere manieren te bestuderen.

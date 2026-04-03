@@ -4,10 +4,13 @@ excerpt: "De Smile-ruimtesonde is gearriveerd op de Europese ruimtehaven in Fran
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-16T08:07:48.542Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Smile/Smile_arrives_at_Europe_s_Spaceport"
+imageUrl: "https://images-assets.nasa.gov/image/iss039e018462/iss039e018462~medium.jpg"
+imageAlt: "Smile-ruimtesonde aangekomen op Europese ruimtehaven"
+imageCredit: "Koichi Wakata / JSC"
 ---
 
 De langverwachte Smile-ruimtesonde is aangekomen op de Europese ruimtehaven in Kourou, Frans-Guyana, waar het zich voorbereidt op een historische missie. Het ruimtevaartuig zal de komende weken een serie uitgebreide tests en controles ondergaan om ervoor te zorgen dat alles klaar is voor de geplande lancering.

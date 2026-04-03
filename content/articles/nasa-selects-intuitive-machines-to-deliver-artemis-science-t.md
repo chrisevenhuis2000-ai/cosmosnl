@@ -4,13 +4,13 @@ excerpt: "NASA heeft Intuitive Machines uit Houston een contract van 180,4 miljo
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-28T07:42:38.106Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/missions/artemis/clps/nasa-selects-intuitive-machines-to-deliver-artemis-science-tech-to-moon/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/PIA10430/PIA10430~small.jpg"
+imageAlt: "NASA kiest Intuitive Machines voor levering wetenschappelijke apparatuur naar de maan"
+imageCredit: "JPL"
 ---
 
 NASA heeft het Amerikaanse bedrijf Intuitive Machines een lucratief contract van 180,4 miljoen dollar toegekend voor het transport van wetenschappelijke instrumenten en technologie naar de maan. De opdracht valt onder NASA's CLPS (Commercial Lunar Payload Services) initiatief, dat onderdeel is van het ambitieuze Artemis-programma waarmee de Verenigde Staten astronauten terug naar de maan willen brengen.

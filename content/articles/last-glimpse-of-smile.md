@@ -4,13 +4,13 @@ excerpt: "Astronomen hebben een laatste glimp opgevangen van het fenomeen bekend
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-02T08:04:39.881Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Last_glimpse_of_Smile"
-imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/last_glimpse_of_smile/27178711-1-eng-GB/Last_glimpse_of_Smile_card_full.jpg"
-imageAlt: "Last glimpse of Smile"
-imageCredit: "ESA"
+imageUrl: "https://images-assets.nasa.gov/image/sts076-705-019/sts076-705-019~medium.jpg"
+imageAlt: "Laatste blik op Smile"
+imageCredit: "JSC"
 ---
 
 Wetenschappers hebben succesvol de laatste beelden vastgelegd van het astronomische verschijnsel dat bekend staat als 'Smile', voordat het definitief uit het bereik van onze telescopen verdween. Dit zeldzame kosmische fenomeen heeft astronomen maandenlang gefascineerd met zijn unieke eigenschappen en gedrag.

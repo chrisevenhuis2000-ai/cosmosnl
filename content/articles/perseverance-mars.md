@@ -4,9 +4,12 @@ excerpt: "Vreemde geologische patronen op Mars verbazen wetenschappers wereldwij
 category: "mars"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-05T09:00:00.000Z"
-readTime: 3
-featured: false
+readTime: "3"
+featured: "false"
 tags: ["Mars", "Perseverance", "geologie", "NASA"]
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202102190014/NHQ202102190014~medium.jpg"
+imageAlt: "Perseverance vindt 'luipaardvlekken' in Jezero krater"
+imageCredit: "NASA/Bill Ingalls / HQ"
 ---
 
 # Perseverance vindt 'luipaardvlekken' in Jezero krater

@@ -4,10 +4,13 @@ excerpt: "Het sterrenbeeld Kreeft is weliswaar zwak zichtbaar, maar herbergt enk
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-18T07:50:44.402Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/solar-system/skywatching/night-sky-network/dim-delights-in-cancer/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-14/KSC-03202026-Artemis II_Second_Rollout-14~large.jpg"
+imageAlt: "Zwakke schatten in het sterrenbeeld Kreeft"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 Het sterrenbeeld Kreeft (Cancer) staat niet bekend om zijn heldere sterren, maar dat maakt dit bescheiden sterrenbeeld zeker niet minder interessant. Tussen de opvallendere buursterrenbeelden Tweelingen en Leeuw verscholen, bevat Kreeft enkele van de meest bijzondere objecten aan onze nachtelijke hemel.

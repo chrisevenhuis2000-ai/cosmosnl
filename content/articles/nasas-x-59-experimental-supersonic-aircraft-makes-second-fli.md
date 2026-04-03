@@ -4,10 +4,13 @@ excerpt: "NASA's stille supersonische X-59 vliegtuig heeft vrijdag zijn tweede t
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-21T07:31:00.526Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/missions/quesst/nasas-x-59-experimental-supersonic-aircraft-makes-second-flight/"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_21/SLS_KSC_Artemis II Rollout 1172026_21~large.jpg"
+imageAlt: "NASA's X-59 experimentele supersonische vliegtuig voltooit tweede testvlucht"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 NASA's revolutionaire X-59 experimentele vliegtuig heeft vrijdag zijn tweede testvlucht succesvol afgerond, ondanks dat de vlucht korter duurde dan gepland vanwege een technische storing. Het vliegtuig, dat is ontworpen om de kenmerkende knallen van supersonische vluchten aanzienlijk te verminderen, zet hiermee een belangrijke stap in het testprogramma.

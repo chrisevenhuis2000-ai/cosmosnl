@@ -4,10 +4,13 @@ excerpt: "Wetenschappelijke instituten en ruimtevaartorganisaties maken gebruik 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-23T08:00:47.964Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/directorates/armd/tacp/ttt/ttt-resources/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-17/KSC-03202026-Artemis II_Second_Rollout-17~large.jpg"
+imageAlt: "Transformatieve Instrumenten en Technologieën: Hulpbronnen voor de Toekomst"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 De wereld van astronomie en ruimteonderzoek wordt voortdurend gevormd door strategische planning en toekomstvisies. Belangrijke hulpbronnen hierbij zijn visie-studies, analyses van alternatieven (AoA) en whitepapers die de richting bepalen voor wetenschappelijke en technologische ontwikkelingen.

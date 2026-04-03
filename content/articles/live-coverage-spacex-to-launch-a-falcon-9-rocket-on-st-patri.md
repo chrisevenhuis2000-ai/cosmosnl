@@ -4,10 +4,13 @@ excerpt: "SpaceX plant de lancering van een Falcon 9-raket met 29 Starlink V2 Mi
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-17T07:53:00.624Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/16/live-coverage-spacex-to-launch-a-falcon-9-rocket-on-st-patricks-day-morning/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180206-PH_FWM02_0166/KSC-20180206-PH_FWM02_0166~medium.jpg"
+imageAlt: "Live verslag: SpaceX lanceert Falcon 9-raket op St. Patrick's Day ochtend"
+imageCredit: "NASA/Frank Michaux / KSC"
 ---
 
 SpaceX bereidt zich voor op een nieuwe Starlink-missie op St. Patrick's Day ochtend. De Starlink 10-46 missie zal nog eens 29 Starlink V2 Mini-satellieten toevoegen aan de bestaande constellatie in een lage aardbaan.

@@ -4,10 +4,13 @@ excerpt: "Ierland staat bekend om zijn vele tinten groen, maar de opvallende gri
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-17T07:52:26.149Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/a-bit-of-gray-in-an-emerald-isle/"
+imageUrl: "https://images-assets.nasa.gov/image/PIA26437/PIA26437~medium.jpg"
+imageAlt: "Een vleugje grijs op het Smaragdeiland"
+imageCredit: "JPL"
 ---
 
 Ierland draagt niet voor niets de bijnaam 'het Smaragdeiland' - het land staat wereldwijd bekend om zijn weelderige groene landschappen. Maar satellietbeelden tonen dat er ook andere kleuren zijn die de aandacht trekken op dit eiland in de Noord-Atlantische Oceaan.

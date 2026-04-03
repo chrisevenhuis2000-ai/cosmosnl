@@ -4,13 +4,13 @@ excerpt: "De Artemis II-bemanning heeft zich op 27 maart 2026 gepresenteerd voor
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-31T08:07:01.377Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/sendoff-for-artemis-ii-crew/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20230602-PH-GEB01-0019/KSC-20230602-PH-GEB01-0019~medium.jpg"
+imageAlt: "Afscheid van de Artemis II-bemanning"
+imageCredit: "NASA/Glenn Benson / KSC"
 ---
 
 Op 27 maart 2026 poseerden zes astronauten voor de camera's voordat de Artemis II-bemanning naar een belangrijk media-evenement zou gaan. Van links naar rechts waren te zien: NASA-astronauten Andre Douglas, Victor Glover en Christina Koch, gevolgd door CSA-astronaut Jenni Gibbons van de Canadese ruimtevaartorganisatie, NASA-astronaut Reid Wiseman en CSA-astronaut Jeremy Hansen.

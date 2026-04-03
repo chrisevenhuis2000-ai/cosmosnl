@@ -4,13 +4,13 @@ excerpt: "Een satelliet heeft de kustwateren rond Vancouver Island in Canada kun
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-27T07:58:54.688Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/satellite-spots-a-spawn/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20150726-PH-NAS01_0017/KSC-20150726-PH-NAS01_0017~medium.jpg"
+imageAlt: "Satelliet spot vissenspawning vanuit de ruimte"
+imageCredit: "NASA / KSC"
 ---
 
 Astronomen en wetenschappers maken gebruik van satellieten voor veel meer dan alleen het bestuderen van sterren en planeten. Soms leveren deze ruimtetuigen ook fascinerende inzichten op over het leven op onze eigen planeet.

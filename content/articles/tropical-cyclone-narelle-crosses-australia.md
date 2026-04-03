@@ -4,13 +4,13 @@ excerpt: "De krachtige storm teisterde de noordelijke kust van het continent met
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-24T07:52:22.304Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/tropical-cyclone-narelle-crosses-australia/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunset at the pad 4/KSC - SLS_03302026_Artemis II sunset at the pad 4~large.jpg"
+imageAlt: "Tropische Cycloon Narelle Trekt Over Australië"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Tropische cycloon Narelle heeft de afgelopen dagen een verwoestend spoor getrokken langs de noordelijke kust van Australië. De krachtige storm kwam meerdere keren aan land en bracht zware windstoten en intense regenval met zich mee, wat leidde tot wijdverspreide schade in de getroffen gebieden.

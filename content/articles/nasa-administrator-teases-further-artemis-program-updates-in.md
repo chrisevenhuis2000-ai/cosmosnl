@@ -4,10 +4,13 @@ excerpt: "Tijdens een één-op-één gesprek heeft de NASA-directeur gehint op a
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-16T08:06:53.365Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/14/nasa-administrator-teases-further-artemis-program-updates-in-one-on-one-interview/"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-8/KSC-03202026-Artemis II_Second_Rollout-8~large.jpg"
+imageAlt: "NASA-directeur hint op verdere updates Artemis-programma in exclusief interview"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 De NASA-directeur heeft tijdens een exclusief interview aangegeven dat er binnenkort verdere updates komen over het Artemis-programma. Het gesprek vond plaats te midden van de lopende vluchtgereedheidstoets (Flight Readiness Review) voor de Artemis 2-missie.

@@ -4,13 +4,13 @@ excerpt: "NASA-astronaut Jessica Meir fotografeerde een Artemis-programma patch 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-01T08:14:41.876Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/godspeed-artemis-ii/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-03202026-Artemis II_Second_Rollout-17/KSC-03202026-Artemis II_Second_Rollout-17~large.jpg"
+imageAlt: "Succes gewenst, Artemis II!"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 NASA-astronaut Jessica Meir heeft een bijzondere foto gemaakt van een Artemis-programma patch die zweeft in de cupola van het Internationaal Ruimtestation (ISS). De astronaut deelde de afbeelding op 30 maart 2026 op X (voorheen Twitter).

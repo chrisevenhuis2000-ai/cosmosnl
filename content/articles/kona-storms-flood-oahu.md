@@ -4,13 +4,13 @@ excerpt: "Twee opeenvolgende subtropische cyclonen in maart hebben destructieve 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-25T07:50:49.077Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/kona-storms-flood-o%ca%bbahu/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_4/SLS_KSC_Artemis II Rollout 1172026_4~large.jpg"
+imageAlt: "Kona-stormen veroorzaken overstromingen op Oʻahu"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 Twee krachtige subtropische cyclonen hebben in maart voor verwoestende overstromingen gezorgd op de Hawaïaanse eilanden, met name op Oʻahu. De zogenaamde 'Kona-stormen' - genoemd naar de zuidwestelijke winden die ze met zich meebrengen - veroorzaakten plotselinge overstromingen die aanzienlijke schade aanrichtten aan infrastructuur en eigendommen.

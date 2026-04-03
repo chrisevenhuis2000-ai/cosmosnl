@@ -4,13 +4,13 @@ excerpt: "Twee recente studies tonen aan hoe Landsat-satellietdata cruciale hiat
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-01T08:14:54.367Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/missions/landsat/landsat-reveals-reservoir-changes-and-bathymetry/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20210811-PH-RNB01_0041/KSC-20210811-PH-RNB01_0041~medium.jpg"
+imageAlt: "Landsat onthult veranderingen en bodemstructuur van stuwmeren"
+imageCredit: "NASA/Randy Beaudoin / KSC"
 ---
 
 Wetenschappers hebben in twee baanbrekende onderzoeken aangetoond hoe waardevol Landsat-satellietgegevens zijn voor het bestuderen van stuwmeren wereldwijd. Deze studies vullen belangrijke kennislacunes op het gebied van reservoirstructuur en -dynamiek.

@@ -4,10 +4,13 @@ excerpt: "De Mars-rover Curiosity bevindt zich in de laatste fase van de boxwork
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-19T07:44:47.333Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/blog/curiosity-blog-sols-4832-4837-driving-the-contact-line/"
+imageUrl: "https://images-assets.nasa.gov/image/PIA18581/PIA18581~medium.jpg"
+imageAlt: "Curiosity Blog, Sols 4832-4837: Het rijden van de (contact)lijn!"
+imageCredit: "JPL"
 ---
 
 De NASA Mars-rover Curiosity werkt momenteel aan de afronding van een belangrijke geologische campagne op de rode planeet. Volgens Catherine O'Connell-Cooper, APXS Strategic Planner van de University of New Brunswick in Canada, bevindt de missie zich in de laatste fase van de zogeheten 'boxwork-campagne'.

@@ -4,13 +4,13 @@ excerpt: "NASA heeft twee belangrijke prijscategorieën aangekondigd die uitblin
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-28T07:42:48.259Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/general/nasas-environment-and-energy-blue-marble-awards-categories/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunset at the pad 4/KSC - SLS_03302026_Artemis II sunset at the pad 4~large.jpg"
+imageAlt: "NASA's Milieu en Energie 'Blue Marble' Prijscategorieën"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 NASA heeft de categorieën voor haar prestigieuze 'Blue Marble' Awards bekendgemaakt, die organisaties belonen voor hun uitzonderlijke prestaties op het gebied van milieubeheer en duurzame energie.

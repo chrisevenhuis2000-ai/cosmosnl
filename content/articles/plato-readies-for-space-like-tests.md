@@ -4,10 +4,13 @@ excerpt: "De Europese exoplaneetmissie Plato ondergaat momenteel cruciale tests 
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-16T08:07:38.424Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Plato_readies_for_space-like_tests"
+imageUrl: "https://images-assets.nasa.gov/image/iss067e033745/iss067e033745~medium.jpg"
+imageAlt: "Plato bereidt zich voor op ruimte-achtige tests"
+imageCredit: "JSC"
 ---
 
 De Plato-missie van de Europese Ruimtevaartorganisatie ESA, die op zoek gaat naar aardachtige exoplaneten, bevindt zich momenteel in de Large Space Simulator (LSS) van ESA's Test Centre voor een reeks essentiële tests onder ruimte-achtige omstandigheden.

@@ -4,13 +4,13 @@ excerpt: "Een netwerk van smeltmeren en afwateringskanalen heeft een Antarctisch
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-31T08:07:12.910Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/seeing-blue-during-schirmachers-summer-melt-season/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunset at the pad 4/KSC - SLS_03302026_Artemis II sunset at the pad 4~large.jpg"
+imageAlt: "Schirmacher Oase kleurt extra blauw tijdens zomersmeltseizoen"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 De Schirmacher Oase in Antarctica heeft tijdens het recente zomersmeltseizoen een opvallend blauwe kleur aangenomen. Dit natuurfenomeen ontstond door de vorming van een uitgebreid netwerk van smeltmeren en afwateringskanalen op het ijsoppervlak.

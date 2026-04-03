@@ -4,11 +4,11 @@ excerpt: "De JWST heeft dimethylsulfide gedetecteerd in de atmosfeer van K2-18b 
 category: "james-webb"
 author: "Dr. Mara Visser"
 publishedAt: "2026-03-11T09:00:00.000Z"
-readTime: 6
-featured: true
-imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Exoplanet_K2-18b_%28artist%27s_impression%29.jpg/1280px-Exoplanet_K2-18b_%28artist%27s_impression%29.jpg"
-imageAlt: "Artistieke impressie van exoplaneet K2-18b"
-imageCredit: "ESA/Hubble, M. Kornmesser"
+readTime: "6"
+featured: "true"
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000172/GSFC_20171208_Archive_e000172~medium.jpg"
+imageAlt: "James Webb vindt mogelijke sporen van leven op planeet K2-18b"
+imageCredit: "GSFC"
 tags: ["K2-18b", "exoplaneten", "biosignaturen", "JWST", "buitenaards leven"]
 ---
 

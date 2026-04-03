@@ -4,9 +4,12 @@ excerpt: "Astronomen zijn enthousiast over een heldere komeet die in april zicht
 category: "sterrenkijken"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-03T08:00:00.000Z"
-readTime: 3
-featured: false
+readTime: "3"
+featured: "false"
 tags: ["komeet", "sterrenkijken", "blote oog"]
+imageUrl: "https://images-assets.nasa.gov/image/PIA18879/PIA18879~medium.jpg"
+imageAlt: "Komeet C/2026 A1 mogelijk zichtbaar met blote oog"
+imageCredit: "JPL"
 ---
 
 # Komeet C/2026 A1 mogelijk zichtbaar met blote oog

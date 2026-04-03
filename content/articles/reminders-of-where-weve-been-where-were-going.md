@@ -4,13 +4,13 @@ excerpt: "NASA heeft drie maanstenen tentoongesteld tijdens een belangrijke aank
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-25T07:51:10.869Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/reminders-of-where-weve-been-where-were-going/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_4/SLS_KSC_Artemis II Rollout 1172026_4~large.jpg"
+imageAlt: "Herinneringen aan waar we zijn geweest, waar we naartoe gaan"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 Drie kostbare maanstenen vormden het middelpunt van een historische bijeenkomst op 24 maart 2026, waarbij NASA een reeks transformatieve initiatieven aankondigde die het Amerikaanse ruimtebeleid moeten realiseren en het leiderschap in de ruimte moeten versterken.

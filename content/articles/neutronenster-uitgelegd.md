@@ -4,9 +4,12 @@ excerpt: "Van makkelijk naar technisch — ons AI-systeem legt het uit op jouw n
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-01T10:00:00.000Z"
-readTime: 5
-featured: false
+readTime: "5"
+featured: "false"
 tags: ["neutronenster", "educatie", "uitleg"]
+imageUrl: "https://images-assets.nasa.gov/image/iss034e063091/iss034e063091~medium.jpg"
+imageAlt: "Wat is een neutronenster? Uitleg in 3 niveaus"
+imageCredit: "Tom Marshburn / JSC"
 ---
 
 # Wat is een neutronenster? Uitleg in 3 niveaus

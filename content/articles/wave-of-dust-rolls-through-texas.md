@@ -4,10 +4,13 @@ excerpt: "Een oprukkend koufront heeft een scherpe lijn van zand en andere klein
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-18T07:50:14.773Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/wave-of-dust-rolls-through-texas/"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_26/SLS_KSC_Artemis II Rollout 1172026_26~large.jpg"
+imageAlt: "Stofgolf rolt over Texas"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 Een krachtig koufront heeft afgelopen dagen gezorgd voor een spectaculair natuurverschijnsel in Texas. Het front stuwde een massieve muur van stof en zand op die als een bruine golf over de hoogvlaktes rolde en tijdelijk het zicht drastisch verminderde.

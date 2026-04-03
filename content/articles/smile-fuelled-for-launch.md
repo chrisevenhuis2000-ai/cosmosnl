@@ -4,13 +4,13 @@ excerpt: "De Europese ruimtemissie Smile is succesvol getankt en voorbereid voor
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-25T07:51:33.820Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Smile_fuelled_for_launch"
-imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/smile_fuelled_for_launch/27167641-1-eng-GB/Smile_fuelled_for_launch_card_full.jpg"
-imageAlt: "Smile fuelled for launch"
-imageCredit: "ESA"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20190313-PH_JBS01_0023/KSC-20190313-PH_JBS01_0023~medium.jpg"
+imageAlt: "Smile getankt en klaar voor lancering"
+imageCredit: "NASA/Ben Smegelsky / KSC"
 ---
 
 De Solar wind Magnetosphere Ionosphere Link Explorer (Smile) heeft een belangrijke mijlpaal bereikt in de voorbereiding op zijn ruimtemissie. Het ruimtevaartuig is volledig getankt en klaar voor transport naar de lanceerlocatie.

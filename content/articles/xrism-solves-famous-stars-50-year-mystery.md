@@ -4,13 +4,13 @@ excerpt: "Een onzichtbare begeleider die materiaal consumeert van de met het blo
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-25T07:51:46.398Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/XRISM_solves_famous_star_s_50-year_mystery"
-imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/gamma-cas_and_its_hungry_white_dwarf_companion/27166121-1-eng-GB/Gamma-Cas_and_its_hungry_white_dwarf_companion_card_full.jpg"
-imageAlt: "XRISM solves famous star’s 50-year mystery"
-imageCredit: "ESA"
+imageUrl: "https://images-assets.nasa.gov/image/sl3-108-1288/sl3-108-1288~medium.jpg"
+imageAlt: "XRISM lost 50 jaar oude sterrenmysterie op"
+imageCredit: "JSC"
 ---
 
 Wetenschappers hebben eindelijk de oorzaak ontdekt van de raadselachtige röntgenstraling die meer dan een halve eeuw geleden werd gedetecteerd bij de heldere ster gamma-Cas. Met behulp van de geavanceerde XRISM-röntgentelescoop hebben astronomen aangetoond dat een onzichtbare begeleiderster verantwoordelijk is voor dit fenomeen.

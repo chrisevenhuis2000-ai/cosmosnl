@@ -4,13 +4,13 @@ excerpt: "Krachtige winden voerden in maart 2026 Saharaans stof mee over noordwe
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-01T08:14:32.318Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/march-of-the-harmattan/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/PIA03620/PIA03620~small.jpg"
+imageAlt: "Mars van de Harmattan"
+imageCredit: "JPL"
 ---
 
 In maart 2026 trok een intense stofstorm vanuit de Sahara over noordwest-Afrika naar de Canarische Eilanden. De zogenaamde Harmattan-winden, die gedurende het droge seizoen stof en zand uit de woestijn meevoeren, bereikten dit jaar een uitzonderlijke kracht.

@@ -4,13 +4,13 @@ excerpt: "De bemanning van NASA's Artemis 2-missie is vrijdag aangekomen in Flor
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-29T07:51:22.157Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/27/live-coverage-artemis-2-astronauts-head-to-florida-ahead-of-april-1-launch-attempt/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20200315-PH-FMX01_0001/KSC-20200315-PH-FMX01_0001~medium.jpg"
+imageAlt: "Artemis 2-astronauten arriveren in Florida voor lanceerpoging op 1 april"
+imageCredit: "NASA/Frank Michaux / KSC"
 ---
 
 De vier astronauten van NASA's Artemis 2-missie zijn vrijdag aangekomen op Kennedy Space Center in Florida, waar zij zich voorbereiden op hun baanbrekende reis rond de maan. De bemanning landde naar verwachting rond 20:30 Nederlandse tijd op de luchthaven van Cape Canaveral.

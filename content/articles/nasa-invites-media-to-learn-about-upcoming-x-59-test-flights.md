@@ -4,10 +4,13 @@ excerpt: "NASA organiseert een persconferentie over de aankomende testvluchten v
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-17T07:52:37.707Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/news-release/nasa-invites-media-to-learn-about-upcoming-x-59-test-flights/"
+imageUrl: "https://images-assets.nasa.gov/image/201411210009HQ/201411210009HQ~medium.jpg"
+imageAlt: "NASA nodigt media uit om meer te leren over komende X-59 testvluchten"
+imageCredit: "NASA/Aubrey Gemignani / HQ"
 ---
 
 NASA heeft aangekondigd een persconferentie te houden op donderdag 19 maart om 23:30 Nederlandse tijd om de plannen voor de komende testvluchten van het X-59 stille supersonische vliegtuig toe te lichten. De teleconferentie is gepland na de tweede vlucht van de X-59, die volgens schema zal plaatsvinden in Californië.

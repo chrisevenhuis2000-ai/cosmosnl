@@ -4,10 +4,13 @@ excerpt: "De vlakten rond de San Andreas-breuk en het Carrizo Plain National Mon
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-23T08:00:36.182Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/a-fault-line-in-full-bloom/"
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_4/SLS_KSC_Artemis II Rollout 1172026_4~large.jpg"
+imageAlt: "Een breuklijn in volle bloei"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 De vlakten rondom de beroemde San Andreas-breuk in Californië staan momenteel in volle bloei, waarbij duizenden wilde bloemen het landschap in een gouden gloed hullen. Het Carrizo Plain National Monument, dat wordt doorkruist door deze geologisch belangrijke breuk, toont een adembenemend schouwspel van gele bloemen die zich uitstrekken over het ruige terrein.

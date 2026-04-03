@@ -4,13 +4,13 @@ excerpt: "Droge, warme en winderige omstandigheden in de Amerikaanse Great Plain
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-31T08:06:49.117Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/fires-tear-through-nebraska-grasslands/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-01172026-Artemis II_Rollout-7/KSC-01172026-Artemis II_Rollout-7~large.jpg"
+imageAlt: "Branden woeden door graslanden van Nebraska"
+imageCredit: "NASA/Brandon Hancock / MSFC"
 ---
 
 In maart 2026 hebben uitgebreide branden grote delen van de graslanden in Nebraska geteisterd, als gevolg van extreme weersomstandigheden in de Amerikaanse Great Plains. De combinatie van aanhoudende droogte, ongewoon warme temperaturen en sterke winden creëerde perfecte omstandigheden voor het ontstaan en de snelle verspreiding van natuurbranden.

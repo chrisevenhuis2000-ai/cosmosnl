@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol 119 kleine satellieten gelanceerd tijdens de Tr
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-03-31T08:07:39.329Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/30/live-coverage-spacex-to-launch-119-payloads-on-smallsat-rideshare-mission-from-california/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-2012-5691/KSC-2012-5691~medium.jpg"
+imageAlt: "SpaceX lanceert 119 satellieten tijdens rideshare-missie vanuit Californië"
+imageCredit: "KSC"
 ---
 
 SpaceX heeft vandaag een nieuwe mijlpaal bereikt met de lancering van maar liefst 119 satellieten tijdens de Transporter-16 missie. De Falcon 9 raket steeg om 13:02 Nederlandse tijd op vanaf Vandenberg Space Force Base in Californië, waarmee het bedrijf opnieuw zijn capaciteit voor het transporteren van kleine satellieten demonstreerde.
