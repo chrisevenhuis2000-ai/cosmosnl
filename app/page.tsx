@@ -1326,30 +1326,24 @@ export default function HomePage() {
 
   // Fetch unique, article-specific NASA images for cards without imageUrl.
   useEffect(() => {
-    const STOP = new Set([
-      'a','an','the','of','in','to','for','on','at','by','from','and','or',
-      'with','is','are','was','its','it','as','be','do','go','up','no','so',
-      'if','live','coverage','how','nasa','esas','nasas',
-      'makes','made','launches','launched','ready','preparing','gets','new',
-      'returns','second','first','third','next','last','latest','update','updates',
-      'invites','selects','selected','catches','finds','found','blog','sols',
-      'data','stream','added','daily','minor','plane','bit','wave','rolls',
-      'roll','oddly','high','rates','restless','unexpectedly','further',
-      'teases','another','shot','ahead','about','will','has','have','had',
-      'this','that','then','than','when','where','which',
-    ])
-
+    // English queries per category — titles are Dutch so we never use them as NASA search terms
     const CAT_QUERIES: Record<string, string> = {
-      'missies':       'space exploration cosmos universe',
-      'missions':      'space exploration cosmos universe',
-      'james-webb':    'james webb space telescope infrared',
-      'kosmologie':    'galaxy nebula cosmos deep space',
-      'cosmology':     'galaxy nebula cosmos deep space',
-      'mars':          'mars red planet surface landscape',
-      'sterrenkijken': 'telescope night sky astronomy stars',
-      'observing':     'telescope observatory astronomy',
-      'educatie':      'astronaut earth orbit space station',
+      'missies':       'rocket launch spacecraft mission',
+      'missions':      'rocket launch spacecraft mission',
+      'james-webb':    'james webb space telescope deep field infrared',
+      'kosmologie':    'galaxy nebula deep space cosmos hubble',
+      'cosmology':     'galaxy nebula deep space cosmos',
+      'mars':          'mars red planet surface rover landscape',
+      'sterrenkijken': 'night sky stars milky way observatory',
+      'observing':     'telescope observatory stars night sky',
+      'educatie':      'astronaut earth orbit international space station',
       'education':     'astronaut earth orbit space station',
+      'maan':          'moon lunar surface craters apollo',
+      'moon':          'moon lunar surface craters apollo',
+      'kometen':       'comet astronomy tail nucleus solar system',
+      'komeet':        'comet astronomy tail nucleus solar system',
+      'zon':           'sun solar flare corona nasa',
+      'planeten':      'planet solar system jupiter saturn',
     }
 
     const toFetch = articles
@@ -1359,44 +1353,24 @@ export default function HomePage() {
     toFetch.forEach(a => nasaFetchedRef.current.add(a.slug))
 
     toFetch.forEach(async (a, idx) => {
-      // Stagger requests 150ms apart
       await new Promise(r => setTimeout(r, idx * 150))
 
       const hash = a.slug.split('').reduce((acc: number, c: string) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
-      // Spread across 8 pages for much more variety
       const page = (hash % 8) + 1
+      const cat  = (a.category || '').toLowerCase()
+      const q    = CAT_QUERIES[cat] || 'space astronomy cosmos nebula'
 
-      const titleKeywords = (a.title || a.slug.replace(/-/g, ' '))
-        .toLowerCase()
-        .replace(/[''`'"]/g, '')
-        .replace(/[^a-z0-9\-]/g, ' ')
-        .trim()
-        .split(/\s+/)
-        .filter((w: string) => {
-          if (!w || w.length < 2) return false
-          if (/^[a-z\d]+-\d/.test(w) || /^\d+-[a-z]/.test(w)) return true
-          return w.length > 3 && !STOP.has(w)
-        })
-        .slice(0, 4)
-        .join(' ')
-
-      const cat      = (a.category || '').toLowerCase()
-      const catQuery = CAT_QUERIES[cat] || 'space astronomy cosmos'
-      const queries  = [titleKeywords, catQuery].filter(Boolean)
-
-      for (const q of queries) {
-        for (const pg of [page, ((page % 8) + 1)]) {
-          try {
-            const res = await fetch(
-              `${PROXY}/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}`
-            )
-            if (!res.ok) continue
-            const data = await res.json()
-            if (!data?.url) continue
-            setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: data.url } : p))
-            return
-          } catch {}
-        }
+      for (const pg of [page, ((page % 8) + 1)]) {
+        try {
+          const res = await fetch(
+            `${PROXY}/image-search?q=${encodeURIComponent(q)}&page=${pg}&hash=${hash}`
+          )
+          if (!res.ok) continue
+          const data = await res.json()
+          if (!data?.url) continue
+          setArticles(prev => prev.map(p => p.slug === a.slug ? { ...p, imageUrl: data.url } : p))
+          return
+        } catch {}
       }
     })
   }, [articles])
