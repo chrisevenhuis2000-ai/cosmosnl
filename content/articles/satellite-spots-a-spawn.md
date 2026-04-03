@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/satellite-spots-a-spawn/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_3/SLS_KSC_Artemis II Rollout 1172026_3~large.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/satellite-spots-a-spawn/herringspawn_oli2_20260219_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Satelliet spot vissenspawning vanuit de ruimte"
-imageCredit: "NASA/Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 Astronomen en wetenschappers maken gebruik van satellieten voor veel meer dan alleen het bestuderen van sterren en planeten. Soms leveren deze ruimtetuigen ook fascinerende inzichten op over het leven op onze eigen planeet.

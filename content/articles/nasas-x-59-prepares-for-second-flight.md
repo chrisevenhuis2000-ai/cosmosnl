@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/centers-and-facilities/armstrong/nasas-x-59-prepares-for-second-flight/"
-imageUrl: "https://images-assets.nasa.gov/image/AFRC2026-0048-41/AFRC2026-0048-41~large.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/03/afrc2026-0048-20.jpg"
 imageAlt: "NASA's X-59 bereidt zich voor op tweede testvlucht"
-imageCredit: "NASA/Jim Ross / AFRC"
+imageCredit: "NASA"
 ---
 
 NASA's revolutionaire X-59 experimentele vliegtuig bereidt zich voor op zijn tweede testvlucht, een cruciale mijlpaal die het tempo zal bepalen voor meer uitgebreide vluchttests die gepland staan voor 2026. Het toestel, dat speciaal is ontworpen om de geluidsbarrière te doorbreken zonder de karakteristieke knal te produceren, vormt een belangrijke stap in de ontwikkeling van stille supersonische vliegtuigen.

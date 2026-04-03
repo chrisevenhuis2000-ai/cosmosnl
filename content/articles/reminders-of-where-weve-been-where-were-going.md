@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/reminders-of-where-weve-been-where-were-going/"
-imageUrl: "https://images-assets.nasa.gov/image/as16-107-17436/as16-107-17436~medium.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/03/55166159616-92fbcbb330-o.jpg"
 imageAlt: "Herinneringen aan waar we zijn geweest, waar we naartoe gaan"
-imageCredit: "JSC"
+imageCredit: "NASA"
 ---
 
 Drie kostbare maanstenen vormden het middelpunt van een historische bijeenkomst op 24 maart 2026, waarbij NASA een reeks transformatieve initiatieven aankondigde die het Amerikaanse ruimtebeleid moeten realiseren en het leiderschap in de ruimte moeten versterken.

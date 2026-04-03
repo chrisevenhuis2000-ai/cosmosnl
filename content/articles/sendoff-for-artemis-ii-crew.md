@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/sendoff-for-artemis-ii-crew/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_MAF_20260401_ArtemisIILaunch_04/SLS_MAF_20260401_ArtemisIILaunch_04~large.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/03/jsc2026e017251.jpg"
 imageAlt: "Afscheid van de Artemis II-bemanning"
-imageCredit: "NASA/Michael DeMocker / MAF"
+imageCredit: "NASA"
 ---
 
 Op 27 maart 2026 poseerden zes astronauten voor de camera's voordat de Artemis II-bemanning naar een belangrijk media-evenement zou gaan. Van links naar rechts waren te zien: NASA-astronauten Andre Douglas, Victor Glover en Christina Koch, gevolgd door CSA-astronaut Jenni Gibbons van de Canadese ruimtevaartorganisatie, NASA-astronaut Reid Wiseman en CSA-astronaut Jeremy Hansen.

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/reunion-island-lava-reaches-the-sea/"
-imageUrl: "https://images-assets.nasa.gov/image/PIA22755/PIA22755~medium.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/réunion-island-lava-reaches-the-sea/reunioneruption_oli2_20260328_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Lava van vulkaan op Réunion bereikt de zee"
-imageCredit: "JPL"
+imageCredit: "NASA"
 ---
 
 De vulkaan Piton de la Fournaise op het Franse eiland Réunion in de Indische Oceaan zorgt opnieuw voor spectaculaire beelden. De uitbarsting die in februari 2026 begon, heeft een uitzonderlijk karakter vergeleken met eerdere erupties van deze bekende vulkaan.

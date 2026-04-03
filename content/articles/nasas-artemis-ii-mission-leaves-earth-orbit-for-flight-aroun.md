@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/news-release/nasas-artemis-ii-mission-leaves-earth-orbit-for-flight-around-moon/"
-imageUrl: "https://images-assets.nasa.gov/image/jsc2025e016290/jsc2025e016290~medium.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/04/tli.jpg"
 imageAlt: "NASA's Artemis II-missie verlaat aardbaan voor vlucht rond de maan"
-imageCredit: "NASA/Rad Sinyak / JSC"
+imageCredit: "NASA"
 ---
 
 NASA heeft een historische mijlpaal bereikt in het Artemis-programma. Voor het eerst sinds de Apollo-missies van de jaren zeventig zijn astronauten weer op weg naar de maan. Dit werd mogelijk gemaakt door een succesvolle ontsteking van Orions hoofdmotor afgelopen donderdag.

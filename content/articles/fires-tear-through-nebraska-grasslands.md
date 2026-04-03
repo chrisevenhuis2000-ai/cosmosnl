@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/fires-tear-through-nebraska-grasslands/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_33/SLS_KSC_Artemis II Rollout 1172026_33~large.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/fires-tear-through-nebraska-grasslands/nebraskafire_vir2_20260329_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Branden woeden door graslanden van Nebraska"
-imageCredit: "NASA/Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 In maart 2026 hebben uitgebreide branden grote delen van de graslanden in Nebraska geteisterd, als gevolg van extreme weersomstandigheden in de Amerikaanse Great Plains. De combinatie van aanhoudende droogte, ongewoon warme temperaturen en sterke winden creëerde perfecte omstandigheden voor het ontstaan en de snelle verspreiding van natuurbranden.

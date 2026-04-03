@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/lava-flows-down-mayon/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_3/SLS_KSC_Artemis II Rollout2 03192026_3~large.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/03/mayonvolcano-oli-20260226-lrg.jpg"
 imageAlt: "Lavastromen razen naar beneden langs Mayon vulkaan"
-imageCredit: "NASA/ Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 De Operational Land Imager (OLI) aan boord van de Landsat 8 satelliet heeft op 26 februari 2026 een zeldzame, relatief heldere opname gemaakt van Mayon, de meest actieve vulkaan van de Filipijnen. Het natuurlijke kleurenbeeld is gecombineerd met infraroodwaarnemingen om de hittesignatuur van de lava te benadrukken.

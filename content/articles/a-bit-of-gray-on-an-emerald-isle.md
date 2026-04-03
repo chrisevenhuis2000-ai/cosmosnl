@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/a-bit-of-gray-in-an-emerald-isle/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_9/SLS_KSC_Artemis II Rollout2 03192026_9~large.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/a-bit-of-gray-in-an-emerald-isle/burrennpzm_oli_20250526_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Een vleugje grijs op het Smaragdeiland"
-imageCredit: "NASA/ Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 Ierland draagt niet voor niets de bijnaam 'het Smaragdeiland' - het land staat wereldwijd bekend om zijn weelderige groene landschappen. Maar satellietbeelden tonen dat er ook andere kleuren zijn die de aandacht trekken op dit eiland in de Noord-Atlantische Oceaan.

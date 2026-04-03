@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/general/nasa-ames-experts-available-for-artemis-ii-flight-test-interviews/"
-imageUrl: "https://images-assets.nasa.gov/image/MAF_20220130_LH2 CS2 Move to 110-10/MAF_20220130_LH2 CS2 Move to 110-10~medium.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2023/02/artemis-logo-3.png"
 imageAlt: "NASA Ames-experts beschikbaar voor interviews over Artemis II-testvlucht"
-imageCredit: "Jared Lyons / MAF"
+imageCredit: "NASA"
 ---
 
 NASA's Ames Research Center in Silicon Valley opent vrijdag 27 maart zijn deuren voor de media om interviews te houden met lokale experts over de aanstaande Artemis II-missie. Van 10:00 tot 14:00 uur kunnen journalisten en mediavertegenwoordigers spreken met specialisten die betrokken zijn bij deze historische ruimtemissie.

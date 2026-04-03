@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/30/live-coverage-spacex-to-launch-119-payloads-on-smallsat-rideshare-mission-from-california/"
-imageUrl: "https://images-assets.nasa.gov/image/NHQ202409270001/NHQ202409270001~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20251112-PH-JNF01_0057/KSC-20251112-PH-JNF01_0057~large.jpg"
 imageAlt: "Live: SpaceX lanceert 119 satellieten tijdens Transporter-16 missie vanuit Californië"
-imageCredit: "NASA/Keegan Barber / HQ"
+imageCredit: "USSF 30th Space Wing/Jeremiah Fi / KSC"
 ---
 
 SpaceX bereidt zich voor op de lancering van maar liefst 119 kleine satellieten tijdens de Transporter-16 missie, de 21e vlucht in het populaire smallsat rideshare programma van het bedrijf. De Falcon 9 raket staat gepland om op te stijgen vanaf Vandenberg Space Force Base in Californië om 4:02 lokale tijd (13:02 Nederlandse tijd).

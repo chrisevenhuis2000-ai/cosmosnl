@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Webb/Webb_Hubble_capture_new_views_of_Saturn"
-imageUrl: "https://images-assets.nasa.gov/image/PIA26703/PIA26703~large.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/saturn_2024_webb_and_hubble_images/27170885-1-eng-GB/Saturn_2024_Webb_and_Hubble_images_pillars.jpg"
 imageAlt: "Webb en Hubble maken nieuwe opnames van Saturnus"
-imageCredit: "JPL"
+imageCredit: "ESA"
 ---
 
 De NASA/ESA/CSA James Webb Space Telescope en de NASA/ESA Hubble Space Telescope hebben samengewerkt om verbluffende nieuwe beelden van Saturnus te maken. De twee ruimtetelescopen onthullen de gasreus op opvallend verschillende manieren, wat astronomen waardevolle nieuwe inzichten geeft in de structuur van deze iconische planeet.

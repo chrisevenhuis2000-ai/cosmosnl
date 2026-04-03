@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Juice/Five_things_Juice_has_revealed_about_Comet_3I_ATLAS"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001975/GSFC_20171208_Archive_e001975~small.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/04/comet_3i_atlas_seen_by_juice_s_science_camera_janus/27186903-1-eng-GB/Comet_3I_ATLAS_seen_by_Juice_s_science_camera_JANUS_pillars.gif"
 imageAlt: "Vijf dingen die Juice heeft onthuld over Komeet 3I/ATLAS"
-imageCredit: "GSFC"
+imageCredit: "ESA"
 ---
 
 De European Space Agency's Jupiter Icy Moons Explorer (Juice) heeft opmerkelijke waarnemingen gedaan van Komeet 3I/ATLAS tijdens zijn reis naar Jupiter. De ruimtesonde, die in 2023 werd gelanceerd, kon unieke gegevens verzamelen over deze bijzondere komeet die ons zonnestelsel doorkruist.

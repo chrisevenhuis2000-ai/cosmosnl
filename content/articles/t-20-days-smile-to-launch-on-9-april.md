@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Smile/T-20_days_Smile_to_launch_on_9_April"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-98pc1426/KSC-98pc1426~medium.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/02/smile_delivered_to_space_artist_impression_gif/27126681-1-eng-GB/Smile_delivered_to_space_artist_impression_GIF_pillars.gif"
 imageAlt: "T-20 dagen: Smile-missie gelanceerd op 9 april"
-imageCredit: "KSC"
+imageCredit: "ESA"
 ---
 
 De langverwachte Smile-missie van de Europese ruimtevaartorganisatie ESA staat gepland voor lancering op donderdag 9 april om 08:29 Nederlandse tijd (07:29 Britse tijd, 03:29 lokale tijd). De satelliet zal worden gelanceerd met een Vega-C raket vanaf Europa's ruimtehaven in Frans-Guyana.

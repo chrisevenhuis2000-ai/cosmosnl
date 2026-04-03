@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/photojournal/sparcs-cubesat-first-light-images/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS-4201_KSC SLS Roll Out Beauty Shot Photo_1/SLS-4201_KSC SLS Roll Out Beauty Shot Photo_1~medium.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia26/pia26731/PIA26731.png/jcr:content/renditions/cq5dam.web.1280.1280.png"
 imageAlt: "SPARCS CubeSat toont eerste beelden van sterren in ultraviolet licht"
-imageCredit: "NASA/ Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 De SPARCS (Star-Planet Activity Research CubeSat) ruimtetelescoop heeft op 6 februari 2026 zijn eerste wetenschappelijke observaties uitgevoerd, slechts drie weken na de lancering met een SpaceX Falcon 9 raket op 11 januari. De kubieke satelliet slaagde erin om sterren gelijktijdig waar te nemen in zowel nabij-ultraviolet als ver-ultraviolet licht.

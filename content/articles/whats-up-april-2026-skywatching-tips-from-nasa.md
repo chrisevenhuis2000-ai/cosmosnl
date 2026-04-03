@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/solar-system/whats-up-april-2026-skywatching-tips-from-nasa/"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e002121/GSFC_20171208_Archive_e002121~small.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/psd/solar-system/skywatching/2026/april/Lyrid_Mike%20Lewinski%20via%20Flickr%20CC%20BY%202.0.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Sterrenkijktips voor april 2026: Mercurius, Lyriden en een nieuwe komeet"
-imageCredit: "GSFC"
+imageCredit: "NASA"
 ---
 
 De maand april 2026 belooft een bijzonder spektakel te worden voor liefhebbers van de sterrenhemel. NASA wijst op drie hoogtepunten die deze maand de moeite waard maken om naar buiten te kijken.

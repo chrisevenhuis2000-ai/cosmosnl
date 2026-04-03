@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/american-bald-eagle-at-nasas-kennedy-space-center/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20260313-PH-JBS01_0167/KSC-20260313-PH-JBS01_0167~large.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/03/ksc-20260313-ph-jbs01-0203orig.jpg"
 imageAlt: "Amerikaanse Zeearend bij NASA's Kennedy Space Center"
-imageCredit: "NASA/Ben Smegelsky / KSC"
+imageCredit: "NASA"
 ---
 
 Een indrukwekkende Amerikaanse zeearend is vastgelegd op camera terwijl het majestueuze dier wegvliegt van zijn nest bij NASA's Kennedy Space Center in Florida, afgelopen vrijdag 13 maart 2026.

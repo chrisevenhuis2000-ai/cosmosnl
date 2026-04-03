@@ -7,9 +7,9 @@ publishedAt: "2026-03-05T09:00:00.000Z"
 readTime: "3"
 featured: "false"
 tags: ["Mars", "Perseverance", "geologie", "NASA"]
-imageUrl: "https://images-assets.nasa.gov/image/PIA26368/PIA26368~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20200402-PH-JPL01_0002/KSC-20200402-PH-JPL01_0002~medium.jpg"
 imageAlt: "Perseverance vindt 'luipaardvlekken' in Jezero krater"
-imageCredit: "JPL"
+imageCredit: "NASA JPL/Christian Mangano / KSC"
 ---
 
 # Perseverance vindt 'luipaardvlekken' in Jezero krater

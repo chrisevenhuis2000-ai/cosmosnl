@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/a-hot-start-to-spring-in-the-southwest/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II at the pad/KSC - SLS_03302026_Artemis II at the pad~large.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/a-hot-start-to-spring-in-the-southwest/swheatwave_gmao_20260320_th.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Recordbrekende hitte markeert begin van lente in Zuidwest-Amerika"
-imageCredit: "NASA/ Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 Het zuidwesten van de Verenigde Staten heeft in maart 2026 te maken gehad met uitzonderlijk hoge temperaturen, waarbij het kwik op verschillende locaties boven de 37 graden Celsius uitkwam. Deze extreme warmte markeert een opvallend hete start van het lenteseizoen in de regio.

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/nasa-pc-12-aircraft-makes-move-to-support-flight-research-across-agency/"
-imageUrl: "https://images-assets.nasa.gov/image/AFRC2024-0143-02/AFRC2024-0143-02~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/AFRC2026-0025-18/AFRC2026-0025-18~large.jpg"
 imageAlt: "NASA PC-12 vliegtuig verhuist naar Armstrong Flight Research Center voor onderzoeksondersteuning"
-imageCredit: "NASA/Jim Ross / AFRC"
+imageCredit: "NASA"
 ---
 
 NASA heeft aangekondigd dat een van hun Pilatus PC-12 onderzoeksvliegtuigen wordt verplaatst naar het Armstrong Flight Research Center in Edwards, Californië. Deze verhuizing is bedoeld om vliegonderzoek door de hele organisatie beter te kunnen ondersteunen.

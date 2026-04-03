@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Images/2026/03/Plato_readies_for_space-like_tests"
-imageUrl: "https://images-assets.nasa.gov/image/sl2-x9-747/sl2-x9-747~medium.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/plato_readies_for_space-like_tests/27151050-1-eng-GB/Plato_readies_for_space-like_tests_pillars.jpg"
 imageAlt: "Plato bereidt zich voor op ruimte-achtige tests"
-imageCredit: "JSC"
+imageCredit: "ESA"
 ---
 
 De Plato-missie van de Europese Ruimtevaartorganisatie ESA, die op zoek gaat naar aardachtige exoplaneten, bevindt zich momenteel in de Large Space Simulator (LSS) van ESA's Test Centre voor een reeks essentiële tests onder ruimte-achtige omstandigheden.

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/ESA_observations_of_interstellar_comet_3I_ATLAS"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001975/GSFC_20171208_Archive_e001975~small.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/12/comet_3i_atlas_shows_activity_in_juice_navigation_camera_teaser/27008867-1-eng-GB/Comet_3I_ATLAS_shows_activity_in_Juice_navigation_camera_teaser_pillars.png"
 imageAlt: "ESA observaties van interstellaire komeet 3I/ATLAS"
-imageCredit: "GSFC"
+imageCredit: "ESA"
 ---
 
 De Europese Ruimtevaartorganisatie (ESA) reageerde prompt op de ontdekking van komeet 3I/ATLAS op 1 juli 2025. Kort nadat geautomatiseerde detectiesystemen de organisatie hadden gewaarschuwd voor het bestaan van de komeet, begonnen ESA-astronomen grondtelescopen in Hawaï, Chili en Australië in te zetten om de voortgang ervan te volgen.

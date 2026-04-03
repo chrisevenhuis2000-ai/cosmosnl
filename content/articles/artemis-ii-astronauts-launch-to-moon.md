@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/image-article/artemis-ii-astronauts-launch-to-moon/"
-imageUrl: "https://images-assets.nasa.gov/image/MAF_20220130_LH2 CS2 Move to 110-5/MAF_20220130_LH2 CS2 Move to 110-5~medium.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/04/55182924516-9d78d1e3ef-o.jpg"
 imageAlt: "Artemis II-astronauten vertrekken naar de Maan"
-imageCredit: "Jared Lyons / MAF"
+imageCredit: "NASA"
 ---
 
 Op 1 april 2026 is NASA's langverwachte Artemis II-missie van start gegaan, waarbij de krachtige Space Launch System-raket en het Orion-ruimtevaartuig succesvol zijn opgestegen. Deze historische lancering markeert een belangrijke mijlpaal in de terugkeer van de mensheid naar de Maan.

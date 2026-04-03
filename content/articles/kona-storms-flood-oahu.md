@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/kona-storms-flood-o%ca%bbahu/"
-imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_7/SLS_KSC_Artemis II Rollout2 03192026_7~large.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/kona-storms-flood-o"
 imageAlt: "Kona-stormen veroorzaken overstromingen op Oʻahu"
-imageCredit: "NASA/ Sam Lott / MSFC"
+imageCredit: "NASA"
 ---
 
 Twee krachtige subtropische cyclonen hebben in maart voor verwoestende overstromingen gezorgd op de Hawaïaanse eilanden, met name op Oʻahu. De zogenaamde 'Kona-stormen' - genoemd naar de zuidwestelijke winden die ze met zich meebrengen - veroorzaakten plotselinge overstromingen die aanzienlijke schade aanrichtten aan infrastructuur en eigendommen.

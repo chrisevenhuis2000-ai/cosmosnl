@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/seeing-blue-during-schirmachers-summer-melt-season/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-07PD-2590/KSC-07PD-2590~medium.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/iotd/2026/seeing-blue-during-schirmacher"
 imageAlt: "Schirmacher Oase kleurt extra blauw tijdens zomersmeltseizoen"
-imageCredit: "NASA\ Tony Gray / KSC"
+imageCredit: "NASA"
 ---
 
 De Schirmacher Oase in Antarctica heeft tijdens het recente zomersmeltseizoen een opvallend blauwe kleur aangenomen. Dit natuurfenomeen ontstond door de vorming van een uitgebreid netwerk van smeltmeren en afwateringskanalen op het ijsoppervlak.

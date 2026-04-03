@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/ESA_Multimedia/Videos/2026/03/What_is_Smile_about_to_discover"
-imageUrl: "https://images-assets.nasa.gov/image/s73-27081/s73-27081~medium.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/videos/2026/03/what_is_smile_about_to_discover/27167698-1-eng-GB/What_is_Smile_about_to_discover_pillars.jpg"
 imageAlt: "Smile-missie gaat onthullen wat er gebeurt wanneer zondeeltjes onze magnetische bescherming raken"
-imageCredit: "JSC"
+imageCredit: "ESA"
 ---
 
 Een revolutionaire ruimtemissie staat op het punt om een compleet nieuw inzicht te geven in hoe onze planeet zichzelf beschermt tegen zonnedeeltjes. De Smile-missie, een samenwerking tussen de Europese Ruimtevaartorganisatie (ESA) en de Chinese Academie van Wetenschappen, gaat voor het eerst de magnetosfeer van de aarde observeren in röntgenstraling.

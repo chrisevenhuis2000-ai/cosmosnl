@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/centers-and-facilities/ames/hangar-one-restoration-project/"
-imageUrl: "https://images-assets.nasa.gov/image/ARC-2002-ACD02-0072/ARC-2002-ACD02-0072~medium.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2022/04/25987_acd06-0074-020.jpeg"
 imageAlt: "Restauratie van historische Hangar One voltooid"
-imageCredit: "Tom Trower / ARC"
+imageCredit: "NASA"
 ---
 
 De restauratie van Hangar One, een iconisch bouwwerk in de San Francisco Bay Area, is na jaren van werk eindelijk voltooid. Deze historische hangar speelde een cruciale rol in de vroege luchtvaartgeschiedenis van de regio en geldt als een belangrijk monument voor de Amerikaanse luchtvaart.

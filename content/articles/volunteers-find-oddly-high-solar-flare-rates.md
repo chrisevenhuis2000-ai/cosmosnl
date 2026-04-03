@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/get-involved/citizen-science/volunteers-find-oddly-high-solar-flare-rates/"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000923/GSFC_20171208_Archive_e000923~small.jpg"
+imageUrl: "https://assets.science.nasa.gov/content/dam/science/cds/general/images/2023/06/ActiveRegionSpotters-1.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
 imageAlt: "Vrijwilligers ontdekken opvallend hoge zonnevlamfrequenties"
-imageCredit: "GSFC"
+imageCredit: "NASA"
 ---
 
 Gebieden op het zonneoppervlak vertonen regelmatig sterke magnetische velden die binnen enkele uren kunnen ontstaan en vervolgens langzaam of snel kunnen vervallen - soms over dagen, weken of zelfs maanden. Een nieuwe studie over deze langdurig actieve gebieden heeft verrassende inzichten opgeleverd over waar de krachtigste magnetische velden zich bevinden.

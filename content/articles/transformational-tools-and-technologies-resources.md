@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/directorates/armd/tacp/ttt/ttt-resources/"
-imageUrl: "https://images-assets.nasa.gov/image/PIA14418/PIA14418~thumb.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2026/03/lrc-2025-ocio-p-03625-mod-a-0c4750.jpg"
 imageAlt: "Transformatieve Instrumenten en Technologieën: Hulpbronnen voor de Toekomst"
-imageCredit: "JPL"
+imageCredit: "NASA"
 ---
 
 De wereld van astronomie en ruimteonderzoek wordt voortdurend gevormd door strategische planning en toekomstvisies. Belangrijke hulpbronnen hierbij zijn visie-studies, analyses van alternatieven (AoA) en whitepapers die de richting bepalen voor wetenschappelijke en technologische ontwikkelingen.

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/02/artemis-2-crew-blasts-off-on-historic-moon-mission/"
-imageUrl: "https://images-assets.nasa.gov/image/MAF_20220830__KSC_Artemis1_epb_001/MAF_20220830__KSC_Artemis1_epb_001~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/MAF_20190917_CS1 ES Join_SBS-34/MAF_20190917_CS1 ES Join_SBS-34~medium.jpg"
 imageAlt: "Artemis 2-bemanning vertrekt op historische maanmissie"
-imageCredit: "NASA/Eric Bordelon / MSFC"
+imageCredit: "Steven Seipel / MAF"
 ---
 
 Een historisch moment in de ruimtevaart heeft zich woensdag voltrokken toen een bemanning van vier astronauten vertrok op de langverwachte Artemis 2-missie naar de maan. De drie mannelijke en één vrouwelijke astronaut begonnen hun baanbrekende reis aan boord van 's werelds krachtigste operationele raket, die met een oorverdovend geraas van het lanceerplatform steeg.

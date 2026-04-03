@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Hubble_unexpectedly_catches_comet_breaking_up"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001975/GSFC_20171208_Archive_e001975~small.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/comet_c_2025_k1_atlas_november_2025/27155959-1-eng-GB/Comet_C_2025_K1_ATLAS_November_2025_pillars.jpg"
 imageAlt: "Hubble vangt onverwacht uiteenvallende komeet"
-imageCredit: "GSFC"
+imageCredit: "ESA"
 ---
 
 De NASA/ESA Hubble-ruimtetelescoop heeft een zeldzaam astronomisch fenomeen vastgelegd: het uiteenvallen van komeet K1, officieel bekend als komeet C/2025 K1 (ATLAS). Dit gebeurde terwijl de ruimtetelescoop toevallig naar het hemellichaam keek - een gebeurtenis met astronomisch kleine kansen.

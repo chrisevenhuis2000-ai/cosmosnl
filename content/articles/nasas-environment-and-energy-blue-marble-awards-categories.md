@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/general/nasas-environment-and-energy-blue-marble-awards-categories/"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001016/GSFC_20171208_Archive_e001016~medium.jpg"
+imageUrl: "https://www.nasa.gov/wp-content/uploads/2024/03/image-of-earth-13-apollo-17-blue-marble-photo-dec-7-1972-as17-148-22727.jpg"
 imageAlt: "NASA's Milieu en Energie 'Blue Marble' Prijscategorieën"
-imageCredit: "GSFC"
+imageCredit: "NASA"
 ---
 
 NASA heeft de categorieën voor haar prestigieuze 'Blue Marble' Awards bekendgemaakt, die organisaties belonen voor hun uitzonderlijke prestaties op het gebied van milieubeheer en duurzame energie.

@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Smile/Smile_arrives_at_Europe_s_Spaceport"
-imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000791/GSFC_20171208_Archive_e000791~small.jpg"
+imageUrl: "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/03/smile_arrives_at_europe_s_spaceport/27144349-1-eng-GB/Smile_arrives_at_Europe_s_Spaceport_pillars.jpg"
 imageAlt: "Smile-ruimtesonde aangekomen op Europese ruimtehaven"
-imageCredit: "GSFC"
+imageCredit: "ESA"
 ---
 
 De langverwachte Smile-ruimtesonde is aangekomen op de Europese ruimtehaven in Kourou, Frans-Guyana, waar het zich voorbereidt op een historische missie. Het ruimtevaartuig zal de komende weken een serie uitgebreide tests en controles ondergaan om ervoor te zorgen dat alles klaar is voor de geplande lancering.

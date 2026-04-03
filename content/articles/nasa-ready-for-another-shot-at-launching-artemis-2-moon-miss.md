@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/13/nasa-ready-for-another-shot-at-launching-artemis-2-moon-mission/"
-imageUrl: "https://images-assets.nasa.gov/image/MAF_20240715_VG_Pegasus_EPB_09/MAF_20240715_VG_Pegasus_EPB_09~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/MAF_20220830__KSC_Artemis1_epb_004/MAF_20220830__KSC_Artemis1_epb_004~medium.jpg"
 imageAlt: "NASA klaar voor nieuwe poging Artemis 2 maanmissie"
-imageCredit: "NASA/Eric Bordelon / MAF"
+imageCredit: "NASA/Eric Bordelon / MSFC"
 ---
 
 NASA heeft de definitieve goedkeuring gegeven voor de Artemis 2 maanmissie na afloop van een uitgebreide veiligheidsevaluatie van twee dagen. Alle betrokken teams hebben unaniem ingestemd met de lancering van deze belangrijke missie die astronauten opnieuw rond de maan zal brengen.
