@@ -5,10 +5,10 @@
  * Run: npm run backfill-images
  * Run: npm run backfill-images -- --force   (re-fetch even if imageUrl already set)
  *
- * Loops over every article in content/articles/ that has no imageUrl,
- * queries the CF Worker (NASA + Pexels fallback) using a smart English query
- * built from the Dutch article title + category, and writes the result
- * back into the frontmatter.
+ * Voor elk artikel:
+ *  1. Stuur de volledige inhoud naar Claude (via CF Worker) voor een gerichte EN zoekterm
+ *  2. Haal een afbeelding op via de CF Worker (NASA + Pexels fallback)
+ *  3. Sla imageUrl / imageAlt / imageCredit op in de frontmatter
  */
 
 const fs   = require('fs')
@@ -18,7 +18,7 @@ const ARTICLES_DIR = path.join(__dirname, '..', 'content', 'articles')
 const PROXY        = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 const FORCE        = process.argv.includes('--force')
 
-// ── Query building ────────────────────────────────────────────────────────────
+// ── Fallback query building (gebruikt als Claude faalt) ───────────────────────
 
 const CAT_QUERIES = {
   'missies':       'rocket launch spacecraft',
@@ -62,20 +62,62 @@ function slugHash(s) {
   return Math.abs(h)
 }
 
-function buildQuery(title, category) {
+function buildFallbackQuery(title, category) {
   const lower = title.toLowerCase()
-
-  // Step 1: English proper nouns / space terms already in the title
   const nouns = SPACE_NOUNS.filter(n => lower.includes(n))
   if (nouns.length >= 1) return nouns.slice(0, 3).join(' ')
-
-  // Step 2: translate Dutch words
   const words      = lower.replace(/[^a-z\s]/g, ' ').split(/\s+/)
   const translated = [...new Set(words.map(w => NL_EN[w]).filter(Boolean))].slice(0, 3)
   if (translated.length >= 1) return translated.join(' ')
-
-  // Step 3: category fallback
   return CAT_QUERIES[(category || '').toLowerCase()] || 'space astronomy cosmos'
+}
+
+// ── Claude: genereer zoekterm op basis van volledige artikelinhoud ─────────────
+
+function stripMarkdown(md) {
+  return md
+    .replace(/^---[\s\S]*?---\n?/, '')        // verwijder frontmatter
+    .replace(/#{1,6}\s+/g, '')                // headings
+    .replace(/\*\*?([^*\n]+)\*\*?/g, '$1')   // bold/italic
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links
+    .replace(/`[^`]+`/g, '')                  // inline code
+    .replace(/^\s*[-*+>]\s+/gm, '')           // lijstitems / blockquotes
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}
+
+async function getQueryFromClaude(title, body) {
+  const plainText = stripMarkdown(body).slice(0, 2500)
+
+  const payload = {
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 25,
+    system: [
+      'You generate short English image search queries for NASA/Pexels.',
+      'Reply with ONLY 3-6 English keywords — no explanation, no quotes, no punctuation.',
+      'Focus on the most visually distinctive subject of the article (spacecraft name, celestial object, event).',
+    ].join(' '),
+    messages: [{
+      role: 'user',
+      content: `Article title (Dutch): ${title}\n\nContent:\n${plainText}`,
+    }],
+  }
+
+  try {
+    const res  = await fetch(PROXY, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    })
+    const data  = await res.json()
+    const query = data?.content?.[0]?.text?.trim()
+    if (query && query.length >= 3 && query.length <= 120) {
+      return query
+    }
+  } catch (e) {
+    console.warn(`  ⚠ Claude error: ${e.message}`)
+  }
+  return null
 }
 
 // ── Frontmatter helpers ───────────────────────────────────────────────────────
@@ -83,7 +125,7 @@ function buildQuery(title, category) {
 function parseFrontmatter(raw) {
   const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
   const match = normalised.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/)
-  if (!match) return { fm: {}, body: normalised, fmRaw: '' }
+  if (!match) return { fm: {}, body: normalised }
   const fmRaw = match[1]
   const body  = match[2]
   const fm    = {}
@@ -94,7 +136,7 @@ function parseFrontmatter(raw) {
     const val = line.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '')
     fm[key] = val
   })
-  return { fm, body, fmRaw }
+  return { fm, body }
 }
 
 function rebuildFrontmatter(fm) {
@@ -106,23 +148,21 @@ function rebuildFrontmatter(fm) {
 
 // ── Image fetch via CF Worker ─────────────────────────────────────────────────
 
-async function fetchImage(slug, title, category) {
-  const q    = buildQuery(title, category)
+async function fetchImage(slug, query) {
   const hash = slugHash(slug)
   const page = (hash % 8) + 1
-  const url  = `${PROXY}/image-search?q=${encodeURIComponent(q)}&hash=${hash}&page=${page}`
+  const url  = `${PROXY}/image-search?q=${encodeURIComponent(query)}&hash=${hash}&page=${page}`
   try {
     const res  = await fetch(url)
     const data = await res.json()
     if (data.url) {
       return {
         imageUrl:    data.url,
-        imageAlt:    title,
         imageCredit: data.credit || 'NASA',
       }
     }
   } catch (e) {
-    console.warn(`  ⚠ Worker error for "${title}": ${e.message}`)
+    console.warn(`  ⚠ Worker error: ${e.message}`)
   }
   return null
 }
@@ -130,11 +170,11 @@ async function fetchImage(slug, title, category) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function main() {
-  const files   = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md'))
-  let updated   = 0
-  let skipped   = 0
+  const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md'))
+  let updated = 0
+  let skipped = 0
 
-  console.log(`🔭 Backfill images — ${files.length} artikelen${FORCE ? ' (--force: alles opnieuw)' : ''}\n`)
+  console.log(`🔭 Backfill images — ${files.length} artikelen${FORCE ? ' (--force)' : ''}\n`)
 
   for (const file of files) {
     const filePath = path.join(ARTICLES_DIR, file)
@@ -150,17 +190,28 @@ async function main() {
     const slug     = file.replace('.md', '')
     const title    = fm.title || slug.replace(/-/g, ' ')
     const category = fm.category || ''
-    const query    = buildQuery(title, category)
-    console.log(`\n  🔍 [${category || '?'}] ${title.slice(0, 55)} → query: "${query}"`)
 
-    const img = await fetchImage(slug, title, category)
+    console.log(`\n  📄 ${title.slice(0, 60)}`)
+
+    // Stap 1: Claude genereert een gerichte zoekterm op basis van volledige inhoud
+    let query = await getQueryFromClaude(title, body)
+    if (query) {
+      console.log(`  🤖 Claude query: "${query}"`)
+    } else {
+      query = buildFallbackQuery(title, category)
+      console.log(`  🔀 Fallback query: "${query}"`)
+    }
+
+    // Stap 2: Haal afbeelding op via CF Worker
+    const img = await fetchImage(slug, query)
     if (!img) {
       console.log('  ✗ Geen afbeelding gevonden')
       continue
     }
 
+    // Stap 3: Sla op in frontmatter
     fm.imageUrl    = img.imageUrl
-    fm.imageAlt    = img.imageAlt
+    fm.imageAlt    = title
     fm.imageCredit = img.imageCredit
 
     const newContent = `---\n${rebuildFrontmatter(fm)}\n---\n${body}`
@@ -168,11 +219,11 @@ async function main() {
     updated++
     console.log(`  ✅ ${img.imageUrl.slice(0, 70)}`)
 
-    // Avoid hammering the API
-    await new Promise(r => setTimeout(r, 500))
+    // Kleine pauze om de APIs niet te overbelasten
+    await new Promise(r => setTimeout(r, 600))
   }
 
-  console.log(`\n\n✨ Klaar! ${updated} artikelen bijgewerkt, ${skipped} overgeslagen.`)
+  console.log(`\n\n✨ Klaar! ${updated} bijgewerkt, ${skipped} overgeslagen.`)
 }
 
 main().catch(console.error)
