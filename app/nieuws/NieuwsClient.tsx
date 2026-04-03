@@ -5,24 +5,47 @@ import Link from 'next/link'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
-// English queries per category — titles are Dutch so we never use them as search terms
+// Category fallback queries (English) — used when title yields no specific terms
 const CAT_QUERIES: Record<string, string> = {
-  'missies':       'rocket launch spacecraft mission',
-  'missions':      'rocket launch spacecraft mission',
-  'james-webb':    'james webb space telescope deep field infrared',
-  'kosmologie':    'galaxy nebula deep space cosmos hubble',
-  'cosmology':     'galaxy nebula deep space cosmos',
-  'mars':          'mars red planet surface rover landscape',
-  'sterrenkijken': 'night sky stars milky way observatory',
-  'observing':     'telescope observatory stars night sky',
-  'educatie':      'astronaut earth orbit international space station',
+  'missies':       'rocket launch spacecraft',
+  'missions':      'rocket launch spacecraft',
+  'james-webb':    'james webb space telescope infrared',
+  'kosmologie':    'galaxy nebula deep space cosmos',
+  'cosmology':     'galaxy nebula cosmos',
+  'mars':          'mars red planet surface',
+  'sterrenkijken': 'night sky stars milky way',
+  'observing':     'telescope observatory night sky',
+  'educatie':      'astronaut earth orbit space station',
   'education':     'astronaut earth orbit space station',
-  'maan':          'moon lunar surface craters apollo',
-  'moon':          'moon lunar surface craters apollo',
-  'kometen':       'comet astronomy tail nucleus solar system',
-  'komeet':        'comet astronomy tail nucleus solar system',
-  'zon':           'sun solar flare corona nasa',
-  'planeten':      'planet solar system jupiter saturn',
+  'maan':          'moon lunar surface craters',
+  'kometen':       'comet astronomy solar system',
+  'komeet':        'comet astronomy solar system',
+  'zon':           'sun solar flare corona',
+  'planeten':      'planet solar system',
+}
+
+// Recognisable English space proper nouns — extracted directly from Dutch titles
+const SPACE_NOUNS = [
+  'starship','falcon','artemis','starlink','spacex','hubble','webb','jwst',
+  'perseverance','curiosity','ingenuity','voyager','cassini','landsat',
+  'starliner','dragon','orion','sls','iss','juice','clipper','ariel',
+  'saturn','jupiter','venus','mercury','neptune','uranus','pluto',
+  'mars','moon','lunar','comet','asteroid','nebula','galaxy','aurora',
+  'rocket','launch','orbit','astronaut','satellite','telescope','solar',
+]
+
+// Dutch astronomy words → English equivalents
+const NL_EN: Record<string, string> = {
+  'lancering':'launch', 'lanceert':'launch', 'gelanceerd':'launch',
+  'raket':'rocket', 'satelliet':'satellite', 'ruimtestation':'space station',
+  'maan':'moon', 'maansverduistering':'lunar eclipse',
+  'zon':'sun', 'zonsverduistering':'solar eclipse',
+  'sterrenstelsel':'galaxy', 'melkweg':'milky way',
+  'komeet':'comet', 'meteorenregen':'meteor shower',
+  'astronaut':'astronaut', 'telescoop':'telescope',
+  'nevel':'nebula', 'planeet':'planet', 'missie':'mission',
+  'booster':'booster', 'vlucht':'flight', 'baan':'orbit',
+  'oppervlak':'surface', 'dampkring':'atmosphere', 'heelal':'cosmos',
 }
 
 function slugHash(s: string): number {
@@ -31,10 +54,24 @@ function slugHash(s: string): number {
   return Math.abs(h)
 }
 
-// Always use English CAT_QUERIES — article titles/excerpts are Dutch and won't
-// match NASA's English image database
-function getQuery(category: string): string {
-  return CAT_QUERIES[category?.toLowerCase() || ''] || 'space astronomy cosmos nebula'
+// Build a specific English query from a Dutch article title:
+// 1. Pick recognisable English space nouns already present in the title
+// 2. Translate common Dutch astronomy words
+// 3. Fall back to category query
+function buildQuery(title: string, category: string): string {
+  const lower = title.toLowerCase()
+
+  // Step 1: English proper nouns / space terms already in the title
+  const nouns = SPACE_NOUNS.filter(n => lower.includes(n))
+  if (nouns.length >= 1) return nouns.slice(0, 3).join(' ')
+
+  // Step 2: translate Dutch words
+  const words = lower.replace(/[^a-z\s]/g, ' ').split(/\s+/)
+  const translated = words.map(w => NL_EN[w]).filter(Boolean) as string[]
+  if (translated.length >= 1) return [...new Set(translated)].slice(0, 3).join(' ')
+
+  // Step 3: category fallback
+  return CAT_QUERIES[category?.toLowerCase() || ''] || 'space astronomy cosmos'
 }
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -307,7 +344,7 @@ export default function NieuwsClient() {
 
       const hash = slugHash(a.slug)
       const page = (hash % 8) + 1
-      const q    = getQuery(a.category)
+      const q    = buildQuery(a.title, a.category)
 
       for (const pg of [page, ((page % 8) + 1)]) {
         try {

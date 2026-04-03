@@ -1326,24 +1326,50 @@ export default function HomePage() {
 
   // Fetch unique, article-specific NASA images for cards without imageUrl.
   useEffect(() => {
-    // English queries per category — titles are Dutch so we never use them as NASA search terms
     const CAT_QUERIES: Record<string, string> = {
-      'missies':       'rocket launch spacecraft mission',
-      'missions':      'rocket launch spacecraft mission',
-      'james-webb':    'james webb space telescope deep field infrared',
-      'kosmologie':    'galaxy nebula deep space cosmos hubble',
-      'cosmology':     'galaxy nebula deep space cosmos',
-      'mars':          'mars red planet surface rover landscape',
-      'sterrenkijken': 'night sky stars milky way observatory',
-      'observing':     'telescope observatory stars night sky',
-      'educatie':      'astronaut earth orbit international space station',
+      'missies':       'rocket launch spacecraft',
+      'missions':      'rocket launch spacecraft',
+      'james-webb':    'james webb space telescope infrared',
+      'kosmologie':    'galaxy nebula deep space cosmos',
+      'cosmology':     'galaxy nebula cosmos',
+      'mars':          'mars red planet surface',
+      'sterrenkijken': 'night sky stars milky way',
+      'observing':     'telescope observatory night sky',
+      'educatie':      'astronaut earth orbit space station',
       'education':     'astronaut earth orbit space station',
-      'maan':          'moon lunar surface craters apollo',
-      'moon':          'moon lunar surface craters apollo',
-      'kometen':       'comet astronomy tail nucleus solar system',
-      'komeet':        'comet astronomy tail nucleus solar system',
-      'zon':           'sun solar flare corona nasa',
-      'planeten':      'planet solar system jupiter saturn',
+      'maan':          'moon lunar surface craters',
+      'kometen':       'comet astronomy solar system',
+      'komeet':        'comet astronomy solar system',
+      'zon':           'sun solar flare corona',
+      'planeten':      'planet solar system',
+    }
+    const SPACE_NOUNS = [
+      'starship','falcon','artemis','starlink','spacex','hubble','webb','jwst',
+      'perseverance','curiosity','ingenuity','voyager','cassini','landsat',
+      'starliner','dragon','orion','sls','iss','juice','clipper',
+      'saturn','jupiter','venus','mercury','neptune','uranus','pluto',
+      'mars','moon','lunar','comet','asteroid','nebula','galaxy','aurora',
+      'rocket','launch','orbit','astronaut','satellite','telescope','solar',
+    ]
+    const NL_EN: Record<string, string> = {
+      'lancering':'launch','lanceert':'launch','gelanceerd':'launch',
+      'raket':'rocket','satelliet':'satellite','ruimtestation':'space station',
+      'maan':'moon','maansverduistering':'lunar eclipse',
+      'zon':'sun','zonsverduistering':'solar eclipse',
+      'sterrenstelsel':'galaxy','melkweg':'milky way',
+      'komeet':'comet','meteorenregen':'meteor shower',
+      'astronaut':'astronaut','telescoop':'telescope',
+      'nevel':'nebula','planeet':'planet','missie':'mission',
+      'booster':'booster','oppervlak':'surface','heelal':'cosmos',
+    }
+    const buildQ = (title: string, category: string): string => {
+      const lower = title.toLowerCase()
+      const nouns = SPACE_NOUNS.filter(n => lower.includes(n))
+      if (nouns.length >= 1) return nouns.slice(0, 3).join(' ')
+      const words = lower.replace(/[^a-z\s]/g, ' ').split(/\s+/)
+      const translated = [...new Set(words.map(w => NL_EN[w]).filter(Boolean) as string[])].slice(0, 3)
+      if (translated.length >= 1) return translated.join(' ')
+      return CAT_QUERIES[(category || '').toLowerCase()] || 'space astronomy cosmos'
     }
 
     const toFetch = articles
@@ -1357,8 +1383,7 @@ export default function HomePage() {
 
       const hash = a.slug.split('').reduce((acc: number, c: string) => (acc * 31 + c.charCodeAt(0)) & 0xffff, 0)
       const page = (hash % 8) + 1
-      const cat  = (a.category || '').toLowerCase()
-      const q    = CAT_QUERIES[cat] || 'space astronomy cosmos nebula'
+      const q    = buildQ(a.title, a.category)
 
       for (const pg of [page, ((page % 8) + 1)]) {
         try {
