@@ -4,13 +4,13 @@ excerpt: "NASA heeft woensdag vier astronauten gelanceerd voor de Artemis II-mis
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-02T08:04:27.692Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/news-release/liftoff-nasa-launches-astronauts-on-historic-artemis-moon-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20240723-PH-ILW01_0156/KSC-20240723-PH-ILW01_0156~medium.jpg"
+imageAlt: "Lift-off! NASA lanceert astronauten op historische Artemis-maanmissie"
+imageCredit: "NASA/Isaac Watson / KSC"
 ---
 
 NASA heeft een historische mijlpaal bereikt met de succesvolle lancering van vier astronauten op de Artemis II-missie, de eerste bemande maanvlucht sinds het Apollo-tijdperk. De krachtige Space Launch System (SLS) raket steeg woensdagavond om 18:35 lokale tijd op vanaf lanceerbasis 39B van het Kennedy Space Center in Florida.

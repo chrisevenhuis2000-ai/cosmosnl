@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/03/19/live-coverage-nasa-to-roll-its-sls-rocket-back-to-the-launch-pad-ahead-of-planned-april-flight-of-artemis-2/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20220915-PH-JNP01_0001/KSC-20220915-PH-JNP01_0001~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202209020008/NHQ202209020008~medium.jpg"
 imageAlt: "NASA rolt SLS-raket terug naar lanceerplatform voor geplande Artemis 2-vlucht in april"
-imageCredit: "NASA/Jason Parrish / KSC"
+imageCredit: "NASA/Joel Kowsky / HQ"
 ---
 
 NASA heeft een belangrijke mijlpaal bereikt in de voorbereiding van de Artemis 2-missie door de Space Launch System (SLS) raket terug te rollen naar Launch Pad 39B op Kennedy Space Center in Florida. De 98 meter hoge raket werd in minder dan 12 uur tijd succesvol getransporteerd naar het lanceerplatform.

@@ -8,7 +8,7 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/general/nasa-ames-experts-available-for-artemis-ii-flight-test-interviews/"
-imageUrl: "https://images-assets.nasa.gov/image/KSC-20230602-PH-GEB01-0056/KSC-20230602-PH-GEB01-0056~medium.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20200610-PH-GEB01_0002/KSC-20200610-PH-GEB01_0002~small.jpg"
 imageAlt: "NASA Ames-experts beschikbaar voor interviews over Artemis II-testvlucht"
 imageCredit: "NASA/Glenn Benson / KSC"
 ---

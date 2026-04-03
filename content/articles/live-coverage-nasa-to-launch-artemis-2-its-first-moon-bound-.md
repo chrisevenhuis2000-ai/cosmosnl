@@ -4,13 +4,13 @@ excerpt: "NASA staat op het punt om Artemis 2 te lanceren, de eerste bemande mis
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-01T08:15:08.317Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/01/live-coverage-nasa-to-launch-artemis-2-its-first-moon-bound-mission-with-astronauts-since-1972/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220317-PH-KLS03_0149/KSC-20220317-PH-KLS03_0149~medium.jpg"
+imageAlt: "Live verslag: NASA lanceert Artemis 2, eerste bemande maanmissie sinds 1972"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 NASA bereidt zich voor op een historische lancering die de terugkeer van bemande maanvluchten markeert. De Artemis 2-missie, gepland voor woensdag 1 april om 00:24 Nederlandse tijd, zal de eerste keer zijn sinds 1972 dat astronauten opnieuw richting de maan reizen.

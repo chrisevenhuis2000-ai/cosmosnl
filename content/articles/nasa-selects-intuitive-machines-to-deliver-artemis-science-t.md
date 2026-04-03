@@ -8,9 +8,9 @@ featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://www.nasa.gov/missions/artemis/clps/nasa-selects-intuitive-machines-to-deliver-artemis-science-tech-to-moon/"
-imageUrl: "https://images-assets.nasa.gov/image/PIA10430/PIA10430~small.jpg"
+imageUrl: "https://images-assets.nasa.gov/image/DSC_3710/DSC_3710~large.jpg"
 imageAlt: "NASA kiest Intuitive Machines voor levering wetenschappelijke apparatuur naar de maan"
-imageCredit: "JPL"
+imageCredit: "NASA/Charles Beason / MSFC"
 ---
 
 NASA heeft het Amerikaanse bedrijf Intuitive Machines een lucratief contract van 180,4 miljoen dollar toegekend voor het transport van wetenschappelijke instrumenten en technologie naar de maan. De opdracht valt onder NASA's CLPS (Commercial Lunar Payload Services) initiatief, dat onderdeel is van het ambitieuze Artemis-programma waarmee de Verenigde Staten astronauten terug naar de maan willen brengen.

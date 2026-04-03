@@ -4,13 +4,13 @@ excerpt: "Een bemanning van drie mannen en één vrouw is woensdag vertrokken op
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-03T08:01:17.750Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/02/artemis-2-crew-blasts-off-on-historic-moon-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/MSFC_2020_XP_SLS_P_ 005_PD002-Test-Case-LOX_TTF-4697_1/MSFC_2020_XP_SLS_P_ 005_PD002-Test-Case-LOX_TTF-4697_1~small.jpg"
+imageAlt: "Artemis 2-bemanning vertrekt op historische maanmissie"
+imageCredit: "David Olive / MSFC"
 ---
 
 Een historisch moment in de ruimtevaart heeft zich woensdag voltrokken toen een bemanning van vier astronauten vertrok op de langverwachte Artemis 2-missie naar de maan. De drie mannelijke en één vrouwelijke astronaut begonnen hun baanbrekende reis aan boord van 's werelds krachtigste operationele raket, die met een oorverdovend geraas van het lanceerplatform steeg.
