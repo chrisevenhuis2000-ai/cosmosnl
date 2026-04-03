@@ -8,6 +8,9 @@
  * Voor elk artikel:
  *  1. Stuur de volledige inhoud naar Claude (via CF Worker) voor een gerichte EN zoekterm
  *  2. Haal een afbeelding op via de CF Worker (NASA + Pexels fallback)
+ *     - Poging 1: Claude-query, pagina 1
+ *     - Poging 2: eerste 3 woorden van Claude-query, pagina 1
+ *     - Poging 3: categorie-fallback, pagina 1
  *  3. Sla imageUrl / imageAlt / imageCredit op in de frontmatter
  */
 
@@ -18,13 +21,13 @@ const ARTICLES_DIR = path.join(__dirname, '..', 'content', 'articles')
 const PROXY        = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 const FORCE        = process.argv.includes('--force')
 
-// ── Fallback query building (gebruikt als Claude faalt) ───────────────────────
+// ── Fallback queries per categorie ────────────────────────────────────────────
 
 const CAT_QUERIES = {
   'missies':       'rocket launch spacecraft',
   'james-webb':    'james webb space telescope infrared',
   'kosmologie':    'galaxy nebula deep space cosmos',
-  'mars':          'mars red planet surface',
+  'mars':          'mars red planet surface rover',
   'sterrenkijken': 'night sky stars milky way',
   'educatie':      'astronaut earth orbit space station',
   'maan':          'moon lunar surface craters',
@@ -32,92 +35,6 @@ const CAT_QUERIES = {
   'komeet':        'comet astronomy solar system',
   'zon':           'sun solar flare corona',
   'planeten':      'planet solar system',
-}
-
-const SPACE_NOUNS = [
-  'starship','falcon','artemis','starlink','spacex','hubble','webb','jwst',
-  'perseverance','curiosity','ingenuity','voyager','cassini','landsat',
-  'starliner','dragon','orion','sls','iss','juice','clipper','ariel',
-  'saturn','jupiter','venus','mercury','neptune','uranus','pluto',
-  'mars','moon','lunar','comet','asteroid','nebula','galaxy','aurora',
-  'rocket','launch','orbit','astronaut','satellite','telescope','solar',
-]
-
-const NL_EN = {
-  'lancering':'launch', 'lanceert':'launch', 'gelanceerd':'launch',
-  'raket':'rocket', 'satelliet':'satellite', 'ruimtestation':'space station',
-  'maan':'moon', 'maansverduistering':'lunar eclipse',
-  'zon':'sun', 'zonsverduistering':'solar eclipse',
-  'sterrenstelsel':'galaxy', 'melkweg':'milky way',
-  'komeet':'comet', 'meteorenregen':'meteor shower',
-  'astronaut':'astronaut', 'telescoop':'telescope',
-  'nevel':'nebula', 'planeet':'planet', 'missie':'mission',
-  'booster':'booster', 'vlucht':'flight', 'baan':'orbit',
-  'oppervlak':'surface', 'dampkring':'atmosphere', 'heelal':'cosmos',
-}
-
-function slugHash(s) {
-  let h = 0
-  for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0
-  return Math.abs(h)
-}
-
-function buildFallbackQuery(title, category) {
-  const lower = title.toLowerCase()
-  const nouns = SPACE_NOUNS.filter(n => lower.includes(n))
-  if (nouns.length >= 1) return nouns.slice(0, 3).join(' ')
-  const words      = lower.replace(/[^a-z\s]/g, ' ').split(/\s+/)
-  const translated = [...new Set(words.map(w => NL_EN[w]).filter(Boolean))].slice(0, 3)
-  if (translated.length >= 1) return translated.join(' ')
-  return CAT_QUERIES[(category || '').toLowerCase()] || 'space astronomy cosmos'
-}
-
-// ── Claude: genereer zoekterm op basis van volledige artikelinhoud ─────────────
-
-function stripMarkdown(md) {
-  return md
-    .replace(/^---[\s\S]*?---\n?/, '')        // verwijder frontmatter
-    .replace(/#{1,6}\s+/g, '')                // headings
-    .replace(/\*\*?([^*\n]+)\*\*?/g, '$1')   // bold/italic
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links
-    .replace(/`[^`]+`/g, '')                  // inline code
-    .replace(/^\s*[-*+>]\s+/gm, '')           // lijstitems / blockquotes
-    .replace(/\n{3,}/g, '\n\n')
-    .trim()
-}
-
-async function getQueryFromClaude(title, body) {
-  const plainText = stripMarkdown(body).slice(0, 2500)
-
-  const payload = {
-    model: 'claude-haiku-4-5-20251001',
-    max_tokens: 25,
-    system: [
-      'You generate short English image search queries for NASA/Pexels.',
-      'Reply with ONLY 3-6 English keywords — no explanation, no quotes, no punctuation.',
-      'Focus on the most visually distinctive subject of the article (spacecraft name, celestial object, event).',
-    ].join(' '),
-    messages: [{
-      role: 'user',
-      content: `Article title (Dutch): ${title}\n\nContent:\n${plainText}`,
-    }],
-  }
-
-  try {
-    const res  = await fetch(PROXY, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(payload),
-    })
-    const data  = await res.json()
-    const query = data?.content?.[0]?.text?.trim()
-    if (query && query.length >= 3 && query.length <= 120) {
-      return query
-    }
-  } catch (e) {
-    console.warn(`  ⚠ Claude error: ${e.message}`)
-  }
-  return null
 }
 
 // ── Frontmatter helpers ───────────────────────────────────────────────────────
@@ -146,23 +63,95 @@ function rebuildFrontmatter(fm) {
   }).join('\n')
 }
 
-// ── Image fetch via CF Worker ─────────────────────────────────────────────────
+// ── Claude: genereer zoekterm op basis van volledige artikelinhoud ─────────────
 
-async function fetchImage(slug, query) {
-  const hash = slugHash(slug)
-  const page = (hash % 8) + 1
-  const url  = `${PROXY}/image-search?q=${encodeURIComponent(query)}&hash=${hash}&page=${page}`
+function stripMarkdown(md) {
+  return md
+    .replace(/^---[\s\S]*?---\n?/, '')
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/\*\*?([^*\n]+)\*\*?/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/`[^`]+`/g, '')
+    .replace(/^\s*[-*+>]\s+/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}
+
+// Zorg dat de query één regel is en niet te lang
+function sanitizeQuery(raw) {
+  return raw
+    .split(/[\n\r]/)[0]   // alleen de eerste regel
+    .trim()
+    .replace(/\s+/g, ' ')
+    .slice(0, 80)
+}
+
+async function getQueryFromClaude(title, body) {
+  const plainText = stripMarkdown(body).slice(0, 2500)
+
+  const payload = {
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 20,
+    system: [
+      'You generate English image search queries for NASA or Pexels.',
+      'Reply with ONLY 3-5 keywords on a single line — no explanation, no quotes, no newlines.',
+      'Focus on the most visually distinctive subject: spacecraft name, celestial object, or event.',
+    ].join(' '),
+    messages: [{
+      role: 'user',
+      content: `Dutch article title: ${title}\n\nContent:\n${plainText}`,
+    }],
+  }
+
+  try {
+    const res  = await fetch(PROXY, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    })
+    const data  = await res.json()
+    const raw   = data?.content?.[0]?.text
+    if (raw) {
+      const query = sanitizeQuery(raw)
+      if (query.length >= 3) return query
+    }
+  } catch (e) {
+    console.warn(`  ⚠ Claude error: ${e.message}`)
+  }
+  return null
+}
+
+// ── Image fetch via CF Worker (3 pogingen) ────────────────────────────────────
+
+async function tryWorker(q, hash) {
+  const url = `${PROXY}/image-search?q=${encodeURIComponent(q)}&hash=${hash}&page=1`
   try {
     const res  = await fetch(url)
     const data = await res.json()
-    if (data.url) {
-      return {
-        imageUrl:    data.url,
-        imageCredit: data.credit || 'NASA',
-      }
-    }
+    if (data.url) return { imageUrl: data.url, imageCredit: data.credit || 'NASA' }
   } catch (e) {
-    console.warn(`  ⚠ Worker error: ${e.message}`)
+    console.warn(`  ⚠ Worker error (q="${q}"): ${e.message}`)
+  }
+  return null
+}
+
+async function fetchImage(slug, claudeQuery, category) {
+  const hash = Math.abs(slug.split('').reduce((h, c) => (Math.imul(31, h) + c.charCodeAt(0)) | 0, 0))
+
+  const catQuery  = CAT_QUERIES[(category || '').toLowerCase()] || 'space astronomy cosmos stars'
+  // Kortere versie van de Claude-query (eerste 3 woorden)
+  const shortQuery = claudeQuery ? claudeQuery.split(' ').slice(0, 3).join(' ') : null
+
+  const attempts = [
+    claudeQuery,   // Poging 1: volledige Claude-query
+    shortQuery,    // Poging 2: eerste 3 woorden
+    catQuery,      // Poging 3: categorie-fallback
+  ].filter(Boolean)
+
+  for (const q of attempts) {
+    const result = await tryWorker(q, hash)
+    if (result) return { ...result, usedQuery: q }
+    await new Promise(r => setTimeout(r, 300))
   }
   return null
 }
@@ -173,6 +162,7 @@ async function main() {
   const files = fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md'))
   let updated = 0
   let skipped = 0
+  let failed  = 0
 
   console.log(`🔭 Backfill images — ${files.length} artikelen${FORCE ? ' (--force)' : ''}\n`)
 
@@ -194,20 +184,24 @@ async function main() {
     console.log(`\n  📄 ${title.slice(0, 60)}`)
 
     // Stap 1: Claude genereert een gerichte zoekterm op basis van volledige inhoud
-    let query = await getQueryFromClaude(title, body)
-    if (query) {
-      console.log(`  🤖 Claude query: "${query}"`)
+    const claudeQuery = await getQueryFromClaude(title, body)
+    if (claudeQuery) {
+      console.log(`  🤖 Claude: "${claudeQuery}"`)
     } else {
-      query = buildFallbackQuery(title, category)
-      console.log(`  🔀 Fallback query: "${query}"`)
+      console.log(`  🤖 Claude: (mislukt, direct naar fallback)`)
     }
 
-    // Stap 2: Haal afbeelding op via CF Worker
-    const img = await fetchImage(slug, query)
+    // Stap 2: Haal afbeelding op (3 pogingen)
+    const img = await fetchImage(slug, claudeQuery, category)
+
     if (!img) {
       console.log('  ✗ Geen afbeelding gevonden')
+      failed++
       continue
     }
+
+    const label = img.usedQuery === claudeQuery ? '🎯' : img.usedQuery === claudeQuery?.split(' ').slice(0, 3).join(' ') ? '✂️' : '🔀'
+    console.log(`  ${label} Query gebruikt: "${img.usedQuery}"`)
 
     // Stap 3: Sla op in frontmatter
     fm.imageUrl    = img.imageUrl
@@ -219,11 +213,10 @@ async function main() {
     updated++
     console.log(`  ✅ ${img.imageUrl.slice(0, 70)}`)
 
-    // Kleine pauze om de APIs niet te overbelasten
-    await new Promise(r => setTimeout(r, 600))
+    await new Promise(r => setTimeout(r, 400))
   }
 
-  console.log(`\n\n✨ Klaar! ${updated} bijgewerkt, ${skipped} overgeslagen.`)
+  console.log(`\n\n✨ Klaar! ${updated} bijgewerkt, ${skipped} overgeslagen, ${failed} mislukt.`)
 }
 
 main().catch(console.error)
