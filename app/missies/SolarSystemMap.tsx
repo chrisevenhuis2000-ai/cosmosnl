@@ -79,10 +79,10 @@ const MISSIONS: Mission[] = [
     status:'actief', zooms:['inner','outer','interstellar'],
   },
   {
-    id:'artemis', name:'Artemis II', color:'#8A9BC4', agency:'NASA',
+    id:'artemis', name:'Artemis II', color:'#378ADD', agency:'NASA',
     au:1.003, angle:183,
-    label:'Artemis II', detail:'Gepland Q4 2026 · Bemande Maan-vluchtte',
-    status:'gepland', zooms:['inner','outer'],
+    label:'Artemis II', detail:'Actief · Bemande Maan-vlucht',
+    status:'actief', zooms:['inner','outer'],
   },
   {
     id:'smile', name:'ESA SMILE', color:'#ffc060', agency:'ESA/CAS',
@@ -210,7 +210,7 @@ export default function SolarSystemMap() {
     const ctx  = canvas.getContext('2d')!
     const W    = canvas.width, H = canvas.height
     const cx   = W / 2, cy = H / 2
-    const R    = Math.min(W, H) * 0.43
+    const R    = Math.min(W, H) * 0.46
     const z    = zoomRef.current
     const t    = timeRef.current
     const now  = performance.now() / 1000
@@ -428,8 +428,9 @@ export default function SolarSystemMap() {
         canvas.width  = window.innerWidth
         canvas.height = window.innerHeight - 52   // minus header bar
       } else {
-        const s = Math.min(wrap.clientWidth, 580)
-        canvas.width = s; canvas.height = s
+        const w = wrap.clientWidth
+        const h = Math.max(Math.round(w * 0.6), 340)
+        canvas.width = w; canvas.height = h
       }
     }
     resize()

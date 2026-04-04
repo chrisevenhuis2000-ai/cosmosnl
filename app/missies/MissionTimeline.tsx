@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 // ── Timeline range ──────────────────────────────────────────────────────────
 const T_START = new Date(2010, 0, 1).getTime()   // Jan 2010
@@ -22,29 +23,37 @@ interface TLEvent {
 }
 
 const EVENTS: TLEvent[] = [
-  { id: 'curiosity',    abbr: 'Curiosity',    icon: '🤖', date: new Date(2011, 10, 26), color: '#378ADD', above: true,  extraUp: false },
-  { id: 'perseverance', abbr: 'Perseverance', icon: '🤖', date: new Date(2020,  6, 30), color: '#4fa6e8', above: false, extraUp: false },
-  { id: 'jwst',         abbr: 'James Webb',   icon: '🔭', date: new Date(2021, 11, 25), color: '#c080ff', above: true,  extraUp: false },
-  { id: 'juice',          abbr: 'JUICE',          icon: '🪐', date: new Date(2023,  3, 14), color: '#ffa040', above: false, extraUp: false },
+  { id: 'curiosity',      abbr: 'Curiosity',      icon: '🤖', date: new Date(2011, 10, 26), color: '#378ADD', above: true,  extraUp: false },
+  { id: 'perseverance',   abbr: 'Perseverance',   icon: '🤖', date: new Date(2020,  6, 30), color: '#4fa6e8', above: false, extraUp: false },
+  { id: 'jwst',           abbr: 'James Webb',     icon: '🔭', date: new Date(2021, 11, 25), color: '#c080ff', above: true,  extraUp: false },
+  { id: 'juice',          abbr: 'JUICE',           icon: '🪐', date: new Date(2023,  3, 14), color: '#ffa040', above: false, extraUp: false },
   { id: 'europa-clipper', abbr: 'Europa Clipper', icon: '🌊', date: new Date(2024,  9, 14), color: '#378ADD', above: true,  extraUp: false },
-  { id: 'starship',       abbr: 'Starship',       icon: '🚀', date: new Date(2026,  2,  1), color: '#3dcfdf', above: true,  extraUp: true  },
-  { id: 'smile',        abbr: 'SMILE',        icon: '🛰️', date: new Date(2026,  3,  9), color: '#ffa040', above: true,  extraUp: false },
-  { id: 'artemis',      abbr: 'Artemis II',   icon: '🌕', date: new Date(2026,  9,  1), color: '#378ADD', above: false, extraUp: false },
+  { id: 'starship',       abbr: 'Starship IFT-7', icon: '🚀', date: new Date(2026,  2,  1), color: '#3dcfdf', above: true,  extraUp: true  },
+  { id: 'smile',          abbr: 'SMILE',           icon: '🛰️', date: new Date(2026,  3,  9), color: '#ffa040', above: true,  extraUp: false },
+  { id: 'artemis',        abbr: 'Artemis II',     icon: '🌕', date: new Date(2026,  3,  9), color: '#3ddf90', above: false, extraUp: false },
 ]
 
-const TODAY     = new Date(2026, 2, 28)
 const YEAR_TICKS = Array.from({ length: 19 }, (_, i) => 2010 + i)
 
 // ── Layout constants ────────────────────────────────────────────────────────
-const TW      = 1600  // track width px
-const LY      = 140   // center line Y
-const TH      = 280   // total height
-const LABEL_H = 56    // label box height (icon + name + year)
-const CONN_H  = 22    // normal connector height
-const EXTRA_UP = 62   // additional height for extraUp items to avoid overlap
+const TW       = 1600   // track width px
+const LY       = 155    // center line Y
+const TH       = 310    // total height
+const LABEL_H  = 68     // label box height
+const CONN_H   = 28     // normal connector height
+const EXTRA_UP = 76     // extra height for items that would overlap
 
 export default function MissionTimeline() {
-  const todayX = xOf(TODAY, TW)
+  // Stable initial value avoids SSR/hydration mismatch; useEffect updates to live date
+  const [today, setToday] = useState(new Date(2026, 3, 1))
+
+  useEffect(() => {
+    setToday(new Date())
+    const id = setInterval(() => setToday(new Date()), 60_000)
+    return () => clearInterval(id)
+  }, [])
+
+  const todayX = xOf(today, TW)
 
   return (
     <section aria-labelledby="timeline-label" style={{ marginBottom: 80 }}>
@@ -58,7 +67,7 @@ export default function MissionTimeline() {
       {/* Voyager heritage note */}
       <Link
         href="/missies/voyager1"
-        style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', background: 'rgba(55,138,221,0.05)', border: '1px solid #252858', marginBottom: 16 }}
+        style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', background: 'rgba(55,138,221,0.05)', border: '1px solid #252858', borderRadius: 4, marginBottom: 16 }}
       >
         <span style={{ fontSize: '1.1rem' }}>🌌</span>
         <span style={{ flex: 1, fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#4A5A8A', lineHeight: 1.5 }}>
@@ -70,13 +79,13 @@ export default function MissionTimeline() {
       {/* Scrollable timeline track */}
       <div
         style={{
-          overflowX: 'auto',
-          overflowY: 'visible',
+          overflowX:    'auto',
+          overflowY:    'visible',
           scrollbarWidth: 'thin',
           scrollbarColor: '#252858 transparent',
-          background: '#0b0c1e',
-          border: '1px solid #252858',
-          borderRadius: 2,
+          background:   '#0b0c1e',
+          border:       '1px solid #252858',
+          borderRadius: 4,
           paddingBottom: 2,
         }}
       >
@@ -86,45 +95,46 @@ export default function MissionTimeline() {
           <div
             aria-hidden="true"
             style={{
-              position: 'absolute',
-              left: todayX,
-              top: 0,
-              right: 0,
-              bottom: 0,
-              background: 'rgba(55,138,221,0.022)',
+              position:      'absolute',
+              left:          todayX,
+              top:           0,
+              right:         0,
+              bottom:        0,
+              background:    'rgba(55,138,221,0.022)',
               pointerEvents: 'none',
             }}
           />
 
-          {/* Center line */}
-          <div style={{ position: 'absolute', left: 0, right: 0, top: LY, height: 1, background: '#252858' }} />
+          {/* Center line base + progress fill up to TODAY */}
+          <div style={{ position: 'absolute', left: 0, right: 0, top: LY, height: 2, background: '#1a1e3a' }} />
+          <div style={{ position: 'absolute', left: 0, width: todayX, top: LY, height: 2, background: 'linear-gradient(to right, #252858, #378ADD55)' }} />
 
           {/* Year ticks */}
           {YEAR_TICKS.map(y => {
-            const x = xOf(new Date(y, 0, 1), TW)
+            const x      = xOf(new Date(y, 0, 1), TW)
             const major  = y % 5 === 0
-            const accent = y === 2026
+            const accent = y === today.getFullYear()
             return (
               <div key={y}>
                 <div style={{
-                  position: 'absolute',
-                  left:     x,
-                  top:      LY - (major || accent ? 7 : 3),
-                  width:    1,
-                  height:   major || accent ? 14 : 6,
-                  background: accent ? '#3dcfdf88' : (major ? '#4A5A8A' : '#252858'),
+                  position:   'absolute',
+                  left:       x,
+                  top:        LY - (major || accent ? 8 : 3),
+                  width:      1,
+                  height:     major || accent ? 16 : 6,
+                  background: accent ? '#3dcfdf66' : (major ? '#4A5A8A' : '#252858'),
                 }} />
                 {(major || accent) && (
                   <span style={{
-                    position:   'absolute',
-                    left:       x,
-                    top:        LY + 12,
-                    transform:  'translateX(-50%)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize:   '0.47rem',
-                    color:      accent ? '#3dcfdf' : '#4A5A8A',
+                    position:      'absolute',
+                    left:          x,
+                    top:           LY + 14,
+                    transform:     'translateX(-50%)',
+                    fontFamily:    'var(--font-mono)',
+                    fontSize:      '0.5rem',
+                    color:         accent ? '#3dcfdf' : '#4A5A8A',
                     letterSpacing: '0.05em',
-                    userSelect: 'none',
+                    userSelect:    'none',
                     pointerEvents: 'none',
                   }}>
                     {y}
@@ -134,37 +144,39 @@ export default function MissionTimeline() {
             )
           })}
 
-          {/* "Vandaag" marker */}
+          {/* TODAY marker */}
           <div style={{ position: 'absolute', left: todayX, top: 0, height: TH }}>
             <div style={{
-              position:     'absolute',
-              left:         0,
-              top:          28,
-              bottom:       28,
-              width:        1,
-              borderLeft:   '1px dashed rgba(61,207,223,0.45)',
-            }} />
-            <span style={{
               position:   'absolute',
-              top:        14,
-              left:       '50%',
-              transform:  'translateX(-50%)',
-              fontFamily: 'var(--font-mono)',
-              fontSize:   '0.44rem',
-              color:      '#3dcfdf',
-              letterSpacing: '0.1em',
-              whiteSpace: 'nowrap',
-              background: '#0b0c1e',
-              padding:    '0 4px',
+              left:       0,
+              top:        30,
+              bottom:     30,
+              width:      1,
+              borderLeft: '1px solid rgba(55,138,221,0.7)',
+            }} />
+            <div style={{
+              position:     'absolute',
+              top:          13,
+              left:         '50%',
+              transform:    'translateX(-50%)',
+              fontFamily:   'var(--font-mono)',
+              fontSize:     '0.46rem',
+              color:        '#fff',
+              letterSpacing: '0.08em',
+              whiteSpace:   'nowrap',
+              background:   '#378ADD',
+              padding:      '2px 7px',
+              borderRadius: 3,
             }}>
               VANDAAG
-            </span>
+            </div>
           </div>
 
           {/* Mission pins */}
           {EVENTS.map(m => {
-            const x      = xOf(m.date, TW)
-            const connH  = CONN_H + (m.extraUp ? EXTRA_UP : 0)
+            const x        = xOf(m.date, TW)
+            const isPast   = m.date.getTime() <= today.getTime()
+            const connH    = CONN_H + (m.extraUp ? EXTRA_UP : 0)
             const connTop  = m.above ? LY - connH : LY + 5
             const labelTop = m.above ? LY - connH - LABEL_H : LY + CONN_H + 4
 
@@ -182,51 +194,63 @@ export default function MissionTimeline() {
                   top:        connTop,
                   width:      1,
                   height:     connH,
-                  background: `${m.color}55`,
+                  background: isPast ? `${m.color}66` : `${m.color}33`,
                 }} />
 
                 {/* Dot */}
                 <div style={{
-                  position:    'absolute',
-                  left:        x - 5,
-                  top:         LY - 5,
-                  width:       10,
-                  height:      10,
+                  position:     'absolute',
+                  left:         x - 5,
+                  top:          LY - 5,
+                  width:        10,
+                  height:       10,
                   borderRadius: '50%',
-                  background:  m.color,
-                  boxShadow:   `0 0 10px ${m.color}70`,
-                  zIndex:      2,
+                  background:   isPast ? m.color : 'transparent',
+                  boxShadow:    isPast ? `0 0 10px ${m.color}80` : 'none',
+                  border:       isPast ? 'none' : `1.5px solid ${m.color}88`,
+                  zIndex:       2,
                 }} />
 
-                {/* Label */}
+                {/* Label card */}
                 <div style={{
-                  position:   'absolute',
-                  left:       x,
-                  top:        labelTop,
-                  transform:  'translateX(-50%)',
-                  textAlign:  'center',
-                  width:      78,
-                  zIndex:     2,
+                  position:  'absolute',
+                  left:      x,
+                  top:       labelTop,
+                  transform: 'translateX(-50%)',
+                  textAlign: 'center',
+                  width:     88,
+                  zIndex:    2,
+                  opacity:   isPast ? 1 : 0.5,
                 }}>
-                  <div style={{ fontSize: '1.05rem', lineHeight: 1 }}>{m.icon}</div>
+                  <div style={{ fontSize: '1.1rem', lineHeight: 1 }}>{m.icon}</div>
                   <div style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize:   '0.48rem',
-                    color:      '#FFFFFF',
-                    lineHeight: 1.35,
-                    marginTop:  4,
-                    whiteSpace: 'nowrap',
+                    marginTop:    3,
+                    background:   '#0f1128',
+                    border:       `1px solid ${m.color}33`,
+                    borderLeft:   `2px solid ${m.color}`,
+                    borderRadius: 4,
+                    padding:      '4px 6px',
                   }}>
-                    {m.abbr}
-                  </div>
-                  <div style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize:   '0.43rem',
-                    color:      m.color,
-                    marginTop:  2,
-                    opacity:    0.85,
-                  }}>
-                    {m.date.getFullYear()}
+                    <div style={{
+                      fontFamily:   'var(--font-mono)',
+                      fontSize:     '0.51rem',
+                      color:        isPast ? '#e0e8ff' : '#8090b8',
+                      lineHeight:   1.3,
+                      whiteSpace:   'nowrap',
+                      overflow:     'hidden',
+                      textOverflow: 'ellipsis',
+                    }}>
+                      {m.abbr}
+                    </div>
+                    <div style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize:   '0.45rem',
+                      color:      m.color,
+                      marginTop:  2,
+                      opacity:    isPast ? 1 : 0.7,
+                    }}>
+                      {m.date.toLocaleDateString('nl-NL', { month: 'short', year: 'numeric' })}
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -236,17 +260,19 @@ export default function MissionTimeline() {
       </div>
 
       {/* Legend */}
-      <div style={{ display: 'flex', gap: 20, marginTop: 12, flexWrap: 'wrap' }}>
-        {[
-          { color: '#3ddf90', label: 'Actief' },
-          { color: '#378ADD', label: 'Gepland' },
-          { color: '#3dcfdf', label: 'Vandaag' },
-        ].map(l => (
-          <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: l.color, flexShrink: 0 }} />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>{l.label}</span>
-          </div>
-        ))}
+      <div style={{ display: 'flex', gap: 20, marginTop: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#3ddf90', flexShrink: 0 }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>Actief / voltooid</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', border: '1.5px solid #378ADD66', flexShrink: 0 }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>Gepland</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ background: '#378ADD', padding: '1px 6px', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#fff' }}>VANDAAG</div>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>Huidige datum</span>
+        </div>
         <div style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060' }}>Klik op een missie voor details</div>
       </div>
     </section>
