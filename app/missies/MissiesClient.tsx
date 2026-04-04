@@ -284,7 +284,7 @@ function MissionCard({ mission }: { mission: Mission }) {
   const [hovered, setHovered] = useState(false)
   const st = STATUS_STYLE[mission.status]
   return (
-    <Link href={`/missies/${mission.id}`} style={{ textDecoration: 'none', display: 'block' }}>
+    <Link href={`/missies/${mission.id}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
     <article
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -297,6 +297,8 @@ function MissionCard({ mission }: { mission: Mission }) {
         display: 'flex',
         flexDirection: 'column',
         gap: 16,
+        height: '100%',
+        boxSizing: 'border-box',
         transition: 'background 0.4s, border-color 0.25s',
         position: 'relative',
         overflow: 'hidden',
@@ -619,7 +621,7 @@ export default function MissiesPage() {
           {spotlightMission && <SpotlightCard mission={spotlightMission} />}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
             {gridMissions.map((m, i) => (
-              <div key={m.id} className="animate-fadeUp" style={{ animationDelay: `${Math.min(i * 0.06, 0.48)}s` }}>
+              <div key={m.id} className="animate-fadeUp" style={{ animationDelay: `${Math.min(i * 0.06, 0.48)}s`, height: '100%' }}>
                 <MissionCard mission={m} />
               </div>
             ))}
@@ -686,11 +688,32 @@ export default function MissiesPage() {
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Terug naar boven"
-          style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 50, width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#12132A', border: '1px solid #378ADD', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem', color: '#378ADD', boxShadow: '0 4px 20px rgba(55,138,221,0.2)', transition: 'transform 0.15s, box-shadow 0.15s', animation: 'fadeIn 0.2s ease both' }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(55,138,221,0.35)' }}
-          onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 20px rgba(55,138,221,0.2)' }}
+          style={{
+            position: 'fixed', bottom: 32, right: 32, zIndex: 50,
+            width: 48, height: 48,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'linear-gradient(135deg, #1a2550 0%, #0f1128 100%)',
+            border: '1px solid rgba(55,138,221,0.5)',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            boxShadow: '0 4px 24px rgba(55,138,221,0.25), inset 0 1px 0 rgba(255,255,255,0.05)',
+            transition: 'transform 0.2s, box-shadow 0.2s, border-color 0.2s',
+            animation: 'fadeIn 0.25s ease both',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-3px)'
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(55,138,221,0.45), inset 0 1px 0 rgba(255,255,255,0.08)'
+            e.currentTarget.style.borderColor = '#378ADD'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = ''
+            e.currentTarget.style.boxShadow = '0 4px 24px rgba(55,138,221,0.25), inset 0 1px 0 rgba(255,255,255,0.05)'
+            e.currentTarget.style.borderColor = 'rgba(55,138,221,0.5)'
+          }}
         >
-          ↑
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M9 14V4M4 9l5-5 5 5" stroke="#378ADD" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </button>
       )}
     </>
