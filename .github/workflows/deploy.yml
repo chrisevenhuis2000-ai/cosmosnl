@@ -43,21 +43,21 @@ jobs:
           done
 
       - name: 📁 Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server:      ${{ secrets.FTP_HOST }}
-          username:    ${{ secrets.FTP_USERNAME }}
-          password:    ${{ secrets.FTP_PASSWORD }}
-          protocol:    ftp
-          port:        21
-          local-dir:   ./out/
-          server-dir:  /nightgazer.space/
-          dangerous-clean-slate: false
-          timeout:     120000
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get install -y lftp
+          lftp -u "$FTP_USER,$FTP_PASS" "ftp://$FTP_HOST" << 'LFTP_EOF'
+          set ftp:passive-mode on
+          set net:timeout 60
+          set net:max-retries 5
+          set net:reconnect-interval-base 10
+          set net:reconnect-interval-multiplier 1
+          mirror -R --verbose --delete --exclude-glob .git --exclude-glob node_modules ./out/ /nightgazer.space/
+          quit
+          LFTP_EOF
 
       - name: ☁️ Deploy Cloudflare Worker
         working-directory: cf-worker
