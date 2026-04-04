@@ -50,6 +50,7 @@ jobs:
         run: |
           sudo apt-get install -y lftp
           lftp -u "$FTP_USER,$FTP_PASS" "ftp://$FTP_HOST" << 'LFTP_EOF'
+          set ftp:ssl-allow no
           set ftp:passive-mode on
           set net:timeout 60
           set net:max-retries 5
