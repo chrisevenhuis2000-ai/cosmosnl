@@ -134,27 +134,37 @@ export default {
         return cors(request, JSON.stringify({ error: 'Invalid URL' }), 400)
       }
 
+      // Normalize URL: re-encode any non-ASCII / bare special characters
+      let safeUrl = imageUrl
+      try { safeUrl = new URL(imageUrl).href } catch { /* use as-is */ }
+
       try {
-        const upstream = await fetch(imageUrl, {
+        const upstream = await fetch(safeUrl, {
           headers: {
             'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)',
-            'Accept': 'image/webp,image/jpeg,image/png,image/*',
+            'Accept':     'image/webp,image/jpeg,image/png,image/*',
+            'Referer':    new URL(safeUrl).origin + '/',
           },
           redirect: 'follow',
         })
+
+        if (!upstream.ok) {
+          return cors(request, JSON.stringify({ error: `Upstream ${upstream.status}` }), 502)
+        }
 
         const ct = upstream.headers.get('Content-Type') || ''
         if (!ct.startsWith('image/')) {
           return cors(request, JSON.stringify({ error: 'Not an image' }), 415)
         }
 
-        const body = await upstream.arrayBuffer()
-        return new Response(body, {
+        // Stream the body directly — avoids buffering large images into Worker memory
+        return new Response(upstream.body, {
           status: 200,
           headers: {
             'Content-Type':                ct,
             'Cache-Control':               'public, max-age=86400, stale-while-revalidate=604800',
             'Access-Control-Allow-Origin': '*',
+            'Vary':                        'Accept',
           },
         })
       } catch (e) {
