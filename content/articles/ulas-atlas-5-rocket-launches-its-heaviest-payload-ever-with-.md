@@ -4,13 +4,13 @@ excerpt: "United Launch Alliance heeft zaterdagochtend succesvol de zwaarste lad
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-04T07:47:37.654Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/03/live-coverage-ulas-atlas-5-rocket-to-launch-its-heaviest-payload-ever-with-next-amazon-leo-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20190605-PH_FWM01_0011/KSC-20190605-PH_FWM01_0011~medium.jpg"
+imageAlt: "ULA's Atlas 5 raket lanceert zwaarste lading ooit met vijfde Amazon Leo missie"
+imageCredit: "NASA/Frank Michaux / KSC"
 ---
 
 United Launch Alliance (ULA) heeft zaterdagochtend een nieuwe mijlpaal bereikt door de zwaarste lading ooit te lanceren met hun Atlas 5 raket. De lancering vond plaats om 07:46 Nederlandse tijd vanaf lanceerplatform 41 op Cape Canaveral Space Force Station in Florida.
