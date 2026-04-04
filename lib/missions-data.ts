@@ -80,7 +80,7 @@ export const MISSIONS: MissionDetail[] = [
     agency: 'NASA',
     agencyColor: '#378ADD',
     status: 'actief',
-    launched: '9 apr 2026',
+    launched: '1 apr 2026',
     objective: 'Eerste bemande vlucht rond de Maan sinds Apollo 17 (1972).',
     body: 'Maan',
     highlight: 'Vier astronauten vliegen de Orion capsule',
@@ -97,7 +97,7 @@ export const MISSIONS: MissionDetail[] = [
       { date: 'nov 2022',   event: 'Artemis I: onbemande testmissie van SLS + Orion succesvol' },
       { date: 'apr 2023',   event: 'Bemanning Artemis II officieel bekendgemaakt' },
       { date: '2024–2025',  event: 'Vluchtsimulaties en trainingscampagnes voor bemanning' },
-      { date: '9 apr 2026',  event: 'Lancering Artemis II (vrije-retour Maanbaan)' },
+      { date: '1 apr 2026',  event: 'Lancering Artemis II (vrije-retour Maanbaan)' },
       { date: 'TBD 2027+',  event: 'Artemis III: eerste maanlanding met Starship HLS' },
     ],
     facts: [

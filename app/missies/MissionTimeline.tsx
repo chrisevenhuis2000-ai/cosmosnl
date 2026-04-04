@@ -30,7 +30,7 @@ const EVENTS: TLEvent[] = [
   { id: 'europa-clipper', abbr: 'Europa Clipper', icon: '🌊', date: new Date(2024,  9, 14), color: '#378ADD', above: true,  extraUp: false },
   { id: 'starship',       abbr: 'Starship IFT-7', icon: '🚀', date: new Date(2026,  2,  1), color: '#3dcfdf', above: true,  extraUp: false },
   { id: 'smile',          abbr: 'SMILE',           icon: '🛰️', date: new Date(2026,  3,  9), color: '#ffa040', above: false, extraUp: false },
-  { id: 'artemis',        abbr: 'Artemis II',     icon: '🌕', date: new Date(2026,  3,  7), color: '#3ddf90', above: true,  extraUp: true  },
+  { id: 'artemis',        abbr: 'Artemis II',     icon: '🌕', date: new Date(2026,  3,  1), color: '#3ddf90', above: true,  extraUp: true  },
 ]
 
 const YEAR_TICKS = Array.from({ length: 19 }, (_, i) => 2010 + i)
