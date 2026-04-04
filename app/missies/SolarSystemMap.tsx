@@ -396,16 +396,16 @@ export default function SolarSystemMap() {
     const scaleAU = z === 'inner' ? 0.5 : z === 'outer' ? 5 : 30
     const scalePx = auToPx(scaleAU, R, z)
     const bx = 18, by = H - 18
-    ctx.strokeStyle = 'rgba(74,90,138,0.55)'; ctx.lineWidth = 1
+    ctx.strokeStyle = 'rgba(100,130,190,0.75)'; ctx.lineWidth = 1.5
     ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx + scalePx, by); ctx.stroke()
-    ctx.beginPath(); ctx.moveTo(bx, by - 4); ctx.lineTo(bx, by + 4); ctx.stroke()
-    ctx.beginPath(); ctx.moveTo(bx + scalePx, by - 4); ctx.lineTo(bx + scalePx, by + 4); ctx.stroke()
-    ctx.fillStyle = 'rgba(100,120,170,0.85)'; ctx.font = '9px JetBrains Mono, monospace'; ctx.textAlign = 'left'
-    ctx.fillText(`${scaleAU} AU`, bx, by - 7)
+    ctx.beginPath(); ctx.moveTo(bx, by - 5); ctx.lineTo(bx, by + 5); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(bx + scalePx, by - 5); ctx.lineTo(bx + scalePx, by + 5); ctx.stroke()
+    ctx.fillStyle = 'rgba(140,160,210,0.95)'; ctx.font = '10px JetBrains Mono, monospace'; ctx.textAlign = 'left'
+    ctx.fillText(`${scaleAU} AU`, bx, by - 9)
 
     // North label
-    ctx.fillStyle = 'rgba(74,90,138,0.5)'; ctx.font = '8px JetBrains Mono, monospace'; ctx.textAlign = 'right'
-    ctx.fillText('↑ Ecliptische noord', W - 12, 16)
+    ctx.fillStyle = 'rgba(100,120,170,0.7)'; ctx.font = '9px JetBrains Mono, monospace'; ctx.textAlign = 'right'
+    ctx.fillText('↑ Ecliptische noord', W - 12, 18)
 
     rafRef.current = requestAnimationFrame(draw)
   }, [])
@@ -482,51 +482,72 @@ export default function SolarSystemMap() {
     <div ref={containerRef} style={{ background: '#12132A', border: '1px solid #252858', borderRadius: isFull ? 0 : 4, overflow: 'hidden', ...(isFull ? { position: 'fixed' as const, inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column' as const } : {}) }}>
 
       {/* ── Header / controls ───────────────────────────────────────────── */}
-      <div style={{ padding: '12px 18px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, flexShrink: 0 }}>
-        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>
-          🗺 Missie-positiekaart — Zonnestelsel
-        </div>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-          {(['inner','outer','interstellar'] as Zoom[]).map(z => (
-            <button key={z} onClick={() => setZoom(z)} style={{
-              fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', letterSpacing: '0.06em', textTransform: 'uppercase',
-              padding: '5px 11px',
-              border:     `1px solid ${zoom === z ? '#378ADD' : '#252858'}`,
-              background:  zoom === z ? 'rgba(55,138,221,0.14)' : 'transparent',
-              color:       zoom === z ? '#FFFFFF' : '#4A5A8A',
-              cursor: 'pointer', borderRadius: 2, transition: 'all 0.15s',
-            }}>
-              {z === 'inner' ? '◎ Binnen' : z === 'outer' ? '◉ Buiten' : '⊙ Interstellair'}
-            </button>
-          ))}
-          <div style={{ width: 1, height: 16, background: '#252858', flexShrink: 0 }} />
-          <button onClick={toggleAnim} style={{
-            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', letterSpacing: '0.06em', textTransform: 'uppercase',
-            padding: '5px 11px',
-            border:     `1px solid ${animating ? '#3ddf90' : '#252858'}`,
-            background:  animating ? 'rgba(61,223,144,0.12)' : 'transparent',
-            color:       animating ? '#3ddf90' : '#4A5A8A',
-            cursor: 'pointer', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
-          }}>
-            {animating && <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3ddf90', flexShrink: 0, animation: 'livePulse 1s ease-in-out infinite', display: 'inline-block' }} />}
-            {animating ? 'Animatie AAN' : '▷ Animeer'}
-          </button>
-          <div style={{ width: 1, height: 16, background: '#252858', flexShrink: 0 }} />
+      <div style={{ padding: '10px 18px', borderBottom: '1px solid #252858', flexShrink: 0 }}>
+        {/* Row 1: title + LIVE + fullscreen */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>
+              🗺 Missie-positiekaart
+            </span>
+            {/* LIVE badge */}
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'rgba(61,223,144,0.1)', border: '1px solid rgba(61,223,144,0.3)', borderRadius: 3, padding: '2px 7px' }}>
+              <span style={{ position: 'relative', display: 'inline-flex', width: 7, height: 7 }}>
+                <span className="animate-live-ring" style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(61,223,144,0.4)' }} />
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#3ddf90', display: 'block' }} />
+              </span>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', letterSpacing: '0.12em', color: '#3ddf90' }}>LIVE</span>
+            </span>
+          </div>
           <button onClick={toggleFullscreen} title={isFull ? 'Sluit volledig scherm' : 'Bekijk in volledig scherm'} style={{
-            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', letterSpacing: '0.06em', textTransform: 'uppercase',
-            padding: '5px 11px',
+            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+            padding: '4px 10px',
             border:     `1px solid ${isFull ? '#378ADD' : '#252858'}`,
             background:  isFull ? 'rgba(55,138,221,0.14)' : 'transparent',
             color:       isFull ? '#FFFFFF' : '#4A5A8A',
-            cursor: 'pointer', borderRadius: 2, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
+            cursor: 'pointer', borderRadius: 3, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
           }}>
             {isFull ? '⤡ Verkleinen' : '⤢ Volledig scherm'}
+          </button>
+        </div>
+        {/* Row 2: zoom pill-group + animate toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {/* Pill group */}
+          <div style={{ display: 'flex' }}>
+            {(['inner','outer','interstellar'] as Zoom[]).map((z, i) => (
+              <button key={z} onClick={() => setZoom(z)} style={{
+                fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+                padding: '4px 12px',
+                border:           `1px solid ${zoom === z ? '#378ADD' : '#252858'}`,
+                borderLeft:       i === 0 ? `1px solid ${zoom === z ? '#378ADD' : '#252858'}` : 'none',
+                background:       zoom === z ? 'rgba(55,138,221,0.18)' : '#0b0c1e',
+                color:            zoom === z ? '#FFFFFF' : '#4A5A8A',
+                cursor:           'pointer',
+                borderRadius:     i === 0 ? '3px 0 0 3px' : i === 2 ? '0 3px 3px 0' : 0,
+                transition:       'all 0.15s',
+              }}>
+                {z === 'inner' ? '◎ Binnen' : z === 'outer' ? '◉ Buiten' : '⊙ Interstellair'}
+              </button>
+            ))}
+          </div>
+          <div style={{ width: 1, height: 16, background: '#252858', flexShrink: 0 }} />
+          <button onClick={toggleAnim} style={{
+            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+            padding: '4px 11px',
+            border:     `1px solid ${animating ? '#3ddf90' : '#252858'}`,
+            background:  animating ? 'rgba(61,223,144,0.12)' : 'transparent',
+            color:       animating ? '#3ddf90' : '#4A5A8A',
+            cursor: 'pointer', borderRadius: 3, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
+          }}>
+            {animating
+              ? <><span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3ddf90', flexShrink: 0, animation: 'livePulse 1s ease-in-out infinite', display: 'inline-block' }} />⏸ Pauzeer</>
+              : <>▷ Animeer</>
+            }
           </button>
         </div>
       </div>
 
       {/* ── Canvas ──────────────────────────────────────────────────────── */}
-      <div ref={wrapRef} style={{ position: 'relative', maxWidth: isFull ? '100%' : 580, width: '100%', margin: '0 auto', flex: isFull ? '1' : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div ref={wrapRef} style={{ position: 'relative', maxWidth: isFull ? '100%' : 580, width: '100%', margin: '0 auto', flex: isFull ? '1' : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: isFull ? 'none' : '0 0 40px rgba(55,138,221,0.10), inset 0 0 0 1px rgba(55,138,221,0.14)' }}>
         {mounted && (
           <canvas
             ref={canvasRef}
@@ -572,21 +593,30 @@ export default function SolarSystemMap() {
       </div>
 
       {/* ── Mission legend ───────────────────────────────────────────────── */}
-      <div style={{ padding: '12px 18px', borderTop: '1px solid #252858', display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+      <div style={{ padding: '10px 18px', borderTop: '1px solid #252858' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '6px 14px', marginBottom: 8 }}>
           {MISSIONS.filter(m => m.zooms.includes(zoom)).map(m => (
-            <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: 7, opacity: m.status === 'actief' ? 1 : 0.6 }}>
               <div style={{
-                width: 7, height: 7, borderRadius: '50%',
+                width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
                 background: m.status === 'actief' ? m.color : 'transparent',
-                border: `1px solid ${m.color}`,
-                boxShadow: m.status === 'actief' ? `0 0 4px ${m.color}88` : 'none',
+                border: `1.5px solid ${m.color}`,
+                boxShadow: m.status === 'actief' ? `0 0 5px ${m.color}88` : 'none',
               }} />
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', color: m.status === 'actief' ? '#8A9BC4' : '#4A5A8A' }}>{m.label}</span>
+              <div style={{ minWidth: 0 }}>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', color: m.status === 'actief' ? '#c0cce8' : '#6070a0', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {m.label}
+                </span>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.43rem', color: m.status === 'actief' ? m.color : '#4A5A8A' }}>
+                  {m.status === 'actief'
+                    ? (m.au < 10 ? `${m.au.toFixed(2)} AU` : `${Math.round(m.au)} AU`)
+                    : 'Gepland'}
+                </span>
+              </div>
             </div>
           ))}
         </div>
-        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', color: '#4A5A8A', flexShrink: 0 }}>
+        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.43rem', color: '#2A3868', textAlign: 'right' }}>
           Posities: benadering {new Date().toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })}
         </div>
       </div>
