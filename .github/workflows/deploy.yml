@@ -48,7 +48,7 @@ jobs:
           server:      ${{ secrets.FTP_HOST }}
           username:    ${{ secrets.FTP_USERNAME }}
           password:    ${{ secrets.FTP_PASSWORD }}
-          protocol:    ftpes
+          protocol:    ftps-legacy
           port:        21
           local-dir:   ./out/
           server-dir:  /nightgazer.space/
