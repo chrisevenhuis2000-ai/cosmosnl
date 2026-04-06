@@ -4,13 +4,13 @@ excerpt: "De vier Artemis II-astronauten naderden zondag de maan en stuurden Paa
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-06T08:21:36.381Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/05/artemis-astronauts-send-down-easter-message-prep-for-lunar-fly-around-monday/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202406040009/NHQ202406040009~medium.jpg"
+imageAlt: "Artemis-astronauten sturen Paasgroet naar aarde en bereiden zich voor op maanvlucht maandag"
+imageCredit: "NASA/Aubrey Gemignani / HQ"
 ---
 
 De vier astronauten van de Artemis II-missie namen zondag de tijd om Paasgroeten naar de aarde te sturen terwijl ze de maan naderden. De bemanning ziet al onverwachte details op het maanoppervlak, wat wetenschappers een waardevolle voorproefje geeft van wat er te verwachten valt.
