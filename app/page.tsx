@@ -932,9 +932,9 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
         </span>
         <span aria-live="polite" aria-atomic="true" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>Realtime</span>
       </div>
-      <div role="img" aria-label="ISS positie op wereldkaart" style={{ height: 160, background: '#050810', position: 'relative', overflow: 'hidden' }}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, filter: 'brightness(0.85) saturate(0.4) sepia(0.6) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
-        <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.28 }}>
+      <div role="img" aria-label="ISS positie op wereldkaart" style={{ height: 160, background: '#0d1425', position: 'relative', overflow: 'hidden' }}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, filter: 'brightness(1.3) saturate(0.5) sepia(0.4) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
+        <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.45 }}>
           {[25, 50, 75].map(y => <line key={y} x1="0" y1={`${y}%`} x2="100%" y2={`${y}%`} stroke="#3dcfdf" strokeWidth="0.5" />)}
           {[16.6, 33.3, 50, 66.6, 83.3].map(x => <line key={x} x1={`${x}%`} y1="0" x2={`${x}%`} y2="100%" stroke="#3dcfdf" strokeWidth="0.5" />)}
           <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#3dcfdf" strokeWidth="1" opacity="0.4" />
