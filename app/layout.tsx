@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import ErrorBoundary from './ErrorBoundary'
 import SearchProvider from './components/SearchProvider'
@@ -52,6 +53,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </ErrorBoundary>
         <SearchProvider />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-ETD8FLPPCL" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-ETD8FLPPCL');
+        `}</Script>
       </body>
     </html>
   )
