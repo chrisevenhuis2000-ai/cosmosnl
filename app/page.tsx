@@ -797,7 +797,7 @@ function StargazingWidget() {
   useEffect(() => {
     const fetch20h = async (lat: number, lon: number) => {
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m&forecast_days=1&timezone=auto`
+        const url = `${PROXY}/weather?lat=${lat}&lon=${lon}`
         const res = await fetch(url)
         const d   = await res.json()
         const idx = 20

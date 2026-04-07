@@ -122,6 +122,40 @@ export default {
       return cors(request, JSON.stringify({ url: null, credit: null }))
     }
 
+    // ── GET /weather?lat=52.37&lon=4.90 ──────────────────────────────────
+    // Proxies Open-Meteo and caches the result for 30 minutes via CF Cache API
+    // so individual browser visits don't each hit Open-Meteo directly.
+    if (request.method === 'GET' && url.pathname === '/weather') {
+      const lat    = url.searchParams.get('lat')    ?? '52.3676'
+      const lon    = url.searchParams.get('lon')    ?? '4.9041'
+      const days   = url.searchParams.get('days')   ?? '1'
+      const fields = url.searchParams.get('fields') ?? 'cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m'
+
+      const cacheKey = new Request(`https://open-meteo-cache/weather?lat=${lat}&lon=${lon}&days=${days}&fields=${fields}`)
+      const cache    = caches.default
+
+      const cached = await cache.match(cacheKey)
+      if (cached) {
+        const data = await cached.json()
+        return cors(request, JSON.stringify(data))
+      }
+
+      const upstream = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=${fields}&forecast_days=${days}&timezone=auto`
+      )
+      if (!upstream.ok) {
+        return cors(request, JSON.stringify({ error: 'upstream failed' }), 502)
+      }
+      const data = await upstream.json()
+
+      // Store in CF cache for 30 minutes
+      await cache.put(cacheKey, new Response(JSON.stringify(data), {
+        headers: { 'Cache-Control': 'public, max-age=1800', 'Content-Type': 'application/json' },
+      }))
+
+      return cors(request, JSON.stringify(data))
+    }
+
     // ── GET /image-proxy?url=... ──────────────────────────────────────────
     // Fetches an image server-side and re-serves it with proper CORS headers,
     // bypassing browser ORB restrictions on ESA/NASA cross-origin images.

@@ -478,7 +478,7 @@ export default function SterrenkijkenPage() {
   const fetchWeather = useCallback(async (loc: Location) => {
     setWeatherLoad(true); setScoreData(null); setWeekForecast([])
     try {
-      const url  = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m,visibility&forecast_days=7`
+      const url  = `https://cosmosnl-proxy.chrisevenhuis2000.workers.dev/weather?lat=${loc.lat}&lon=${loc.lon}&days=7&fields=cloud_cover,temperature_2m,relative_humidity_2m,wind_speed_10m,visibility`
       const res  = await fetch(url)
       const data = await res.json()
       const h    = data.hourly
