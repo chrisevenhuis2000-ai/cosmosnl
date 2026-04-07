@@ -636,20 +636,23 @@ function DailyQuizWidget() {
   const [selected, setSelected] = useState<number | null>(null)
   const [mounted,  setMounted]  = useState(false)
 
-  // Hydrate from localStorage after mount — compute today client-side only
+  useEffect(() => { setMounted(true) }, [])
+
+  // Restore saved answer from localStorage when level changes
   useEffect(() => {
-    setMounted(true)
+    if (!mounted) return
     const today = new Date().toISOString().slice(0, 10)
     try {
       const raw = localStorage.getItem(`quiz_${today}`)
       if (raw) {
         const saved = JSON.parse(raw) as Record<string, number>
-        if (saved[level] !== undefined) setSelected(saved[level])
+        setSelected(saved[level] !== undefined ? saved[level] : null)
+      } else {
+        setSelected(null)
       }
     } catch { /* ignore */ }
-  }, [level])
+  }, [level, mounted])
 
-  // Render placeholder during SSR / first hydration pass to avoid mismatch
   if (!mounted) return <div style={{ minHeight: 220, border: '1px solid #252858', background: '#16173A', borderRadius: 2 }} />
 
   const today  = new Date().toISOString().slice(0, 10)
