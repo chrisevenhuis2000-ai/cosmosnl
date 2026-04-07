@@ -119,7 +119,7 @@ export default {
         } catch { /* fall through */ }
       }
 
-      return cors(request, JSON.stringify({ url: null, credit: null }), 404)
+      return cors(request, JSON.stringify({ url: null, credit: null }))
     }
 
     // ── GET /image-proxy?url=... ──────────────────────────────────────────

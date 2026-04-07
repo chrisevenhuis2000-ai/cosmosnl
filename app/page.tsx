@@ -426,12 +426,14 @@ function MissiesStrip() {
       <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 4 }}>
         {active.map(m => (
           <Link key={m.id} href={`/missies/${m.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
-            <div style={{ background: `linear-gradient(135deg, ${m.bgFrom}, ${m.bgTo})`, border: '1px solid #252858', borderRadius: 6, padding: '14px 18px', minWidth: 160, maxWidth: 200, transition: 'border-color 0.15s' }}
+            <div style={{ background: `linear-gradient(135deg, ${m.bgFrom}, ${m.bgTo})`, border: '1px solid #252858', borderRadius: 6, padding: '14px 18px', minWidth: 160, maxWidth: 200, transition: 'border-color 0.15s', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 130 }}
                  onMouseEnter={e => (e.currentTarget.style.borderColor = m.agencyColor)}
                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}>
-              <div style={{ fontSize: '1.5rem', marginBottom: 8 }}>{m.icon}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: m.agencyColor, marginBottom: 4 }}>{m.agency}</div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: 6 }}>{m.name}</div>
+              <div>
+                <div style={{ fontSize: '1.5rem', marginBottom: 8 }}>{m.icon}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: m.agencyColor, marginBottom: 4 }}>{m.agency}</div>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: 6 }}>{m.name}</div>
+              </div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'rgba(61,207,111,0.12)', border: '1px solid rgba(61,207,111,0.25)', borderRadius: 20, padding: '2px 8px' }}>
                 <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#3ddf90' }} />
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#3ddf90', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Actief</span>
@@ -630,19 +632,14 @@ const DAILY_QUESTIONS: { id: number; topic: string; beg: QuizLevel; ama: QuizLev
 
 // ── Daily quiz widget ────────────────────────────────────────────────────────
 function DailyQuizWidget() {
-  const today = new Date().toISOString().slice(0, 10)
-  const dayIdx = Math.floor(Date.UTC(
-    new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()
-  ) / 86_400_000) % DAILY_QUESTIONS.length
-  const q = DAILY_QUESTIONS[dayIdx]
-
   const [level,    setLevel]    = useState<'beg' | 'ama' | 'pro'>('beg')
   const [selected, setSelected] = useState<number | null>(null)
   const [mounted,  setMounted]  = useState(false)
 
-  // Hydrate from localStorage after mount
+  // Hydrate from localStorage after mount — compute today client-side only
   useEffect(() => {
     setMounted(true)
+    const today = new Date().toISOString().slice(0, 10)
     try {
       const raw = localStorage.getItem(`quiz_${today}`)
       if (raw) {
@@ -650,7 +647,16 @@ function DailyQuizWidget() {
         if (saved[level] !== undefined) setSelected(saved[level])
       }
     } catch { /* ignore */ }
-  }, [today, level])
+  }, [level])
+
+  // Render placeholder during SSR / first hydration pass to avoid mismatch
+  if (!mounted) return <div style={{ minHeight: 220, border: '1px solid #252858', background: '#16173A', borderRadius: 2 }} />
+
+  const today  = new Date().toISOString().slice(0, 10)
+  const dayIdx = Math.floor(Date.UTC(
+    new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()
+  ) / 86_400_000) % DAILY_QUESTIONS.length
+  const q = DAILY_QUESTIONS[dayIdx]
 
   function handleAnswer(idx: number) {
     if (selected !== null) return
@@ -666,7 +672,6 @@ function DailyQuizWidget() {
   function switchLevel(lvl: 'beg' | 'ama' | 'pro') {
     setLevel(lvl)
     setSelected(null)
-    if (!mounted) return
     try {
       const raw = localStorage.getItem(`quiz_${today}`)
       if (raw) {
