@@ -20,8 +20,6 @@ jobs:
         run: npm ci
 
       - name: 🔨 Statische build maken
-        env:
-          NEXT_PUBLIC_NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
         run: npm run build
 
       - name: 🔧 Pagina's en artikel slugs als index.html mappen

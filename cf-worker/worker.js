@@ -122,6 +122,33 @@ export default {
       return cors(request, JSON.stringify({ url: null, credit: null }))
     }
 
+    // ── GET /apod ─────────────────────────────────────────────────────────
+    // Proxies NASA APOD and caches the result for 1 hour via CF Cache API.
+    // API key stays server-side — never exposed to the browser.
+    if (request.method === 'GET' && url.pathname === '/apod') {
+      const cacheKey = new Request('https://nasa-apod-cache/apod')
+      const cache    = caches.default
+
+      const cached = await cache.match(cacheKey)
+      if (cached) {
+        const data = await cached.json()
+        return cors(request, JSON.stringify(data))
+      }
+
+      const apiKey = env.NASA_API_KEY || 'DEMO_KEY'
+      const res    = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
+      if (!res.ok) {
+        return cors(request, JSON.stringify({ error: `NASA ${res.status}` }), 502)
+      }
+      const data = await res.json()
+
+      await cache.put(cacheKey, new Response(JSON.stringify(data), {
+        headers: { 'Cache-Control': 'public, max-age=3600', 'Content-Type': 'application/json' },
+      }))
+
+      return cors(request, JSON.stringify(data))
+    }
+
     // ── GET /weather?lat=52.37&lon=4.90 ──────────────────────────────────
     // Proxies Open-Meteo and caches the result for 30 minutes via CF Cache API
     // so individual browser visits don't each hit Open-Meteo directly.

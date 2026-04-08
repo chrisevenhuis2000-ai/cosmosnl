@@ -1412,7 +1412,7 @@ export default function HomePage() {
 
   // Fetch APOD
   useEffect(() => {
-    fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY || 'DEMO_KEY'}`)
+    fetch(`${PROXY}/apod`)
       .then(r => r.json()).then(setApod).catch(() => {})
   }, [])
 
