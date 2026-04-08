@@ -275,6 +275,9 @@
   100% { transform: scale(2.8); opacity: 0; }
 }
 
+@keyframes slideUp   { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes slideDown { from { transform: translateY(0); }    to { transform: translateY(100%); } }
+
 /* Animation utility classes */
 .animate-fadeUp  { animation: fadeUp  0.7s var(--ease-out) both; }
 .animate-fadeIn  { animation: fadeIn  0.5s ease both; }
