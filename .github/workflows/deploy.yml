@@ -1,62 +1,14 @@
-name: 🚀 Build & Deploy naar Plesk
+name: ☁️ Deploy Cloudflare Worker
 on:
   push:
     branches: [main]
   workflow_dispatch:
 jobs:
-  build-and-deploy:
+  deploy-worker:
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Checkout code
         uses: actions/checkout@v4
-
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: 📥 Dependencies installeren
-        run: npm ci
-
-      - name: 🔨 Statische build maken
-        run: npm run build
-
-      - name: 🔧 Pagina's en artikel slugs als index.html mappen
-        run: |
-          # Top-level pagina's (educatie, missies, sterrenkijken, etc.)
-          cd out
-          for f in *.html; do
-            [[ "$f" == "index.html" || "$f" == "404.html" || "$f" == "500.html" ]] && continue
-            slug="${f%.html}"
-            mkdir -p "$slug"
-            [[ -f "$slug/index.html" ]] || cp "$f" "$slug/index.html"
-          done
-          # Nieuws artikel slugs
-          cd nieuws
-          for f in *.html; do
-            slug="${f%.html}"
-            mkdir -p "$slug"
-            cp "$f" "$slug/index.html"
-          done
-
-      - name: 📁 Deploy via FTP
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USERNAME }}
-          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          sudo apt-get install -y lftp
-          lftp -u "$FTP_USER,$FTP_PASS" "ftp://$FTP_HOST" << 'LFTP_EOF'
-          set ftp:ssl-allow no
-          set ftp:passive-mode on
-          set net:timeout 60
-          set net:max-retries 5
-          set net:reconnect-interval-base 10
-          set net:reconnect-interval-multiplier 1
-          mirror -R --verbose --delete --exclude-glob .git --exclude-glob node_modules ./out/ /nightgazer.space/
-          quit
-          LFTP_EOF
 
       - name: ☁️ Deploy Cloudflare Worker
         working-directory: cf-worker
