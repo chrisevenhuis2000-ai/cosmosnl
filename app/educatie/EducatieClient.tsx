@@ -355,7 +355,7 @@ function EducatieHero() {
             { value: '∞', label: 'Artikelen',       color: '#c080ff' },
           ].map(({ value, label, color }) => (
             <div key={label}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 700, color, lineHeight: 1 }}>{value}</div>
+              <div className="edu-stat-value" style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 700, color, lineHeight: 1 }}>{value}</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 4 }}>{label}</div>
             </div>
           ))}

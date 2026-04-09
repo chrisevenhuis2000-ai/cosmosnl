@@ -451,14 +451,14 @@ export default function SolarSystemMap() {
     return () => { ro.disconnect(); cancelAnimationFrame(rafRef.current); document.removeEventListener('fullscreenchange', onFsChange) }
   }, [mounted, draw])
 
-  // ── Mouse events ──────────────────────────────────────────────────────────
-  const onMouseMove = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+  // ── Pointer hit-test (shared by mouse + touch) ────────────────────────────
+  const handlePointerAt = useCallback((clientX: number, clientY: number) => {
     const canvas = canvasRef.current!
     const rect   = canvas.getBoundingClientRect()
     const scaleX = canvas.width  / rect.width
     const scaleY = canvas.height / rect.height
-    const mx     = (e.clientX - rect.left)  * scaleX
-    const my     = (e.clientY - rect.top)   * scaleY
+    const mx     = (clientX - rect.left) * scaleX
+    const my     = (clientY - rect.top)  * scaleY
 
     let found: string | null = null
     for (const h of canvas._hits ?? []) {
@@ -466,13 +466,30 @@ export default function SolarSystemMap() {
     }
     hoverRef.current = found
     setHoverId(found)
-    setTooltipPos(found ? [e.clientX, e.clientY] : null)
+    setTooltipPos(found ? [clientX, clientY] : null)
     canvas.style.cursor = found ? 'pointer' : 'default'
   }, [])
+
+  // ── Mouse events ──────────────────────────────────────────────────────────
+  const onMouseMove  = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    handlePointerAt(e.clientX, e.clientY)
+  }, [handlePointerAt])
 
   const onMouseLeave = useCallback(() => {
     hoverRef.current = null; setHoverId(null); setTooltipPos(null)
   }, [])
+
+  // ── Touch events ──────────────────────────────────────────────────────────
+  const onTouchStart = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+    const t = e.touches[0]
+    handlePointerAt(t.clientX, t.clientY)
+  }, [handlePointerAt])
+
+  const onTouchMove = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault()
+    const t = e.touches[0]
+    handlePointerAt(t.clientX, t.clientY)
+  }, [handlePointerAt])
 
   const toggleAnim = useCallback(() => setAnimating(a => !a), [])
 
@@ -510,9 +527,9 @@ export default function SolarSystemMap() {
           </button>
         </div>
         {/* Row 2: zoom pill-group + animate toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div className="solar-controls" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {/* Pill group */}
-          <div style={{ display: 'flex' }}>
+          <div className="solar-zoom-pills" style={{ display: 'flex' }}>
             {(['inner','outer','interstellar'] as Zoom[]).map((z, i) => (
               <button key={z} onClick={() => setZoom(z)} style={{
                 fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
@@ -554,6 +571,8 @@ export default function SolarSystemMap() {
             style={{ display: 'block', width: '100%', maxWidth: isFull ? '100%' : 580 }}
             onMouseMove={onMouseMove}
             onMouseLeave={onMouseLeave}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
           />
         )}
 

@@ -386,7 +386,7 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
           </div>
         </div>
         <div style={{ padding: size === 'hero' ? 32 : size === 'md' ? 20 : 16, flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, lineHeight: 1.18, color: '#FFFFFF', fontSize: size === 'hero' ? '2rem' : size === 'md' ? '1.15rem' : '0.95rem', marginBottom: size === 'sm' ? 0 : 10 }}>
+          <h2 className={size === 'hero' ? 'bento-hero-title' : undefined} style={{ fontFamily: 'var(--font-display)', fontWeight: 700, lineHeight: 1.18, color: '#FFFFFF', fontSize: size === 'hero' ? '2rem' : size === 'md' ? '1.15rem' : '0.95rem', marginBottom: size === 'sm' ? 0 : 10 }}>
             {article.title}
           </h2>
           {size !== 'sm' && (
@@ -423,7 +423,7 @@ function MissiesStrip() {
           Alle missies →
         </Link>
       </div>
-      <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 4 }}>
+      <div className="missies-strip-scroll" style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 4 }}>
         {active.map(m => (
           <Link key={m.id} href={`/missies/${m.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
             <div style={{ background: `linear-gradient(135deg, ${m.bgFrom}, ${m.bgTo})`, border: '1px solid #252858', borderRadius: 6, padding: '14px 18px', minWidth: 160, maxWidth: 200, transition: 'border-color 0.15s', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 130 }}
@@ -1153,7 +1153,7 @@ function EventCountdownStrip() {
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '0 var(--sp-10)', display: 'flex', alignItems: 'stretch', gap: 0 }}>
 
         {/* Left label — sticky */}
-        <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10, paddingRight: 20, borderRight: '1px solid #252858', paddingTop: 14, paddingBottom: 14 }}>
+        <div className="event-strip-label" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10, paddingRight: 20, borderRight: '1px solid #252858', paddingTop: 14, paddingBottom: 14 }}>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A5A8A', whiteSpace: 'nowrap' }}>
             🗓️ Aankomend
           </span>

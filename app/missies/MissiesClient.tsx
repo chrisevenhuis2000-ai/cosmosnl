@@ -8,7 +8,7 @@ import { MISSIONS, type MissionDetail as Mission, type MissionStatus } from '@/l
 const SolarSystemMap    = dynamic(() => import('./SolarSystemMap'), {
   ssr: false,
   loading: () => (
-    <div style={{ height: 560, background: '#12132A', border: '1px solid #252858', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="solar-map-loading" style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Kaart laden...</span>
     </div>
   ),
@@ -634,7 +634,7 @@ export default function MissiesPage() {
             <span id="dest-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Bestemmingen</span>
             <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, background: '#252858', border: '1px solid #252858' }}>
+          <div className="destinations-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, background: '#252858', border: '1px solid #252858' }}>
             {[
               { name: 'Mars',        icon: '🔴', count: 2, color: '#ff8a60', desc: 'Curiosity & Perseverance actief' },
               { name: 'Maan',        icon: '🌕', count: 1, color: '#8A9BC4', desc: 'Artemis II gepland voor 2026' },

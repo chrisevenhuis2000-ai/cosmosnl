@@ -87,9 +87,10 @@ export default function SearchModal({ open, onClose }: { open: boolean; onClose:
       aria-modal="true"
       aria-label="Zoeken"
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
+      className="search-modal-overlay"
       style={{ position: 'fixed', inset: 0, zIndex: 10000, background: 'rgba(10,11,26,0.85)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '12vh' }}
     >
-      <div style={{ width: '100%', maxWidth: 640, background: '#12132A', border: '1px solid #252858', borderRadius: 8, overflow: 'hidden', boxShadow: '0 24px 64px rgba(0,0,0,0.6)' }}>
+      <div className="search-modal-panel" style={{ width: '100%', maxWidth: 640, background: '#12132A', border: '1px solid #252858', borderRadius: 8, overflow: 'hidden', boxShadow: '0 24px 64px rgba(0,0,0,0.6)' }}>
 
         {/* Search input */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', borderBottom: '1px solid #252858' }}>
@@ -106,7 +107,7 @@ export default function SearchModal({ open, onClose }: { open: boolean; onClose:
         </div>
 
         {/* Results */}
-        <div style={{ maxHeight: 400, overflowY: 'auto' }}>
+        <div className="search-modal-results" style={{ maxHeight: 400, overflowY: 'auto' }}>
           {results.length === 0 && query ? (
             <div style={{ padding: '24px 20px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#4A5A8A' }}>
               Geen artikelen gevonden voor "{query}"

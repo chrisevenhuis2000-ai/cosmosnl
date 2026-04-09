@@ -882,7 +882,7 @@ export default function SterrenkijkenPage() {
                   <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', color: '#4A5A8A', alignSelf: 'center' }}>Lager = donkerder</span>
                 </div>
               </div>
-              <div style={{ height: 500, position: 'relative' }}>
+              <div className="dark-sky-map-wrap">
                 <DarkSkyMap spots={darkSpotsSorted} userLat={location.lat} userLon={location.lon} />
               </div>
               <div style={{ padding: '8px 18px', borderTop: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', color: '#4A5A8A' }}>

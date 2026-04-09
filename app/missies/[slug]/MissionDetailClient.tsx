@@ -300,7 +300,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
         {/* Description */}
         <section aria-labelledby="desc-label" style={{ marginBottom: 72 }}>
           <SectionLabel>Over de missie</SectionLabel>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'start' }}>
+          <div className="mission-desc-row" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'start' }}>
             <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.85, margin: 0 }}>{mission.description}</p>
             <a href={mission.missionUrl} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor, textDecoration: 'none', padding: '8px 16px', border: `1px solid ${mission.agencyColor}40`, borderRadius: 2, whiteSpace: 'nowrap', transition: 'background 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.background = `${mission.agencyColor}12`)}
@@ -329,12 +329,12 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
           <SectionLabel>Tijdlijn</SectionLabel>
           <div style={{ position: 'relative' }}>
             {/* Vertical line */}
-            <div style={{ position: 'absolute', left: 88, top: 0, bottom: 0, width: 1, background: '#252858' }} />
+            <div className="mission-timeline-line" style={{ position: 'absolute', left: 88, top: 0, bottom: 0, width: 1, background: '#252858' }} />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
               {mission.timeline.map((entry, i) => (
                 <div key={i} style={{ display: 'flex', gap: 0, alignItems: 'flex-start' }}>
                   {/* Date */}
-                  <div style={{ width: 88, flexShrink: 0, paddingRight: 20, paddingTop: 18, paddingBottom: 18 }}>
+                  <div className="mission-timeline-date" style={{ width: 88, flexShrink: 0, paddingRight: 20, paddingTop: 18, paddingBottom: 18 }}>
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.06em', display: 'block', textAlign: 'right' }}>{entry.date}</span>
                   </div>
                   {/* Dot */}

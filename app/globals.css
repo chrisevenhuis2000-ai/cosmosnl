@@ -44,6 +44,12 @@
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --dur-fast: 150ms;
   --dur-base: 250ms;
+
+  /* Responsive layout handles */
+  --map-h-desktop: 500px;
+  --map-h-mobile:  260px;
+  --modal-max-w:   640px;
+  --tap-min:       44px;
 }
 
 /* ── Base ────────────────────────────────────────────────────────────────── */
@@ -347,6 +353,78 @@
 @media (max-width: 480px) {
   .hero-ctas     { flex-direction: column; align-items: flex-start; }
   .nl-input-wrap { flex-direction: column; }
+}
+
+/* ── Mobile responsive utilities ────────────────────────────────────────── */
+
+/* Map containers */
+.dark-sky-map-wrap  { height: var(--map-h-desktop); position: relative; }
+.solar-map-loading  { height: var(--map-h-desktop); }
+
+/* Horizontal scroll strip with snap */
+.missies-strip-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.missies-strip-scroll > a   { scroll-snap-align: start; }
+.missies-strip-scroll::-webkit-scrollbar { display: none; }
+
+/* Search modal panel */
+.search-modal-panel { width: 100%; max-width: var(--modal-max-w); }
+
+/* Bento hero title */
+.bento-hero-title { font-size: 2rem; }
+
+/* Edu stat value */
+.edu-stat-value { font-size: 2.4rem; }
+
+/* Event strip label */
+.event-strip-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 20px;
+  border-right: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .dark-sky-map-wrap { height: var(--map-h-mobile); }
+  .solar-map-loading  { height: var(--map-h-mobile); }
+}
+
+@media (max-width: 640px) {
+  .article-card-grid     { grid-template-columns: 1fr !important; }
+  .destinations-grid     { grid-template-columns: 1fr 1fr !important; }
+  .mission-desc-row      { grid-template-columns: 1fr !important; gap: 16px; }
+  .mission-timeline-date { width: 64px !important; font-size: 0.6rem !important; }
+  .mission-timeline-line { left: 64px !important; }
+}
+
+@media (max-width: 480px) {
+  .search-modal-overlay {
+    padding-top: 0 !important;
+    align-items: flex-end !important;
+  }
+  .search-modal-panel {
+    border-radius: 8px 8px 0 0;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .search-modal-results { flex: 1; max-height: none; }
+  .bento-hero-title     { font-size: 1.55rem; }
+  .edu-stat-value       { font-size: 1.8rem; }
+  .event-strip-label    { display: none; }
+  .solar-controls       { flex-wrap: wrap; gap: 6px; }
+  .solar-zoom-pills button {
+    font-size: 0.7rem !important;
+    padding: 4px 8px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .destinations-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ── Reduced motion ──────────────────────────────────────────────────────── */
