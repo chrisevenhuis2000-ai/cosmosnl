@@ -197,9 +197,9 @@ function SiteNav() {
   return (
     <>
       <nav aria-label="Hoofdnavigatie" style={{ position: 'sticky', top: 0, zIndex: 20, height: 'var(--nav-h)', background: 'rgba(26,26,46,0.96)', borderBottom: '1px solid #252858', backdropFilter: 'blur(16px)' }}>
-        <div className="nav-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', height: '100%', display: 'flex', alignItems: 'center', gap: 40 }}>
+        <div className="nav-pad nav-inner" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', height: '100%', display: 'flex', alignItems: 'center', gap: 40 }}>
           <Link href="/" aria-label="NightGazer — naar de startpagina" style={{ flexShrink: 0, textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <img src="/logo-transparent.png" alt="NightGazer" style={{ height: 46, width: 'auto', display: 'block' }} />
+            <img src="/logo-transparent.png" alt="NightGazer" className="nav-logo" style={{ height: 46, width: 'auto', display: 'block' }} />
           </Link>
           <ul className="nav-links" role="list" style={{ gap: 32, flex: 1, justifyContent: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map(({ href, label }) => (
@@ -220,8 +220,8 @@ function SiteNav() {
               onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}
             >
               <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>🔍</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.08em' }}>Zoek…</span>
-              <kbd style={{ fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#2A3060', background: '#1a1c42', border: '1px solid #252858', borderRadius: 3, padding: '1px 5px' }}>⌘K</kbd>
+              <span className="nav-search-text">Zoek…</span>
+              <kbd className="nav-search-kbd">⌘K</kbd>
             </button>
             <button className="nav-hamburger" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? 'Menu sluiten' : 'Menu openen'} onClick={() => setMobileOpen(o => !o)} style={{ flexDirection: 'column', gap: 5, padding: 8, background: 'none', border: 'none', cursor: 'pointer' }}>
               {[0, 1, 2].map(i => (

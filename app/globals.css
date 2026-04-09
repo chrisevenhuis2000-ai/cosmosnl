@@ -355,6 +355,18 @@
   .nl-input-wrap { flex-direction: column; }
 }
 
+/* ── Navigation mobile fixes ────────────────────────────────────────────── */
+.nav-inner         { display: flex; align-items: center; gap: 40px; height: 100%; }
+.nav-search-text   { font-family: var(--font-mono); font-size: 0.5rem; color: #4A5A8A; letter-spacing: 0.08em; }
+.nav-search-kbd    { font-family: var(--font-mono); font-size: 0.42rem; color: #2A3060; background: #1a1c42; border: 1px solid #252858; border-radius: 3px; padding: 1px 5px; }
+
+@media (max-width: 768px) {
+  .nav-inner        { gap: 12px; overflow: hidden; }
+  .nav-search-text,
+  .nav-search-kbd   { display: none; }
+  .nav-logo         { height: 36px !important; }
+}
+
 /* ── Mobile responsive utilities ────────────────────────────────────────── */
 
 /* Map containers */
