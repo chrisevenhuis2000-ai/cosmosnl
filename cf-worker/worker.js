@@ -233,6 +233,49 @@ export default {
       }
     }
 
+    // ── GET /space-weather → NOAA KP-index (ruimteweer / aurora) ────────────
+    // Proxiet NOAA SWPC realtime planetary K-index. Gecached 30 min.
+    // KP ≥ 5 = aurora mogelijk zichtbaar vanuit Nederland.
+    if (request.method === 'GET' && url.pathname === '/space-weather') {
+      const cacheKey = new Request('https://noaa-kp-cache/kp-index')
+      const cache    = caches.default
+
+      const cached = await cache.match(cacheKey)
+      if (cached) {
+        const data = await cached.json()
+        return cors(request, JSON.stringify(data))
+      }
+
+      try {
+        const res = await fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json', {
+          headers: { 'User-Agent': 'NightGazer/1.0 (nightgazer.space)' },
+        })
+        if (!res.ok) return cors(request, JSON.stringify({ error: `NOAA ${res.status}` }), 502)
+
+        const raw = await res.json()
+        // raw = [[time_tag, kp, observed, noaa_scale], ...]
+        // Neem de laatste 8 entries (24 uur, 3-uurs intervallen)
+        const entries = Array.isArray(raw) ? raw.slice(1).slice(-8) : []
+        const latest  = entries[entries.length - 1]
+        const kp      = latest ? parseFloat(latest[1]) : 0
+        const data    = {
+          kp,
+          kpText:  kp >= 8 ? 'Extreem' : kp >= 6 ? 'Sterk' : kp >= 5 ? 'Matig' : kp >= 3 ? 'Laag' : 'Rustig',
+          aurora:  kp >= 5,
+          entries: entries.map(e => ({ time: e[0], kp: parseFloat(e[1]) })),
+          updated: new Date().toISOString(),
+        }
+
+        const response = new Response(JSON.stringify(data), {
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=1800' },
+        })
+        await cache.put(cacheKey, response.clone())
+        return cors(request, JSON.stringify(data))
+      } catch (e) {
+        return cors(request, JSON.stringify({ error: 'NOAA niet bereikbaar' }), 502)
+      }
+    }
+
     // ── GET /launches → Aankomende lanceringen (7 dagen, via Launch Library 2) ──
     // Cachet 1 uur in CF Cache API — LL2 free tier is max 15 req/uur.
     if (request.method === 'GET' && url.pathname === '/launches') {

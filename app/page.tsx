@@ -96,15 +96,8 @@ function articleVisual(article: Article) {
   }
 }
 
-// ── Ticker items ───────────────────────────────────────────────────────────
-const TICKER_ITEMS = [
-  'James Webb detecteert DMS op K2-18b',
-  'SpaceX Starship IFT-8 gepland Q2 2026',
-  'Vera Rubin Observatory start eerste survey',
-  'ESA Hera nadert asteroïde Dimorphos',
-  'DESI kaart onthult dynamische donkere energie',
-  'Komeet C/2026 A1 verwacht in april',
-]
+// ── Ticker fallback (shown before articles-index.json loads) ───────────────
+const TICKER_FALLBACK = FALLBACK_ARTICLES.map(a => a.title)
 
 // ── Topic filters ──────────────────────────────────────────────────────────
 const TOPICS = ['Alles', 'James Webb', 'Mars', 'Missies', 'Zwarte Gaten', 'Maan', 'Sterrenkijken', 'Zonnestelsel', 'Kosmologie']
@@ -153,7 +146,7 @@ function Starfield() {
 }
 
 // ── Topbar ─────────────────────────────────────────────────────────────────
-function Topbar() {
+function Topbar({ items }: { items: string[] }) {
   const [date, setDate] = useState('')
   useEffect(() => {
     setDate(new Date().toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))
@@ -163,7 +156,7 @@ function Topbar() {
       <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', color: '#4A5A8A', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
       <div aria-hidden="true" style={{ flex: 1, overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' }}>
         <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+          {[...items, ...items].map((item, i) => (
             <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3dcfdf', flexShrink: 0, display: 'inline-block' }} />
               {item}
@@ -1443,7 +1436,7 @@ export default function HomePage() {
     <>
       <a href="#main-content" className="skip-link">Ga naar hoofdinhoud</a>
       <Starfield />
-      <Topbar />
+      <Topbar items={articles.length > 0 ? articles.slice(0, 8).map(a => a.title) : TICKER_FALLBACK} />
       <SiteNav />
       <Hero apod={apod} featuredSlug={featuredArticle.slug} />
 

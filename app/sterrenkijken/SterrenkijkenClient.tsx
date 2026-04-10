@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import ApodCard from '@/app/components/ApodCard'
+import AuroraAlert from './AuroraAlert'
 
 const DarkSkyMap = dynamic(() => import('./DarkSkyMap'), {
   ssr:     false,
@@ -76,10 +78,16 @@ const SEASONS = [
 ]
 
 const SKY_OBJECTS = [
-  { obj: 'Jupiter',    where: 'Hoog in het zuiden, in Gemini',       mag: '–2.3', icon: '♃', tip: 'Perfect voor je telescoop! Probeer de Galileïsche manen.' },
-  { obj: 'Venus',      where: 'Laag in het westen na zonsondergang',  mag: '–3.9', icon: '♀', tip: 'Schitterend helder, maar zakt snel onder de horizon.' },
-  { obj: 'Mars',       where: 'Aan de ochtendhemel voor zonsopkomst', mag: '1.4',  icon: '♂', tip: 'Beter zichtbaar later dit jaar.' },
-  { obj: 'Orionnevel', where: 'Hoog in het zuidwesten (Orion)',       mag: '',     icon: '⭐', tip: 'Orionnevel (M42) — prachtig door elke telescoop!' },
+  { obj: 'Jupiter',          where: 'Hoog in het zuiden, in Gemini',              mag: '–2.3', icon: '♃', tip: 'Perfect voor je telescoop! Probeer de Galileïsche manen.',                                 months: [11,12,1,2,3,4,5] },
+  { obj: 'Venus',            where: 'Laag in het westen na zonsondergang',         mag: '–3.9', icon: '♀', tip: 'Schitterend helder, maar zakt snel onder de horizon.',                                    months: [1,2,3,4,5] },
+  { obj: 'Saturnus',         where: 'Aan de ochtendhemel in het zuidoosten',       mag: '0.8',  icon: '♄', tip: 'Ringen zichtbaar door telescoop! Zoek naar de karakteristieke ringvorm.',                  months: [8,9,10,11,12,1] },
+  { obj: 'Mars',             where: 'Aan de ochtendhemel voor zonsopkomst',        mag: '1.4',  icon: '♂', tip: 'Beter zichtbaar later dit jaar.',                                                         months: [3,4,5,6] },
+  { obj: 'Orionnevel (M42)', where: 'Hoog in het zuidwesten (Orion)',              mag: '',     icon: '⭐', tip: 'Prachtig door elke telescoop! Orion is \'s nachts hoog zichtbaar.',                      months: [11,12,1,2,3] },
+  { obj: 'Pleiaden (M45)',   where: 'In Stier, laag in het westen',               mag: '',     icon: '✨', tip: 'Met het blote oog zichtbaar als wazig vlekje — prachtig door verrekijker!',               months: [10,11,12,1,2,3] },
+  { obj: 'Hercules (M13)',   where: 'Hoog aan de hemel in Hercules',               mag: '',     icon: '⭐', tip: 'Bolvormige sterrenhoop! Zichtbaar met verrekijker als wazig bolletje.',                   months: [4,5,6,7,8,9] },
+  { obj: 'Zomerse Driehoek', where: 'Hoog aan de hemel (Vega, Deneb, Altair)',    mag: '',     icon: '△', tip: 'Drie heldere sterren als grote driehoek. De Melkweg loopt er dwars doorheen!',            months: [5,6,7,8,9,10] },
+  { obj: 'Melkwegkern',      where: 'Laag in het zuiden (Boogschutter)',           mag: '',     icon: '🌌', tip: 'Beste na middernacht op een donkere locatie. Ga naar Terschelling of Lauwersmeer!',       months: [5,6,7,8,9] },
+  { obj: 'Andromeda (M31)',  where: 'In het noordoosten (Andromeda)',              mag: '',     icon: '🔭', tip: 'Met het blote oog zichtbaar als wazig vlekje op donkere locaties. Ons buurstelsel!',     months: [8,9,10,11,12] },
 ]
 
 const BORTLE_COLORS: Record<string, string> = { '2–3': '#3ddf90', '3–4': '#d4a84b', '4': '#378ADD', '5': '#8A9BC4' }
@@ -542,9 +550,12 @@ export default function SterrenkijkenPage() {
     const d = (m: number) => { let diff = m - curMonth; if (diff < 0) diff += 12; return diff }
     return d(a.month) - d(b.month)
   })
+  const hasCurrentMeteor = upcomingMeteors.some(m => m.month === curMonth)
 
   const activeSeasons   = SEASONS.filter(s => s.months.includes(curMonth))
   const inactiveSeasons = SEASONS.filter(s => !s.months.includes(curMonth))
+
+  const visibleObjects = SKY_OBJECTS.filter(o => o.months.includes(curMonth))
 
   const TABS = [
     { id: 'vanavond', label: 'Vanavond', emoji: '🌙' },
@@ -701,6 +712,7 @@ export default function SterrenkijkenPage() {
                   <WeatherFactors weather={scoreData?.weather ?? null} loading={weatherLoad} />
                 </div>
               </div>
+              <ApodCard />
             </div>
 
             {/* Kolom 3: Zichtbaar + Seizoenen + Dichtstbijzijnde Dark Sky */}
@@ -713,8 +725,8 @@ export default function SterrenkijkenPage() {
               <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
                 <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>🔭 Zichtbaar vanavond</div>
                 <div style={{ padding: '0 18px' }}>
-                  {SKY_OBJECTS.map((o, i) => (
-                    <div key={o.obj} className="sk-obj-row" style={{ padding: '14px 0', borderBottom: i < SKY_OBJECTS.length - 1 ? '1px solid #252858' : 'none', transition: 'background 0.15s', borderRadius: 4 }}>
+                  {visibleObjects.map((o, i) => (
+                    <div key={o.obj} className="sk-obj-row" style={{ padding: '14px 0', borderBottom: i < visibleObjects.length - 1 ? '1px solid #252858' : 'none', transition: 'background 0.15s', borderRadius: 4 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
                         <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{o.icon}</span>
                         <div style={{ flex: 1 }}>
@@ -761,6 +773,7 @@ export default function SterrenkijkenPage() {
                   onMouseLeave={e => (e.currentTarget.style.background = 'none')}
                 >Meer →</button>
               </div>
+              <AuroraAlert />
             </div>
           </div>
         )}
@@ -788,14 +801,17 @@ export default function SterrenkijkenPage() {
                 <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>☄ Meteorenzwerms 2026</div>
                 <div>
                   {upcomingMeteors.map((m, i) => {
-                    const isCurrent = m.month === curMonth
+                    const isCurrent  = m.month === curMonth
+                    const isNext     = i === 0 && !hasCurrentMeteor
+                    const isHighlit  = isCurrent || isNext
                     return (
-                      <div key={m.name} className="sk-meteor" style={{ padding: '14px 18px', borderBottom: i < upcomingMeteors.length - 1 ? '1px solid #252858' : 'none', background: isCurrent ? 'rgba(55,138,221,0.05)' : 'transparent', borderLeft: isCurrent ? '3px solid #378ADD' : '3px solid transparent', transition: 'background 0.15s' }}>
+                      <div key={m.name} className="sk-meteor" style={{ padding: '14px 18px', borderBottom: i < upcomingMeteors.length - 1 ? '1px solid #252858' : 'none', background: isHighlit ? 'rgba(55,138,221,0.05)' : 'transparent', borderLeft: isHighlit ? '3px solid #378ADD' : '3px solid transparent', transition: 'background 0.15s' }}>
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 6 }}>
                           <div style={{ flex: 1 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                              <span style={{ fontWeight: 600, fontSize: '0.92rem', color: isCurrent ? '#FFFFFF' : '#8A9BC4' }}>{m.name}</span>
+                              <span style={{ fontWeight: 600, fontSize: '0.92rem', color: isHighlit ? '#FFFFFF' : '#8A9BC4' }}>{m.name}</span>
                               {isCurrent && <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', background: 'rgba(55,138,221,0.15)', padding: '2px 6px', borderRadius: 2 }}>Nu actief</span>}
+                              {isNext && <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#d4a84b', background: 'rgba(212,168,75,0.15)', padding: '2px 6px', borderRadius: 2 }}>Aankomend</span>}
                             </div>
                             <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', color: '#4A5A8A' }}>Piek: {m.peak} · ZHR: {m.zhr}/u</div>
                           </div>

@@ -38,6 +38,21 @@ const FEEDS = [
     source:   'ESA',
     category: 'educatie',
   },
+  {
+    url:      'https://www.jpl.nasa.gov/news.rss',
+    source:   'JPL',
+    category: 'missies',
+  },
+  {
+    url:      'https://www.planetary.org/rss/feed',
+    source:   'The Planetary Society',
+    category: 'educatie',
+  },
+  {
+    url:      'https://spacenews.com/feed/',
+    source:   'SpaceNews',
+    category: 'missies',
+  },
 ]
 
 const CATEGORY_MAP = {
