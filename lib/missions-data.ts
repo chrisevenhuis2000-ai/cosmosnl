@@ -30,11 +30,17 @@ export interface MissionDetail {
   relatedTags:  string[]
 }
 
+// MISSIONS en MISSIONS_LAST_UPDATED worden gegenereerd door scripts/generate-missions-module.js
+// vanuit content/missions.json — zie dat bestand voor handmatige aanpassingen.
+export { MISSIONS, MISSIONS_LAST_UPDATED } from './missions-generated'
+
 export function getMissionBySlug(slug: string): MissionDetail | undefined {
   return MISSIONS.find(m => m.id === slug)
 }
 
-export const MISSIONS: MissionDetail[] = [
+// Onderstaande hardcoded array is vervangen door de JSON-driven import hierboven.
+// Bewaard als referentie — wordt verwijderd bij eerstvolgende cleanup.
+const _MISSIONS_LEGACY: MissionDetail[] = [
   {
     id: 'starship',
     name: 'SpaceX Starship',
@@ -378,3 +384,4 @@ export const MISSIONS: MissionDetail[] = [
     relatedTags: ['europa clipper', 'europa', 'jupiter', 'nasa', 'ijsmaan', 'oceaan', 'bewoonbaarheid', 'falcon heavy'],
   },
 ]
+void _MISSIONS_LEGACY // suppress unused warning

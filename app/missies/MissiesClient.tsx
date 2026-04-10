@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { MISSIONS, type MissionDetail as Mission, type MissionStatus } from '@/lib/missions-data'
+import VolgendeLancering from './VolgendeLancering'
 
 const SolarSystemMap    = dynamic(() => import('./SolarSystemMap'), {
   ssr: false,
@@ -46,14 +47,11 @@ const NAV_LINKS = [
   { href: '/educatie',      label: 'Educatie' },
 ]
 
-const TICKER_ITEMS = [
-  'Starship IFT-8 gepland voor Q2 2026',
-  'Artemis II bemand naar de Maan — Q4 2026',
-  'ESA SMILE-lancering 9 april 2026',
-  'JUICE op weg naar Jupiter — aankomst 2031',
-  'Perseverance verzamelt record 23 rotsmonsters',
-  'James Webb: mogelijke biosignaturen op K2-18b',
-]
+// Dynamisch gegenereerd uit missions.json via de prebuild — altijd actueel
+const TICKER_ITEMS = MISSIONS
+  .filter(m => m.status !== 'voltooid')
+  .map(m => m.highlight)
+  .filter(Boolean)
 
 function slugHash(s: string): number {
   let h = 0
@@ -598,6 +596,11 @@ export default function MissiesPage() {
       <AgenciesStrip />
 
       <main id="main-content" tabIndex={-1} className="main-pad" style={{ position: 'relative', zIndex: 1, maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+
+        {/* ── Volgende lancering countdown ────────────────────────── */}
+        <div style={{ marginBottom: 32 }}>
+          <VolgendeLancering />
+        </div>
 
         {/* ── Solar system map ──────────────────────────────────────── */}
         <section aria-labelledby="map-label" style={{ marginBottom: 80 }}>

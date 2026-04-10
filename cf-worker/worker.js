@@ -233,6 +233,79 @@ export default {
       }
     }
 
+    // ── GET /launches → Aankomende lanceringen (7 dagen, via Launch Library 2) ──
+    // Cachet 1 uur in CF Cache API — LL2 free tier is max 15 req/uur.
+    if (request.method === 'GET' && url.pathname === '/launches') {
+      const cacheKey = new Request('https://ll2-launches-cache/launches-7d')
+      const cache    = caches.default
+
+      const cached = await cache.match(cacheKey)
+      if (cached) {
+        const data = await cached.json()
+        return cors(request, JSON.stringify(data))
+      }
+
+      // Kleine lookup map: LL2 naam-prefix → missie-id op nightgazer.space
+      const MISSION_ID_MAP = {
+        'starship':       'starship',
+        'artemis':        'artemis',
+        'perseverance':   'perseverance',
+        'james webb':     'jwst',
+        'webb':           'jwst',
+        'smile':          'smile',
+        'juice':          'juice',
+        'curiosity':      'curiosity',
+        'voyager':        'voyager1',
+        'europa clipper': 'europa-clipper',
+      }
+
+      function resolveMissionId(name) {
+        const lower = (name || '').toLowerCase()
+        for (const [key, id] of Object.entries(MISSION_ID_MAP)) {
+          if (lower.includes(key)) return id
+        }
+        return null
+      }
+
+      try {
+        const now    = new Date().toISOString()
+        const plus7  = new Date(Date.now() + 7 * 86400 * 1000).toISOString()
+        const ll2Res = await fetch(
+          `https://ll.thespacedevs.com/2.3.0/launches/upcoming/?format=json&limit=10` +
+          `&window_start__gte=${now}&window_start__lte=${plus7}&ordering=window_start`,
+          { headers: { 'User-Agent': 'NightGazer/1.0 (nightgazer.space)' } }
+        )
+
+        if (!ll2Res.ok) {
+          return cors(request, JSON.stringify({ error: `LL2 ${ll2Res.status}` }), 502)
+        }
+
+        const ll2Data = await ll2Res.json()
+        const launches = (ll2Data.results || []).map(l => ({
+          id:          l.id,
+          name:        l.mission?.name || l.name || '',
+          agency:      l.launch_service_provider?.name || '',
+          vehicle:     l.rocket?.configuration?.name || '',
+          pad:         l.pad?.name || '',
+          windowStart: l.window_start,
+          windowEnd:   l.window_end,
+          status:      l.status?.name || 'Onbekend',
+          missionId:   resolveMissionId(l.mission?.name || l.name || ''),
+        }))
+
+        const response = new Response(JSON.stringify(launches), {
+          headers: {
+            'Content-Type':  'application/json',
+            'Cache-Control': 'public, max-age=3600',
+          },
+        })
+        await cache.put(cacheKey, response.clone())
+        return cors(request, JSON.stringify(launches))
+      } catch (e) {
+        return cors(request, JSON.stringify({ error: 'LL2 niet bereikbaar' }), 502)
+      }
+    }
+
     // ── POST / → Anthropic proxy (existing) ──────────────────────────────
     if (request.method === 'POST' && url.pathname === '/') {
       const body     = await request.json()

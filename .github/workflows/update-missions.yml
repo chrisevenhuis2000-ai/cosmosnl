@@ -1,0 +1,51 @@
+name: 🚀 Missiedata bijwerken
+
+on:
+  schedule:
+    # 08:00 UTC dagelijks — na fetch-articles (07:00 UTC)
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-missions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update mission data
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/update-missions.js
+
+      - name: Commit bijgewerkte missiedata
+        run: |
+          git config --local user.email "bot@cosmosnl.nl"
+          git config --local user.name "CosmosNL Bot"
+          git add content/missions.json
+          git diff --staged --quiet || git commit -m "🚀 Auto-update: missiedata $(date '+%Y-%m-%d')"
+          git push
+        continue-on-error: true
+
+      - name: Trigger site rebuild
+        # Voeg DEPLOY_HOOK_URL toe als secret in GitHub → Settings → Secrets
+        # (Cloudflare Pages of Vercel deploy webhook URL)
+        if: env.DEPLOY_HOOK_URL != ''
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: curl -s -X POST "$DEPLOY_HOOK_URL"
+        continue-on-error: true

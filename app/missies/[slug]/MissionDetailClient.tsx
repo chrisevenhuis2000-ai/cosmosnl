@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { getMissionBySlug, MISSIONS } from '@/lib/missions-data'
+import { getMissionBySlug, MISSIONS, MISSIONS_LAST_UPDATED } from '@/lib/missions-data'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -296,6 +296,11 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
             </div>
           ))}
         </div>
+
+        {/* Last updated */}
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#2A3060', textAlign: 'right', margin: '-16px 0 48px' }}>
+          Bijgewerkt: {new Date(MISSIONS_LAST_UPDATED).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </p>
 
         {/* Description */}
         <section aria-labelledby="desc-label" style={{ marginBottom: 72 }}>
