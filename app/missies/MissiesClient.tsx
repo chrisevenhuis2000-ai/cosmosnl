@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { MISSIONS, type MissionDetail as Mission, type MissionStatus } from '@/lib/missions-data'
@@ -31,8 +31,6 @@ interface Article {
   featured:  boolean
   imageUrl?: string
 }
-
-// MISSIONS and MissionStatus are imported from @/lib/missions-data
 
 const STATUS_STYLE: Record<MissionStatus, { bg: string; color: string; label: string }> = {
   actief:   { bg: 'rgba(61,223,144,0.15)',  color: '#3ddf90', label: 'Actief' },
@@ -444,75 +442,6 @@ function MissionCard({ mission }: { mission: Mission }) {
 }
 
 // ── Spotlight card (featured active mission) ───────────────────────────────
-function SpotlightCard({ mission }: { mission: Mission }) {
-  const st = STATUS_STYLE[mission.status]
-  return (
-    <Link href={`/missies/${mission.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', marginBottom: 24 }}>
-      <article
-        className="news-hero-card article-card"
-        style={{ background: `linear-gradient(145deg, ${mission.bgFrom} 0%, ${mission.bgTo} 100%)`, border: '1px solid rgba(55,138,221,0.2)', borderRadius: 4, overflow: 'hidden', display: 'grid', gridTemplateColumns: '40% 1fr' }}
-      >
-        {/* Left: visual */}
-        <div style={{ position: 'relative', minHeight: 280, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-          {/* Orbit rings decoratief */}
-          {[180, 240, 310].map((size, i) => (
-            <div key={i} aria-hidden="true" style={{ position: 'absolute', width: size, height: size, borderRadius: '50%', border: `1px solid ${mission.agencyColor}`, opacity: 0.08 - i * 0.02 }} />
-          ))}
-          <div style={{ fontSize: '5rem', zIndex: 1, filter: 'drop-shadow(0 0 32px rgba(55,138,221,0.3))' }}>{mission.icon}</div>
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(transparent, rgba(4,6,15,0.7))' }} />
-        </div>
-
-        {/* Right: content */}
-        <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: `3px solid ${mission.agencyColor}` }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: mission.agencyColor }}>★ Spotlight · {mission.agency}</span>
-            <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 4 }}>
-              {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} aria-hidden="true" />}
-              {st.label}
-            </span>
-          </div>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 12, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-            {mission.name}
-          </h2>
-          <div style={{ display: 'flex', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4' }}>🚀 {mission.launched}</span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4' }}>📍 {mission.body}</span>
-          </div>
-          <p style={{ fontSize: '0.85rem', color: '#8A9CC0', lineHeight: 1.65, marginBottom: 20, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
-            {mission.objective}
-          </p>
-          <span style={{ alignSelf: 'flex-start', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: mission.agencyColor, borderBottom: `1px solid ${mission.agencyColor}60`, paddingBottom: 2 }}>
-            Bekijk missie →
-          </span>
-        </div>
-      </article>
-    </Link>
-  )
-}
-
-// ── Mission filter strip ───────────────────────────────────────────────────
-type MissionFilter = 'Alles' | 'Actief' | 'Gepland' | 'Voltooid'
-const MISSION_FILTERS: MissionFilter[] = ['Alles', 'Actief', 'Gepland', 'Voltooid']
-
-function MissionFilterStrip({ active, onFilter, counts }: { active: MissionFilter; onFilter: (f: MissionFilter) => void; counts: Record<string, number> }) {
-  return (
-    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 28 }}>
-      {MISSION_FILTERS.map(f => {
-        const isActive = active === f
-        return (
-          <button key={f} onClick={() => onFilter(f)} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '8px 18px', border: `1px solid ${isActive ? '#378ADD' : '#252858'}`, background: isActive ? 'rgba(55,138,221,0.12)' : 'transparent', color: isActive ? '#FFFFFF' : '#4A5A8A', cursor: 'pointer', borderRadius: 2, transition: 'all 0.15s', display: 'flex', alignItems: 'center', gap: 6 }}
-            onMouseEnter={e => { if (!isActive) { e.currentTarget.style.borderColor = 'rgba(55,138,221,0.4)'; e.currentTarget.style.color = '#8A9BC4' } }}
-            onMouseLeave={e => { if (!isActive) { e.currentTarget.style.borderColor = '#252858'; e.currentTarget.style.color = '#4A5A8A' } }}
-          >
-            {f}
-            <span style={{ background: isActive ? 'rgba(55,138,221,0.2)' : '#252858', color: isActive ? '#378ADD' : '#4A5A8A', padding: '1px 6px', borderRadius: 2, fontSize: '0.5rem' }}>{counts[f]}</span>
-          </button>
-        )
-      })}
-    </div>
-  )
-}
-
 // ── Article skeleton ──────────────────────────────────────────────────────
 function ArticleSkeleton() {
   return (
@@ -570,11 +499,114 @@ function ArticleCard({ article }: { article: Article }) {
   )
 }
 
-// ── Active missions bento ──────────────────────────────────────────────────
-function ActiveMissionsBento() {
+// ── Mission detail panel ───────────────────────────────────────────────────
+function MissionDetailPanel({ mission, onClose, showClose = true }: { mission: Mission; onClose: () => void; showClose?: boolean }) {
+  const st = STATUS_STYLE[mission.status]
+  const destEmoji = getBodyEmoji(mission.body || '')
+  return (
+    <div
+      key={mission.id}
+      style={{ animation: 'slideInPanel 0.3s ease both', background: `linear-gradient(145deg, ${mission.bgFrom} 0%, ${mission.bgTo} 100%)`, padding: '28px 28px 24px', display: 'flex', flexDirection: 'column', gap: 16, height: '100%', boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}
+    >
+      {/* Orbit decorations */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: -40, left: -40, width: 180, height: 180, borderRadius: '50%', border: `1px solid ${mission.agencyColor}18`, pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: -70, left: -70, width: 280, height: 280, borderRadius: '50%', border: `1px solid ${mission.agencyColor}0c`, pointerEvents: 'none' }} />
+
+      {/* Header row */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontSize: '2.8rem', lineHeight: 1 }}>{mission.icon}</span>
+          <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 5 }}>
+            {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} aria-hidden="true" />}
+            {st.label}
+          </span>
+        </div>
+        {showClose && (
+          <button onClick={onClose} aria-label="Sluit detail" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 2, color: '#4A5A8A', cursor: 'pointer', padding: '4px 10px', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', transition: 'color 0.15s, border-color 0.15s', flexShrink: 0 }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)' }}
+            onMouseLeave={e => { e.currentTarget.style.color = '#4A5A8A'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)' }}
+          >×</button>
+        )}
+      </div>
+
+      {/* Name + agency */}
+      <div>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15, marginBottom: 6 }}>{mission.name}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: mission.agencyColor, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{mission.agency}</div>
+      </div>
+
+      {/* Meta */}
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4' }}>🚀 {mission.launched}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4' }}>{destEmoji} {mission.body}</div>
+      </div>
+
+      <div aria-hidden="true" style={{ height: 1, background: `${mission.agencyColor}30` }} />
+
+      {/* Objective */}
+      <p style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.7, margin: 0 }}>{mission.objective}</p>
+
+      <div aria-hidden="true" style={{ height: 1, background: `${mission.agencyColor}30` }} />
+
+      {/* Highlight */}
+      <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '10px 12px', background: `${mission.agencyColor}0d`, borderLeft: `2px solid ${mission.agencyColor}80` }}>
+        <svg width="11" height="11" fill="none" viewBox="0 0 12 12" aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }}>
+          <path d="M6 1l1.5 3 3.5.5-2.5 2.4.6 3.5L6 8.9l-3.1 1.5.6-3.5L1 4.5 4.5 4z" stroke={mission.agencyColor} strokeWidth="1" fill="none" />
+        </svg>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4', lineHeight: 1.6 }}>{mission.highlight}</span>
+      </div>
+
+      {/* CTA */}
+      <Link href={`/missies/${mission.id}`} style={{ marginTop: 'auto', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor, textDecoration: 'none', padding: '10px 0', borderTop: `1px solid ${mission.agencyColor}30`, transition: 'opacity 0.15s' }}
+        onMouseEnter={e => (e.currentTarget.style.opacity = '0.75')}
+        onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+      >
+        Bekijk volledige missie
+        <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      </Link>
+    </div>
+  )
+}
+
+// ── Mission list item ──────────────────────────────────────────────────────
+function MissionListItem({ mission, selected, onClick }: { mission: Mission; selected: boolean; onClick: () => void }) {
+  const st = STATUS_STYLE[mission.status]
+  const destEmoji = getBodyEmoji(mission.body || '')
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 12, width: '100%', padding: '14px 18px',
+        background: selected ? `${mission.agencyColor}14` : 'transparent',
+        borderLeft: selected ? `3px solid ${mission.agencyColor}` : '3px solid transparent',
+        borderTop: 'none', borderRight: 'none', borderBottom: '1px solid #252858',
+        cursor: 'pointer', textAlign: 'left', transition: 'background 0.15s, border-color 0.15s',
+      }}
+      onMouseEnter={e => { if (!selected) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
+      onMouseLeave={e => { if (!selected) e.currentTarget.style.background = 'transparent' }}
+    >
+      <span style={{ fontSize: '1.4rem', lineHeight: 1, flexShrink: 0 }}>{mission.icon}</span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.25, marginBottom: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{mission.name}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+          <span style={{ color: mission.agencyColor }}>{mission.agency}</span>
+          {' · '}{destEmoji} {mission.body}
+        </div>
+      </div>
+      <span style={{ flexShrink: 0, background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.44rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 4 }}>
+        {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} aria-hidden="true" />}
+        {st.label}
+      </span>
+    </button>
+  )
+}
+
+// ── Active missions panel ──────────────────────────────────────────────────
+function ActiveMissionsPanel() {
   const active = MISSIONS.filter(m => m.status === 'actief')
+  const [selectedId, setSelectedId] = useState(active[0]?.id ?? '')
   if (active.length === 0) return null
-  const [main, ...rest] = active
+  const selected = active.find(m => m.id === selectedId) ?? active[0]
   return (
     <section aria-labelledby="active-label" style={{ marginBottom: 60 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
@@ -585,46 +617,109 @@ function ActiveMissionsBento() {
         </div>
         <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: rest.length > 0 ? '2fr 1fr' : '1fr', gap: 2, background: '#252858', border: '1px solid #252858' }} className="active-bento-grid">
-        {/* Main card */}
-        <Link href={`/missies/${main.id}`} style={{ textDecoration: 'none' }}>
-          <div style={{ background: `linear-gradient(145deg, ${main.bgFrom} 0%, ${main.bgTo} 100%)`, padding: '40px', minHeight: 280, display: 'flex', flexDirection: 'column', gap: 18, position: 'relative', overflow: 'hidden', boxSizing: 'border-box' }}>
-            <div aria-hidden="true" style={{ position: 'absolute', top: -50, right: -50, width: 220, height: 220, borderRadius: '50%', border: `1px solid ${main.agencyColor}20`, pointerEvents: 'none' }} />
-            <div aria-hidden="true" style={{ position: 'absolute', top: -80, right: -80, width: 320, height: 320, borderRadius: '50%', border: `1px solid ${main.agencyColor}10`, pointerEvents: 'none' }} />
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span className="animate-pulse-dot" style={{ width: 8, height: 8, borderRadius: '50%', background: '#3ddf90', display: 'inline-block' }} aria-hidden="true" />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', color: '#3ddf90', textTransform: 'uppercase' }}>Live</span>
-            </div>
-            <div style={{ fontSize: '3.5rem', lineHeight: 1 }}>{main.icon}</div>
-            <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15, marginBottom: 6 }}>{main.name}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: main.agencyColor, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>{main.agency} · {main.body}</div>
-              <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.65, maxWidth: 420, margin: 0 }}>{main.objective}</p>
-            </div>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: main.agencyColor, letterSpacing: '0.1em', marginTop: 'auto' }}>Bekijk missie →</span>
-          </div>
-        </Link>
-        {/* Side cards */}
-        {rest.length > 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, background: '#252858' }}>
-            {rest.map(m => (
-              <Link key={m.id} href={`/missies/${m.id}`} style={{ textDecoration: 'none', flex: 1, display: 'flex' }}>
-                <div style={{ background: `linear-gradient(145deg, ${m.bgFrom} 0%, ${m.bgTo} 100%)`, padding: '24px 28px', flex: 1, display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-                    <span className="animate-pulse-dot" style={{ width: 6, height: 6, borderRadius: '50%', background: '#3ddf90', display: 'inline-block' }} aria-hidden="true" />
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#3ddf90', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Actief</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ fontSize: '1.8rem', lineHeight: 1 }}>{m.icon}</span>
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2 }}>{m.name}</div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: m.agencyColor, letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 3 }}>{m.agency}</div>
-                    </div>
-                  </div>
-                  <p style={{ fontSize: '0.72rem', color: '#8A9BC4', lineHeight: 1.6, margin: 0, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>{m.highlight}</p>
-                </div>
-              </Link>
-            ))}
+      <div
+        className="active-panel-grid"
+        style={{ display: 'grid', gridTemplateColumns: '1fr 280px', background: '#252858', border: '1px solid #252858' }}
+      >
+        {/* Left: detail panel */}
+        <div style={{ minHeight: 360 }}>
+          <MissionDetailPanel key={selectedId} mission={selected} onClose={() => {}} showClose={false} />
+        </div>
+        {/* Right: scrollable list */}
+        <div style={{ borderLeft: '1px solid #252858', overflowY: 'auto', maxHeight: 480, background: '#0f1028' }}>
+          {active.map(m => (
+            <MissionListItem key={m.id} mission={m} selected={m.id === selectedId} onClick={() => setSelectedId(m.id)} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ── All missions section ───────────────────────────────────────────────────
+// Destination pills computed from MISSIONS, sorted by count desc
+const DEST_PILLS = (() => {
+  const map = new Map<string, number>()
+  MISSIONS.forEach(m => { const b = m.body || 'Onbekend'; map.set(b, (map.get(b) || 0) + 1) })
+  return [...map.entries()].sort((a, b) => b[1] - a[1]).map(([name, count]) => ({ name, count, emoji: getBodyEmoji(name) }))
+})()
+
+function AllMissionsSection() {
+  const [destFilter, setDestFilter] = useState<string | null>(null)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  const filtered = destFilter === null
+    ? MISSIONS
+    : MISSIONS.filter(m => m.body === destFilter)
+
+  const selectedMission = selectedId ? filtered.find(m => m.id === selectedId) ?? null : null
+
+  function selectDest(name: string | null) {
+    setDestFilter(name)
+    setSelectedId(null)
+  }
+
+  function selectMission(id: string) {
+    setSelectedId(prev => prev === id ? null : id)
+  }
+
+  return (
+    <section aria-labelledby="missies-label" id="alle-missies" style={{ marginBottom: 80 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
+        <span id="missies-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Alle missies</span>
+        <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
+      </div>
+
+      {/* Destination carousel */}
+      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: 4, marginBottom: 20 }}>
+        {/* "Alle" pill */}
+        <button
+          onClick={() => selectDest(null)}
+          style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 2, border: `1px solid ${destFilter === null ? '#378ADD' : '#252858'}`, background: destFilter === null ? 'rgba(55,138,221,0.14)' : 'transparent', color: destFilter === null ? '#FFFFFF' : '#4A5A8A', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
+          onMouseEnter={e => { if (destFilter !== null) e.currentTarget.style.borderColor = 'rgba(55,138,221,0.4)' }}
+          onMouseLeave={e => { if (destFilter !== null) e.currentTarget.style.borderColor = '#252858' }}
+        >
+          Alle
+          <span style={{ background: destFilter === null ? 'rgba(55,138,221,0.2)' : '#1a1d40', color: destFilter === null ? '#378ADD' : '#4A5A8A', padding: '0px 6px', borderRadius: 2, fontSize: '0.5rem', fontWeight: 700 }}>{MISSIONS.length}</span>
+        </button>
+
+        {DEST_PILLS.map(pill => {
+          const isActive = destFilter === pill.name
+          return (
+            <button key={pill.name}
+              onClick={() => selectDest(pill.name)}
+              style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 2, border: `1px solid ${isActive ? '#378ADD' : '#252858'}`, background: isActive ? 'rgba(55,138,221,0.14)' : 'transparent', color: isActive ? '#FFFFFF' : '#4A5A8A', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
+              onMouseEnter={e => { if (!isActive) e.currentTarget.style.borderColor = 'rgba(55,138,221,0.4)' }}
+              onMouseLeave={e => { if (!isActive) e.currentTarget.style.borderColor = '#252858' }}
+            >
+              <span>{pill.emoji}</span>
+              {pill.name}
+              <span style={{ background: isActive ? 'rgba(55,138,221,0.2)' : '#1a1d40', color: isActive ? '#378ADD' : '#4A5A8A', padding: '0px 6px', borderRadius: 2, fontSize: '0.5rem', fontWeight: 700 }}>{pill.count}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Split grid: list left, detail right when selected */}
+      <div
+        className="missions-split-grid"
+        style={{ display: 'grid', gridTemplateColumns: selectedMission ? '1fr 380px' : '1fr', transition: 'grid-template-columns 0.3s ease', background: '#252858', border: '1px solid #252858' }}
+      >
+        {/* Left: mission list */}
+        <div style={{ background: '#0f1028' }}>
+          {filtered.length === 0 ? (
+            <div style={{ padding: '40px 24px', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#4A5A8A', textAlign: 'center' }}>Geen missies gevonden</div>
+          ) : (
+            filtered.map(m => (
+              <MissionListItem key={m.id} mission={m} selected={m.id === selectedId} onClick={() => selectMission(m.id)} />
+            ))
+          )}
+        </div>
+
+        {/* Right: detail panel (only when selected) */}
+        {selectedMission && (
+          <div style={{ borderLeft: '1px solid #252858' }}>
+            <MissionDetailPanel key={selectedId!} mission={selectedMission} onClose={() => setSelectedId(null)} />
           </div>
         )}
       </div>
@@ -674,9 +769,8 @@ function SiteFooter() {
 
 // ── Page ───────────────────────────────────────────────────────────────────
 export default function MissiesPage() {
-  const [missionFilter, setMissionFilter] = useState<MissionFilter>('Alles')
-  const [articles, setArticles]           = useState<Article[]>([])
-  const [showTop, setShowTop]             = useState(false)
+  const [articles, setArticles] = useState<Article[]>([])
+  const [showTop, setShowTop]   = useState(false)
   const nasaFetchedRef = useRef<Set<string>>(new Set())
 
   useEffect(() => {
@@ -722,28 +816,6 @@ export default function MissiesPage() {
     })
   }, [articles])
 
-  const filteredMissions = missionFilter === 'Alles'
-    ? MISSIONS
-    : MISSIONS.filter(m => m.status === (missionFilter.toLowerCase() as MissionStatus))
-
-  const missionCounts: Record<string, number> = {
-    Alles:    MISSIONS.length,
-    Actief:   MISSIONS.filter(m => m.status === 'actief').length,
-    Gepland:  MISSIONS.filter(m => m.status === 'gepland').length,
-    Voltooid: MISSIONS.filter(m => m.status === 'voltooid').length,
-  }
-
-  // Spotlight: eerste actieve missie, alleen bij "Alles" of "Actief" filter
-  const spotlightMission = useMemo(() =>
-    (missionFilter === 'Alles' || missionFilter === 'Actief')
-      ? MISSIONS.find(m => m.status === 'actief') ?? null
-      : null,
-    [missionFilter]
-  )
-  const gridMissions = spotlightMission
-    ? filteredMissions.filter(m => m.id !== spotlightMission.id)
-    : filteredMissions
-
   return (
     <>
       <a href="#main-content" className="skip-link">Ga naar hoofdinhoud</a>
@@ -772,25 +844,11 @@ export default function MissiesPage() {
         {/* ── Mission launch timeline ───────────────────────────── */}
         <MissionTimeline />
 
-        {/* ── Active missions bento ────────────────────────────────── */}
-        <ActiveMissionsBento />
+        {/* ── Active missions panel ─────────────────────────────────── */}
+        <ActiveMissionsPanel />
 
         {/* ── All missions ─────────────────────────────────────────── */}
-        <section aria-labelledby="missies-label" id="alle-missies" style={{ marginBottom: 80 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
-            <span id="missies-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Alle missies</span>
-            <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
-          </div>
-          <MissionFilterStrip active={missionFilter} onFilter={setMissionFilter} counts={missionCounts} />
-          {spotlightMission && <SpotlightCard mission={spotlightMission} />}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 1, background: '#252858', border: '1px solid #252858' }}>
-            {gridMissions.map((m, i) => (
-              <div key={m.id} className="animate-fadeUp" style={{ animationDelay: `${Math.min(i * 0.06, 0.48)}s`, height: '100%' }}>
-                <MissionCard mission={m} />
-              </div>
-            ))}
-          </div>
-        </section>
+        <AllMissionsSection />
 
         {/* ── Destinations ─────────────────────────────────────────── */}
         <section aria-labelledby="dest-label" style={{ marginBottom: 80 }}>
