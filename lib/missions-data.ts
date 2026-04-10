@@ -32,7 +32,8 @@ export interface MissionDetail {
 
 // MISSIONS en MISSIONS_LAST_UPDATED worden gegenereerd door scripts/generate-missions-module.js
 // vanuit content/missions.json — zie dat bestand voor handmatige aanpassingen.
-export { MISSIONS, MISSIONS_LAST_UPDATED } from './missions-generated'
+import { MISSIONS, MISSIONS_LAST_UPDATED } from './missions-generated'
+export { MISSIONS, MISSIONS_LAST_UPDATED }
 
 export function getMissionBySlug(slug: string): MissionDetail | undefined {
   return MISSIONS.find(m => m.id === slug)
