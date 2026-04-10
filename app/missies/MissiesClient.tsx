@@ -96,6 +96,9 @@ function Starfield() {
 }
 
 // ── Topbar ─────────────────────────────────────────────────────────────────
+// Duur: ~4s per item zodat de pixels/seconde gelijk blijft aan de homepage (8 items @ 50s ≈ 6s/item)
+const TICKER_DURATION = `${Math.max(40, TICKER_ITEMS.length * 4)}s`
+
 function Topbar() {
   const [date, setDate] = useState('')
   useEffect(() => {
@@ -105,7 +108,7 @@ function Topbar() {
     <div role="banner" style={{ position: 'relative', zIndex: 30, height: 'var(--topbar-h)', background: 'rgba(26,26,46,0.97)', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 20, backdropFilter: 'blur(12px)' }} className="topbar-pad">
       <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', color: '#4A5A8A', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
       <div aria-hidden="true" style={{ flex: 1, overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' }}>
-        <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap', animationDuration: TICKER_DURATION }}>
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
             <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3dcfdf', flexShrink: 0, display: 'inline-block' }} />
@@ -175,32 +178,71 @@ function SiteNav() {
 }
 
 // ── Hero ───────────────────────────────────────────────────────────────────
+function AnimatedStat({ target, label, color, delay = 0 }: { target: number; label: string; color: string; delay?: number }) {
+  const [val, setVal] = useState(0)
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setReady(true)
+      if (target === 0) return
+      let start: number | null = null
+      const duration = 900
+      const step = (ts: number) => {
+        if (!start) start = ts
+        const progress = Math.min((ts - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        setVal(Math.round(eased * target))
+        if (progress < 1) requestAnimationFrame(step)
+      }
+      requestAnimationFrame(step)
+    }, delay)
+    return () => clearTimeout(t)
+  }, [target, delay])
+  return (
+    <div style={{ animation: ready ? 'count-up 0.4s ease both' : undefined }}>
+      <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 700, color, lineHeight: 1 }}>{val}</div>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 5 }}>{label}</div>
+    </div>
+  )
+}
+
 function MissiesHero() {
-  const activeCount  = MISSIONS.filter(m => m.status === 'actief').length
-  const plannedCount = MISSIONS.filter(m => m.status === 'gepland').length
+  const activeCount    = MISSIONS.filter(m => m.status === 'actief').length
+  const plannedCount   = MISSIONS.filter(m => m.status === 'gepland').length
+  const agencyCount    = [...new Set(MISSIONS.map(m => m.agency.split('/')[0].trim()))].length
+  const destCount      = [...new Set(MISSIONS.map(m => m.body))].length
   return (
     <section aria-labelledby="hero-title" style={{ position: 'relative', zIndex: 1, minHeight: '75vh', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(145deg, #04060f 0%, #0a0e1e 40%, #060c18 70%, #04080e 100%)' }} />
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(37,40,88,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(37,40,88,0.35) 1px, transparent 1px)', backgroundSize: '60px 60px', maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.5) 70%, transparent 100%)' }} />
-      {/* Planet — upper right, partially offscreen */}
+
+      {/* Planet — upper right */}
       <div aria-hidden="true" style={{ position: 'absolute', right: '-10%', top: '-22%', width: 'clamp(280px, 52vw, 720px)', height: 'clamp(280px, 52vw, 720px)', borderRadius: '50%', background: 'radial-gradient(circle at 33% 40%, #0d1b2e 0%, #060d1a 48%, #030609 100%)', pointerEvents: 'none' }} />
-      {/* Planet atmosphere / rim light */}
-      <div aria-hidden="true" style={{ position: 'absolute', right: '-10%', top: '-22%', width: 'clamp(280px, 52vw, 720px)', height: 'clamp(280px, 52vw, 720px)', borderRadius: '50%', boxShadow: 'inset -22px 18px 80px rgba(55,138,221,0.18), inset -45px 35px 130px rgba(30,70,160,0.09)', pointerEvents: 'none' }} />
-      {/* Nebula wisps — upper half */}
+      {/* Planet rim light — pulserend */}
+      <div aria-hidden="true" style={{ position: 'absolute', right: '-10%', top: '-22%', width: 'clamp(280px, 52vw, 720px)', height: 'clamp(280px, 52vw, 720px)', borderRadius: '50%', boxShadow: 'inset -22px 18px 80px rgba(55,138,221,0.22), inset -45px 35px 130px rgba(30,70,160,0.12)', pointerEvents: 'none', animation: 'planet-pulse 6s ease-in-out infinite' }} />
+
+      {/* Nebula wisps */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 46% 32% at 28% 14%, rgba(55,138,221,0.08) 0%, transparent 70%), radial-gradient(ellipse 20% 36% at 10% 28%, rgba(192,128,255,0.06) 0%, transparent 65%), radial-gradient(ellipse 30% 18% at 50% 6%, rgba(61,207,223,0.05) 0%, transparent 75%)', pointerEvents: 'none' }} />
-      {/* Decorative orbit rings */}
-      <div aria-hidden="true" style={{ position: 'absolute', right: '4%', top: '50%', transform: 'translateY(-50%)', width: 540, height: 540, borderRadius: '50%', border: '1px solid rgba(55,138,221,0.1)', pointerEvents: 'none' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', right: '8%', top: '50%', transform: 'translateY(-50%)', width: 370, height: 370, borderRadius: '50%', border: '1px solid rgba(61,207,223,0.09)', pointerEvents: 'none' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', right: '13%', top: '50%', transform: 'translateY(-50%)', width: 200, height: 200, borderRadius: '50%', border: '1px solid rgba(55,138,221,0.14)', background: 'radial-gradient(circle, rgba(55,138,221,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+      {/* Orbit rings — geanimeerd */}
+      <div aria-hidden="true" style={{ position: 'absolute', right: '4%', top: '50%', width: 540, height: 540, borderRadius: '50%', border: '1px solid rgba(55,138,221,0.12)', pointerEvents: 'none', animation: 'orbit-spin-cw 120s linear infinite', transformOrigin: 'center center' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', right: '8%', top: '50%', width: 370, height: 370, borderRadius: '50%', border: '1px solid rgba(61,207,223,0.1)', pointerEvents: 'none', animation: 'orbit-spin-ccw 80s linear infinite', transformOrigin: 'center center' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', right: '13%', top: '50%', transform: 'translateY(-50%)', width: 200, height: 200, borderRadius: '50%', border: '1px solid rgba(55,138,221,0.16)', background: 'radial-gradient(circle, rgba(55,138,221,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
       {/* Gradients */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,46,1) 0%, rgba(26,26,46,0.65) 30%, rgba(26,26,46,0.1) 70%, transparent 100%)' }} />
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,26,46,0.7) 0%, transparent 55%)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(26,26,46,0.75) 0%, transparent 55%)' }} />
 
       <div className="hero-content-pad animate-fadeUp" style={{ position: 'relative', zIndex: 2, maxWidth: 780 }}>
+        {/* Live badge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <div aria-hidden="true" style={{ width: 32, height: 1, background: '#378ADD' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', color: '#378ADD', textTransform: 'uppercase' }}>Overzicht</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', color: '#3ddf90', textTransform: 'uppercase' }}>
+            <span className="animate-pulse-dot" style={{ width: 6, height: 6, borderRadius: '50%', background: '#3ddf90', flexShrink: 0 }} aria-hidden="true" />
+            Live missiedashboard
+          </div>
         </div>
+
         <h1 id="hero-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.6rem,6vw,5rem)', fontWeight: 700, lineHeight: 1.04, color: '#FFFFFF', marginBottom: 20, letterSpacing: '-0.015em' }}>
           Ruimte&shy;missies
         </h1>
@@ -208,19 +250,12 @@ function MissiesHero() {
           Van Mars-rovers tot telescopen op 1,5 miljoen kilometer afstand — volg de meest ambitieuze expedities die de mensheid ooit heeft uitgevoerd.
         </p>
 
-        {/* Quick stats */}
+        {/* Animated stats */}
         <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap', marginBottom: 36 }}>
-          {[
-            { value: String(activeCount),  label: 'Actieve missies',      color: '#3ddf90' },
-            { value: String(plannedCount), label: 'Geplande missies',     color: '#378ADD' },
-            { value: '4',                  label: 'Agentschappen',        color: '#c080ff' },
-            { value: '4',                  label: 'Bestemmingen',         color: '#3dcfdf' },
-          ].map(({ value, label, color }) => (
-            <div key={label}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 700, color, lineHeight: 1 }}>{value}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 5 }}>{label}</div>
-            </div>
-          ))}
+          <AnimatedStat target={activeCount}  label="Actieve missies"  color="#3ddf90" delay={200} />
+          <AnimatedStat target={plannedCount} label="Geplande missies" color="#378ADD" delay={350} />
+          <AnimatedStat target={agencyCount}  label="Agentschappen"   color="#c080ff" delay={500} />
+          <AnimatedStat target={destCount}    label="Bestemmingen"    color="#3dcfdf" delay={650} />
         </div>
 
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -249,6 +284,60 @@ function MissiesHero() {
   )
 }
 
+// ── Destination config ─────────────────────────────────────────────────────
+const BODY_EMOJI: Record<string, string> = {
+  'Mars':          '🔴',
+  'Maan':          '🌕',
+  'Moon':          '🌕',
+  'Lunar':         '🌕',
+  'L2':            '🔭',
+  'Lagrange':      '🔭',
+  'Diep heelal':   '🌌',
+  'Deep space':    '🌌',
+  'Interstellair': '⭐',
+  'Jupiter':       '🪐',
+  'Saturn':        '🪐',
+  'Sun':           '☀️',
+  'Solar':         '☀️',
+  'Earth':         '🌍',
+  'Aarde':         '🌍',
+  'Asteroid':      '🪨',
+  'Komeet':        '☄️',
+}
+
+const DEST_STYLE: Record<string, { gradient: string; accent: string; icon: string }> = {
+  'Mars':          { gradient: 'linear-gradient(145deg, #140804 0%, #281408 100%)', accent: '#ff8a60', icon: '🔴' },
+  'Maan':          { gradient: 'linear-gradient(145deg, #0a0c1a 0%, #141828 100%)', accent: '#8A9BC4', icon: '🌕' },
+  'Moon':          { gradient: 'linear-gradient(145deg, #0a0c1a 0%, #141828 100%)', accent: '#8A9BC4', icon: '🌕' },
+  'Lunar':         { gradient: 'linear-gradient(145deg, #0a0c1a 0%, #141828 100%)', accent: '#8A9BC4', icon: '🌕' },
+  'L2':            { gradient: 'linear-gradient(145deg, #08041a 0%, #120828 100%)', accent: '#c080ff', icon: '🔭' },
+  'Lagrange':      { gradient: 'linear-gradient(145deg, #08041a 0%, #120828 100%)', accent: '#c080ff', icon: '🔭' },
+  'Diep heelal':   { gradient: 'linear-gradient(145deg, #04060e 0%, #080c18 100%)', accent: '#3dcfdf', icon: '🌌' },
+  'Deep space':    { gradient: 'linear-gradient(145deg, #04060e 0%, #080c18 100%)', accent: '#3dcfdf', icon: '🌌' },
+  'Interstellair': { gradient: 'linear-gradient(145deg, #04060e 0%, #080c18 100%)', accent: '#3ddf90', icon: '⭐' },
+  'Jupiter':       { gradient: 'linear-gradient(145deg, #0c0a04 0%, #1a160a 100%)', accent: '#d4a84b', icon: '🪐' },
+  'Sun':           { gradient: 'linear-gradient(145deg, #0e0a04 0%, #1c1408 100%)', accent: '#ffa040', icon: '☀️' },
+  'Solar':         { gradient: 'linear-gradient(145deg, #0e0a04 0%, #1c1408 100%)', accent: '#ffa040', icon: '☀️' },
+  'Earth':         { gradient: 'linear-gradient(145deg, #040e08 0%, #081c14 100%)', accent: '#3ddf90', icon: '🌍' },
+  'Aarde':         { gradient: 'linear-gradient(145deg, #040e08 0%, #081c14 100%)', accent: '#3ddf90', icon: '🌍' },
+}
+
+function getBodyEmoji(body: string): string {
+  return Object.entries(BODY_EMOJI).find(([k]) => body?.toLowerCase().includes(k.toLowerCase()))?.[1] ?? '🚀'
+}
+
+function getDestStyle(body: string) {
+  const key = Object.keys(DEST_STYLE).find(k => body?.toLowerCase().includes(k.toLowerCase()))
+  return key ? DEST_STYLE[key] : { gradient: 'linear-gradient(145deg, #080c18 0%, #0c1020 100%)', accent: '#4A5A8A', icon: '🚀' }
+}
+
+// Compute destinations dynamically from MISSIONS data
+const DESTINATIONS = (() => {
+  const map = new Map<string, number>()
+  MISSIONS.forEach(m => { const b = m.body || 'Onbekend'; map.set(b, (map.get(b) || 0) + 1) })
+  return [...map.entries()].map(([name, count]) => ({ name, count, ...getDestStyle(name) }))
+})()
+
 // ── Agencies strip ─────────────────────────────────────────────────────────
 const AGENCIES = [
   { name: 'NASA',   color: '#378ADD', missions: MISSIONS.filter(m => m.agency.includes('NASA')).length },
@@ -264,11 +353,15 @@ function AgenciesStrip() {
     <div style={{ borderBottom: '1px solid #252858', borderTop: '1px solid #252858', background: 'rgba(18,19,42,0.8)', backdropFilter: 'blur(8px)', overflowX: 'auto', scrollbarWidth: 'none' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', alignItems: 'stretch' }} className="topics-pad">
         {AGENCIES.map((ag, i) => (
-          <div key={ag.name} style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10, padding: '14px 28px', borderRight: i < AGENCIES.length - 1 ? '1px solid #252858' : 'none' }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: ag.color }} />
+          <div key={ag.name}
+            style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 12, padding: '14px 28px', borderRight: i < AGENCIES.length - 1 ? '1px solid #252858' : 'none', transition: 'background 0.2s', cursor: 'default' }}
+            onMouseEnter={e => (e.currentTarget.style.background = `${ag.color}12`)}
+            onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+          >
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: ag.color, flexShrink: 0 }} />
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', color: '#FFFFFF' }}>{ag.name}</span>
             {ag.missions > 0 && (
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>{ag.missions} missie{ag.missions !== 1 ? 's' : ''}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: ag.color, lineHeight: 1 }}>{ag.missions}</span>
             )}
           </div>
         ))}
@@ -281,6 +374,7 @@ function AgenciesStrip() {
 function MissionCard({ mission }: { mission: Mission }) {
   const [hovered, setHovered] = useState(false)
   const st = STATUS_STYLE[mission.status]
+  const destEmoji = getBodyEmoji(mission.body || '')
   return (
     <Link href={`/missies/${mission.id}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
     <article
@@ -290,7 +384,7 @@ function MissionCard({ mission }: { mission: Mission }) {
         background: hovered
           ? `linear-gradient(145deg, ${mission.bgFrom} 0%, ${mission.bgTo} 100%)`
           : '#12132A',
-        border: `1px solid ${hovered ? 'rgba(55,138,221,0.28)' : 'transparent'}`,
+        border: `1px solid ${hovered ? `${mission.agencyColor}40` : 'transparent'}`,
         padding: '28px 24px',
         display: 'flex',
         flexDirection: 'column',
@@ -302,6 +396,8 @@ function MissionCard({ mission }: { mission: Mission }) {
         overflow: 'hidden',
       }}
     >
+      {/* Agency accent bar */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(to right, ${mission.agencyColor}, ${mission.agencyColor}60)`, opacity: hovered ? 1 : 0.5, transition: 'opacity 0.25s' }} />
       {hovered && (
         <div aria-hidden="true" style={{ position: 'absolute', top: -60, right: -60, width: 200, height: 200, borderRadius: '50%', background: `radial-gradient(circle, ${mission.agencyColor}14 0%, transparent 70%)`, pointerEvents: 'none' }} />
       )}
@@ -319,26 +415,26 @@ function MissionCard({ mission }: { mission: Mission }) {
         </span>
       </div>
 
-      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
         <div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 2 }}>Lancering</div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#8A9BC4' }}>{mission.launched}</div>
         </div>
-        <div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 2 }}>Bestemming</div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#8A9BC4' }}>{mission.body}</div>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', padding: '5px 10px', borderRadius: 2 }}>
+          <span aria-hidden="true" style={{ fontSize: '0.85rem', lineHeight: 1 }}>{destEmoji}</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4' }}>{mission.body}</span>
         </div>
       </div>
 
       <p style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.65, margin: 0 }}>{mission.objective}</p>
 
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '10px 12px', background: 'rgba(55,138,221,0.06)', borderLeft: `2px solid ${mission.agencyColor}55` }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '10px 12px', background: `${mission.agencyColor}0d`, borderLeft: `2px solid ${mission.agencyColor}70`, marginTop: 'auto' }}>
         <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }}>
           <path d="M6 1l1.5 3 3.5.5-2.5 2.4.6 3.5L6 8.9l-3.1 1.5.6-3.5L1 4.5 4.5 4z" stroke={mission.agencyColor} strokeWidth="1" fill="none" />
         </svg>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#8A9BC4', lineHeight: 1.55 }}>{mission.highlight}</span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 4, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: mission.agencyColor, opacity: 0.7 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: mission.agencyColor, opacity: 0.7 }}>
         Lees meer
         <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </div>
@@ -471,6 +567,68 @@ function ArticleCard({ article }: { article: Article }) {
         </div>
       </article>
     </Link>
+  )
+}
+
+// ── Active missions bento ──────────────────────────────────────────────────
+function ActiveMissionsBento() {
+  const active = MISSIONS.filter(m => m.status === 'actief')
+  if (active.length === 0) return null
+  const [main, ...rest] = active
+  return (
+    <section aria-labelledby="active-label" style={{ marginBottom: 60 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
+        <span id="active-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Nu actief</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span className="animate-pulse-dot" style={{ width: 7, height: 7, borderRadius: '50%', background: '#3ddf90', display: 'inline-block' }} aria-hidden="true" />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#3ddf90' }}>{active.length} missie{active.length !== 1 ? 's' : ''} live</span>
+        </div>
+        <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: rest.length > 0 ? '2fr 1fr' : '1fr', gap: 2, background: '#252858', border: '1px solid #252858' }} className="active-bento-grid">
+        {/* Main card */}
+        <Link href={`/missies/${main.id}`} style={{ textDecoration: 'none' }}>
+          <div style={{ background: `linear-gradient(145deg, ${main.bgFrom} 0%, ${main.bgTo} 100%)`, padding: '40px', minHeight: 280, display: 'flex', flexDirection: 'column', gap: 18, position: 'relative', overflow: 'hidden', boxSizing: 'border-box' }}>
+            <div aria-hidden="true" style={{ position: 'absolute', top: -50, right: -50, width: 220, height: 220, borderRadius: '50%', border: `1px solid ${main.agencyColor}20`, pointerEvents: 'none' }} />
+            <div aria-hidden="true" style={{ position: 'absolute', top: -80, right: -80, width: 320, height: 320, borderRadius: '50%', border: `1px solid ${main.agencyColor}10`, pointerEvents: 'none' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span className="animate-pulse-dot" style={{ width: 8, height: 8, borderRadius: '50%', background: '#3ddf90', display: 'inline-block' }} aria-hidden="true" />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', color: '#3ddf90', textTransform: 'uppercase' }}>Live</span>
+            </div>
+            <div style={{ fontSize: '3.5rem', lineHeight: 1 }}>{main.icon}</div>
+            <div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15, marginBottom: 6 }}>{main.name}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: main.agencyColor, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>{main.agency} · {main.body}</div>
+              <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.65, maxWidth: 420, margin: 0 }}>{main.objective}</p>
+            </div>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: main.agencyColor, letterSpacing: '0.1em', marginTop: 'auto' }}>Bekijk missie →</span>
+          </div>
+        </Link>
+        {/* Side cards */}
+        {rest.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, background: '#252858' }}>
+            {rest.map(m => (
+              <Link key={m.id} href={`/missies/${m.id}`} style={{ textDecoration: 'none', flex: 1, display: 'flex' }}>
+                <div style={{ background: `linear-gradient(145deg, ${m.bgFrom} 0%, ${m.bgTo} 100%)`, padding: '24px 28px', flex: 1, display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                    <span className="animate-pulse-dot" style={{ width: 6, height: 6, borderRadius: '50%', background: '#3ddf90', display: 'inline-block' }} aria-hidden="true" />
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#3ddf90', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Actief</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ fontSize: '1.8rem', lineHeight: 1 }}>{m.icon}</span>
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2 }}>{m.name}</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: m.agencyColor, letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 3 }}>{m.agency}</div>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: '0.72rem', color: '#8A9BC4', lineHeight: 1.6, margin: 0, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>{m.highlight}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
   )
 }
 
@@ -614,6 +772,9 @@ export default function MissiesPage() {
         {/* ── Mission launch timeline ───────────────────────────── */}
         <MissionTimeline />
 
+        {/* ── Active missions bento ────────────────────────────────── */}
+        <ActiveMissionsBento />
+
         {/* ── All missions ─────────────────────────────────────────── */}
         <section aria-labelledby="missies-label" id="alle-missies" style={{ marginBottom: 80 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
@@ -622,7 +783,7 @@ export default function MissiesPage() {
           </div>
           <MissionFilterStrip active={missionFilter} onFilter={setMissionFilter} counts={missionCounts} />
           {spotlightMission && <SpotlightCard mission={spotlightMission} />}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 1, background: '#252858', border: '1px solid #252858' }}>
             {gridMissions.map((m, i) => (
               <div key={m.id} className="animate-fadeUp" style={{ animationDelay: `${Math.min(i * 0.06, 0.48)}s`, height: '100%' }}>
                 <MissionCard mission={m} />
@@ -637,18 +798,17 @@ export default function MissiesPage() {
             <span id="dest-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Bestemmingen</span>
             <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
           </div>
-          <div className="destinations-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, background: '#252858', border: '1px solid #252858' }}>
-            {[
-              { name: 'Mars',        icon: '🔴', count: 2, color: '#ff8a60', desc: 'Curiosity & Perseverance actief' },
-              { name: 'Maan',        icon: '🌕', count: 1, color: '#8A9BC4', desc: 'Artemis II gepland voor 2026' },
-              { name: 'L2-punt',     icon: '🔭', count: 1, color: '#c080ff', desc: 'James Webb operationeel' },
-              { name: 'Diep heelal', icon: '🌌', count: 1, color: '#3dcfdf', desc: 'Voyager 1 interstellair' },
-            ].map(dest => (
-              <div key={dest.name} style={{ background: '#12132A', padding: '28px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                <div style={{ fontSize: '2rem' }}>{dest.icon}</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF' }}>{dest.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: dest.color, letterSpacing: '0.1em' }}>{dest.count} missie{dest.count !== 1 ? 's' : ''}</div>
-                <p style={{ fontSize: '0.72rem', color: '#4A5A8A', margin: 0, lineHeight: 1.6 }}>{dest.desc}</p>
+          <div className="destinations-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
+            {DESTINATIONS.map(dest => (
+              <div key={dest.name}
+                style={{ background: dest.gradient, padding: '28px 20px', display: 'flex', flexDirection: 'column', gap: 12, boxSizing: 'border-box', border: '2px solid transparent', transition: 'border-color 0.2s', cursor: 'default' }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = `${dest.accent}50`)}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = 'transparent')}
+              >
+                <div style={{ fontSize: '2.5rem', lineHeight: 1, filter: `drop-shadow(0 0 10px ${dest.accent}50)` }}>{dest.icon}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF' }}>{dest.name}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 700, color: dest.accent, lineHeight: 1 }}>{dest.count}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: dest.accent, letterSpacing: '0.1em', opacity: 0.8 }}>missie{dest.count !== 1 ? 's' : ''}</div>
               </div>
             ))}
           </div>

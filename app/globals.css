@@ -284,6 +284,11 @@
 @keyframes slideUp   { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @keyframes slideDown { from { transform: translateY(0); }    to { transform: translateY(100%); } }
 
+@keyframes orbit-spin-cw  { from { transform: translateY(-50%) rotate(0deg); }   to { transform: translateY(-50%) rotate(360deg); } }
+@keyframes orbit-spin-ccw { from { transform: translateY(-50%) rotate(0deg); }   to { transform: translateY(-50%) rotate(-360deg); } }
+@keyframes planet-pulse   { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+@keyframes count-up       { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
 /* Animation utility classes */
 .animate-fadeUp  { animation: fadeUp  0.7s var(--ease-out) both; }
 .animate-fadeIn  { animation: fadeIn  0.5s ease both; }
@@ -411,6 +416,7 @@
   .mission-desc-row      { grid-template-columns: 1fr !important; gap: 16px; }
   .mission-timeline-date { width: 64px !important; font-size: 0.6rem !important; }
   .mission-timeline-line { left: 64px !important; }
+  .active-bento-grid     { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 480px) {
