@@ -4,13 +4,13 @@ excerpt: "De Orion-capsule van Artemis 2 zal na de maanvlucht met 24.000 mph de 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-11T07:48:18.333Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/10/nasa-confident-artemis-ii-heat-shield-will-protect-crew-during-re-entry/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20200702-PH-ILW01_0093_BW/KSC-20200702-PH-ILW01_0093_BW~medium.jpg"
+imageAlt: "NASA heeft vertrouwen in hitteschild van Artemis 2 voor bescherming bemanning"
+imageCredit: "NASA/Isaac Watson / KSC"
 ---
 
 De Artemis 2-missie van NASA staat voor een van de meest uitdagende aspectos van ruimtevluchten: een veilige terugkeer naar de Aarde na een reis rond de maan. Wanneer de Orion-bemanningscapsule terugkeert van zijn historische maanvlucht, zal het voertuig de atmosfeer binnenkomen met een snelheid van ongeveer 24.000 mph (38.600 km/u) - zo snel dat je in minder dan 10 minuten van New York naar Londen zou kunnen vliegen.
