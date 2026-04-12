@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-11T08:36:46.423Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "cas500-2-others"
-    ]
+    "lastUpdated": "2026-04-12T08:37:08.082Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1450,7 +1447,7 @@
     },
     {
       "id": "sda-tranche-1-tracking-layer-a",
-      "_ll2Id": "2d0472b9-463d-49c8-afb1-7925e49a3368",
+      "_ll2Id": "da43dc2c-00af-4cc1-8ef1-90a60b2eb9e5",
       "name": "SDA Tranche 1 Tracking Layer A",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -2513,13 +2510,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 mei 2026",
-      "objective": "Rideshare-lancering met meerdere aardobservatieprestaties naar een zonnesynchrone baan.",
+      "objective": "Rideshare-vlucht met aardobservatiesatellieten naar een zonnesynchrone baan.",
       "body": "Sun-Synchronous Orbit",
-      "highlight": "Geplande lancering op 31 mei 2026 vanaf SpaceX-lanceerplatform.",
+      "highlight": "Geplande lancering op 31 mei 2026 vanaf een SpaceX-lanceerplatform.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX voert een rideshare-missie uit waarbij meerdere aardobservatiesatellieten worden meegelift op een Falcon 9-raket naar een zonnesynchrone baan. De Zuid-Koreaanse CAS500-2, ontwikkeld door KASA, zal de aarde fotograferen met een resolutie van 0,5 meter in panchromatische modus en 2 meter in kleur. Daarnaast worden drie nieuwe Pelican-satellieten (7, 8 en 9) van Planet Labs gelanceerd, onderdeel van een geplande constellatie van 32 smallsats die hogere resolutie en snellere responstijden moeten bieden dan de bestaande SkySat- en Dove-vloten.",
+      "description": "SpaceX lanceert met een Falcon 9-raket een rideshare-missie naar een zonnesynchrone baan, met aan boord de Zuid-Koreaanse CAS500-2 en drie Planet Labs Pelican-satellieten. De CAS500-2, ontwikkeld door het Koreaanse ruimteagentschap KASA, brengt de aarde in beeld met een resolutie van 0,5 meter in panchromatische modus en 2 meter in kleur. De Pelican-satellieten van Planet Labs maken deel uit van een geplande constellatie van 32 SmallSats die met hogere resolutie en snellere reactietijden werken dan de bestaande SkySat- en Dove-vloten. De missie onderstreept de groeiende populariteit van rideshare-vluchten voor commerciële en overheidssatellieten.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -2537,8 +2534,14 @@
         "Aardobservatie",
         "Planet Labs",
         "KASA",
-        "Rideshare"
-      ]
+        "Rideshare",
+        "aardobservatie",
+        "rideshare",
+        "planet labs",
+        "kasa",
+        "falcon 9"
+      ],
+      "_lastClaudeUpdate": "2026-04-12T08:37:08.073Z"
     }
   ]
 }
