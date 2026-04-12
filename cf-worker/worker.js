@@ -183,9 +183,10 @@ export default {
       return cors(request, JSON.stringify(data))
     }
 
-    // ── GET /image-proxy?url=... ──────────────────────────────────────────
+    // ── GET /image-proxy?url=...&w=900&q=82 ─────────────────────────────
     // Fetches an image server-side and re-serves it with proper CORS headers,
     // bypassing browser ORB restrictions on ESA/NASA cross-origin images.
+    // When ?w= is provided, routes through images.weserv.nl for resize + WebP conversion.
     if (request.method === 'GET' && url.pathname === '/image-proxy') {
       const imageUrl = url.searchParams.get('url')
       if (!imageUrl) return cors(request, JSON.stringify({ error: 'No URL' }), 400)
@@ -199,12 +200,20 @@ export default {
       let safeUrl = imageUrl
       try { safeUrl = new URL(imageUrl).href } catch { /* use as-is */ }
 
+      const w = url.searchParams.get('w')           // target width in px (optional)
+      const q = url.searchParams.get('q') || '82'   // quality (default 82)
+
+      // With width → route through weserv.nl for resize + WebP; without → passthrough
+      const fetchUrl = w
+        ? `https://images.weserv.nl/?url=${encodeURIComponent(safeUrl)}&w=${w}&output=webp&q=${q}&we`
+        : safeUrl
+
       try {
-        const upstream = await fetch(safeUrl, {
+        const upstream = await fetch(fetchUrl, {
           headers: {
             'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)',
             'Accept':     'image/webp,image/jpeg,image/png,image/*',
-            'Referer':    new URL(safeUrl).origin + '/',
+            ...(!w && { 'Referer': new URL(safeUrl).origin + '/' }),
           },
           redirect: 'follow',
         })

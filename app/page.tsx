@@ -247,7 +247,7 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
     <section aria-labelledby="hero-title" style={{ position: 'relative', zIndex: 1, minHeight: '88vh', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, background: '#12132A' }}>
         {apod?.media_type === 'image' && (
-          <img src={`https://images.weserv.nl/?url=${encodeURIComponent(apod.hdurl || apod.url)}`} alt={apod.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, filter: 'brightness(0.85) saturate(1.15)' }} />
+          <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(apod.hdurl || apod.url)}&w=1400`} alt={apod.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, filter: 'brightness(0.85) saturate(1.15)' }} />
         )}
         {!apod && <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg,#12132A 0%,#1A2A4A 50%,#0a1020 100%)' }} />}
       </div>
@@ -365,7 +365,7 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
           <div className="card-thumb-inner" style={{ width: '100%', height: '100%', background: gradient, position: 'relative' }}>
             {/* Actual image when available */}
             {article.imageUrl && (
-              <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`} alt="" aria-hidden="true" loading="lazy"
+              <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=900`} alt="" aria-hidden="true" loading="lazy"
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7) saturate(1.1)' }}
                 onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
               />
@@ -457,7 +457,7 @@ function ArticleGridCard({ article }: { article: Article }) {
         <div style={{ height: 140, position: 'relative', overflow: 'hidden', flexShrink: 0, background: gradient }}>
           {/* Actual image when available */}
           {article.imageUrl && (
-            <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`} alt="" aria-hidden="true" loading="lazy"
+            <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=800`} alt="" aria-hidden="true" loading="lazy"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65) saturate(1.1)' }}
               onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
             />
@@ -926,7 +926,7 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
         <span aria-live="polite" aria-atomic="true" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>Realtime</span>
       </div>
       <div role="img" aria-label="ISS positie op wereldkaart" style={{ height: 160, background: '#0d1425', position: 'relative', overflow: 'hidden' }}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png" alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, filter: 'brightness(1.3) saturate(0.5) sepia(0.4) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
+        <img src={`${PROXY}/image-proxy?url=${encodeURIComponent('https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png')}&w=680`} alt="" aria-hidden="true" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, filter: 'brightness(1.3) saturate(0.5) sepia(0.4) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
         <svg aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.45 }}>
           {[25, 50, 75].map(y => <line key={y} x1="0" y1={`${y}%`} x2="100%" y2={`${y}%`} stroke="#3dcfdf" strokeWidth="0.5" />)}
           {[16.6, 33.3, 50, 66.6, 83.3].map(x => <line key={x} x1={`${x}%`} y1="0" x2={`${x}%`} y2="100%" stroke="#3dcfdf" strokeWidth="0.5" />)}
@@ -968,7 +968,7 @@ function APODWidget({ apod }: { apod: APODData | null }) {
         <span id="apod-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4' }}>NASA Foto van de Dag</span>
       </div>
       {apod?.media_type === 'image' ? (
-        <img src={apod.url} alt={apod.title} loading="lazy" style={{ width: '100%', height: 160, objectFit: 'cover', filter: 'brightness(0.85) saturate(1.1)', display: 'block' }} />
+        <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(apod.url)}&w=700`} alt={apod.title} loading="lazy" style={{ width: '100%', height: 160, objectFit: 'cover', filter: 'brightness(0.85) saturate(1.1)', display: 'block' }} />
       ) : (
         <div style={{ width: '100%', height: 160, background: 'linear-gradient(135deg,#0a1030,#1a2060)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="4" fill="rgba(55,138,221,0.6)" /><circle cx="24" cy="24" r="10" fill="none" stroke="rgba(55,138,221,0.2)" strokeWidth="1" /><circle cx="24" cy="24" r="18" fill="none" stroke="rgba(55,138,221,0.08)" strokeWidth="1" /></svg>

@@ -277,7 +277,7 @@ function ArticleSkeleton() {
 function FeaturedCard({ article }: { article: Article }) {
   const mins = articleReadTime(article.slug)
   const imgSrc = article.imageUrl
-    ? `${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`
+    ? `${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=1400`
     : null
 
   return (
@@ -333,7 +333,7 @@ function FeaturedCard({ article }: { article: Article }) {
 function ArticleCard({ article }: { article: Article }) {
   const mins = articleReadTime(article.slug)
   const imgSrc = article.imageUrl
-    ? `${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`
+    ? `${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=800`
     : null
 
   return (

@@ -68,8 +68,8 @@ const LEVEL_COLORS: Record<ReadingLevel, { border: string; bg: string; text: str
 }
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
-const IMG   = (url: string, _w?: number, _h?: number) =>
-  `${PROXY}/image-proxy?url=${encodeURIComponent(url)}`
+const IMG   = (url: string, w?: number) =>
+  `${PROXY}/image-proxy?url=${encodeURIComponent(url)}${w ? `&w=${w}` : ''}`
 
 // ── Markdown parser ────────────────────────────────────────────────────────
 

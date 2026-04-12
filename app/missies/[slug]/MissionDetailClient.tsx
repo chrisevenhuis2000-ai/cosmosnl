@@ -164,7 +164,7 @@ function ArticleCard({ article }: { article: Article }) {
     >
       {article.imageUrl ? (
         <div style={{ height: 140, overflow: 'hidden', position: 'relative' }}>
-          <img src={`https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=640&h=280&fit=cover`} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.75 }} />
+          <img src={`https://images.weserv.nl/?url=${encodeURIComponent(article.imageUrl)}&w=640&h=280&fit=cover&output=webp`} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.75 }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(18,19,42,0.9) 0%, transparent 60%)' }} />
         </div>
       ) : (
