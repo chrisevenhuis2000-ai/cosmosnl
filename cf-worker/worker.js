@@ -203,20 +203,32 @@ export default {
       const w = url.searchParams.get('w')           // target width in px (optional)
       const q = url.searchParams.get('q') || '82'   // quality (default 82)
 
-      // With width → route through weserv.nl for resize + WebP; without → passthrough
-      const fetchUrl = w
-        ? `https://images.weserv.nl/?url=${encodeURIComponent(safeUrl)}&w=${w}&output=webp&q=${q}&we`
-        : safeUrl
+      const directHeaders = {
+        'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)',
+        'Accept':     'image/webp,image/jpeg,image/png,image/*',
+        'Referer':    new URL(safeUrl).origin + '/',
+      }
 
       try {
-        const upstream = await fetch(fetchUrl, {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)',
-            'Accept':     'image/webp,image/jpeg,image/png,image/*',
-            ...(!w && { 'Referer': new URL(safeUrl).origin + '/' }),
-          },
-          redirect: 'follow',
-        })
+        let upstream = null
+
+        // Try weserv.nl for resize + WebP when width is requested
+        if (w) {
+          try {
+            const weservUrl = `https://images.weserv.nl/?url=${encodeURIComponent(safeUrl)}&w=${w}&output=webp&q=${q}&we`
+            const r = await fetch(weservUrl, {
+              headers: { 'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)', 'Accept': 'image/*' },
+              redirect: 'follow',
+            })
+            if (r.ok) upstream = r
+            // else fall through to direct fetch below
+          } catch { /* weserv unavailable — fall through */ }
+        }
+
+        // Direct fetch (primary when no w=, or fallback when weserv fails)
+        if (!upstream) {
+          upstream = await fetch(safeUrl, { headers: directHeaders, redirect: 'follow' })
+        }
 
         if (!upstream.ok) {
           return cors(request, JSON.stringify({ error: `Upstream ${upstream.status}` }), 502)
