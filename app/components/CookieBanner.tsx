@@ -42,6 +42,7 @@ export function CookieBanner() {
     <>
       {consent === 'all' && (
         <>
+          {/* GA4 */}
           <Script src="https://www.googletagmanager.com/gtag/js?id=G-ETD8FLPPCL" strategy="afterInteractive" />
           <Script id="gtag-init" strategy="afterInteractive">{`
             window.dataLayer = window.dataLayer || [];
@@ -49,6 +50,12 @@ export function CookieBanner() {
             gtag('js', new Date());
             gtag('config', 'G-ETD8FLPPCL');
           `}</Script>
+          {/* AdSense — geladen na expliciete toestemming (AVG/GDPR) */}
+          <Script
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1782461224909980"
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+          />
         </>
       )}
 
@@ -68,7 +75,7 @@ export function CookieBanner() {
           }}
         >
           <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.6, margin: 0, flex: 1, minWidth: 220 }}>
-            We gebruiken analytische cookies (GA4) en CDN-diensten (Cloudflare) om de site te verbeteren.{' '}
+            We gebruiken analytische en advertentiecookies (GA4, AdSense) en CDN-diensten (Cloudflare).{' '}
             <Link href="/privacy" style={{ color: '#378ADD', textDecoration: 'underline' }}>Privacybeleid</Link>
           </p>
           <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>

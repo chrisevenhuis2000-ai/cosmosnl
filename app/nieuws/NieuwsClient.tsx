@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Link from 'next/link'
+import { AdUnit } from '@/app/components/AdUnit'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -515,6 +516,9 @@ export default function NieuwsClient() {
 
           {/* Featured hero card */}
           {featured && <FeaturedCard article={featured} />}
+
+          {/* Advertentie: tussen uitgelicht artikel en grid */}
+          <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '24px 0' }} />
 
           {/* Empty state */}
           {!loading && filtered.length === 0 && (

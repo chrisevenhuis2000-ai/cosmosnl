@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { getMissionBySlug, MISSIONS, MISSIONS_LAST_UPDATED } from '@/lib/missions-data'
+import { AdUnit } from '@/app/components/AdUnit'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -355,6 +356,9 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
             </div>
           </div>
         </section>
+
+        {/* Advertentie: tussen tijdlijn en gerelateerd nieuws */}
+        <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '0 0 40px' }} />
 
         {/* Related news */}
         {articles.length > 0 && (

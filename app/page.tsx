@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { MISSIONS } from '@/lib/missions-data'
+import { AdUnit } from './components/AdUnit'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -1465,6 +1466,10 @@ export default function HomePage() {
         </div>
 
         <MissiesStrip />
+
+        {/* ── Advertentie: tussen missies en artikelgrid ────────────────── */}
+        {/* Vervang slot door jouw AdSense-eenheid-ID uit het dashboard */}
+        <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '24px 0' }} />
 
         {/* ── Article grid + sidebar ────────────────────────────────────── */}
         <div className="content-split">

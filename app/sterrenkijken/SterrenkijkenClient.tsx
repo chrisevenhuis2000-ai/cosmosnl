@@ -5,6 +5,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import ApodCard from '@/app/components/ApodCard'
 import AuroraAlert from './AuroraAlert'
+import { AdUnit } from '@/app/components/AdUnit'
 
 const DarkSkyMap = dynamic(() => import('./DarkSkyMap'), {
   ssr:     false,
@@ -659,6 +660,9 @@ export default function SterrenkijkenPage() {
           </div>
         </div>
       </div>
+
+      {/* Advertentie: na hero, voor tabs */}
+      <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '0' }} />
 
       {/* ── Pill Tabs ─────────────────────────────────────────────────────── */}
       <div style={{ position: 'sticky', top: 'var(--nav-h)', zIndex: 30, background: 'rgba(26,26,46,0.97)', backdropFilter: 'blur(16px)', borderBottom: '1px solid #252858' }}>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { LEVELS, type ReadingLevel } from '@/types'
 import GalaxyMap from './GalaxyMap'
+import { AdUnit } from '@/app/components/AdUnit'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -763,6 +764,9 @@ export default function ArticleClient({ slug }: { slug: string }) {
               )}
             </div>
           )}
+
+          {/* ── Advertentie: midden-artikel ── */}
+          <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '2em 0' }} />
 
           {/* ── Section 2: second heading + 2 paragraphs ── */}
           {showHeadings && (
