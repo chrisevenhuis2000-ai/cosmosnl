@@ -1469,7 +1469,7 @@ export default function HomePage() {
 
         {/* ── Advertentie: tussen missies en artikelgrid ────────────────── */}
         {/* Vervang slot door jouw AdSense-eenheid-ID uit het dashboard */}
-        <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '24px 0' }} />
+        <AdUnit slot="8887478647" style={{ margin: '24px 0' }} />
 
         {/* ── Article grid + sidebar ────────────────────────────────────── */}
         <div className="content-split">

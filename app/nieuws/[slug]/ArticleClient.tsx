@@ -766,7 +766,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
           )}
 
           {/* ── Advertentie: midden-artikel ── */}
-          <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '2em 0' }} />
+          <AdUnit slot="2395877471" style={{ margin: '2em 0' }} />
 
           {/* ── Section 2: second heading + 2 paragraphs ── */}
           {showHeadings && (

@@ -518,7 +518,7 @@ export default function NieuwsClient() {
           {featured && <FeaturedCard article={featured} />}
 
           {/* Advertentie: tussen uitgelicht artikel en grid */}
-          <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '24px 0' }} />
+          <AdUnit slot="3395478818" style={{ margin: '24px 0' }} />
 
           {/* Empty state */}
           {!loading && filtered.length === 0 && (

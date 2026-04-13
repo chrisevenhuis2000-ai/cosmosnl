@@ -358,7 +358,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
         </section>
 
         {/* Advertentie: tussen tijdlijn en gerelateerd nieuws */}
-        <AdUnit slot="XXXXXXXXXXXXXXXX" style={{ margin: '0 0 40px' }} />
+        <AdUnit slot="7516342216" style={{ margin: '0 0 40px' }} />
 
         {/* Related news */}
         {articles.length > 0 && (
