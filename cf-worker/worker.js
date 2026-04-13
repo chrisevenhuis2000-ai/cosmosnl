@@ -231,10 +231,11 @@ export default {
         return new Response(upstream.body, {
           status: 200,
           headers: {
-            'Content-Type':                ct,
-            'Cache-Control':               'public, max-age=86400, stale-while-revalidate=604800',
-            'Access-Control-Allow-Origin': '*',
-            'Vary':                        'Accept',
+            'Content-Type':                 ct,
+            'Cache-Control':                'public, max-age=86400, stale-while-revalidate=604800',
+            'Access-Control-Allow-Origin':  '*',
+            'Cross-Origin-Resource-Policy': 'cross-origin',
+            'Vary':                         'Accept',
           },
         })
       } catch (e) {

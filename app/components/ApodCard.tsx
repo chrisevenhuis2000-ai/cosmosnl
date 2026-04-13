@@ -85,6 +85,7 @@ export default function ApodCard() {
           <img
             src={`${PROXY}/image-proxy?url=${encodeURIComponent(imgUrl!)}`}
             alt={apod?.title || 'Astronomy Photo of the Day'}
+            crossOrigin="anonymous"
             onError={() => setImgErr(true)}
             style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block' }}
           />

@@ -289,7 +289,7 @@ function FeaturedCard({ article }: { article: Article }) {
         {/* Left: image */}
         <div style={{ position: 'relative', minHeight: 320, overflow: 'hidden' }}>
           {imgSrc ? (
-            <img src={imgSrc} alt="" loading="eager" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+            <img src={imgSrc} alt="" loading="eager" crossOrigin="anonymous" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
           ) : (
             <div style={{ width: '100%', height: '100%', minHeight: 320, background: 'linear-gradient(135deg, #0a1030, #1a2860)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
               {article.emoji || '🌌'}
@@ -343,7 +343,7 @@ function ArticleCard({ article }: { article: Article }) {
         {/* Image with overlays */}
         <div style={{ position: 'relative', height: 180, overflow: 'hidden', flexShrink: 0 }}>
           {imgSrc ? (
-            <img src={imgSrc} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+            <img src={imgSrc} alt="" loading="lazy" crossOrigin="anonymous" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
           ) : (
             <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #0a1030, #1a2860)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>
               {article.emoji || '🌌'}

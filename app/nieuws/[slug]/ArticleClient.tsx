@@ -376,7 +376,7 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
               >
                 {r.imageUrl && (
                   <div style={{ width: 54, height: 40, borderRadius: 2, overflow: 'hidden', flexShrink: 0 }}>
-                    <img src={IMG(r.imageUrl, 108, 80)} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={IMG(r.imageUrl, 108, 80)} alt="" crossOrigin="anonymous" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                 )}
                 <div>
@@ -670,7 +670,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
       <div style={{ position: 'relative', overflow: 'hidden', background: `linear-gradient(135deg,#0a1030 0%,${article.catColor}22 60%,#0d1540 100%)` }}>
         <div style={{ height: 'clamp(220px,35vw,420px)', position: 'relative', overflow: 'hidden' }}>
         {displayImageUrl && (
-          <img src={IMG(displayImageUrl, 1400, 840)} alt={article.title}
+          <img src={IMG(displayImageUrl, 1400, 840)} alt={article.title} crossOrigin="anonymous"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.5) saturate(1.1)' }}
           />
         )}
@@ -780,7 +780,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
           {/* ── Inline image (after section 2) ── */}
           {displayImageUrl && (
             <figure style={{ margin: '2.5em 0' }}>
-              <img src={IMG(displayImageUrl, 860, 480)} alt={article.title}
+              <img src={IMG(displayImageUrl, 860, 480)} alt={article.title} crossOrigin="anonymous"
                 style={{ width: '100%', borderRadius: 4, display: 'block', filter: 'brightness(0.88)' }}
               />
               <figcaption style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', color: '#4A5A8A', padding: '8px 0', letterSpacing: '0.06em' }}>

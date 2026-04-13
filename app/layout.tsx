@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="nl">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/logo-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} ${playfair.variable} ${jetbrains.variable} bg-void text-star antialiased`} style={{ fontFamily: 'var(--font-sans)' }}>

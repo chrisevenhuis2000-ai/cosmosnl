@@ -365,7 +365,7 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
           <div className="card-thumb-inner" style={{ width: '100%', height: '100%', background: gradient, position: 'relative' }}>
             {/* Actual image when available */}
             {article.imageUrl && (
-              <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=900`} alt="" aria-hidden="true" loading="lazy"
+              <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=900`} alt="" aria-hidden="true" loading="lazy" crossOrigin="anonymous"
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.7) saturate(1.1)' }}
                 onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
               />
@@ -457,7 +457,7 @@ function ArticleGridCard({ article }: { article: Article }) {
         <div style={{ height: 140, position: 'relative', overflow: 'hidden', flexShrink: 0, background: gradient }}>
           {/* Actual image when available */}
           {article.imageUrl && (
-            <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=800`} alt="" aria-hidden="true" loading="lazy"
+            <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}&w=800`} alt="" aria-hidden="true" loading="lazy" crossOrigin="anonymous"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65) saturate(1.1)' }}
               onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
             />

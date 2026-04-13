@@ -465,7 +465,7 @@ function ArticleCard({ article }: { article: Article }) {
           {article.imageUrl ? (
             <img
               src={`${PROXY}/image-proxy?url=${encodeURIComponent(article.imageUrl)}`}
-              alt="" loading="lazy"
+              alt="" loading="lazy" crossOrigin="anonymous"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.75)' }}
               onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
             />
