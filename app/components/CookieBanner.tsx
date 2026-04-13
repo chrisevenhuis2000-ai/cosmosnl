@@ -69,7 +69,7 @@ export function CookieBanner() {
         >
           <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.6, margin: 0, flex: 1, minWidth: 220 }}>
             We gebruiken analytische cookies (GA4) en CDN-diensten (Cloudflare) om de site te verbeteren.{' '}
-            <Link href="/privacy" style={{ color: '#378ADD', textDecoration: 'none' }}>Privacybeleid</Link>
+            <Link href="/privacy" style={{ color: '#378ADD', textDecoration: 'underline' }}>Privacybeleid</Link>
           </p>
           <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
             <button
@@ -79,12 +79,12 @@ export function CookieBanner() {
                 padding: '8px 14px',
                 fontFamily: 'var(--font-mono)', fontSize: '0.56rem',
                 letterSpacing: '0.08em', textTransform: 'uppercase',
-                border: '1px solid #252858', color: '#4A5A8A',
+                border: '1px solid #252858', color: '#8A9BC4',
                 background: 'transparent', borderRadius: 4,
                 cursor: 'pointer', transition: 'border-color 0.15s, color 0.15s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#8A9BC4'; e.currentTarget.style.color = '#8A9BC4' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#252858'; e.currentTarget.style.color = '#4A5A8A' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = '#8A9BC4'; e.currentTarget.style.color = '#FFFFFF' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = '#252858'; e.currentTarget.style.color = '#8A9BC4' }}
             >
               Alleen noodzakelijk
             </button>

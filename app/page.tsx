@@ -197,9 +197,9 @@ function SiteNav() {
           <ul className="nav-links" role="list" style={{ gap: 32, flex: 1, justifyContent: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map(({ href, label }) => (
               <li key={href}>
-                <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0' }}
+                <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#4A5A8A')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
                 >{label}</Link>
               </li>
             ))}
@@ -315,7 +315,7 @@ function TopicsStrip({ active, onFilter, counts }: { active: string; onFilter: (
                 fontSize: '0.6rem',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: isActive ? '#FFFFFF' : '#4A5A8A',
+                color: isActive ? '#FFFFFF' : '#8A9BC4',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
@@ -326,13 +326,13 @@ function TopicsStrip({ active, onFilter, counts }: { active: string; onFilter: (
                 alignItems: 'center',
                 gap: 6,
               }}
-              onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = '#8A9BC4' }}
-              onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = '#4A5A8A' }}
+              onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = '#FFFFFF' }}
+              onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = '#8A9BC4' }}
             >
               {t}
               {/* Article count badge */}
               {t !== 'Alles' && count > 0 && (
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 18, height: 16, padding: '0 5px', background: isActive ? 'rgba(55,138,221,0.2)' : 'rgba(74,82,120,0.3)', color: isActive ? '#378ADD' : '#4A5A8A', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', borderRadius: 2, fontVariantNumeric: 'tabular-nums' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 18, height: 16, padding: '0 5px', background: isActive ? 'rgba(55,138,221,0.2)' : 'rgba(74,82,120,0.3)', color: isActive ? '#378ADD' : '#8A9BC4', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', borderRadius: 2, fontVariantNumeric: 'tabular-nums' }}>
                   {count}
                 </span>
               )}
@@ -1147,19 +1147,19 @@ function EventCountdownStrip() {
 
         {/* Left label — sticky */}
         <div className="event-strip-label" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10, paddingRight: 20, borderRight: '1px solid #252858', paddingTop: 14, paddingBottom: 14 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A5A8A', whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A9BC4', whiteSpace: 'nowrap' }}>
             🗓️ Aankomend
           </span>
         </div>
 
         {/* Scrollable cards */}
+        <style>{`.ev-scroll::-webkit-scrollbar{display:none}`}</style>
         <div
           role="list"
           style={{ display: 'flex', gap: 0, overflowX: 'auto', flex: 1, scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={(el: any) => { if (el) el.style.setProperty('--webkit-overflow-scrolling', 'touch') }}
         >
-          <style>{`.ev-scroll::-webkit-scrollbar{display:none}`}</style>
           {upcoming.map((ev, i) => {
             const clr   = CAT_COLORS[ev.cat] ?? '#8A9BC4'
             const urgent = ev.days <= 7
@@ -1455,7 +1455,7 @@ export default function HomePage() {
           </div>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#4A5A8A' }}>Laatste nieuws</span>
         </div>
-        <div className="bento-grid" role="list" aria-label="Uitgelichte artikelen">
+        <div className="bento-grid">
           {gridArticles[0] && <BentoCard article={gridArticles[0]} size="hero" />}
           {gridArticles[1] && <BentoCard article={gridArticles[1]} size="md" />}
           {gridArticles[2] && <BentoCard article={gridArticles[2]} size="md" />}
