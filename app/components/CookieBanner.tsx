@@ -50,12 +50,6 @@ export function CookieBanner() {
             gtag('js', new Date());
             gtag('config', 'G-ETD8FLPPCL');
           `}</Script>
-          {/* AdSense — geladen na expliciete toestemming (AVG/GDPR) */}
-          <Script
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1782461224909980"
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-          />
         </>
       )}
 

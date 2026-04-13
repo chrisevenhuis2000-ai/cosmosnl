@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import ErrorBoundary from './ErrorBoundary'
 import SearchProvider from './components/SearchProvider'
@@ -54,6 +55,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ErrorBoundary>
         <SearchProvider />
         <CookieBanner />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1782461224909980"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
