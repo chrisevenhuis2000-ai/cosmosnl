@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-13T09:26:59.502Z",
+    "lastUpdated": "2026-04-14T09:08:44.667Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1043,7 +1043,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 apr 2026",
+      "launched": "20 apr 2026",
       "objective": "Lancering van de tiende en laatste GPS III-satelliet ter verbetering van het Amerikaanse navigatienetwerk.",
       "body": "Medium Earth Orbit",
       "highlight": "Tiende en laatste missie in de GPS III-reeks gepland voor april 2026.",
