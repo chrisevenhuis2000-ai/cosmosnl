@@ -4,13 +4,13 @@ excerpt: "Het internationale ruimtestation ISS heeft succesvol het Cygnus XL vra
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-15T08:27:33.344Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/13/live-coverage-space-station-to-capture-berth-cygnus-xl-s-s-steven-r-nagel-cargo-spacecraft/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout2 03192026_5/SLS_KSC_Artemis II Rollout2 03192026_5~large.jpg"
+imageAlt: "Ruimtestation vangt en koppelt Cygnus XL 'S.S. Steven R. Nagel' vrachtschip"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Het internationale ruimtestation (ISS) heeft maandag 13 april om 19:19 Nederlandse tijd succesvol het Cygnus XL vrachtschip 'S.S. Steven R. Nagel' gevangen en gekoppeld. De operatie werd uitgevoerd met behulp van de Canadarm2, de robotische arm van het ruimtestation.

@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft een nieuwe mijlpaal bereikt door de duizendste Starlink-s
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-15T08:27:20.758Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/14/live-coverage-spacex-to-launch-1000th-starlink-satellite-of-2026-on-falcon-9-rocket-from-cape-canaveral/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0054/KSC-20220421-PH-KLS01_0054~medium.jpg"
+imageAlt: "SpaceX lanceert 1000e Starlink-satelliet van 2026 met Falcon 9-raket vanaf Cape Canaveral"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft vandaag een belangrijke mijlpaal bereikt met de lancering van de duizendste Starlink-satelliet van 2026. De Falcon 9-raket steeg om 11:33:10 Nederlandse tijd op vanaf lanceerplatform 40 van Cape Canaveral Space Force Station in Florida.

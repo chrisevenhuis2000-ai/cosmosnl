@@ -4,13 +4,13 @@ excerpt: "Een Falcon 9-raket van SpaceX is succesvol gelanceerd vanaf de westkus
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-15T08:27:09.491Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/15/west-coast-spacex-falcon-9-mission-to-launch-25-starlink-satellites/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0054/KSC-20220421-PH-KLS01_0054~medium.jpg"
+imageAlt: "SpaceX lanceert 25 Starlink-satellieten vanaf Amerikaanse westkust"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft vannacht een nieuwe lading Starlink-satellieten de ruimte in gestuurd. De Falcon 9-raket met de missienaam Starlink 17-27 steeg op om 9:29:49 lokale tijd (PDT) vanaf Space Launch Complex 4 East aan de westkust van de Verenigde Staten.
