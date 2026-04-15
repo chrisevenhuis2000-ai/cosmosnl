@@ -1,7 +1,11 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-14T09:08:44.667Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-04-15T09:10:29.819Z",
+    "autoUpdated": [
+      "starlink-group-10-24",
+      "starlink-group-17-27",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -752,19 +756,19 @@
     },
     {
       "id": "starlink-group-17-21",
-      "_ll2Id": "f6c9396f-5f02-49e6-a847-83e4c774e0e9",
+      "_ll2Id": "6bfe08b4-a35d-4297-8de7-dec0eb678eb6",
       "name": "Starlink Group 17-21",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "actief",
-      "launched": "11 apr 2026",
-      "objective": "SpaceX lanceert 25 nieuwe Starlink-satellieten naar een lage aardbaan om het mondiale internetnetwerk uit te breiden.",
+      "status": "gepland",
+      "launched": "28 apr 2026",
+      "objective": "Uitbreiding van het Starlink-netwerk met 25 nieuwe satellieten in een lage aardbaan.",
       "body": "Low Earth Orbit",
-      "highlight": "Onderdeel van de snelgroeiende Starlink-megaconstellatie met duizenden satellieten.",
+      "highlight": "Gepland voor lancering op 28 april 2026 om 11:00 UTC.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de Falcon 9-raket stuurt SpaceX opnieuw een groep van 25 satellieten de ruimte in als onderdeel van de Starlink-megaconstellatie. Dit netwerk is ontworpen om wereldwijd breedbandinternet vanuit de ruimte aan te bieden, ook in afgelegen gebieden zonder traditionele infrastructuur. De missie draagt de naam Starlink Group 17-21 en is een van de vele routinelanceringen die SpaceX uitvoert om de constellatie verder uit te breiden en te onderhouden. Met duizenden satellieten in een lage aardbaan streeft Starlink ernaar lage latentie en hoge snelheden te combineren.",
+      "description": "SpaceX lanceert met een Falcon 9-raket een nieuwe lading van 25 Starlink-satellieten als onderdeel van de steeds groeiende megaconstellatie voor breedbandinternet vanuit de ruimte. De missie, aangeduid als Group 17-21, voegt opnieuw capaciteit toe aan het netwerk dat inmiddels duizenden actieve satellieten telt. Starlink biedt wereldwijd internetdekking, ook in afgelegen gebieden zonder traditionele infrastructuur. SpaceX streeft ernaar de dienstverlening verder uit te breiden en de latentie te verlagen door het aantal satellieten in een lage aardbaan voortdurend te verhogen.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -787,9 +791,12 @@
         "spacex",
         "falcon 9",
         "satellietinternet",
-        "low earth orbit"
+        "low earth orbit",
+        "satellieten",
+        "megaconstellatie",
+        "leo"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:31:26.583Z"
+      "_lastClaudeUpdate": "2026-04-15T09:10:29.807Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -797,15 +804,15 @@
       "name": "Starlink Group 10-24",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "14 apr 2026",
-      "objective": "Lancering van 29 Starlink-satellieten naar een lage aardbaan ter uitbreiding van SpaceX's internetsatellietnetwerk.",
+      "objective": "Uitbreiding van het Starlink-netwerk met 29 nieuwe satellieten in een lage aardbaan.",
       "body": "Low Earth Orbit",
-      "highlight": "29 nieuwe Starlink-satellieten toegevoegd aan de groeiende megaconstellatie.",
+      "highlight": "Geplande lancering op 14 april 2026 om 06:13 UTC.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert met een Falcon 9-raket een nieuwe batch van 29 satellieten voor de Starlink-megaconstellatie. Deze missie, aangeduid als Group 10-24, draagt bij aan de groeiende vloot van breedbandinternetsatellieten in een lage aardbaan. Starlink heeft als doel wereldwijde internetdekking te bieden, ook op afgelegen locaties waar traditionele infrastructuur ontbreekt. De lancering staat gepland voor 14 april 2026 vanuit een van SpaceX's lanceercomplexen.",
+      "description": "SpaceX lanceert opnieuw een batch van 29 Starlink-satellieten als onderdeel van de voortdurende uitbreiding van haar mega-constellatie voor wereldwijde internettoegang vanuit de ruimte. De Falcon 9-raket vertrekt op 14 april 2026 en brengt de satellieten in een lage aardbaan op enkele honderden kilometers hoogte. Met deze lancering groeit het Starlink-netwerk verder en verbetert SpaceX de dekking en capaciteit voor gebruikers wereldwijd. Het project is inmiddels een van de grootste commerciële satellietconstellaties ooit gebouwd.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -828,9 +835,11 @@
         "starlink",
         "falcon 9",
         "low earth orbit",
-        "satelietinternet"
+        "satelietinternet",
+        "leo",
+        "satellietinternet"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:31:33.803Z"
+      "_lastClaudeUpdate": "2026-04-15T09:10:04.972Z"
     },
     {
       "id": "starlink-group-17-27",
@@ -838,15 +847,15 @@
       "name": "Starlink Group 17-27",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "15 apr 2026",
-      "objective": "Uitbreiding van het Starlink-netwerk met 25 nieuwe internetsatellieten in een lage aardbaan.",
+      "objective": "Lancering van 25 Starlink-satellieten naar een lage aardbaan ter uitbreiding van SpaceX's internetsatellietstelsel.",
       "body": "Low Earth Orbit",
-      "highlight": "Onderdeel van de grootste commerciële satellietconstellatie ter wereld.",
+      "highlight": "Geplande lancering op 15 april 2026 om 02:00 UTC.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert opnieuw een batch van 25 Starlink-satellieten als onderdeel van de voortdurende uitbreiding van zijn megaconstellatie voor wereldwijde internetdekking vanuit de ruimte. De missie, aangeduid als Group 17-27, wordt uitgevoerd met een Falcon 9-raket vanaf een van de Amerikaanse lanceerbases. Met duizenden satellieten in een lage aardbaan streeft SpaceX ernaar breedbandinternet beschikbaar te maken op afgelegen en onderbelichte locaties wereldwijd. Elke nieuwe batch brengt het netwerk dichter bij volledige mondiale dekking en vergroot de capaciteit voor bestaande gebruikers.",
+      "description": "SpaceX lanceert opnieuw een batch van 25 satellieten voor het Starlink-megaconstellation, het ambitieuze project dat wereldwijd snel internet via de ruimte moet bieden. De missie, aangeduid als Group 17-27, wordt uitgevoerd met een Falcon 9-raket die vertrekt in de vroege ochtenduren. Met elke nieuwe lancering groeit het netwerk verder en verbetert de dekkingsgraad en capaciteit voor gebruikers wereldwijd. Starlink bedient inmiddels miljoenen abonnees en breidt zijn diensten gestaag uit naar afgelegen en onderontwikkelde regio's.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -869,9 +878,11 @@
         "spacex",
         "falcon 9",
         "leo",
-        "internetsatellieten"
+        "internetsatellieten",
+        "megaconstellation",
+        "satellietinternet"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:31:41.580Z"
+      "_lastClaudeUpdate": "2026-04-15T09:10:12.934Z"
     },
     {
       "id": "starlink-group-17-22",
