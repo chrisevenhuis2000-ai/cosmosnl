@@ -1,10 +1,8 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-15T09:10:29.819Z",
+    "lastUpdated": "2026-04-16T09:09:13.084Z",
     "autoUpdated": [
-      "starlink-group-10-24",
-      "starlink-group-17-27",
-      "starlink-group-17-21"
+      "bubbles"
     ]
   },
   "missions": [
@@ -761,7 +759,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "28 apr 2026",
+      "launched": "29 apr 2026",
       "objective": "Uitbreiding van het Starlink-netwerk met 25 nieuwe satellieten in een lage aardbaan.",
       "body": "Low Earth Orbit",
       "highlight": "Gepland voor lancering op 28 april 2026 om 11:00 UTC.",
@@ -2553,6 +2551,41 @@
         "falcon 9"
       ],
       "_lastClaudeUpdate": "2026-04-12T08:37:08.073Z"
+    },
+    {
+      "id": "bubbles",
+      "_ll2Id": "4e074623-426a-4ab2-8729-a85200684bef",
+      "name": "Bubbles",
+      "agency": "Rocket Lab",
+      "agencyColor": "#c080ff",
+      "status": "gepland",
+      "launched": "22 apr 2026",
+      "objective": "Suborbale testvlucht onder het HASTE-programma van Rocket Lab voor hypersonische technologie.",
+      "body": "Suborbital",
+      "highlight": "Details over de lading en testdoelstellingen worden later bekendgemaakt.",
+      "icon": "🚀",
+      "bgFrom": "#040408",
+      "bgTo": "#080810",
+      "description": "Rocket Lab voert met de missie 'Bubbles' een suborbale vlucht uit als onderdeel van het HASTE-programma, dat staat voor Hypersonic Accelerator Suborbital Test Electron. Het programma maakt gebruik van de Electron-raket als betaalbaar testplatform voor hypersonische technologieën en ladingen. De exacte details van deze specifieke vlucht zijn nog niet bekendgemaakt. HASTE biedt bedrijven en overheidsinstanties snelle en kostenefficiënte toegang tot het hypersonische vluchtregime.",
+      "vehicle": "Electron",
+      "launchSite": "Rocket Lab Launch Complex 2 (Launch Area 0 C)",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/4e074623-426a-4ab2-8729-a85200684bef/?format=json",
+      "timeline": [
+        {
+          "date": "22 apr 2026",
+          "event": "Geplande lancering van Bubbles"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "Rocket Lab",
+        "Electron",
+        "HASTE",
+        "Hypersonisch",
+        "Suborbaal"
+      ]
     }
   ]
 }
