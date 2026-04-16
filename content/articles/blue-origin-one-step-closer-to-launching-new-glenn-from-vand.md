@@ -4,13 +4,13 @@ excerpt: "De Amerikaanse Space Force heeft Blue Origin, het ruimtevaartbedrijf v
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-16T08:26:24.750Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/15/blue-origin-one-step-closer-to-launching-new-glenn-from-vandenberg-space-force-base/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180220-PH_KLS03_0010/KSC-20180220-PH_KLS03_0010~medium.jpg"
+imageAlt: "Blue Origin komt stap dichter bij lancering van New Glenn vanaf Vandenberg Space Force Base"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 Blue Origin heeft een belangrijke mijlpaal bereikt in hun plannen om lanceringen uit te voeren vanaf de Amerikaanse westkust. De U.S. Space Force heeft het bedrijf van Amazon-oprichter Jeff Bezos geselecteerd als mogelijke ontwikkelaar van een nieuwe lanceerlocatie op Vandenberg Space Force Base in Californië.
