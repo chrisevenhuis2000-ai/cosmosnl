@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-16T09:09:13.084Z",
-    "autoUpdated": [
-      "bubbles"
-    ]
+    "lastUpdated": "2026-04-17T09:08:14.747Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -2560,13 +2558,13 @@
       "agencyColor": "#c080ff",
       "status": "gepland",
       "launched": "22 apr 2026",
-      "objective": "Suborbale testvlucht onder het HASTE-programma van Rocket Lab voor hypersonische technologie.",
+      "objective": "Suborbiale testvlucht onder het HASTE-programma van Rocket Lab met de Electron-raket.",
       "body": "Suborbital",
-      "highlight": "Details over de lading en testdoelstellingen worden later bekendgemaakt.",
+      "highlight": "Details over payload en testdoelstellingen worden later aangekondigd.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Rocket Lab voert met de missie 'Bubbles' een suborbale vlucht uit als onderdeel van het HASTE-programma, dat staat voor Hypersonic Accelerator Suborbital Test Electron. Het programma maakt gebruik van de Electron-raket als betaalbaar testplatform voor hypersonische technologieën en ladingen. De exacte details van deze specifieke vlucht zijn nog niet bekendgemaakt. HASTE biedt bedrijven en overheidsinstanties snelle en kostenefficiënte toegang tot het hypersonische vluchtregime.",
+      "description": "Rocket Lab voert met de missie 'Bubbles' een suborbiale vlucht uit als onderdeel van het Hypersonic Accelerator Suborbital Test Electron (HASTE)-programma. Dit programma richt zich op het testen van hypersonische technologieën en payloads in een realistische vluchtsomgeving. De Electron-raket wordt hierbij ingezet als kosteneffectief testplatform voor snelle en herhaalbare suborbiale lanceringen. Verdere details over de specifieke payload en testdoelstellingen zijn nog niet bekendgemaakt.",
       "vehicle": "Electron",
       "launchSite": "Rocket Lab Launch Complex 2 (Launch Area 0 C)",
       "duration": "Onbekend",
@@ -2584,8 +2582,14 @@
         "Electron",
         "HASTE",
         "Hypersonisch",
-        "Suborbaal"
-      ]
+        "Suborbaal",
+        "rocket lab",
+        "electron",
+        "haste",
+        "hypersonisch",
+        "suborbaal"
+      ],
+      "_lastClaudeUpdate": "2026-04-17T09:08:14.735Z"
     }
   ]
 }
