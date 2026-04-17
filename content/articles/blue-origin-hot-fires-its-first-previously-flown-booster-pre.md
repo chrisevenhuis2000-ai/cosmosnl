@@ -4,13 +4,13 @@ excerpt: "Blue Origin heeft succesvol een statische test uitgevoerd met een eerd
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-17T08:25:52.371Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/16/blue-origin-hot-fires-its-first-previously-flown-booster-prepares-for-weekend-launch/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180220-PH_KLS03_0053/KSC-20180220-PH_KLS03_0053~medium.jpg"
+imageAlt: "Blue Origin test hergebruikte raketbooster en bereidt zich voor op weekend lancering"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 Blue Origin heeft een belangrijke mijlpaal bereikt door voor het eerst een statische motortest uit te voeren met een eerder gevlogen raketbooster. Het ruimtevaartbedrijf van Jeff Bezos liet alle zeven BE-4 motoren gedurende minder dan een halve minuut branden tijdens deze cruciale test.
