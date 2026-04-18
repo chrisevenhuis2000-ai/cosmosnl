@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-17T09:08:14.747Z",
+    "lastUpdated": "2026-04-18T08:37:43.844Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1208,7 +1208,7 @@
     },
     {
       "id": "flight-12",
-      "_ll2Id": "a67b40f9-cfcc-4614-a355-a156280b4bb3",
+      "_ll2Id": "3ac1bd74-bf9a-4afe-ae00-3e1d180142dd",
       "name": "Flight 12",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -1221,8 +1221,8 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "De twaalfde vlucht in dit programma markeert een cruciale mijlpaal voor Ruslands nieuwe Soyuz-5 draagraket. Tijdens deze suborbiale demonstratievlucht wordt een massasimulator meegenomen om de prestaties van het voertuig te valideren. De missie moet bewijzen dat de Soyuz-5, ook bekend als Irtysh, klaar is voor toekomstige operationele vluchten. Verdere details over de vluchtparameters worden op een later moment bekendgemaakt.",
-      "vehicle": "Vulcan VC4L",
-      "launchSite": "Space Launch Complex 41",
+      "vehicle": "Astra Rocket 4",
+      "launchSite": "Space Launch Complex 46",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/44/?format=json",
