@@ -4,13 +4,13 @@ excerpt: "SpaceX lanceert vandaag 25 Starlink-satellieten vanaf Vandenberg Space
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-19T08:04:45.375Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/18/live-coverage-spacex-attempts-600th-falcon-booster-landing-amid-west-coast-starlink-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20211027-PH-SPX02_0003/KSC-20211027-PH-SPX02_0003~medium.jpg"
+imageAlt: "SpaceX probeert 600ste Falcon booster-landing tijdens West-Kust Starlink missie"
+imageCredit: "SpaceX / KSC"
 ---
 
 SpaceX staat op het punt een historische mijlpaal te bereiken met de lancering van de Starlink 17-22 missie. Het ruimtevaartbedrijf van Elon Musk zal proberen zijn 600ste succesvolle landing van een Falcon 9-booster te realiseren, een prestatie die de herbruikbaarheid van raketten naar een nieuw niveau tilt.
