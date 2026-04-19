@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-18T08:37:43.844Z",
+    "lastUpdated": "2026-04-19T08:42:00.545Z",
     "autoUpdated": []
   },
   "missions": [
@@ -887,7 +887,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "18 apr 2026",
+      "launched": "19 apr 2026",
       "objective": "SpaceX lanceert 25 Starlink-satellieten naar een lage aardbaan ter uitbreiding van het mondiale internetnetwerk.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland op 18 april 2026 om 14:00 UTC.",
@@ -927,7 +927,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "22 apr 2026",
+      "launched": "23 apr 2026",
       "objective": "Lancering van 25 Starlink-satellieten naar een lage aardbaan ter uitbreiding van het wereldwijde internetnetwerk.",
       "body": "Low Earth Orbit",
       "highlight": "Gepland voor lancering op 22 april 2026 om 02:00 UTC.",
