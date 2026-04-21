@@ -4,13 +4,13 @@ excerpt: "Blue Origin heeft zondag succesvol hun derde New Glenn-raket gelanceer
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-21T08:52:26.507Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/20/blue-origin-launches-third-new-glenn-rocket-but-payload-ends-up-in-wrong-orbit/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20251113-PH-BLU01_0008/KSC-20251113-PH-BLU01_0008~large.jpg"
+imageAlt: "Blue Origin lanceert derde New Glenn-raket, maar lading komt in verkeerde baan terecht"
+imageCredit: "Blue Origin / KSC"
 ---
 
 Blue Origin heeft zondag hun derde New Glenn-raket gelanceerd, waarbij het bedrijf voor het eerst een eerder gebruikte eerste trap opnieuw heeft ingezet. De raketbooster werd na de lancering succesvol teruggewonnen, wat een belangrijke mijlpaal markeert voor het hergebruik van rakettechnologie.

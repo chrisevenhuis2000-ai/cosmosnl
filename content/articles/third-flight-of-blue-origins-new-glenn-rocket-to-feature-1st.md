@@ -4,13 +4,13 @@ excerpt: "Blue Origin plant zondag de lancering van zijn derde New Glenn raket v
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-21T08:52:37.070Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/19/third-flight-of-blue-origins-new-glenn-rocket-to-feature-1st-reuse-of-booster/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180220-PH_KLS03_0076/KSC-20180220-PH_KLS03_0076~medium.jpg"
+imageAlt: "Derde vlucht Blue Origin's New Glenn raket zal eerste hergebruik van booster tonen"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 Blue Origin staat op het punt een belangrijke mijlpaal te bereiken in de ontwikkeling van zijn New Glenn raket. Zondag plant het ruimtevaartbedrijf de lancering van zijn derde New Glenn raket vanaf Cape Canaveral, waarbij voor het eerst een eerder gebruikte booster wordt ingezet.

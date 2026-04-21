@@ -4,13 +4,13 @@ excerpt: "SpaceX staat op het punt de allerlaatste GPS III-satelliet voor de Ame
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-21T08:52:11.994Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/21/live-coverage-spacex-to-launch-final-gps-iii-satellite-for-the-u-s-space-force/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20181218-PH_KLS01_0085/KSC-20181218-PH_KLS01_0085~medium.jpg"
+imageAlt: "SpaceX lanceert laatste GPS III-satelliet voor Amerikaanse Space Force"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX bereidt zich voor op de lancering van de laatste GPS III-satelliet voor de Amerikaanse Space Force, waarmee een belangrijke mijlpaal wordt bereikt in het GPS-programma. De lancering staat gepland voor vandaag vanaf lanceerplatform 40 op Cape Canaveral Space Force Station.
