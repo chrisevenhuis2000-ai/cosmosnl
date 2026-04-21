@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-20T09:48:36.453Z",
-    "autoUpdated": [
-      "starlink-group-17-22"
-    ]
+    "lastUpdated": "2026-04-21T09:16:51.244Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1094,7 +1092,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 apr 2026",
+      "launched": "27 apr 2026",
       "objective": "Lancering van de ViaSat-3 F3 Ka-band satelliet voor breedbanddekking boven Azië-Pacific.",
       "body": "Geostationaire baan",
       "highlight": "Gepland voor lancering op 30 april 2026 aan boord van een Falcon Heavy.",
