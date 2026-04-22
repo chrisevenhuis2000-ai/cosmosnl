@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft met succes de laatste GPS III-satelliet gelanceerd vanaf 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-22T08:28:55.509Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/21/live-coverage-spacex-to-launch-final-gps-iii-satellite-for-the-u-s-space-force/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20181218-PH_KLS01_0137/KSC-20181218-PH_KLS01_0137~medium.jpg"
+imageAlt: "SpaceX lanceert laatste GPS III-satelliet voor de Amerikaanse Space Force"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft vannacht met succes de laatste GPS III-satelliet gelanceerd voor de Amerikaanse Space Force. De Falcon 9-raket steeg op om 08:53 Nederlandse tijd vanaf lanceerplatform 40 op Cape Canaveral Space Force Station in Florida.
