@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-21T09:16:51.244Z",
+    "lastUpdated": "2026-04-22T09:11:10.253Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2274,7 +2274,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "28 sep 2026",
+      "launched": "30 sep 2026",
       "objective": "Infrarood ruimtetelescoop die donkere energie, kosmische structuur en exoplaneten via microlenzen onderzoekt.",
       "body": "L2-punt",
       "highlight": "Lancering gepland voor 28 september 2026 op een Falcon Heavy naar L2.",
