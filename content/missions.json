@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-22T09:11:10.253Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-04-23T09:18:29.077Z",
+    "autoUpdated": [
+      "kakushin-rising-jaxa-rideshare",
+      "starlink-group-17-14"
+    ]
   },
   "missions": [
     {
@@ -927,15 +930,15 @@
       "name": "Starlink Group 17-14",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "23 apr 2026",
-      "objective": "Lancering van 25 Starlink-satellieten naar een lage aardbaan ter uitbreiding van het wereldwijde internetnetwerk.",
+      "objective": "SpaceX lanceert 24 Starlink-satellieten naar een lage aardbaan voor wereldwijde internettoegang.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor lancering op 22 april 2026 om 02:00 UTC.",
+      "highlight": "Gepland voor 23 april 2026 – 24 nieuwe Starlink-satellieten voor groep 17-14.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert met een Falcon 9-raket opnieuw een batch van 25 satellieten voor het Starlink-megaconstellatie. Dit netwerk van duizenden kleine satellieten in een lage aardbaan heeft als doel wereldwijd snel internet aan te bieden, ook op afgelegen locaties. Met elke vlucht wordt de dekking en capaciteit van het systeem verder uitgebreid. Starlink Group 17-14 is één van de vele routinevluchten die SpaceX uitvoert om zijn ambitieuze internetinfrastructuur in stand te houden en te vergroten.",
+      "description": "Met de lancering van Starlink Group 17-14 stuurt SpaceX opnieuw 24 satellieten de ruimte in als onderdeel van het groeiende Starlink-megaconstellation. De Falcon 9-raket brengt de satellietbatch naar een lage aardbaan, van waaruit ze bijdragen aan wereldwijde breedbandinternetdekking. Het Starlink-netwerk telt inmiddels duizenden actieve satellieten en bedient miljoenen gebruikers wereldwijd. Deze missie bevestigt SpaceX's onverminderde inzet om de capaciteit en dekking van het netwerk verder uit te breiden.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -958,9 +961,11 @@
         "spacex",
         "falcon 9",
         "satellieten",
-        "lage aardbaan"
+        "lage aardbaan",
+        "leo",
+        "internetsatellieten"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:31:56.846Z"
+      "_lastClaudeUpdate": "2026-04-23T09:18:29.063Z"
     },
     {
       "id": "kakushin-rising-jaxa-rideshare",
@@ -968,17 +973,17 @@
       "name": "Kakushin Rising (JAXA Rideshare)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
-      "status": "gepland",
+      "status": "actief",
       "launched": "23 apr 2026",
-      "objective": "JAXA rideshare met acht kleine satellieten naar zonsynchrone baan via Rocket Lab Electron.",
+      "objective": "JAXA rideshare met acht kleine satellieten naar een zonsynchrone baan via Rocket Lab Electron.",
       "body": "Sun-Synchronous Orbit",
-      "highlight": "Gepland voor lancering op 23 april 2026 vanuit Rocket Lab.",
+      "highlight": "Acht JAXA-satellieten succesvol in zonsynchrone baan gebracht.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Op 23 april 2026 lanceert Rocket Lab een Electron-raket met acht Japanse satellieten aan boord als onderdeel van de JAXA Kakushin Rising rideshare-missie. De lading omvat onderwijssatellieten, een oceaanmonitoringsatelliet, een demonstratiesatelliet voor ultrakleinen multispectrale camera's en OrigamiSat-2, een uitvouwbare antenne die met origamivouwtechnieken tot vijfentwintig keer zijn opgeborgen formaat kan uitklappen. De satellieten waren oorspronkelijk bestemd voor een Japanse Epsilon-S raket, maar ernstige vertragingen als gevolg van mislukte testombranden dwongen JAXA tot een alternatief lanceervoertuig. Rocket Lab's Electron biedt uitkomst voor de acht satellieten, waaronder MAGNARO-II, KOSEN-2R, WASEDA-SAT-ZERO-II, FSI-SAT2, OrigamiSat-2, Mono-Nikko, ARICA-2 en PRELUDE.",
+      "description": "Op 23 april 2026 lanceerde Rocket Lab een Electron-raket met acht Japanse satellieten aan boord als onderdeel van de JAXA Kakushin Rising rideshare-missie. De payloads omvatten educatieve nanosatellieten, een oceaanmonitoringsatelliet, een demonstratiesatelliet voor ultrakompakte multispectrale camera's en OrigamiSat-2, een opvouwbare antenne die dankzij origamitechnieken tot 25 keer zijn opgerolde formaat kan uitvouwen. De missie was oorspronkelijk bestemd voor de Japanse Epsilon-S-raket, maar aanhoudende vertragingen door mislukte testbranden dwongen JAXA uit te wijken naar Rocket Lab. De acht satellieten — waaronder MAGNARO-II, KOSEN-2R, WASEDA-SAT-ZERO-II en PRELUDE — werden succesvol in een zonsynchrone baan gebracht.",
       "vehicle": "Electron",
-      "launchSite": "Unknown Pad",
+      "launchSite": "Rocket Lab Launch Complex 1A",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/37/?format=json",
@@ -999,9 +1004,10 @@
         "rocket lab",
         "electron",
         "rideshare",
-        "origamisat"
+        "origamisat",
+        "origamisat-2"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:32:05.487Z"
+      "_lastClaudeUpdate": "2026-04-23T09:18:21.702Z"
     },
     {
       "id": "amazon-leo-le-02",
@@ -1209,7 +1215,7 @@
     },
     {
       "id": "flight-12",
-      "_ll2Id": "a67b40f9-cfcc-4614-a355-a156280b4bb3",
+      "_ll2Id": "3ac1bd74-bf9a-4afe-ae00-3e1d180142dd",
       "name": "Flight 12",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -1222,8 +1228,8 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "De twaalfde vlucht in dit programma markeert een cruciale mijlpaal voor Ruslands nieuwe Soyuz-5 draagraket. Tijdens deze suborbiale demonstratievlucht wordt een massasimulator meegenomen om de prestaties van het voertuig te valideren. De missie moet bewijzen dat de Soyuz-5, ook bekend als Irtysh, klaar is voor toekomstige operationele vluchten. Verdere details over de vluchtparameters worden op een later moment bekendgemaakt.",
-      "vehicle": "Vulcan VC4L",
-      "launchSite": "Space Launch Complex 41",
+      "vehicle": "Astra Rocket 4",
+      "launchSite": "Space Launch Complex 46",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/44/?format=json",
