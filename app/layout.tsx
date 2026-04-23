@@ -44,6 +44,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="nl">
       <head>
+        <link rel="preconnect" href="https://cosmosnl-proxy.chrisevenhuis2000.workers.dev" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cosmosnl-proxy.chrisevenhuis2000.workers.dev" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/logo-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />

@@ -203,6 +203,12 @@ export default {
       const w = url.searchParams.get('w')           // target width in px (optional)
       const q = url.searchParams.get('q') || '82'   // quality (default 82)
 
+      // Check Cloudflare edge cache first — avoids upstream fetch on cache hit
+      const cache    = caches.default
+      const cacheKey = new Request(request.url)
+      const cached   = await cache.match(cacheKey)
+      if (cached) return cached
+
       const directHeaders = {
         'User-Agent': 'Mozilla/5.0 (compatible; NightGazerBot/1.0)',
         'Accept':     'image/webp,image/jpeg,image/png,image/*',
@@ -239,17 +245,22 @@ export default {
           return cors(request, JSON.stringify({ error: 'Not an image' }), 415)
         }
 
-        // Stream the body directly — avoids buffering large images into Worker memory
-        return new Response(upstream.body, {
-          status: 200,
-          headers: {
-            'Content-Type':                 ct,
-            'Cache-Control':                'public, max-age=86400, stale-while-revalidate=604800',
-            'Access-Control-Allow-Origin':  '*',
-            'Cross-Origin-Resource-Policy': 'cross-origin',
-            'Vary':                         'Accept',
-          },
-        })
+        const imgHeaders = {
+          'Content-Type':                 ct,
+          'Cache-Control':                'public, max-age=86400, stale-while-revalidate=604800',
+          'Access-Control-Allow-Origin':  '*',
+          'Cross-Origin-Resource-Policy': 'cross-origin',
+          'Vary':                         'Accept',
+        }
+
+        // Buffer body so we can both cache and return the same bytes
+        const buffer   = await upstream.arrayBuffer()
+        const response = new Response(buffer, { status: 200, headers: imgHeaders })
+
+        // Store in edge cache — subsequent requests from same PoP skip the upstream fetch
+        await cache.put(cacheKey, response.clone())
+
+        return response
       } catch (e) {
         return cors(request, JSON.stringify({ error: 'Upstream fetch failed' }), 502)
       }
