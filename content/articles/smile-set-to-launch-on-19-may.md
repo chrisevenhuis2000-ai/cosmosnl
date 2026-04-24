@@ -4,13 +4,13 @@ excerpt: "De Europees-Chinese Smile-missie staat gepland voor lancering op dinsd
 category: "educatie"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-24T08:58:54.743Z"
-featured: false
+featured: "false"
 tags: []
 source: "ESA"
 sourceUrl: "https://www.esa.int/Science_Exploration/Space_Science/Smile/Smile_set_to_launch_on_19_May"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20250723-PH-SPX01_0004/KSC-20250723-PH-SPX01_0004~medium.jpg"
+imageAlt: "Smile-missie gepland voor lancering op 19 mei"
+imageCredit: "SpaceX / KSC"
 ---
 
 De langverwachte Smile-missie (Solar wind Magnetosphere Ionosphere Link Explorer) zal op dinsdag 19 mei 2026 om 05:52 Nederlandse tijd worden gelanceerd vanaf het Europese ruimtevaartcentrum. De missie maakt gebruik van een Europese Vega-C raket voor de reis naar de ruimte.
