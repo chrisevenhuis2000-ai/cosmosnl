@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-24T09:22:16.869Z",
-    "autoUpdated": [
-      "crew-13"
-    ]
+    "lastUpdated": "2026-04-25T08:41:15.390Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -754,7 +752,7 @@
     },
     {
       "id": "starlink-group-17-21",
-      "_ll2Id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
+      "_ll2Id": "29c2b843-540d-40da-b200-d4892d74e140",
       "name": "Starlink Group 17-21",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -2522,7 +2520,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 mei 2026",
+      "launched": "3 mei 2026",
       "objective": "Rideshare-vlucht met aardobservatiesatellieten naar een zonnesynchrone baan.",
       "body": "Sun-Synchronous Orbit",
       "highlight": "Geplande lancering op 31 mei 2026 vanaf een SpaceX-lanceerplatform.",
@@ -2605,13 +2603,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "30 sep 2026",
-      "objective": "Crew Dragon brengt vierde bemande NASA-crew naar het ISS in het kader van het Commercial Crew Program.",
+      "objective": "SpaceX Crew-13 brengt astronauten naar het ISS als onderdeel van NASA's Commercial Crew Program.",
       "body": "Low Earth Orbit",
-      "highlight": "Geplande lancering op 30 september 2026",
+      "highlight": "Lancering gepland voor 30 september 2026 vanaf Kennedy Space Center.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX Crew-13 is de dertiende operationele bemande vlucht van een Crew Dragon-ruimtevaartuig naar het Internationaal Ruimtestation. De missie maakt deel uit van NASA's Commercial Crew Program, waarbij SpaceX als commerciële partner astronauten naar en van het ISS vervoert. De Falcon 9-raket voert de lancering uit vanuit het Kennedy Space Center in Florida. Met Crew-13 bevestigt SpaceX opnieuw zijn rol als de primaire leverancier van bemand ruimtetransport voor NASA.",
+      "description": "Crew-13 is de dertiende operationele bemande vlucht van een Crew Dragon-ruimtecapsule naar het Internationaal Ruimtestation. De missie wordt uitgevoerd door SpaceX met een Falcon 9-raket in het kader van NASA's Commercial Crew Program. Na aankomst voegen de bemanningsleden zich bij het permanente team aan boord van het ISS voor een langdurig wetenschappelijk verblijf in een lage aardbaan. De vlucht is gepland voor 30 september 2026 en zet de succesvolle samenwerking tussen NASA en SpaceX voort.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -2629,8 +2627,14 @@
         "Crew Dragon",
         "ISS",
         "NASA",
-        "Commercial Crew Program"
-      ]
+        "Commercial Crew Program",
+        "spacex",
+        "crew dragon",
+        "iss",
+        "nasa",
+        "commercial crew program"
+      ],
+      "_lastClaudeUpdate": "2026-04-25T08:41:15.385Z"
     }
   ]
 }
