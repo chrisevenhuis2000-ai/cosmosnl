@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-25T08:41:15.390Z",
+    "lastUpdated": "2026-04-26T08:49:07.941Z",
     "autoUpdated": []
   },
   "missions": [
@@ -752,7 +752,7 @@
     },
     {
       "id": "starlink-group-17-21",
-      "_ll2Id": "29c2b843-540d-40da-b200-d4892d74e140",
+      "_ll2Id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
       "name": "Starlink Group 17-21",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
