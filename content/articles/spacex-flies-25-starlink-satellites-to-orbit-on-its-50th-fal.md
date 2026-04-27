@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol 25 Starlink-satellieten gelanceerd tijdens de S
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-27T09:14:57.549Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/26/live-coverage-spacex-to-fly-25-starlink-satellites-on-its-50th-falcon-9-launch-of-the-year/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0042/KSC-20220421-PH-KLS01_0042~medium.jpg"
+imageAlt: "SpaceX lanceert 25 Starlink-satellieten tijdens 50ste Falcon 9-vlucht van het jaar"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft opnieuw een mijlpaal bereikt door de 50ste Falcon 9-raket van dit jaar te lanceren. De Starlink 17-16 missie vertrok om 16:37 Nederlandse tijd vanaf Space Launch Complex 4 East aan de Amerikaanse westkust.

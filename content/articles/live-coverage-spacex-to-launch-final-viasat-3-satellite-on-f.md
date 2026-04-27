@@ -4,13 +4,13 @@ excerpt: "SpaceX staat op het punt de laatste satelliet in de ViaSat-3 serie te 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-27T09:14:45.557Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/27/live-coverage-spacex-to-launch-final-viasat-3-satellite-on-falcon-heavy-rocket/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180206-PH_KLS02_0040/KSC-20180206-PH_KLS02_0040~medium.jpg"
+imageAlt: "Live verslag: SpaceX lanceert laatste ViaSat-3 satelliet met Falcon Heavy raket"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX bereidt zich voor op een historische lancering vanaf Launch Complex 39A op NASA's Kennedy Space Center in Florida. De ruimtevaartorganisatie staat op het punt de laatste satelliet in de ViaSat-3 serie de ruimte in te sturen met behulp van hun krachtige Falcon Heavy raket.
