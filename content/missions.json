@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-26T08:49:07.941Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-04-27T10:06:28.594Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -752,19 +755,19 @@
     },
     {
       "id": "starlink-group-17-21",
-      "_ll2Id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
+      "_ll2Id": "29c2b843-540d-40da-b200-d4892d74e140",
       "name": "Starlink Group 17-21",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Uitbreiding van het Starlink-netwerk met 25 nieuwe satellieten in een lage aardbaan.",
+      "objective": "SpaceX lanceert een nieuwe reeks Starlink-satellieten naar een lage aardbaan om het mondiale internetnetwerk uit te breiden.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor lancering op 28 april 2026 om 11:00 UTC.",
+      "highlight": "Gepland voor 31 december 2026 met een Atlas V N22-raket.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert met een Falcon 9-raket een nieuwe lading van 25 Starlink-satellieten als onderdeel van de steeds groeiende megaconstellatie voor breedbandinternet vanuit de ruimte. De missie, aangeduid als Group 17-21, voegt opnieuw capaciteit toe aan het netwerk dat inmiddels duizenden actieve satellieten telt. Starlink biedt wereldwijd internetdekking, ook in afgelegen gebieden zonder traditionele infrastructuur. SpaceX streeft ernaar de dienstverlening verder uit te breiden en de latentie te verlagen door het aantal satellieten in een lage aardbaan voortdurend te verhogen.",
+      "description": "Met de missie Starlink Group 17-21 brengt SpaceX opnieuw een groep satellieten in een lage aardbaan als onderdeel van de voortdurende uitbreiding van het Starlink-breedbandnetwerk. De lancering maakt gebruik van een Atlas V N22-raket, een ongebruikelijke keuze voor een Starlink-missie. Het constante tempo van Starlink-lanceringen stelt SpaceX in staat om de dekking en capaciteit van zijn commerciële internetdienst wereldwijd te vergroten.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -790,9 +793,16 @@
         "low earth orbit",
         "satellieten",
         "megaconstellatie",
-        "leo"
+        "leo",
+        "megaconstelatie",
+        "starliner",
+        "nasa",
+        "commercial crew program",
+        "iss",
+        "boeing",
+        "atlas v"
       ],
-      "_lastClaudeUpdate": "2026-04-15T09:10:29.807Z"
+      "_lastClaudeUpdate": "2026-04-27T10:06:28.590Z"
     },
     {
       "id": "starlink-group-10-24",
