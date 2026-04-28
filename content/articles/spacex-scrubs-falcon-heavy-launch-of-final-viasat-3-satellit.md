@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft de lancering van de Falcon Heavy raket met de laatste Via
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-28T09:17:48.175Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/27/live-coverage-spacex-to-launch-final-viasat-3-satellite-on-falcon-heavy-rocket/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180206-PH_KLS02_0189/KSC-20180206-PH_KLS02_0189~medium.jpg"
+imageAlt: "SpaceX stelt lancering Falcon Heavy met laatste ViaSat-3 satelliet uit vanwege slecht weer"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft vandaag de lancering van haar Falcon Heavy raket moeten uitstellen vanwege slechte weersomstandigheden bij Kennedy Space Center in Florida. De raket zou de laatste satelliet in de ViaSat-3 serie naar de ruimte brengen, maar de lancering vanaf Launch Complex 39A is voorlopig van de planning gehaald.

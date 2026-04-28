@@ -4,13 +4,13 @@ excerpt: "United Launch Alliance heeft 29 Amazon Leo-satellieten gelanceerd vana
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-28T09:17:35.090Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/27/live-coverage-ula-to-launch-29-amazon-leo-satellites-on-atlas-5-rocket-from-cape-canaveral/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunrise at the pad 4/KSC - SLS_03302026_Artemis II sunrise at the pad 4~large.jpg"
+imageAlt: "ULA lanceert 29 Amazon Leo-satellieten met Atlas 5-raket vanaf Cape Canaveral"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 United Launch Alliance (ULA) heeft vannacht 29 Amazon Leo-satellieten gelanceerd met een Atlas 5-raket vanaf Cape Canaveral Space Force Station in Florida. De missie, die door ULA wordt aangeduid als Amazon Leo 6 en door Amazon Leo zelf als Leo Atlas 6 (LA-06), vertrok om 02:53:30 Nederlandse tijd vanaf lanceerplatform 41.
