@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-27T10:06:28.594Z",
+    "lastUpdated": "2026-04-28T10:06:04.319Z",
     "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
+      "amazon-leo-le-02",
+      "amazon-leo-le-02"
     ]
   },
   "missions": [
@@ -1024,13 +1024,13 @@
       "agencyColor": "#ffa040",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Uitbreiding van het Amazon Kuiper-satellietnetwerk voor wereldwijde breedbandinternet vanuit een lage baan.",
+      "objective": "Uitrol van Amazon's Kuiper-megaconstellation voor wereldwijde breedbandinternet vanuit een lage aardbaan.",
       "body": "Low Earth Orbit",
-      "highlight": "29 Kuiper-satellieten op weg naar lage aardbaan in april 2026.",
+      "highlight": "Geplande lancering eind 2026 met Ariane 64, 35-40 satellieten per vlucht.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Amazon Leo (LE-02) is de tweede lancering binnen het ambitieuze Kuiper-programma van Amazon, dat wereldwijde breedbandinternet moet bieden via een megaconstellatie in een lage aardbaan. Deze vlucht brengt 29 satellieten aan boord van een Atlas V 551-raket, beheerd door Arianespace. De volledige constellatie zal uiteindelijk bestaan uit 3.276 satellieten, verdeeld over 98 orbitale vlakken op hoogtes van 590, 610 en 630 kilometer. Kuiper Systems LLC, een dochteronderneming van Amazon, beheert het netwerk als directe concurrent van SpaceX Starlink.",
+      "description": "Amazon Leo, voorheen bekend als Project Kuiper, is een ambitieuze megaconstellation van 3.276 satellieten in een lage aardbaan, beheerd door Kuiper Systems LLC, een dochteronderneming van Amazon. De satellietenvloot wordt verdeeld over 98 orbitale vlakken op drie hoogteschillen: 590, 610 en 630 kilometer. Arianespace zet de Ariane 64-raket in om bij elke lancering 35 tot 40 satellieten tegelijk in de gewenste baan te brengen. Het systeem moet wereldwijd betaalbare breedbandinternet bieden en concurreert daarmee rechtstreeks met Starlink van SpaceX.",
       "vehicle": "Ariane 64",
       "launchSite": "Ariane Launch Area 4",
       "duration": "Onbekend",
@@ -1053,9 +1053,15 @@
         "megaconstellatie",
         "atlas v 551",
         "breedbandinternet",
-        "low earth orbit"
+        "low earth orbit",
+        "arianespace",
+        "atlas v",
+        "ariane 64",
+        "breedband internet",
+        "leo",
+        "megaconstellation"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:32:12.889Z"
+      "_lastClaudeUpdate": "2026-04-28T10:06:04.315Z"
     },
     {
       "id": "gps-iii-sv10",
@@ -1105,7 +1111,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "27 apr 2026",
+      "launched": "29 apr 2026",
       "objective": "Lancering van de ViaSat-3 F3 Ka-band satelliet voor breedbanddekking boven Azië-Pacific.",
       "body": "Geostationaire baan",
       "highlight": "Gepland voor lancering op 30 april 2026 aan boord van een Falcon Heavy.",
