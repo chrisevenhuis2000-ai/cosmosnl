@@ -4,13 +4,13 @@ excerpt: "SpaceX gaat vandaag een tweede poging wagen om de Falcon Heavy raket t
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-29T09:07:49.500Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/28/live-coverage-spacex-seeks-second-attempt-at-falcon-heavy-launch-following-weather-scrub-on-monday/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180206-PH_KLS02_0242/KSC-20180206-PH_KLS02_0242~medium.jpg"
+imageAlt: "Live verslag: SpaceX probeert tweede poging voor Falcon Heavy lancering na weersafgelasting maandag"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX staat klaar voor een nieuwe lanceringspoging van de krachtige Falcon Heavy raket, nadat de missie maandag werd afgelast vanwege ongunstige weersomstandigheden. De raket zal opstijgen vanaf lanceercomplex 39A van NASA's Kennedy Space Center in Florida.
