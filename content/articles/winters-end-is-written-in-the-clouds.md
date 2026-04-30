@@ -4,13 +4,13 @@ excerpt: "Terwijl de winter overging in de lente, toonden de luchten boven de Go
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-30T09:09:21.242Z"
-featured: false
+featured: "false"
 tags: []
 source: "NASA"
 sourceUrl: "https://science.nasa.gov/earth/earth-observatory/winters-end-is-written-in-the-clouds/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001617/GSFC_20171208_Archive_e001617~medium.jpg"
+imageAlt: "Het einde van de winter staat in de wolken geschreven"
+imageCredit: "GSFC"
 ---
 
 De overgang van winter naar lente wordt niet alleen zichtbaar aan de grond, maar ook in de atmosfeer daarboven. De Golf van Alaska bood recent een waar leerboekvoorbeeld van verschillende wolkenformaties die kenmerkend zijn voor deze seizoensovergang.

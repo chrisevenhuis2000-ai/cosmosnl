@@ -4,13 +4,13 @@ excerpt: "SpaceX bereidt zich voor op een tweede lanceerpoging van de Falcon Hea
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-04-30T09:10:10.310Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/04/28/live-coverage-spacex-seeks-second-attempt-at-falcon-heavy-launch-following-weather-scrub-on-monday/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20180206-PH_KLS02_0204/KSC-20180206-PH_KLS02_0204~medium.jpg"
+imageAlt: "Lancering preview: SpaceX probeert tweede poging voor Falcon Heavy-lancering na weerscrub op maandag"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX staat klaar voor een nieuwe poging om de krachtige Falcon Heavy raket te lanceren, nadat de eerste poging op maandag werd afgeblazen vanwege ongunstige weersomstandigheden. De ruimtevaartmaatschappij van Elon Musk hoopt vandaag wel van start te kunnen gaan met deze belangrijke commerciële missie.
