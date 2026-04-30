@@ -1,7 +1,11 @@
 {
   "_meta": {
-    "lastUpdated": "2026-04-29T09:56:44.977Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-04-30T09:58:24.362Z",
+    "autoUpdated": [
+      "viasat-3-f3-viasat-3-asia-pacific",
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -758,13 +762,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "SpaceX lanceert een nieuwe reeks Starlink-satellieten naar een lage aardbaan om het mondiale internetnetwerk uit te breiden.",
+      "objective": "Lancering van Starlink Group 17-21 satellieten naar een lage aardbaan met een Atlas V N22-raket.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor 31 december 2026 met een Atlas V N22-raket.",
+      "highlight": "Lancering gepland voor 31 december 2026 aan boord van Atlas V N22.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de missie Starlink Group 17-21 brengt SpaceX opnieuw een groep satellieten in een lage aardbaan als onderdeel van de voortdurende uitbreiding van het Starlink-breedbandnetwerk. De lancering maakt gebruik van een Atlas V N22-raket, een ongebruikelijke keuze voor een Starlink-missie. Het constante tempo van Starlink-lanceringen stelt SpaceX in staat om de dekking en capaciteit van zijn commerciële internetdienst wereldwijd te vergroten.",
+      "description": "SpaceX bereidt de lancering voor van een nieuwe batch Starlink-satellieten als onderdeel van de snel groeiende internetsatelliettconstellatie. De missie, aangeduid als Group 17-21, maakt gebruik van een Atlas V N22-raket voor de uitrol naar een lage aardbaan. Met deze lancering versterkt SpaceX zijn mondiale breedbandnetwerk dat miljoenen gebruikers wereldwijd van internettoegang voorziet. De geplande lancering staat gepland voor 31 december 2026.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -797,9 +801,10 @@
         "commercial crew program",
         "iss",
         "boeing",
-        "atlas v"
+        "atlas v",
+        "megaconstellation"
       ],
-      "_lastClaudeUpdate": "2026-04-27T10:06:28.590Z"
+      "_lastClaudeUpdate": "2026-04-30T09:58:24.359Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -1107,15 +1112,15 @@
       "name": "ViaSat-3 F3 (ViaSat-3 Asia-Pacific)",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "29 apr 2026",
-      "objective": "Lancering van de ViaSat-3 F3 Ka-band satelliet voor breedbanddekking boven Azië-Pacific.",
+      "objective": "Lancering van de ViaSat-3 F3-satelliet voor breedbandinternet boven de Aziatisch-Pacifische regio.",
       "body": "Geostationaire baan",
-      "highlight": "Gepland voor lancering op 30 april 2026 aan boord van een Falcon Heavy.",
+      "highlight": "Gepland voor lancering op 29 april 2026 met Falcon Heavy.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "ViaSat-3 F3 is de derde en laatste satelliet in de ViaSat-3-serie, ontworpen om het Azië-Pacificgebied te voorzien van ultrasnelle breedbandinternettoegang via Ka-band. Elke satelliet in de serie levert meer dan één terabit per seconde aan netwerkcapaciteit, waarmee het tot de krachtigste commerciële communicatiesatellieten ter wereld behoort. De satelliet maakt gebruik van geavanceerde flexibiliteitstechnologie om capaciteit dynamisch te dirigeren naar de locaties waar klanten zich bevinden. SpaceX verzorgt de lancering met de Falcon Heavy-raket, die de zware satelliet rechtstreeks naar een geostationaire baan brengt.",
+      "description": "SpaceX lanceert met een Falcon Heavy de derde en laatste satelliet uit de ViaSat-3-serie naar een geostationaire baan. De ViaSat-3 F3-satelliet zal de Aziatisch-Pacifische regio voorzien van ultrasnelle internetconnectiviteit via Ka-band technologie. Elke satelliet in de reeks biedt een netwerkcapaciteit van meer dan één terabit per seconde, wat hem tot een van de krachtigste commerciële communicatiesatellieten ter wereld maakt. Dankzij geavanceerde flexibiliteit kan de capaciteit dynamisch worden gericht op gebieden waar de vraag het grootst is.",
       "vehicle": "Falcon Heavy",
       "launchSite": "Launch Complex 39A",
       "duration": "Onbekend",
@@ -1138,9 +1143,11 @@
         "ka-band",
         "geostationaire baan",
         "falcon heavy",
-        "breedbandsatelliet"
+        "breedbandsatelliet",
+        "viasat",
+        "spacex"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:32:27.890Z"
+      "_lastClaudeUpdate": "2026-04-30T09:57:37.698Z"
     },
     {
       "id": "strix-launch-9",
