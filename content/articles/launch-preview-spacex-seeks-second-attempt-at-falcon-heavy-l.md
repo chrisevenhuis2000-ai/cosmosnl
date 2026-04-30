@@ -1,0 +1,22 @@
+---
+title: "Lancering preview: SpaceX probeert tweede poging voor Falcon Heavy-lancering na weerscrub op maandag"
+excerpt: "SpaceX bereidt zich voor op een tweede lanceerpoging van de Falcon Heavy raket na het uitstellen door slecht weer op maandag. De missie zal de ViaSat-3 F3 satelliet naar een geosynchrone transferbaan brengen."
+category: "missies"
+author: "Redactie CosmosNL"
+publishedAt: "2026-04-30T09:10:10.310Z"
+featured: false
+tags: []
+source: "SpaceflightNow"
+sourceUrl: "https://spaceflightnow.com/2026/04/28/live-coverage-spacex-seeks-second-attempt-at-falcon-heavy-launch-following-weather-scrub-on-monday/"
+imageUrl: ""
+imageAlt: ""
+imageCredit: ""
+---
+
+SpaceX staat klaar voor een nieuwe poging om de krachtige Falcon Heavy raket te lanceren, nadat de eerste poging op maandag werd afgeblazen vanwege ongunstige weersomstandigheden. De ruimtevaartmaatschappij van Elon Musk hoopt vandaag wel van start te kunnen gaan met deze belangrijke commerciële missie.
+
+De lancering staat gepland voor 16:13 Nederlandse tijd (10:13 EDT) vanaf lanceerplatform 39A bij NASA's Kennedy Space Center in Florida. SpaceX heeft een lanceervenster van 85 minuten tot hun beschikking om de raket succesvol de lucht in te krijgen.
+
+Het hoofddoel van deze missie is het plaatsen van de ViaSat-3 F3 satelliet in een geosynchrone transferbaan. Deze geavanceerde communicatiesatelliet zal uiteindelijk worden gepositioneerd in een geosynchrone baan rond de aarde, waar het internetdiensten en communicatie zal verzorgen voor gebruikers over een groot geografisch gebied.
+
+De Falcon Heavy is SpaceX's zwaarste operationele raket en bestaat uit drie Falcon 9 boosters die samen zijn gekoppeld. Na de lancering zullen de twee zijboosters proberen terug te keren naar de aarde voor hergebruik, wat een kenmerkend onderdeel is van SpaceX's kostenbesparende aanpak in de ruimtevaart.

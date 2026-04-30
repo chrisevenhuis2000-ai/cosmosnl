@@ -1,0 +1,22 @@
+---
+title: "SpaceX lanceert 6-ton zware ViaSat-3 F3 satelliet met Falcon Heavy raket"
+excerpt: "SpaceX heeft succesvol de ViaSat-3 F3 communicatiesatelliet gelanceerd met een Falcon Heavy raket. Dit was de twaalfde lancering van dit krachtige raketsysteem sinds de introductie."
+category: "missies"
+author: "Redactie CosmosNL"
+publishedAt: "2026-04-30T09:09:58.449Z"
+featured: false
+tags: []
+source: "SpaceflightNow"
+sourceUrl: "https://spaceflightnow.com/2026/04/29/spacex-launches-6-ton-viasat-3-f3-satellite-on-falcon-heavy-rocket/"
+imageUrl: ""
+imageAlt: ""
+imageCredit: ""
+---
+
+SpaceX heeft woensdag een belangrijke mijlpaal bereikt met de succesvolle lancering van de ViaSat-3 F3 satelliet. De zware communicatiesatelliet van 6 ton werd de ruimte in gestuurd met behulp van de krachtige Falcon Heavy raket, die om 16:13 Nederlandse tijd vertrok vanaf lanceerplatform 39A van NASA's Kennedy Space Center in Florida.
+
+Dit was de twaalfde lancering van een Falcon Heavy raket sinds SpaceX dit systeem introduceerde. De Falcon Heavy, bestaande uit drie Falcon 9 boosters die samen zijn gekoppeld, is momenteel een van de krachtigste operationele raketten ter wereld en is speciaal ontworpen voor het lanceren van zware ladingen naar verschillende banen rond de aarde.
+
+De ViaSat-3 F3 satelliet vormt onderdeel van een geavanceerd netwerk van communicatiesatellieten die bedoeld zijn om breedbandinternetdiensten te leveren aan verschillende regio's wereldwijd. Met zijn aanzienlijke massa van 6 ton behoort deze satelliet tot de zwaarste commerciële communicatiesatellieten die momenteel worden gelanceerd.
+
+De succesvolle lancering onderstreept opnieuw SpaceX's groeiende rol in de commerciële ruimtevaartindustrie en de betrouwbaarheid van het Falcon Heavy systeem voor complexe missies. Het bedrijf van Elon Musk blijft een leidende positie innemen in het transport van zowel commerciële als overheidsladingen naar de ruimte.
