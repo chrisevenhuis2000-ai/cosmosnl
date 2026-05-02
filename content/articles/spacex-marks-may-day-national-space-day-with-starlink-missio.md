@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft op 1 mei, de Amerikaanse Dag van de Ruimtevaart, succesvo
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-02T08:19:44.660Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/01/live-coverage-spacex-marks-may-day-with-starlink-mission-on-a-falcon-9-rocket-from-cape-canaveral/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0042/KSC-20220421-PH-KLS01_0042~medium.jpg"
+imageAlt: "SpaceX lanceert Starlink-missie ter ere van Dag van de Ruimtevaart"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft gisteren de Starlink 10-38 missie succesvol uitgevoerd, waarbij 29 breedbandinterneetsatellieten in een lage aardbaan werden gebracht. De lancering vond plaats op 1 mei, wat samenviel met de Amerikaanse National Space Day - een passende timing voor deze ruimtemissie.
