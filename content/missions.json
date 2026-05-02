@@ -1,9 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-01T09:26:33.269Z",
+    "lastUpdated": "2026-05-02T08:57:27.275Z",
     "autoUpdated": [
-      "flight-12",
-      "flight-12"
+      "starlink-group-17-21",
+      "starlink-group-17-21",
+      "nrol-172"
     ]
   },
   "missions": [
@@ -761,13 +762,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Lancering van Starlink Group 17-21 satellieten naar een lage aardbaan met een Atlas V N22-raket.",
+      "objective": "Lancering van een nieuwe batch Starlink-satellieten naar een lage aardbaan ter uitbreiding van het internetnetwerk.",
       "body": "Low Earth Orbit",
-      "highlight": "Lancering gepland voor 31 december 2026 aan boord van Atlas V N22.",
+      "highlight": "Gepland voor 31 december 2026 vanaf een Amerikaanse lanceerbasis.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX bereidt de lancering voor van een nieuwe batch Starlink-satellieten als onderdeel van de snel groeiende internetsatelliettconstellatie. De missie, aangeduid als Group 17-21, maakt gebruik van een Atlas V N22-raket voor de uitrol naar een lage aardbaan. Met deze lancering versterkt SpaceX zijn mondiale breedbandnetwerk dat miljoenen gebruikers wereldwijd van internettoegang voorziet. De geplande lancering staat gepland voor 31 december 2026.",
+      "description": "SpaceX lanceert met een Atlas V N22-raket een nieuwe groep Starlink-satellieten als onderdeel van de voortdurende uitbreiding van het wereldwijde breedbandsatellietnetwerk. De missie, aangeduid als Starlink Group 17-21, voegt weer tientallen satellieten toe aan de al duizenden sterke Starlink-constellatie in de lage aardbaan. Met elke nieuwe lading vergroot SpaceX de dekking en capaciteit van zijn commerciële internetdiensten wereldwijd. De lancering staat gepland voor eind december 2026.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -801,9 +802,10 @@
         "iss",
         "boeing",
         "atlas v",
-        "megaconstellation"
+        "megaconstellation",
+        "boeing starliner"
       ],
-      "_lastClaudeUpdate": "2026-04-30T09:58:24.359Z"
+      "_lastClaudeUpdate": "2026-05-02T08:57:20.157Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -2693,6 +2695,41 @@
         "commercial crew program"
       ],
       "_lastClaudeUpdate": "2026-04-25T08:41:15.385Z"
+    },
+    {
+      "id": "nrol-172",
+      "_ll2Id": "24f0b5b1-f573-4cc9-8898-1eb7fd5cc0f2",
+      "name": "NROL-172",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "12 mei 2026",
+      "objective": "Dertiende batch verkenningssatellieten lanceren voor het NRO-constellatieprogramma van SpaceX en Northrop Grumman.",
+      "body": "Unknown",
+      "highlight": "Dertiende vlucht in het lopende NRO-constellatieprogramma.",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Met NROL-172 brengt SpaceX de dertiende reeks satellieten in een baan om de aarde voor de National Reconnaissance Office. De constellatie, gezamenlijk ontwikkeld door SpaceX en Northrop Grumman, is ontworpen voor beeldvorming en andere inlichtingenmogelijkheden vanuit de ruimte. Het programma maakt deel uit van een grootschalige Amerikaanse investering in commerciële verkenningssatellietinfrastructuur. Details over de exacte baan en de missielading blijven, zoals gebruikelijk bij NRO-missies, vertrouwelijk.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 4E",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/181/?format=json",
+      "timeline": [
+        {
+          "date": "12 mei 2026",
+          "event": "Geplande lancering van NROL-172"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "NRO",
+        "SpaceX",
+        "Falcon 9",
+        "Northrop Grumman",
+        "Verkenningssatelliet"
+      ]
     }
   ]
 }
