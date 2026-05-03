@@ -1,11 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-02T08:57:27.275Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21",
-      "nrol-172"
-    ]
+    "lastUpdated": "2026-05-03T09:12:59.166Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -2704,13 +2700,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "12 mei 2026",
-      "objective": "Dertiende batch verkenningssatellieten lanceren voor het NRO-constellatieprogramma van SpaceX en Northrop Grumman.",
+      "objective": "Lancering van de dertiende reeks verkenningssatellieten voor de NRO in samenwerking met SpaceX en Northrop Grumman.",
       "body": "Unknown",
-      "highlight": "Dertiende vlucht in het lopende NRO-constellatieprogramma.",
+      "highlight": "Dertiende lancering in de NRO-constellatie van SpaceX en Northrop Grumman.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met NROL-172 brengt SpaceX de dertiende reeks satellieten in een baan om de aarde voor de National Reconnaissance Office. De constellatie, gezamenlijk ontwikkeld door SpaceX en Northrop Grumman, is ontworpen voor beeldvorming en andere inlichtingenmogelijkheden vanuit de ruimte. Het programma maakt deel uit van een grootschalige Amerikaanse investering in commerciële verkenningssatellietinfrastructuur. Details over de exacte baan en de missielading blijven, zoals gebruikelijk bij NRO-missies, vertrouwelijk.",
+      "description": "Met de NROL-172-missie stuurt SpaceX opnieuw een batch satellieten de ruimte in als onderdeel van een groeiende verkenningsconstellatie die gezamenlijk wordt ontwikkeld door SpaceX en Northrop Grumman voor het National Reconnaissance Office. De constellatie is ontworpen om beeldvorming en andere inlichtingencapaciteiten vanuit een lage baan te leveren ten behoeve van de Amerikaanse nationale veiligheid. Het is de dertiende vlucht in deze reeks, wat de versnelling van het commerciële inlichtingenprogramma onderstreept. De precieze baanparameters en de technische specificaties van de satellieten blijven geheim vanwege de geclassificeerde aard van de missie.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -2728,8 +2724,14 @@
         "SpaceX",
         "Falcon 9",
         "Northrop Grumman",
-        "Verkenningssatelliet"
-      ]
+        "Verkenningssatelliet",
+        "nro",
+        "spacex",
+        "falcon 9",
+        "northrop grumman",
+        "verkenningssatelliet"
+      ],
+      "_lastClaudeUpdate": "2026-05-03T09:12:59.153Z"
     }
   ]
 }
