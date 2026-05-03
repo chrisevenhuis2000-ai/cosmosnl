@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol de CAS500-2 missie gelanceerd vanaf Vandenberg 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-03T08:45:11.928Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/02/live-coverage-spacex-to-launch-south-korean-earth-observation-satellite-44-more-payloads-on-overnight-falcon-9-rideshare-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20240223-PH-SPX01_0004/KSC-20240223-PH-SPX01_0004~medium.jpg"
+imageAlt: "SpaceX lanceert Zuid-Koreaanse aardobservatiesatelliet samen met 44 andere ladingen tijdens middernachtmissie"
+imageCredit: "SpaceX / KSC"
 ---
 
 SpaceX heeft vannacht een nieuwe mijlpaal bereikt met de succesvolle lancering van de CAS500-2 missie. Om precies middernacht Pacific Daylight Time (09:00 Nederlandse tijd) steeg de Falcon 9 raket op vanaf lanceerplatform 4E van de Vandenberg Space Force Base in Californië.
