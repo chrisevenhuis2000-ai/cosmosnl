@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol een Zuid-Koreaanse aardobservatiesatelliet gela
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-04T09:14:31.177Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/02/live-coverage-spacex-to-launch-south-korean-earth-observation-satellite-44-more-payloads-on-overnight-falcon-9-rideshare-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20210723-PH-SPX01_0004/KSC-20210723-PH-SPX01_0004~medium.jpg"
+imageAlt: "SpaceX lanceert Zuid-Koreaanse aardobservatiesatelliet plus 44 andere ladingen tijdens middernachtmissie met Falcon 9"
+imageCredit: "SpaceX / KSC"
 ---
 
 SpaceX heeft vannacht een nieuwe mijlpaal bereikt met de lancering van de CAS500-2 missie vanaf lanceerplatform 4E op Vandenberg Space Force Base. De Falcon 9 raket steeg om precies middernacht lokale tijd op (09:00 Nederlandse tijd), waarbij een Zuid-Koreaanse aardobservatiesatelliet en 44 andere ladingen werden meegevoerd.
