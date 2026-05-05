@@ -4,13 +4,13 @@ excerpt: "Lockheed Martin heeft zich aangesloten bij een samenwerking met Firefl
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-05T09:06:27.892Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/04/lockheed-martin-announces-collaboration-with-firefly-aerospace-and-seagate-for-off-shore-launches/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/NHQ201811290001/NHQ201811290001~medium.jpg"
+imageAlt: "Lockheed Martin sluit zich aan bij samenwerking met Firefly Aerospace en Seagate voor zeelanceringen"
+imageCredit: "NASA/Bill Ingalls / HQ"
 ---
 
 Defensie- en ruimtevaartgigant Lockheed Martin heeft een strategische samenwerking aangekondigd met raketbouwer Firefly Aerospace en technologiebedrijf Seagate voor het ontwikkelen van zeelanceringen. Deze partnership markeert een belangrijke stap in de evolutie van commerciële ruimtevaart, waarbij lanceringen vanaf oceaanplatforms steeds meer aandacht krijgen als alternatief voor traditionele landgebaseerde lanceerlocaties.
