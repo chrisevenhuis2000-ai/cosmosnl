@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-05T09:52:30.395Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-05-06T10:08:34.068Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -758,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Lancering van een nieuwe batch Starlink-satellieten naar een lage aardbaan ter uitbreiding van het internetnetwerk.",
+      "objective": "SpaceX lanceert een nieuwe batch Starlink-satellieten naar een lage aardbaan ter uitbreiding van het netwerk.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor 31 december 2026 vanaf een Amerikaanse lanceerbasis.",
+      "highlight": "Lancering gepland voor 31 december 2026 met Atlas V N22",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert met een Atlas V N22-raket een nieuwe groep Starlink-satellieten als onderdeel van de voortdurende uitbreiding van het wereldwijde breedbandsatellietnetwerk. De missie, aangeduid als Starlink Group 17-21, voegt weer tientallen satellieten toe aan de al duizenden sterke Starlink-constellatie in de lage aardbaan. Met elke nieuwe lading vergroot SpaceX de dekking en capaciteit van zijn commerciële internetdiensten wereldwijd. De lancering staat gepland voor eind december 2026.",
+      "description": "Met de Starlink Group 17-21 missie breidt SpaceX zijn wereldwijde satellietinternetnetwerk verder uit. Opvallend is de inzet van de Atlas V N22, een raket van United Launch Alliance, in plaats van SpaceX's eigen Falcon 9. De lancering staat gepland voor eind december 2026 en plaatst een nieuwe groep satellieten in een lage aardbaan. Deze missie maakt deel uit van SpaceX's ambitieuze strategie om wereldwijd breedbandinternet aan te bieden via duizenden Starlink-satellieten.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -799,9 +802,11 @@
         "boeing",
         "atlas v",
         "megaconstellation",
-        "boeing starliner"
+        "boeing starliner",
+        "satelietinternet",
+        "lage aardbaan"
       ],
-      "_lastClaudeUpdate": "2026-05-02T08:57:20.157Z"
+      "_lastClaudeUpdate": "2026-05-06T10:08:34.065Z"
     },
     {
       "id": "starlink-group-10-24",
