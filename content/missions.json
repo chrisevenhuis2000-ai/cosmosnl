@@ -1,9 +1,8 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-06T10:08:34.068Z",
+    "lastUpdated": "2026-05-07T10:13:42.862Z",
     "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
+      "bluebird-block-2-3"
     ]
   },
   "missions": [
@@ -1194,12 +1193,12 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "8b7e748c-6ed5-4681-a898-827b4a23b8d7",
+      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 mei 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering op 31 mei 2026 vanuit Mahia, Nieuw-Zeeland.",
@@ -1401,7 +1400,7 @@
       "agency": "Arianespace",
       "agencyColor": "#ffa040",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van de derde Meteosat Third Generation Imaging-satelliet naar geostationaire baan.",
       "body": "Geostationaire baan",
       "highlight": "Geplande lancering in juni 2026 met Ariane 64",
@@ -1806,12 +1805,12 @@
     },
     {
       "id": "victus-haze-puma",
-      "_ll2Id": "04154b70-045b-4e3a-bb5a-e5436091ba37",
+      "_ll2Id": "875ba957-be5f-42bd-8a6e-ed98254f572a",
       "name": "VICTUS HAZE Puma",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "True Anomaly's Jackal AOV voert nabijheidsoperaties uit in een lage aardbaan voor de U.S. Space Force.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering op afroep: volledige startvoorbereiding binnen 24 uur vereist.",
@@ -1819,8 +1818,8 @@
       "bgFrom": "#040408",
       "bgTo": "#080810",
       "description": "De VICTUS HAZE Puma-missie brengt het Jackal Autonomous Orbital Vehicle (AOV) van True Anomaly in een lage aardbaan, waar het nabijheidsoperaties zal uitvoeren rond een ander ruimtevaartuig gebouwd door Rocket Lab National Security. De missie maakt deel uit van het Tactically Responsive Space-programma van de U.S. Space Force Space Systems Command, gericht op snelle en flexibele ruimteoperaties. Het spacecraft blijft gereed totdat de Space Force het startsein geeft, waarna het Firefly-team slechts 24 uur heeft om de raket klaar te stomen voor lancering. Met de Firefly Alpha Block 2 demonstreert het programma een ongekende operationele wendbaarheid in militaire ruimtevaart.",
-      "vehicle": "Electron",
-      "launchSite": "Unknown Pad",
+      "vehicle": "Firefly Alpha Block 2",
+      "launchSite": "Space Launch Complex 2W",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/04154b70-045b-4e3a-bb5a-e5436091ba37/?format=json",
@@ -2704,7 +2703,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "12 mei 2026",
+      "launched": "13 mei 2026",
       "objective": "Lancering van de dertiende reeks verkenningssatellieten voor de NRO in samenwerking met SpaceX en Northrop Grumman.",
       "body": "Unknown",
       "highlight": "Dertiende lancering in de NRO-constellatie van SpaceX en Northrop Grumman.",
@@ -2737,6 +2736,41 @@
         "verkenningssatelliet"
       ],
       "_lastClaudeUpdate": "2026-05-03T09:12:59.153Z"
+    },
+    {
+      "id": "bluebird-block-2-3",
+      "_ll2Id": "c3f48f48-0e0a-4bca-917e-de494cfca35b",
+      "name": "BlueBird Block 2 #3",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "30 jun 2026",
+      "objective": "Lancering van drie BlueBird Block 2-satellieten voor continue breedband mobiele dekking boven de VS.",
+      "body": "Low Earth Orbit",
+      "highlight": "Grootste commerciële LEO-satellieten ooit, met arrays tot 223 m².",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "SpaceX lanceert met een Falcon 9-raket drie BlueBird Block 2-satellieten voor AST SpaceMobile richting een lage aardbaan. De Block 2-generatie biedt tot tien keer meer bandbreedte dan zijn voorganger en ondersteunt pieksnelheden tot 120 Mbps, geschikt voor spraak, data en video. Met communicatiearrays van maar liefst 223 vierkante meter worden dit de grootste commerciële satellieten ooit in een lage aardbaan. Samen moeten ze bijdragen aan een 24/7 doorlopende mobiele breedbanddienst over de gehele Verenigde Staten.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 40",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/c3f48f48-0e0a-4bca-917e-de494cfca35b/?format=json",
+      "timeline": [
+        {
+          "date": "30 jun 2026",
+          "event": "Geplande lancering van BlueBird Block 2 #3"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "AST SpaceMobile",
+        "BlueBird Block 2",
+        "Falcon 9",
+        "Low Earth Orbit",
+        "mobiel breedband"
+      ]
     }
   ]
 }
