@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-07T10:13:42.862Z",
-    "autoUpdated": [
-      "bluebird-block-2-3"
-    ]
+    "lastUpdated": "2026-05-08T09:04:33.881Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1193,7 +1191,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
+      "_ll2Id": "f9a8c9f6-5dc4-4e83-9876-2a51140ec806",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
@@ -1851,7 +1849,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 mei 2026",
       "objective": "Negen Globalstar-3 satellieten in lage baan brengen ter versterking van het mondiale mobiele netwerk.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor medio 2026; satellieten in productie bij MDA en Rocket Lab.",
@@ -2703,7 +2701,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "13 mei 2026",
+      "launched": "11 mei 2026",
       "objective": "Lancering van de dertiende reeks verkenningssatellieten voor de NRO in samenwerking met SpaceX en Northrop Grumman.",
       "body": "Unknown",
       "highlight": "Dertiende lancering in de NRO-constellatie van SpaceX en Northrop Grumman.",
@@ -2745,13 +2743,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "30 jun 2026",
-      "objective": "Lancering van drie BlueBird Block 2-satellieten voor continue breedband mobiele dekking boven de VS.",
+      "objective": "Lancering van drie BlueBird Block 2-satellieten voor continu 4G/5G-breedbanddekking vanuit de ruimte.",
       "body": "Low Earth Orbit",
-      "highlight": "Grootste commerciële LEO-satellieten ooit, met arrays tot 223 m².",
+      "highlight": "Grootste commerciële satellieten ooit in LEO; tot 10x meer bandbreedte dan Block 1.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert met een Falcon 9-raket drie BlueBird Block 2-satellieten voor AST SpaceMobile richting een lage aardbaan. De Block 2-generatie biedt tot tien keer meer bandbreedte dan zijn voorganger en ondersteunt pieksnelheden tot 120 Mbps, geschikt voor spraak, data en video. Met communicatiearrays van maar liefst 223 vierkante meter worden dit de grootste commerciële satellieten ooit in een lage aardbaan. Samen moeten ze bijdragen aan een 24/7 doorlopende mobiele breedbanddienst over de gehele Verenigde Staten.",
+      "description": "SpaceX lanceert drie BlueBird Block 2-satellieten voor AST SpaceMobile, de meest geavanceerde commerciële communicatiesatellieten die ooit in een lage aardbaan worden ingezet. Met communicatiepanelen van maximaal 223 vierkante meter bieden deze satellieten tot tienmaal meer bandbreedte dan hun voorgangers uit de eerste generatie. De Block 2-satellieten ondersteunen pieksnelheden tot 120 Mbps en zijn ontworpen voor 24/7 breedbanddekking in de Verenigde Staten. Zij maken gebruik van gewone smartphones zonder speciale antenne, wat directe satellietconnectiviteit voor de massa een stap dichterbij brengt.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -2769,8 +2767,14 @@
         "BlueBird Block 2",
         "Falcon 9",
         "Low Earth Orbit",
-        "mobiel breedband"
-      ]
+        "mobiel breedband",
+        "ast spacemobile",
+        "bluebird",
+        "leo",
+        "satellietinternet",
+        "falcon 9"
+      ],
+      "_lastClaudeUpdate": "2026-05-08T09:04:33.872Z"
     }
   ]
 }
