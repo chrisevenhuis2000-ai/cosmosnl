@@ -4,13 +4,13 @@ excerpt: "Rocket Lab heeft een contract voor vijf lanceringen van zijn nieuwe Ne
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-08T08:20:08.395Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/07/rocket-lab-announces-five-launch-neutron-deal-as-it-continues-aiming-for-late-2026-debut/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/SSC-20250226-s00158/SSC-20250226-s00158~medium.jpg"
+imageAlt: "Rocket Lab kondigt vijf-lancering Neutron-deal aan terwijl debuut verschuift naar eind 2026"
+imageCredit: "Danny Nowlin / SSC"
 ---
 
 Rocket Lab heeft een belangrijke mijlpaal bereikt met de aankondiging van een contract voor vijf lanceringen van zijn nieuwe Neutron-raket. Deze deal onderstreept het vertrouwen in de raket, ondanks recente vertragingen in het ontwikkelingsprogramma.
