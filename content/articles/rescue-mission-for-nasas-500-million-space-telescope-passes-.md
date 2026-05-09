@@ -4,13 +4,13 @@ excerpt: "Katalyst Space Technologies heeft een cruciale testmijlpaal behaald vo
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-09T08:25:38.125Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/08/rescue-mission-for-nasas-500-million-space-telescope-passes-key-testing-milestone/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-08pd1848/KSC-08pd1848~medium.jpg"
+imageAlt: "Reddingsmissie voor NASA's 500 miljoen dollar kostende ruimtetelescoop doorstaat belangrijke testfase"
+imageCredit: "KSC"
 ---
 
 Het Amerikaanse ruimtevaartbedrijf Katalyst Space Technologies heeft een belangrijke testmijlpaal bereikt in de ontwikkeling van hun Link-ruimtevaartuig. Dit spacecraft is ontworpen voor een complexe reddingsmissie die in juni 2026 van start moet gaan.
