@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-08T09:04:33.881Z",
+    "lastUpdated": "2026-05-09T09:07:25.268Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1191,12 +1191,12 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "f9a8c9f6-5dc4-4e83-9876-2a51140ec806",
+      "_ll2Id": "8b7e748c-6ed5-4681-a898-827b4a23b8d7",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 jun 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering op 31 mei 2026 vanuit Mahia, Nieuw-Zeeland.",
@@ -1398,7 +1398,7 @@
       "agency": "Arianespace",
       "agencyColor": "#ffa040",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 aug 2026",
       "objective": "Lancering van de derde Meteosat Third Generation Imaging-satelliet naar geostationaire baan.",
       "body": "Geostationaire baan",
       "highlight": "Geplande lancering in juni 2026 met Ariane 64",
@@ -1844,12 +1844,12 @@
     },
     {
       "id": "9-x-globalstar-3",
-      "_ll2Id": "be8b4b0d-1989-48a5-a96d-e8e4d59ed8b3",
+      "_ll2Id": "e61d353c-db55-4a57-8184-0fab187231e6",
       "name": "9 x Globalstar-3",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 mei 2026",
+      "launched": "31 dec 2026",
       "objective": "Negen Globalstar-3 satellieten in lage baan brengen ter versterking van het mondiale mobiele netwerk.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor medio 2026; satellieten in productie bij MDA en Rocket Lab.",
@@ -1858,7 +1858,7 @@
       "bgTo": "#0a2030",
       "description": "SpaceX lanceert negen derde generatie Globalstar-satellieten naar een lage aardbaan op 1410 kilometer hoogte, met een inclinatie van 52 graden. De nieuwe satellieten moeten de bestaande constellatie verjongen en de capaciteit voor wereldwijde spraak-, data- en faxdiensten uitbreiden. MDA kreeg begin 2022 het contract voor de bouw van in totaal 17 nieuwe satellieten, waarbij Rocket Lab verantwoordelijk is voor de satellietbussen en lanceerdispensers. De missie onderstreept de groeiende samenwerking tussen grote ruimtevaartbedrijven voor commerciële communicatie-infrastructuur.",
       "vehicle": "Falcon 9",
-      "launchSite": "Unknown Pad",
+      "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/204/?format=json",
