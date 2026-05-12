@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-11T10:56:08.447Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-05-12T10:23:34.971Z",
+    "autoUpdated": [
+      "nrol-172"
+    ]
   },
   "missions": [
     {
@@ -2740,15 +2742,15 @@
       "name": "NROL-172",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "11 mei 2026",
-      "objective": "Lancering van de dertiende reeks verkenningssatellieten voor de NRO in samenwerking met SpaceX en Northrop Grumman.",
+      "objective": "Lancering van de dertiende batch verkenningssatellieten voor de NRO als onderdeel van een gezamenlijk SpaceX-Northrop Grumman constellatie.",
       "body": "Unknown",
-      "highlight": "Dertiende lancering in de NRO-constellatie van SpaceX en Northrop Grumman.",
+      "highlight": "Dertiende batch van een geheime NRO-verkenningsconstellatie succesvol gelanceerd.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de NROL-172-missie stuurt SpaceX opnieuw een batch satellieten de ruimte in als onderdeel van een groeiende verkenningsconstellatie die gezamenlijk wordt ontwikkeld door SpaceX en Northrop Grumman voor het National Reconnaissance Office. De constellatie is ontworpen om beeldvorming en andere inlichtingencapaciteiten vanuit een lage baan te leveren ten behoeve van de Amerikaanse nationale veiligheid. Het is de dertiende vlucht in deze reeks, wat de versnelling van het commerciële inlichtingenprogramma onderstreept. De precieze baanparameters en de technische specificaties van de satellieten blijven geheim vanwege de geclassificeerde aard van de missie.",
+      "description": "Met de NROL-172-missie brengt SpaceX de dertiende reeks satellieten in een baan om de aarde voor de National Reconnaissance Office. De constellatie, ontwikkeld in samenwerking met Northrop Grumman, is ontworpen om geavanceerde beeldvorming en andere inlichtingencapaciteiten te leveren vanuit de ruimte. De Falcon 9-raket voert de lancering uit vanaf de Amerikaanse kust, waarmee SpaceX opnieuw zijn centrale rol in Amerikaanse overheidsruimteprogramma's bevestigt. De exacte baanparameters blijven geheim vanwege de gevoelige aard van de nationale veiligheidsmissie.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -2773,7 +2775,7 @@
         "northrop grumman",
         "verkenningssatelliet"
       ],
-      "_lastClaudeUpdate": "2026-05-03T09:12:59.153Z"
+      "_lastClaudeUpdate": "2026-05-12T10:23:34.956Z"
     },
     {
       "id": "bluebird-block-2-3",
