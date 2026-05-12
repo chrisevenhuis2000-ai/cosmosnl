@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft met succes de NROL-72 missie gelanceerd vanaf Vandenberg 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-12T09:34:05.460Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/11/live-coverage-spacex-to-launch-intelligence-gathering-satellites-for-the-national-reconnaissance-office/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20240223-PH-SPX01_0004/KSC-20240223-PH-SPX01_0004~medium.jpg"
+imageAlt: "SpaceX lanceert inlichtingensatellieten voor Amerikaanse National Reconnaissance Office"
+imageCredit: "SpaceX / KSC"
 ---
 
 SpaceX heeft vannacht een nieuwe lading inlichtingensatellieten de ruimte in gestuurd voor de Amerikaanse National Reconnaissance Office (NRO). De Falcon 9 raket vertrok om 04:13:50 Nederlandse tijd vanaf lanceerplatform 4E op Vandenberg Space Force Base in Californië.
