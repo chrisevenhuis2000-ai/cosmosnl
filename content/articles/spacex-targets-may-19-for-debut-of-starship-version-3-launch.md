@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft 19 mei als doeldatum gesteld voor de eerste vlucht van St
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-13T09:42:34.773Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/12/spacex-targets-may-19-for-debut-of-starship-super-heavy-version-3-launch-pad-2/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_3/SLS_KSC_Artemis II Rollout 1172026_3~large.jpg"
+imageAlt: "SpaceX plant lancering Starship Versie 3 vanaf nieuw lanceerplatform op 19 mei"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 SpaceX heeft 19 mei aangekondigd als streefdatum voor de eerste lancering van Starship Versie 3 vanaf het gloednieuwe Launch Pad 2. Deze mijlpaal markeert een belangrijke stap voorwaarts in het Starship-ontwikkelingsprogramma van het ruimtevaartbedrijf van Elon Musk.
