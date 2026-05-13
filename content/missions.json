@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-12T10:23:34.971Z",
-    "autoUpdated": [
-      "nrol-172"
-    ]
+    "lastUpdated": "2026-05-13T10:12:52.804Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1193,12 +1191,12 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "8b7e748c-6ed5-4681-a898-827b4a23b8d7",
+      "_ll2Id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering in juni 2026 vanaf het Rocket Lab-complex.",
@@ -1489,7 +1487,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van de MRV-1 missie-uitbreidingslading met robotvoertuig en meerdere pods naar GEO.",
       "body": "Geostationaire baan",
       "highlight": "Gepland voor lancering in juni 2026 richting geostationaire baan.",
