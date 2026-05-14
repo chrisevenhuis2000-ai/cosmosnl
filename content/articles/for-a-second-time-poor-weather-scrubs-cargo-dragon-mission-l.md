@@ -1,0 +1,22 @@
+---
+title: "Slecht weer verhindert voor tweede keer lancering van Cargo Dragon-missie naar ruimtestation"
+excerpt: "SpaceX moest opnieuw de lancering van hun 34e bevoorradingsmissie naar het ISS uitstellen vanwege ongunstige weersomstandigheden. De Falcon 9-raket zou 6.500 pond aan wetenschappelijke experimenten en voorraden naar het internationale ruimtestation brengen."
+category: "missies"
+author: "Redactie CosmosNL"
+publishedAt: "2026-05-14T09:32:12.522Z"
+featured: false
+tags: []
+source: "SpaceflightNow"
+sourceUrl: "https://spaceflightnow.com/2026/05/12/live-coverage-nasa-spacex-to-launch-34th-cargo-dragon-mission-to-the-space-station/"
+imageUrl: ""
+imageAlt: ""
+imageCredit: ""
+---
+
+Voor de tweede keer moest SpaceX de lancering van hun Cargo Dragon-missie naar het Internationale Ruimtestation (ISS) uitstellen vanwege slecht weer. De 34e missie onder het Commercial Resupply Services 2-contract met NASA zou oorspronkelijk al eerder plaatsvinden, maar werd opnieuw gehinderd door ongunstige weersomstandigheden.
+
+De Falcon 9-raket staat klaar om 6.500 pond (ongeveer 2.950 kilogram) aan wetenschappelijke experimenten en benodigdheden naar het ruimtestation te transporteren. Deze lading bevat cruciale voorraden voor de astronauten aan boord van het ISS, evenals belangrijke wetenschappelijke apparatuur voor lopend onderzoek in de ruimte.
+
+De lancering is nu gepland voor vrijdag 15 mei om 18:05 EDT (00:05 Nederlandse tijd) vanaf lanceerplatform 40 op Cape Canaveral Space Force Station in Florida. SpaceX en NASA monitoren de weersomstandigheden nauwlettend om ervoor te zorgen dat de missie veilig kan worden uitgevoerd.
+
+Dit type vertragingen komt vaker voor bij ruimtemissies, waarbij de veiligheid van zowel de bemanning als de kostbare lading voorop staat. Zodra de weersomstandigheden verbeteren, zal SpaceX opnieuw proberen de belangrijke bevoorradingsmissie naar het ISS te lanceren.
