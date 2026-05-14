@@ -4,13 +4,13 @@ excerpt: "SpaceX moest opnieuw de lancering van hun 34e bevoorradingsmissie naar
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-14T09:32:12.522Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/12/live-coverage-nasa-spacex-to-launch-34th-cargo-dragon-mission-to-the-space-station/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20221126-PH-KMO06_0019/KSC-20221126-PH-KMO06_0019~medium.jpg"
+imageAlt: "Slecht weer verhindert voor tweede keer lancering van Cargo Dragon-missie naar ruimtestation"
+imageCredit: "NASA/Kevin O'Connell & Kevin Dav / KSC"
 ---
 
 Voor de tweede keer moest SpaceX de lancering van hun Cargo Dragon-missie naar het Internationale Ruimtestation (ISS) uitstellen vanwege slecht weer. De 34e missie onder het Commercial Resupply Services 2-contract met NASA zou oorspronkelijk al eerder plaatsvinden, maar werd opnieuw gehinderd door ongunstige weersomstandigheden.
