@@ -1,0 +1,22 @@
+---
+title: "ULA bevestigt succesvolle test van vaste brandstofbooster terwijl onderzoek naar Vulcan-anomalie doorgaat"
+excerpt: "Northrop Grumman heeft met succes een statische test uitgevoerd van de GEM 63XL vaste brandstofbooster die wordt gebruikt voor ULA's Vulcan-raketten. Dit gebeurt terwijl het onderzoek naar een anomalie tijdens een vlucht in februari nog altijd loopt."
+category: "missies"
+author: "Redactie CosmosNL"
+publishedAt: "2026-05-15T09:45:05.089Z"
+featured: false
+tags: []
+source: "SpaceflightNow"
+sourceUrl: "https://spaceflightnow.com/2026/05/14/ula-confirms-successful-solid-rocket-booster-test-as-vulcan-anomaly-investigation-continues/"
+imageUrl: ""
+imageAlt: ""
+imageCredit: ""
+---
+
+United Launch Alliance (ULA) heeft bevestigd dat de statische brandtest van de vaste brandstofbooster succesvol is verlopen. De test werd uitgevoerd door Northrop Grumman, de fabrikant van de GEM 63XL vaste brandstofbooster die kan worden ingezet om ULA's Vulcan-raketten extra stuwkracht te geven.
+
+De test komt op een cruciaal moment voor het Vulcan-programma. Medio februari werd er namelijk een anomalie waargenomen tijdens een vlucht van een van deze boosters, wat heeft geleid tot een uitgebreid onderzoek naar de oorzaak van het probleem.
+
+De GEM 63XL boosters zijn essentiële componenten voor de Vulcan-raket en worden gebruikt om extra stuwkracht te leveren tijdens de lancering. Het succesvol afronden van deze grondtest is een belangrijke stap in het proces om het vertrouwen in het systeem te herstellen.
+
+ULA werkt nauw samen met Northrop Grumman om de exacte oorzaak van de februari-anomalie te achterhalen. Het onderzoek is nog gaande en beide bedrijven zetten alles op alles om ervoor te zorgen dat toekomstige lanceringen veilig kunnen plaatsvinden voordat het Vulcan-programma wordt hervat.
