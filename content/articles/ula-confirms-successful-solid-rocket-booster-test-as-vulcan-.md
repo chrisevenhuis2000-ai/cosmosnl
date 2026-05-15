@@ -4,13 +4,13 @@ excerpt: "Northrop Grumman heeft met succes een statische test uitgevoerd van de
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-15T09:45:05.089Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/14/ula-confirms-successful-solid-rocket-booster-test-as-vulcan-anomaly-investigation-continues/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20240520-PH-SNS01_0002/KSC-20240520-PH-SNS01_0002~medium.jpg"
+imageAlt: "ULA bevestigt succesvolle test van vaste brandstofbooster terwijl onderzoek naar Vulcan-anomalie doorgaat"
+imageCredit: "Shay Saldana/Sierra Space / KSC"
 ---
 
 United Launch Alliance (ULA) heeft bevestigd dat de statische brandtest van de vaste brandstofbooster succesvol is verlopen. De test werd uitgevoerd door Northrop Grumman, de fabrikant van de GEM 63XL vaste brandstofbooster die kan worden ingezet om ULA's Vulcan-raketten extra stuwkracht te geven.
