@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-15T10:12:03.040Z",
+    "lastUpdated": "2026-05-16T09:20:19.584Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1191,12 +1191,12 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
+      "_ll2Id": "8b7e748c-6ed5-4681-a898-827b4a23b8d7",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 jun 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering in juni 2026 vanaf het Rocket Lab-complex.",
@@ -1359,7 +1359,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "25 jun 2026",
+      "launched": "17 jul 2026",
       "objective": "Demonstratie van een volledig cryogeen vloeistofbeheersysteem in een lage aardbaan.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor juni 2026 aan boord van Rocket Lab Electron.",
