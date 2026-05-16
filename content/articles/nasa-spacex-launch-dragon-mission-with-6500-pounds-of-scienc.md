@@ -4,13 +4,13 @@ excerpt: "Een Falcon 9-raket is vandaag gelanceerd vanaf Cape Canaveral met een 
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-16T08:46:55.349Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/15/live-coverage-spacex-makes-another-attempt-to-launch-space-station-cargo-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/2013-1587/2013-1587~medium.jpg"
+imageAlt: "NASA en SpaceX lanceren Dragon-missie met 3000 kilo aan wetenschappelijke experimenten naar ISS"
+imageCredit: "NASA_Kim Shiflett / KSC"
 ---
 
 NASA en SpaceX hebben succesvol een nieuwe bevoorradingsmissie naar het Internationaal Ruimtestation ISS gelanceerd. De Falcon 9-raket vertrok om 00:05 Nederlandse tijd vanaf Space Launch Complex 40 op Cape Canaveral Space Force Station in Florida.
