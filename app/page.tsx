@@ -788,7 +788,7 @@ function StargazingWidget() {
   const [clouds,   setClouds]   = useState<number | null>(null)
   const [darkKm,   setDarkKm]   = useState<number | null>(null)
   const [darkName, setDarkName] = useState('')
-  const [locName,  setLocName]  = useState('jouw locatie')
+  const [locName] = useState('Amsterdam')
   const [loading,  setLoading]  = useState(true)
 
   useEffect(() => {
@@ -825,16 +825,7 @@ function StargazingWidget() {
       setLoading(false)
     }
 
-    if (typeof navigator !== 'undefined' && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        pos => { setLocName('jouw locatie'); fetch20h(pos.coords.latitude, pos.coords.longitude) },
-        ()  => { setLocName('Amsterdam');    fetch20h(52.3676, 4.9041) },
-        { timeout: 5000 }
-      )
-    } else {
-      setLocName('Amsterdam')
-      fetch20h(52.3676, 4.9041)
-    }
+    fetch20h(52.3676, 4.9041)
   }, [])
 
   const topObj = SK_OBJECTS[0]

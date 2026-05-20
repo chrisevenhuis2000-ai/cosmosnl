@@ -464,24 +464,8 @@ export default function SterrenkijkenPage() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem('nightgazer_stargazing_loc')
-      if (saved) { setLocation(JSON.parse(saved)); return }
+      if (saved) setLocation(JSON.parse(saved))
     } catch {}
-    if (!navigator.geolocation) return
-    navigator.geolocation.getCurrentPosition(
-      async pos => {
-        const { latitude: lat, longitude: lon } = pos.coords
-        let name = `${lat.toFixed(2)}°N, ${lon.toFixed(2)}°E`
-        try {
-          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10&accept-language=nl`)
-          const d = await r.json()
-          const a = d.address
-          name = a.city || a.town || a.village || a.municipality || name
-        } catch {}
-        saveLocation({ lat, lon, name })
-      },
-      () => {},
-      { timeout: 8000 }
-    )
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchWeather = useCallback(async (loc: Location) => {
