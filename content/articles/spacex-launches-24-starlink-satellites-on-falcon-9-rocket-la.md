@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol 24 nieuwe Starlink-satellieten gelanceerd vanaf
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-20T10:23:11.888Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/20/live-coverage-spacex-to-launch-24-starlink-satellites-on-falcon-9-rocket-launch-from-vandenberg-sfb/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202409270003/NHQ202409270003~medium.jpg"
+imageAlt: "SpaceX lanceert 24 Starlink-satellieten met Falcon 9-raket vanaf Vandenberg"
+imageCredit: "NASA/Keegan Barber / HQ"
 ---
 
 SpaceX heeft vannacht 24 nieuwe Starlink-satellieten gelanceerd vanaf pad 4E van Vandenberg Space Force Base in Californië. De Falcon 9-raket steeg om 04:46 Nederlandse tijd op, wat overeenkomt met 19:46 lokale tijd aan de Amerikaanse westkust.
