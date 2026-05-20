@@ -4,6 +4,7 @@ import './globals.css'
 import ErrorBoundary from './ErrorBoundary'
 import SearchProvider from './components/SearchProvider'
 import { CookieBanner } from './components/CookieBanner'
+import { AdSenseScript } from './components/AdSenseScript'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -49,12 +50,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/logo-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        {/* AdSense — direct in <head> zodat Google's crawler het vindt */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1782461224909980"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className={`${inter.variable} ${playfair.variable} ${jetbrains.variable} bg-void text-star antialiased`} style={{ fontFamily: 'var(--font-sans)' }}>
         <ErrorBoundary>
@@ -62,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ErrorBoundary>
         <SearchProvider />
         <CookieBanner />
+        <AdSenseScript />
       </body>
     </html>
   )

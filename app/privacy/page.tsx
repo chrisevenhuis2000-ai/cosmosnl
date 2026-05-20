@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           Privacyverklaring
         </h1>
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 40 }}>
-          Bijgewerkt: april 2026
+          Bijgewerkt: mei 2026
         </p>
 
         <div style={{ display: 'grid', gap: 24, maxWidth: 720 }}>
@@ -42,17 +42,23 @@ export default function PrivacyPage() {
               NightGazer maakt gebruik van de volgende externe diensten:
             </p>
             <ul style={{ fontSize: '0.88rem', color: '#8A9BC4', lineHeight: 2, paddingLeft: 20 }}>
+              <li><strong style={{ color: '#c8d0e0' }}>Google AdSense</strong> — voor het tonen van advertenties. Google kan cookies plaatsen en gebruiksgegevens verzamelen voor gepersonaliseerde advertenties. Alleen actief na uw toestemming. Zie het <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: '#378ADD', textDecoration: 'none' }}>privacybeleid van Google</a>.</li>
+              <li><strong style={{ color: '#c8d0e0' }}>Google Analytics (GA4)</strong> — voor anonieme bezoekersstatistieken. Alleen actief na uw toestemming.</li>
               <li><strong style={{ color: '#c8d0e0' }}>NASA Open APIs</strong> — voor dagelijkse astronomie-foto&apos;s en afbeeldingen (geen tracking)</li>
               <li><strong style={{ color: '#c8d0e0' }}>Cloudflare</strong> — voor beeldproxy en CDN-diensten; eigen privacybeleid van toepassing</li>
               <li><strong style={{ color: '#c8d0e0' }}>wheretheiss.at</strong> — voor live ISS-positiedata (geen tracking)</li>
               <li><strong style={{ color: '#c8d0e0' }}>Pexels</strong> — voor aanvullende ruimtebeelden (via onze server, niet direct vanuit je browser)</li>
             </ul>
+            <p style={{ fontSize: '0.82rem', color: '#6A7B9C', lineHeight: 1.75, marginTop: 16 }}>
+              Meer informatie over hoe Google gegevens gebruikt:{' '}
+              <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style={{ color: '#378ADD', textDecoration: 'none' }}>policies.google.com/technologies/partner-sites</a>
+            </p>
           </section>
 
           <section style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, padding: '28px 32px' }}>
             <h2 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 12 }}>Cookies</h2>
             <p style={{ fontSize: '0.88rem', color: '#8A9BC4', lineHeight: 1.75 }}>
-              NightGazer gebruikt geen tracking-cookies of analytische cookies. Er worden geen advertentiecookies geplaatst.
+              NightGazer gebruikt functionele cookies (zoals het opslaan van uw quizantwoorden en cookievoorkeur). Na uw uitdrukkelijke toestemming worden ook analytische cookies (Google Analytics) en advertentiecookies (Google AdSense) ingeschakeld. U kunt uw voorkeur op elk moment aanpassen via de cookiebanner onderaan de pagina.
             </p>
           </section>
 
