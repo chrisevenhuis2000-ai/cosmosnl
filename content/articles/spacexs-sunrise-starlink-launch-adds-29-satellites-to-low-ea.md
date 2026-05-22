@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft succesvol 29 nieuwe Starlink-satellieten gelanceerd tijde
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-22T10:22:45.439Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/20/live-coverage-spacex-to-launch-29-starlink-satellites-on-falcon-9-rocket-from-cape-canaveral-13/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20240223-PH-SPX01_0003/KSC-20240223-PH-SPX01_0003~medium.jpg"
+imageAlt: "SpaceX lanceert bij zonsopgang 29 nieuwe Starlink-satellieten naar lage aardbaan"
+imageCredit: "SpaceX / KSC"
 ---
 
 SpaceX heeft vanochtend bij zonsopgang 29 nieuwe Starlink-satellieten succesvol gelanceerd vanaf Cape Canaveral Space Force Station in Florida. De Falcon 9-raket steeg om 12:04 Nederlandse tijd (6:04 lokale tijd) op vanaf lanceerplatform 40, waarbij de satellieten werden toegevoegd aan de groeiende megaconstellatie in de lage aardbaan.

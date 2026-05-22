@@ -4,13 +4,13 @@ excerpt: "SpaceX heeft de eerste lancering van zijn nieuwe Starship Version 3 ra
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-22T10:22:34.284Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/21/live-coverage-spacex-to-launch-first-starship-version-3-rocket/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/SLS_KSC_Artemis II Rollout 1172026_34/SLS_KSC_Artemis II Rollout 1172026_34~large.jpg"
+imageAlt: "SpaceX stelt eerste lancering van Starship Version 3 uit"
+imageCredit: "NASA/Sam Lott / MSFC"
 ---
 
 SpaceX heeft vandaag de eerste lancering van zijn geavanceerde Starship Version 3 raket moeten uitstellen. De lancering stond gepland vanaf lanceerplatform 2 bij Starbase in Texas, maar kon niet plaatsvinden tijdens het geplande tijdvenster.
