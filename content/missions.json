@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-22T10:41:25.353Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-05-23T09:44:19.673Z",
+    "autoUpdated": [
+      "flight-12",
+      "flight-12"
+    ]
   },
   "missions": [
     {
@@ -1192,7 +1195,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
+      "_ll2Id": "f9a8c9f6-5dc4-4e83-9876-2a51140ec806",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
@@ -1238,13 +1241,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Eerste vlucht van Astra's Rocket 4, een kleine satellietdrager van de tweede generatie.",
+      "objective": "Eerste vlucht van Astra Space's tweede generatie kleine satellietlanceervoertuig naar een lage aardbaan.",
       "body": "Suborbital",
-      "highlight": "Debuutvlucht Rocket 4 gepland voor 31 december 2026.",
+      "highlight": "Jungfernvlucht Rocket 4 gepland voor 31 december 2026.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Flight 12 markeert een belangrijke mijlpaal voor Astra Space met de debuutvlucht van de Rocket 4, de volledig vernieuwde opvolger van de eerdere Rocket 3-serie. De lancering, gepland voor eind december 2026, moet de kleine satellietdrager naar een lage aardbaan brengen. Met de Rocket 4 mikt Astra op een hogere betrouwbaarheid en een groter laadvermogen ten opzichte van zijn voorganger. SpaceX verzorgt de lanceerlogistiek als uitvoerende partij voor deze demonstratiemissie.",
+      "description": "Flight 12 markeert een mijlpaal voor Astra Space met de jungfernvlucht van de Astra Rocket 4, de tweede generatie kleine satellietdrager van het bedrijf. Het voertuig is ontworpen om kleine satellieten goedkoper en betrouwbaarder naar een lage aardbaan te brengen. Na eerdere tegenslagen met de Rocket 3-serie hoopt Astra met dit nieuwe ontwerp een stabielere lanceerfrequentie te realiseren. De missie, uitgevoerd in samenwerking met SpaceX, staat gepland voor eind december 2026.",
       "vehicle": "Astra Rocket 4",
       "launchSite": "Space Launch Complex 46",
       "duration": "Onbekend",
@@ -1306,9 +1309,23 @@
         "astra space",
         "rocket 4",
         "small sat",
-        "nieuwe drager"
+        "nieuwe drager",
+        "starlink",
+        "herbruikbaarheid",
+        "add",
+        "h3-raket",
+        "zonnesynchrone baan",
+        "minisatellieten",
+        "ruimtevaart",
+        "europese ruimtevaart",
+        "draagraketten",
+        "commerciële ruimtevaart",
+        "kleine lanceervehicles",
+        "zonsynchrone baan",
+        "small satellite",
+        "new launch vehicle"
       ],
-      "_lastClaudeUpdate": "2026-05-01T09:26:33.265Z"
+      "_lastClaudeUpdate": "2026-05-23T09:44:19.668Z"
     },
     {
       "id": "amazon-leo-le-03",
