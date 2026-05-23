@@ -4,13 +4,13 @@ excerpt: "SpaceX's nieuwste Starship-test verliep grotendeels succesvol, ondanks
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-23T09:00:58.170Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/23/musk-praises-epic-super-heavy-starship-launch/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20211220-PH-KLS01_0002/KSC-20211220-PH-KLS01_0002~medium.jpg"
+imageAlt: "Musk roemt 'epische' lancering van Super Heavy-Starship"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX heeft opnieuw een belangrijke mijlpaal bereikt met de testlancering van het Starship-systeem, die door CEO Elon Musk werd omschreven als 'episch'. De lancering toonde zowel de veerkracht van het systeem als de geavanceerde software die problemen tijdens de vlucht kan opvangen.

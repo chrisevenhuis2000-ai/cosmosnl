@@ -4,13 +4,13 @@ excerpt: "SpaceX staat op het punt om opnieuw te proberen hun geavanceerde Stars
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-23T09:01:10.338Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/21/live-coverage-spacex-to-launch-first-starship-version-3-rocket/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/iss072e220043/iss072e220043~medium.jpg"
+imageAlt: "Lanceerpreview: SpaceX maakt nieuwe poging voor eerste lancering van Starship Versie 3 raket"
+imageCredit: "NASA/Don Pettit / JSC"
 ---
 
 SpaceX bereidt zich voor op een cruciale lancering van hun nieuwste Starship Versie 3 raket, waarbij het bedrijf hoopt op een succesvol debuut van hun verbeterde ruimtevaartuig. De lancering staat gepland vanaf Pad 2 op Starbase in Texas, tijdens een lanceervenster dat opent om 23:30 Nederlandse tijd.
