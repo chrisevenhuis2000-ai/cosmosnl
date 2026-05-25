@@ -4,13 +4,13 @@ excerpt: "SpaceX staat op het punt om 29 nieuwe Starlink-satellieten te lanceren
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-25T11:07:29.733Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/24/live-coverage-spacex-to-launch-29-starlink-satellites-on-a-falcon-9-rocket-from-cape-canaveral/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC-20220421-PH-KLS01_0054/KSC-20220421-PH-KLS01_0054~medium.jpg"
+imageAlt: "Live verslag: SpaceX lanceert 29 Starlink-satellieten met Falcon 9 raket vanaf Cape Canaveral"
+imageCredit: "NASA/Kim Shiflett / KSC"
 ---
 
 SpaceX bereidt zich voor op de lancering van 29 Starlink-satellieten aan boord van een Falcon 9 raket vanaf Cape Canaveral Space Force Station. De missie, genaamd Starlink 10-47, staat gepland om op te stijgen vanaf lanceerplatform 40 tijdens een venster dat opent om 13:41 Nederlandse tijd.
