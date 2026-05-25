@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-24T09:47:11.595Z",
+    "lastUpdated": "2026-05-25T11:42:15.432Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2716,13 +2716,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "30 sep 2026",
-      "objective": "SpaceX Crew-13 brengt astronauten naar het ISS als onderdeel van NASA's Commercial Crew Program.",
+      "objective": "Crew Dragon brengt astronauten naar het ISS als onderdeel van NASA's Commercial Crew Program.",
       "body": "Low Earth Orbit",
-      "highlight": "Lancering gepland voor 30 september 2026 vanaf Kennedy Space Center.",
+      "highlight": "Gepland voor lancering op 30 september 2026.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Crew-13 is de dertiende operationele bemande vlucht van een Crew Dragon-ruimtecapsule naar het Internationaal Ruimtestation. De missie wordt uitgevoerd door SpaceX met een Falcon 9-raket in het kader van NASA's Commercial Crew Program. Na aankomst voegen de bemanningsleden zich bij het permanente team aan boord van het ISS voor een langdurig wetenschappelijk verblijf in een lage aardbaan. De vlucht is gepland voor 30 september 2026 en zet de succesvolle samenwerking tussen NASA en SpaceX voort.",
+      "description": "SpaceX Crew-13 is de dertiende operationele bemande vlucht van een Crew Dragon-ruimtevaartuig naar het Internationaal Ruimtestation. De missie wordt uitgevoerd in het kader van NASA's Commercial Crew Program, waarbij SpaceX fungert als commerciële partner voor bemanningsrotaties. Met een Falcon 9-raket vertrekt de capsule vanuit Kennedy Space Center richting een lage aardbaan. De missie onderstreept de volwassenheid van de samenwerking tussen NASA en SpaceX voor routinematig bemand ruimtetransport.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -2747,7 +2747,7 @@
         "nasa",
         "commercial crew program"
       ],
-      "_lastClaudeUpdate": "2026-04-25T08:41:15.385Z"
+      "_lastClaudeUpdate": "2026-05-25T11:42:15.424Z"
     },
     {
       "id": "nrol-172",
