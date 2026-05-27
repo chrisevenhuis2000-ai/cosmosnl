@@ -4,13 +4,13 @@ excerpt: "NASA houdt dinsdag een persconferentie om de voortgang te bespreken va
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-27T10:53:35.766Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/26/live-coverage-nasa-updates-progress-towards-established-a-moon-base-artemis-3-mission/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/PIA23498/PIA23498~medium.jpg"
+imageAlt: "NASA geeft update over voortgang Artemis 3-missie en plannen voor maanbasis"
+imageCredit: "JPL"
 ---
 
 NASA zal dinsdag om 20:00 Nederlandse tijd een belangrijke persconferentie houden over de voortgang van het Artemis-programma en de plannen voor een toekomstige maanbasis. De briefing markeert de eerste grote update van het ruimtevaartbureau sinds administrator Jared Isaacman het ambitieuze project eind maart aankondigde.

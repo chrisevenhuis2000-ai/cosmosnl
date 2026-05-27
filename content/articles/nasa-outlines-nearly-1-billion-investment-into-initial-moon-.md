@@ -4,13 +4,13 @@ excerpt: "NASA heeft plannen onthuld voor een uitgestrekte maanbasis die 'honder
 category: "maan"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-27T10:53:21.709Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/27/nasa-outlines-nearly-1-billion-investment-into-initial-moon-base-missions/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/NHQ202603240019/NHQ202603240019~large.jpg"
+imageAlt: "NASA investeert bijna 1 miljard dollar in eerste maanbasis-missies"
+imageCredit: "NASA/Bill Ingalls / HQ"
 ---
 
 NASA heeft grootse plannen gepresenteerd voor de ontwikkeling van een permanente maanbasis, waarvoor de organisatie bijna een miljard dollar wil investeren in de eerste fase van missies. De basis zal volgens de plannen een enorm gebied van honderden vierkante kilometers bestrijken.
