@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-25T11:42:15.432Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-05-27T11:29:29.230Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -758,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "SpaceX lanceert een nieuwe groep Starlink-satellieten naar een lage aardbaan om het netwerk verder uit te breiden.",
+      "objective": "Uitbreiding van het Starlink-netwerk via een Atlas V N22-raket naar een lage aardbaan.",
       "body": "Low Earth Orbit",
-      "highlight": "Geplande lancering op 31 december 2026 met Atlas V N22",
+      "highlight": "Geplande lancering: 31 december 2026 aan boord van Atlas V N22.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de Starlink Group 17-21-missie stuurt SpaceX opnieuw een batch satellieten de ruimte in ter versterking van het wereldwijde Starlink-breedbanddnetwerk. Opvallend is het gebruik van de Atlas V N22, een raket van United Launch Alliance, wat wijst op een ongebruikelijke samenwerking voor Starlink-lanceringen. De missie is gepland voor de laatste dag van 2026 en plaatst de satellieten in een lage aardbaan vanwaar ze direct inzetbaar zijn voor internetdiensten. SpaceX blijft met dit soort missies het grootste commerciële satellietnetwerk ter wereld uitbouwen.",
+      "description": "SpaceX lanceert een nieuwe batch Starlink-satellieten als onderdeel van Groep 17-21, bedoeld om de wereldwijde breedbanddekking verder uit te breiden. Opvallend is het gebruik van een Atlas V N22-raket, een ongewone keuze voor Starlink-missies die normaal gesproken met Falcon 9 worden uitgevoerd. De lancering staat gepland voor eind december 2026 en plaatst de satellieten in een lage aardbaan. Met deze missie zet SpaceX zijn ambitieuze uitrolschema voor het Starlink-megaconstellatie onverminderd voort.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -802,9 +805,10 @@
         "boeing starliner",
         "satelietinternet",
         "lage aardbaan",
-        "internetsatellieten"
+        "internetsatellieten",
+        "megaconstel­latie"
       ],
-      "_lastClaudeUpdate": "2026-05-20T10:42:08.479Z"
+      "_lastClaudeUpdate": "2026-05-27T11:29:29.226Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -1192,7 +1196,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
+      "_ll2Id": "f9a8c9f6-5dc4-4e83-9876-2a51140ec806",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
