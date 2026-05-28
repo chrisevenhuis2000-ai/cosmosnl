@@ -1,0 +1,22 @@
+---
+title: "FAA eist onderzoek onder leiding van SpaceX voordat Starship-lanceringen kunnen worden hervat"
+excerpt: "De Amerikaanse luchtvaartautoriteit FAA heeft bepaald dat SpaceX een uitgebreid onderzoek moet leiden naar wat er misging tijdens de twaalfde testvlucht van Starship op 22 mei. Pas na afronding van dit onderzoek mogen nieuwe lanceringen plaatsvinden."
+category: "missies"
+author: "Redactie CosmosNL"
+publishedAt: "2026-05-28T10:53:29.729Z"
+featured: false
+tags: []
+source: "SpaceflightNow"
+sourceUrl: "https://spaceflightnow.com/2026/05/27/faa-requires-spacex-led-mishap-investigation-before-resumption-of-starship-launches/"
+imageUrl: ""
+imageAlt: ""
+imageCredit: ""
+---
+
+De Federal Aviation Administration (FAA) heeft SpaceX opgedragen een grondige analyse uit te voeren van de twaalfde testvlucht van het Starship-ruimtevaartuig voordat het bedrijf toestemming krijgt voor nieuwe lanceringen. Deze beslissing werd genomen na bestudering van de resultaten van Starship Flight 12, die vrijdag 22 mei plaatsvond.
+
+De FAA vereist dat SpaceX zelf het onderzoek naar het incident leidt, conform de standaardprocedures bij ruimtevaartmissies. Het onderzoek moet uitwijzen wat er precies is misgegaan tijdens de vlucht en welke maatregelen nodig zijn om soortgelijke problemen in de toekomst te voorkomen.
+
+Starship is het nieuwe vlaggenschip van SpaceX en vormt een cruciaal onderdeel van de plannen van het bedrijf voor toekomstige missies naar de maan en Mars. De reeks testvluchten is bedoeld om het ontwerp te perfectioneren en de veiligheid te waarborgen voordat het voertuig operationeel wordt ingezet.
+
+SpaceX zal de bevindingen van het onderzoek moeten delen met de FAA voordat een nieuwe lanceervergunning kan worden verleend. Het is nog onduidelijk hoelang dit proces zal duren en wanneer de volgende Starship-testvlucht kan plaatsvinden.
