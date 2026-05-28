@@ -4,13 +4,13 @@ excerpt: "De Amerikaanse luchtvaartautoriteit FAA heeft bepaald dat SpaceX een u
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-28T10:53:29.729Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/27/faa-requires-spacex-led-mishap-investigation-before-resumption-of-starship-launches/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/_KSH0088/_KSH0088~medium.jpg"
+imageAlt: "FAA eist onderzoek onder leiding van SpaceX voordat Starship-lanceringen kunnen worden hervat"
+imageCredit: "Ken Hall / MSFC"
 ---
 
 De Federal Aviation Administration (FAA) heeft SpaceX opgedragen een grondige analyse uit te voeren van de twaalfde testvlucht van het Starship-ruimtevaartuig voordat het bedrijf toestemming krijgt voor nieuwe lanceringen. Deze beslissing werd genomen na bestudering van de resultaten van Starship Flight 12, die vrijdag 22 mei plaatsvond.
