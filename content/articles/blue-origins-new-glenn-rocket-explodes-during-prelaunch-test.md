@@ -4,13 +4,13 @@ excerpt: "De raket van Blue Origin explodeerde tijdens een statische brandtest o
 category: "missies"
 author: "Redactie CosmosNL"
 publishedAt: "2026-05-29T10:43:26.606Z"
-featured: false
+featured: "false"
 tags: []
 source: "SpaceflightNow"
 sourceUrl: "https://spaceflightnow.com/2026/05/29/blue-origins-new-glenn-rocket-explodes-during-prelaunch-testing-at-cape-canaveral/"
-imageUrl: ""
-imageAlt: ""
-imageCredit: ""
+imageUrl: "https://images-assets.nasa.gov/image/KSC - SLS_03302026_Artemis II sunset at the pad/KSC - SLS_03302026_Artemis II sunset at the pad~large.jpg"
+imageAlt: "Blue Origin's New Glenn raket explodeert tijdens prelanceertesten in Cape Canaveral"
+imageCredit: "NASA/ Sam Lott / MSFC"
 ---
 
 Blue Origin heeft een zware tegenslag ondervonden bij de ontwikkeling van hun New Glenn raket. De raket explodeerde gisteravond om 21:00 lokale tijd (01:00 UTC) tijdens een statische brandtest op Launch Complex 36 van Cape Canaveral Space Force Station in Florida.
