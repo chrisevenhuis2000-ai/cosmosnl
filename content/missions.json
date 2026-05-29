@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-28T11:28:51.745Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-05-29T11:19:07.601Z",
+    "autoUpdated": [
+      "sirius-sxm-11"
+    ]
   },
   "missions": [
     {
@@ -1193,7 +1195,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
+      "_ll2Id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
@@ -1426,7 +1428,7 @@
       "bgFrom": "#040408",
       "bgTo": "#080810",
       "description": "MTG-I2 is de derde satelliet binnen de nieuwe generatie weersatellieten van EUMETSAT, de Europese organisatie voor de exploitatie van meteorologische satellieten. De MTG-serie vervangt de verouderde Meteosat Second Generation-satellieten en biedt aanzienlijk verbeterde mogelijkheden voor weervoorspelling en klimaatmonitoring. Met een hogere beeldresolutie, snellere scanfrequentie en nieuwe instrumenten zoals een bliksemdetector levert MTG-I2 een cruciale bijdrage aan de meteorologische dienstverlening boven Europa en Afrika. De satelliet wordt gelanceerd met de krachtige Ariane 64-raket vanuit het ruimtevaartcentrum in Kourou, Frans-Guyana.",
-      "vehicle": "Ariane 64",
+      "vehicle": "Ariane 62",
       "launchSite": "Ariane Launch Area 4",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
@@ -2793,12 +2795,12 @@
     },
     {
       "id": "bluebird-block-2-3",
-      "_ll2Id": "c3f48f48-0e0a-4bca-917e-de494cfca35b",
+      "_ll2Id": "56a85c82-ea71-449b-828c-b583f6f4a18b",
       "name": "BlueBird Block 2 #3",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 jul 2026",
       "objective": "Lancering van drie BlueBird Block 2-satellieten voor continu 4G/5G-breedbanddekking vanuit de ruimte.",
       "body": "Low Earth Orbit",
       "highlight": "Grootste commerciële satellieten ooit in LEO; tot 10x meer bandbreedte dan Block 1.",
@@ -2831,6 +2833,39 @@
         "falcon 9"
       ],
       "_lastClaudeUpdate": "2026-05-08T09:04:33.872Z"
+    },
+    {
+      "id": "sirius-sxm-11",
+      "_ll2Id": "ce3db8f7-ba9b-4a2a-953c-c6c6ee926541",
+      "name": "Sirius SXM-11",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "30 jun 2026",
+      "objective": "Sirius SXM-11 — SpaceX missie naar Geostationaire baan.",
+      "body": "Geostationaire baan",
+      "highlight": "Lancering gepland: 30 jun 2026",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Sirius SXM-11 is een geplande missie van SpaceX naar Geostationaire baan.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 40",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/ce3db8f7-ba9b-4a2a-953c-c6c6ee926541/?format=json",
+      "timeline": [
+        {
+          "date": "30 jun 2026",
+          "event": "Geplande lancering van Sirius SXM-11"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "sirius-sxm-11",
+        "spacex",
+        "geostationaire-baan"
+      ]
     }
   ]
 }
