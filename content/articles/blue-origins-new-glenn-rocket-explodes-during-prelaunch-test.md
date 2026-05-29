@@ -1,0 +1,22 @@
+---
+title: "Blue Origin's New Glenn raket explodeert tijdens prelanceertesten in Cape Canaveral"
+excerpt: "De raket van Blue Origin explodeerde tijdens een statische brandtest op Cape Canaveral Space Force Station. De geplande lancering van een Amazon Leo-missie op 4 juni komt hierdoor in gevaar."
+category: "missies"
+author: "Redactie CosmosNL"
+publishedAt: "2026-05-29T10:43:26.606Z"
+featured: false
+tags: []
+source: "SpaceflightNow"
+sourceUrl: "https://spaceflightnow.com/2026/05/29/blue-origins-new-glenn-rocket-explodes-during-prelaunch-testing-at-cape-canaveral/"
+imageUrl: ""
+imageAlt: ""
+imageCredit: ""
+---
+
+Blue Origin heeft een zware tegenslag ondervonden bij de ontwikkeling van hun New Glenn raket. De raket explodeerde gisteravond om 21:00 lokale tijd (01:00 UTC) tijdens een statische brandtest op Launch Complex 36 van Cape Canaveral Space Force Station in Florida.
+
+De explosie vond plaats tijdens wat een routinetest had moeten zijn van de raketmotoren. Bij een statische brandtest worden de motoren ontstoken terwijl de raket vastgeklemd blijft aan de lanceerplatform, om de prestaties en betrouwbaarheid van het voortstuwingssysteem te controleren.
+
+Het incident heeft directe gevolgen voor het lanceereschema van Blue Origin. Het ruimtevaartbedrijf van Amazon-oprichter Jeff Bezos had gepland om al op 4 juni een missie uit te voeren voor Amazon Leo, het satellietnetwerk van het e-commercebedrijf. Deze lancering zal nu ongetwijfeld worden uitgesteld.
+
+Blue Origin heeft nog geen officiële verklaring afgegeven over de oorzaak van de explosie of de schade aan de faciliteiten. Het bedrijf werkt al jaren aan de ontwikkeling van de New Glenn raket, die concurrentie moet gaan aangaan met SpaceX's Falcon Heavy en andere commerciële lanceervoertuigen.
