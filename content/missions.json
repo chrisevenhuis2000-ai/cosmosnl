@@ -1,11 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-30T09:50:27.597Z",
+    "lastUpdated": "2026-05-31T10:07:08.520Z",
     "autoUpdated": [
       "starlink-group-17-21",
-      "amazon-leo-le-02",
-      "starlink-group-17-21",
-      "amazon-leo-le-02"
+      "starlink-group-17-21"
     ]
   },
   "missions": [
@@ -1198,7 +1196,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
+      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
