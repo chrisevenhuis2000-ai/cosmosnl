@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-02T11:56:52.596Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-06-03T12:29:17.940Z",
+    "autoUpdated": [
+      "kompsat-7a",
+      "griffin-mission-one"
+    ]
   },
   "missions": [
     {
@@ -1193,7 +1196,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
+      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
@@ -1843,12 +1846,12 @@
     },
     {
       "id": "victus-haze-puma",
-      "_ll2Id": "04154b70-045b-4e3a-bb5a-e5436091ba37",
+      "_ll2Id": "875ba957-be5f-42bd-8a6e-ed98254f572a",
       "name": "VICTUS HAZE Puma",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van True Anomaly's Jackal AOV voor de VICTUS HAZE tactisch-responsieve ruimtemissie.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor Q4 2026; wacht op activatiebevel Space Force.",
@@ -1856,8 +1859,8 @@
       "bgFrom": "#040408",
       "bgTo": "#080810",
       "description": "Firefly Alpha Block 2 zal de Jackal Autonomous Orbital Vehicle van True Anomaly in een lage aardbaan brengen als onderdeel van de VICTUS HAZE-missie van het Amerikaanse Space Force. Het vaartuig zal rendezvous- en nabijheidsoperaties uitvoeren met een andere satelliet, gebouwd door Rocket Lab National Security. Een opvallend kenmerk van de missie is de extreme tijdsdruk: zodra het Space Force het startsein geeft, heeft het Firefly-team slechts 24 uur om de payload-kap naar de lanceerplaats te transporteren, de raket te assembleren en te lanceren. Deze 'tactically responsive space'-aanpak is bedoeld om de militaire inzetsnelheid in de ruimte drastisch te verhogen.",
-      "vehicle": "Electron",
-      "launchSite": "Unknown Pad",
+      "vehicle": "Firefly Alpha Block 2",
+      "launchSite": "Space Launch Complex 2W",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/04154b70-045b-4e3a-bb5a-e5436091ba37/?format=json",
@@ -2383,7 +2386,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 aug 2026",
+      "launched": "30 aug 2026",
       "objective": "Infraroodzwelescoop die donkere energie, ruimtekromming en exoplaneten via microlenzen onderzoekt.",
       "body": "L2-punt",
       "highlight": "Lancering gepland voor september 2026 aan boord van een Falcon Heavy.",
@@ -2863,6 +2866,72 @@
         "sirius-sxm-11",
         "spacex",
         "geostationaire-baan"
+      ]
+    },
+    {
+      "id": "kompsat-7a",
+      "_ll2Id": "9642cfef-4687-495a-af2e-2ac81fa1e12a",
+      "name": "KOMPSAT-7A",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "30 nov 2026",
+      "objective": "KOMPSAT-7A — SpaceX missie naar Sun-Synchronous Orbit.",
+      "body": "Sun-Synchronous Orbit",
+      "highlight": "Lancering gepland: 30 nov 2026",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "KOMPSAT-7A is een geplande missie van SpaceX naar Sun-Synchronous Orbit.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Unknown Pad",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/41/?format=json",
+      "timeline": [
+        {
+          "date": "30 nov 2026",
+          "event": "Geplande lancering van KOMPSAT-7A"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "kompsat-7a",
+        "spacex",
+        "sun-synchronous-orbit"
+      ]
+    },
+    {
+      "id": "griffin-mission-one",
+      "_ll2Id": "d3bd7fb2-fac6-49fc-ae52-cee07d2fde67",
+      "name": "Griffin Mission One",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "30 nov 2026",
+      "objective": "Griffin Mission One — SpaceX missie naar Maan.",
+      "body": "Maan",
+      "highlight": "Lancering gepland: 30 nov 2026",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Griffin Mission One is een geplande missie van SpaceX naar Maan.",
+      "vehicle": "Falcon Heavy",
+      "launchSite": "Launch Complex 39A",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1069/?format=json",
+      "timeline": [
+        {
+          "date": "30 nov 2026",
+          "event": "Geplande lancering van Griffin Mission One"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "griffin-mission-one",
+        "spacex",
+        "maan"
       ]
     }
   ]
