@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-03T12:29:17.940Z",
+    "lastUpdated": "2026-06-04T10:54:07.124Z",
     "autoUpdated": [
-      "kompsat-7a",
-      "griffin-mission-one"
+      "starlink-group-17-21",
+      "starlink-group-17-21"
     ]
   },
   "missions": [
@@ -1196,7 +1196,7 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
+      "_ll2Id": "f9a8c9f6-5dc4-4e83-9876-2a51140ec806",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
@@ -2870,7 +2870,7 @@
     },
     {
       "id": "kompsat-7a",
-      "_ll2Id": "9642cfef-4687-495a-af2e-2ac81fa1e12a",
+      "_ll2Id": "91f5f940-da5a-44de-a10a-b44c59066285",
       "name": "KOMPSAT-7A",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -2883,11 +2883,11 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "KOMPSAT-7A is een geplande missie van SpaceX naar Sun-Synchronous Orbit.",
-      "vehicle": "Falcon 9",
-      "launchSite": "Unknown Pad",
+      "vehicle": "Vega-C",
+      "launchSite": "Ariane Launch Area 1 (ELV)",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
-      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/41/?format=json",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/36/?format=json",
       "timeline": [
         {
           "date": "30 nov 2026",
