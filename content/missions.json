@@ -1,9 +1,8 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-04T10:54:07.124Z",
+    "lastUpdated": "2026-06-05T11:17:34.874Z",
     "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
+      "curveball"
     ]
   },
   "missions": [
@@ -1196,12 +1195,12 @@
     },
     {
       "id": "the-grain-goddess-provides-iqps-launch-7",
-      "_ll2Id": "f9a8c9f6-5dc4-4e83-9876-2a51140ec806",
+      "_ll2Id": "8b7e748c-6ed5-4681-a898-827b4a23b8d7",
       "name": "The Grain Goddess Provides (iQPS Launch 7)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 jun 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering in juni 2026 vanaf het Rocket Lab-complex.",
@@ -2932,6 +2931,39 @@
         "griffin-mission-one",
         "spacex",
         "maan"
+      ]
+    },
+    {
+      "id": "curveball",
+      "_ll2Id": "e6cefffc-19a6-4a4b-a7f0-ebe907d5a6aa",
+      "name": "Curveball",
+      "agency": "Rocket Lab",
+      "agencyColor": "#c080ff",
+      "status": "gepland",
+      "launched": "11 jun 2026",
+      "objective": "Curveball — Rocket Lab missie naar Suborbital.",
+      "body": "Suborbital",
+      "highlight": "Lancering gepland: 11 jun 2026",
+      "icon": "🚀",
+      "bgFrom": "#040408",
+      "bgTo": "#080810",
+      "description": "Curveball is een geplande missie van Rocket Lab naar Suborbital.",
+      "vehicle": "Electron",
+      "launchSite": "Rocket Lab Launch Complex 2 (Launch Area 0 C)",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/e6cefffc-19a6-4a4b-a7f0-ebe907d5a6aa/?format=json",
+      "timeline": [
+        {
+          "date": "11 jun 2026",
+          "event": "Geplande lancering van Curveball"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "curveball",
+        "rocket-lab",
+        "suborbital"
       ]
     }
   ]
