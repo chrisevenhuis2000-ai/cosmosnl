@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-13T10:21:37.939Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-06-14T10:44:43.057Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -2176,7 +2173,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 jul 2026",
       "objective": "Dertiende testvlucht van Starship, tevens de tweede vlucht van de nieuwe Starship V3-versie.",
       "body": "Suborbital",
       "highlight": "Tweede vlucht van Starship V3, gericht op verdere systeemvalidatie.",
