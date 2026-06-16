@@ -1,7 +1,11 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-15T13:46:39.312Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-06-16T12:45:51.795Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21",
+      "project-starfall-demonstration-mission"
+    ]
   },
   "missions": [
     {
@@ -2962,6 +2966,39 @@
         "curveball",
         "rocket-lab",
         "suborbital"
+      ]
+    },
+    {
+      "id": "project-starfall-demonstration-mission",
+      "_ll2Id": "74bf8472-9ba1-42d6-9245-b014f8e91de9",
+      "name": "Project Starfall Demonstration Mission",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "21 jun 2026",
+      "objective": "Project Starfall Demonstration Mission — SpaceX missie naar Low Earth Orbit.",
+      "body": "Low Earth Orbit",
+      "highlight": "Lancering gepland: 21 jun 2026",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Project Starfall Demonstration Mission is een geplande missie van SpaceX naar Low Earth Orbit.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 40",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/74bf8472-9ba1-42d6-9245-b014f8e91de9/?format=json",
+      "timeline": [
+        {
+          "date": "21 jun 2026",
+          "event": "Geplande lancering van Project Starfall Demonstration Mission"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "project-starfall-demonstration-mission",
+        "spacex",
+        "low-earth-orbit"
       ]
     }
   ]
