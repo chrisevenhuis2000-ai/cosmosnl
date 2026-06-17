@@ -1,10 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-16T12:45:51.795Z",
+    "lastUpdated": "2026-06-17T12:10:03.674Z",
     "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21",
-      "project-starfall-demonstration-mission"
+      "bluebird-block-2-3",
+      "bluebird-block-2-3"
     ]
   },
   "missions": [
@@ -1237,7 +1236,7 @@
     },
     {
       "id": "flight-12",
-      "_ll2Id": "3ac1bd74-bf9a-4afe-ae00-3e1d180142dd",
+      "_ll2Id": "304b8810-9c89-47ee-a21a-05559fcf14af",
       "name": "Flight 12",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -1250,11 +1249,11 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "Flight 12 markeert een mijlpaal voor Astra Space met de jungfernvlucht van de Astra Rocket 4, de tweede generatie kleine satellietdrager van het bedrijf. Het voertuig is ontworpen om kleine satellieten goedkoper en betrouwbaarder naar een lage aardbaan te brengen. Na eerdere tegenslagen met de Rocket 3-serie hoopt Astra met dit nieuwe ontwerp een stabielere lanceerfrequentie te realiseren. De missie, uitgevoerd in samenwerking met SpaceX, staat gepland voor eind december 2026.",
-      "vehicle": "Astra Rocket 4",
-      "launchSite": "Space Launch Complex 46",
+      "vehicle": "Eris-1",
+      "launchSite": "Eris Pad",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
-      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/44/?format=json",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/188/?format=json",
       "timeline": [
         {
           "date": "31 mei 2026",
@@ -2219,7 +2218,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "17 jun 2026",
+      "launched": "30 jun 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf Synspective.",
       "body": "Sun-Synchronous Orbit",
       "highlight": "Tiende StriX-satelliet voor Synspective's SAR-constellatie.",
