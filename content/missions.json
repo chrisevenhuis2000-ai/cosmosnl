@@ -1,9 +1,8 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-17T12:10:03.674Z",
+    "lastUpdated": "2026-06-18T11:45:07.939Z",
     "autoUpdated": [
-      "bluebird-block-2-3",
-      "bluebird-block-2-3"
+      "amazon-leo-le-03"
     ]
   },
   "missions": [
@@ -1334,7 +1333,7 @@
       "name": "Amazon Leo (LE-03)",
       "agency": "Arianespace",
       "agencyColor": "#ffa040",
-      "status": "gepland",
+      "status": "actief",
       "launched": "17 jun 2026",
       "objective": "Lancering van 35-40 Amazon Kuiper-satellieten naar een lage aardbaan voor mondiale breedbandinternet.",
       "body": "Low Earth Orbit",
@@ -1935,7 +1934,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 dec 2026",
       "objective": "SpaceX lanceert 24 satellieten voor de internetconstellatie van het Ierse bedrijf Rivada Space Networks.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor juni 2026; onderdeel van groeiende Rivada-constellatie.",
@@ -2760,7 +2759,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "18 jun 2026",
+      "launched": "19 jun 2026",
       "objective": "Lancering van de dertiende batch verkenningssatellieten voor de NRO als onderdeel van een gezamenlijk SpaceX-Northrop Grumman constellatie.",
       "body": "Unknown",
       "highlight": "Dertiende batch van een geheime NRO-verkenningsconstellatie succesvol gelanceerd.",
