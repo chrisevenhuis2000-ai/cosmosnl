@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-18T11:45:07.939Z",
+    "lastUpdated": "2026-06-19T11:58:52.149Z",
     "autoUpdated": [
-      "amazon-leo-le-03"
+      "nrol-172"
     ]
   },
   "missions": [
@@ -1549,7 +1549,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van satellieten voor wereldwijde detectie en tracking van geavanceerde raketdreigingen.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering in juni 2026 voor het Amerikaanse Space Force-netwerk.",
@@ -1592,7 +1592,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van satellieten voor wereldwijde opsporing en tracking van hypersonische raketdreigingen.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor lancering in juni 2026 in poolbaan.",
@@ -1635,7 +1635,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van PWSA Tranche 1 Tracking Layer E voor globale detectie van hypersonische raketbedreigingen.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor lancering in juni 2026 vanuit een polaire baan.",
@@ -1722,7 +1722,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van militaire LEO-satellieten voor veilige, veerkrachtige dataverbindingen wereldwijd.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering medio 2026 via Falcon 9 naar polaire baan.",
@@ -1764,7 +1764,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van militaire satellietcluster voor veilige, lage-latentie dataverbindingen vanuit LEO.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering medio 2026 als onderdeel van zes SDA Tranche 1-missies.",
@@ -1808,7 +1808,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van militaire satellietcluster voor wereldwijde lage-latentie dataverbindingen vanuit lage aardbaan.",
       "body": "Polar Orbit",
       "highlight": "Zesde en laatste PWSA Tranche 1 transportlancering gepland voor medio 2026.",
@@ -2758,7 +2758,7 @@
       "name": "NROL-172",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "19 jun 2026",
       "objective": "Lancering van de dertiende batch verkenningssatellieten voor de NRO als onderdeel van een gezamenlijk SpaceX-Northrop Grumman constellatie.",
       "body": "Unknown",
@@ -2973,7 +2973,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "21 jun 2026",
+      "launched": "23 jun 2026",
       "objective": "Project Starfall Demonstration Mission — SpaceX missie naar Low Earth Orbit.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland: 21 jun 2026",
