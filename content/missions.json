@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-19T11:58:52.149Z",
-    "autoUpdated": [
-      "nrol-172"
-    ]
+    "lastUpdated": "2026-06-20T10:26:09.984Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1974,7 +1972,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 dec 2026",
       "objective": "SpaceX lanceert 24 satellieten voor het internetsatellietnetwerk van Rivada Space Networks.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering op 30 juni 2026 in polaire baan.",
