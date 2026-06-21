@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-20T10:26:09.984Z",
+    "lastUpdated": "2026-06-21T10:59:40.868Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1843,12 +1843,12 @@
     },
     {
       "id": "victus-haze-puma",
-      "_ll2Id": "04154b70-045b-4e3a-bb5a-e5436091ba37",
+      "_ll2Id": "875ba957-be5f-42bd-8a6e-ed98254f572a",
       "name": "VICTUS HAZE Puma",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van True Anomaly's Jackal AOV voor de VICTUS HAZE tactisch-responsieve ruimtemissie.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor Q4 2026; wacht op activatiebevel Space Force.",
@@ -1856,8 +1856,8 @@
       "bgFrom": "#040408",
       "bgTo": "#080810",
       "description": "Firefly Alpha Block 2 zal de Jackal Autonomous Orbital Vehicle van True Anomaly in een lage aardbaan brengen als onderdeel van de VICTUS HAZE-missie van het Amerikaanse Space Force. Het vaartuig zal rendezvous- en nabijheidsoperaties uitvoeren met een andere satelliet, gebouwd door Rocket Lab National Security. Een opvallend kenmerk van de missie is de extreme tijdsdruk: zodra het Space Force het startsein geeft, heeft het Firefly-team slechts 24 uur om de payload-kap naar de lanceerplaats te transporteren, de raket te assembleren en te lanceren. Deze 'tactically responsive space'-aanpak is bedoeld om de militaire inzetsnelheid in de ruimte drastisch te verhogen.",
-      "vehicle": "Electron",
-      "launchSite": "Unknown Pad",
+      "vehicle": "Firefly Alpha Block 2",
+      "launchSite": "Space Launch Complex 2W",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/04154b70-045b-4e3a-bb5a-e5436091ba37/?format=json",
@@ -2013,7 +2013,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "31 dec 2026",
       "objective": "SpaceX lanceert 24 satellieten voor het breedband-internetnetwerk van Rivada Space Networks.",
       "body": "Polar Orbit",
       "highlight": "Lancering gepland voor 30 juni 2026 vanuit een SpaceX-lanceerbasis.",
