@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-22T13:26:59.938Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-06-23T10:54:38.229Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -2842,7 +2839,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "29 jun 2026",
       "objective": "Sirius SXM-11 — SpaceX missie naar Geostationaire baan.",
       "body": "Geostationaire baan",
       "highlight": "Lancering gepland: 30 jun 2026",
