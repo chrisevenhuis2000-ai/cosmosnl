@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-23T10:54:38.229Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-06-24T10:40:58.246Z",
+    "autoUpdated": [
+      "project-starfall-demonstration-mission"
+    ]
   },
   "missions": [
     {
@@ -2798,7 +2800,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 jul 2026",
+      "launched": "31 aug 2026",
       "objective": "Lancering van drie BlueBird Block 2-satellieten voor continu 4G/5G-breedbanddekking vanuit de ruimte.",
       "body": "Low Earth Orbit",
       "highlight": "Grootste commerciële satellieten ooit in LEO; tot 10x meer bandbreedte dan Block 1.",
@@ -2970,7 +2972,7 @@
       "name": "Project Starfall Demonstration Mission",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "23 jun 2026",
       "objective": "Project Starfall Demonstration Mission — SpaceX missie naar Low Earth Orbit.",
       "body": "Low Earth Orbit",
