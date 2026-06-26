@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-25T10:34:09.045Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-06-26T10:43:46.371Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1236,7 +1233,7 @@
     },
     {
       "id": "flight-12",
-      "_ll2Id": "304b8810-9c89-47ee-a21a-05559fcf14af",
+      "_ll2Id": "3ac1bd74-bf9a-4afe-ae00-3e1d180142dd",
       "name": "Flight 12",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -1249,11 +1246,11 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "Flight 12 markeert een mijlpaal voor Astra Space met de jungfernvlucht van de Astra Rocket 4, de tweede generatie kleine satellietdrager van het bedrijf. Het voertuig is ontworpen om kleine satellieten goedkoper en betrouwbaarder naar een lage aardbaan te brengen. Na eerdere tegenslagen met de Rocket 3-serie hoopt Astra met dit nieuwe ontwerp een stabielere lanceerfrequentie te realiseren. De missie, uitgevoerd in samenwerking met SpaceX, staat gepland voor eind december 2026.",
-      "vehicle": "Eris-1",
-      "launchSite": "Eris Pad",
+      "vehicle": "Astra Rocket 4",
+      "launchSite": "Space Launch Complex 46",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
-      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/188/?format=json",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/44/?format=json",
       "timeline": [
         {
           "date": "31 mei 2026",
@@ -1930,7 +1927,7 @@
     },
     {
       "id": "rivada-10",
-      "_ll2Id": "20fa8dc4-8cab-41cf-b452-98a2620f7e86",
+      "_ll2Id": "ab932c60-d808-4825-ab71-b6fe0a745f15",
       "name": "Rivada 10",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -2218,7 +2215,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "30 jun 2026",
+      "launched": "26 jun 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf Synspective.",
       "body": "Sun-Synchronous Orbit",
       "highlight": "Tiende StriX-satelliet voor Synspective's SAR-constellatie.",
@@ -2870,7 +2867,7 @@
     },
     {
       "id": "kompsat-7a",
-      "_ll2Id": "91f5f940-da5a-44de-a10a-b44c59066285",
+      "_ll2Id": "9642cfef-4687-495a-af2e-2ac81fa1e12a",
       "name": "KOMPSAT-7A",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -2883,11 +2880,11 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "KOMPSAT-7A is een geplande missie van SpaceX naar Sun-Synchronous Orbit.",
-      "vehicle": "Vega-C",
-      "launchSite": "Ariane Launch Area 1 (ELV)",
+      "vehicle": "Falcon 9",
+      "launchSite": "Unknown Pad",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
-      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/36/?format=json",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/41/?format=json",
       "timeline": [
         {
           "date": "30 nov 2026",
