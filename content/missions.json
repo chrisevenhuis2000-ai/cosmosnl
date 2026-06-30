@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-06-29T12:28:21.918Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-06-30T10:48:01.354Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1948,7 +1945,7 @@
     },
     {
       "id": "rivada-10",
-      "_ll2Id": "511a3ef8-799e-4723-9293-b954d9d2eb83",
+      "_ll2Id": "20fa8dc4-8cab-41cf-b452-98a2620f7e86",
       "name": "Rivada 10",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
