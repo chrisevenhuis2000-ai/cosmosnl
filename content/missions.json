@@ -1,7 +1,12 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-01T11:16:19.256Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-07-02T10:28:36.423Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "amazon-leo-le-02",
+      "starlink-group-17-21",
+      "amazon-leo-le-02"
+    ]
   },
   "missions": [
     {
@@ -752,19 +757,19 @@
     },
     {
       "id": "starlink-group-17-21",
-      "_ll2Id": "29c2b843-540d-40da-b200-d4892d74e140",
+      "_ll2Id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
       "name": "Starlink Group 17-21",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "SpaceX lanceert een nieuwe lading Starlink-satellieten naar een lage aardbaan met een Atlas V N22-raket.",
+      "objective": "SpaceX lanceert een nieuwe batch Starlink-satellieten naar een lage aardbaan.",
       "body": "Low Earth Orbit",
-      "highlight": "Geplande lancering op 31 december 2026 met Atlas V N22",
+      "highlight": "Lancering gepland voor 31 december 2026 met Atlas V N22",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Op 31 december 2026 voert SpaceX de Starlink Group 17-21-missie uit, waarbij een nieuwe batch Starlink-satellieten in een lage aardbaan wordt geplaatst. Opvallend is het gebruik van de Atlas V N22, een raket van United Launch Alliance, wat wijst op een bijzondere samenwerking voor deze vlucht. De satellieten versterken het groeiende Starlink-netwerk dat wereldwijd breedbandinternettoegang biedt aan gebruikers in afgelegen en onderontwikkelde gebieden. Met deze lancering breidt SpaceX zijn constellatie verder uit richting volledige mondiale dekking.",
+      "description": "Met de Starlink Group 17-21-missie voegt SpaceX opnieuw een reeks satellieten toe aan zijn groeiende breedbandnetwerk in de lage aardbaan. De lancering vindt plaats met een Atlas V N22-raket, een opmerkelijke keuze gezien SpaceX doorgaans zijn eigen Falcon 9 inzet voor Starlink-missies. De satellieten worden ingezet om de dekking en capaciteit van het wereldwijde Starlink-internetnetwerk verder uit te breiden. De missie staat gepland voor 31 december 2026.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -806,7 +811,7 @@
         "megaconstel­latie",
         "satelliettinternet"
       ],
-      "_lastClaudeUpdate": "2026-06-29T12:27:56.183Z"
+      "_lastClaudeUpdate": "2026-07-02T10:28:36.417Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -1028,13 +1033,13 @@
       "agencyColor": "#ffa040",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Uitbreiding van Amazons breedband-megaconstellatie met 29 nieuwe satellieten in een lage baan.",
+      "objective": "Uitrol van Amazon's Kuiper-megaconstelatie voor wereldwijde breedbandinternettoegang vanuit een lage baan.",
       "body": "Low Earth Orbit",
-      "highlight": "29 Kuiper-satellieten gelanceerd naar lage aardbaan op 2 juli 2026.",
+      "highlight": "Lancering gepland voor eind 2026 met Ariane 64.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Amazon Leo, voorheen bekend als Project Kuiper, is een ambitieuze megaconstellatie van Kuiper Systems LLC, een dochteronderneming van Amazon. Het netwerk is ontworpen om wereldwijd breedband-internettoegang te bieden vanuit een lage aardbaan en zal uiteindelijk bestaan uit 3.276 satellieten. De satellieten worden verdeeld over 98 orbitale vlakken op drie hoogtelagen: 590, 610 en 630 kilometer. Met deze lancering voegt Arianespace 29 nieuwe exemplaren toe aan de groeiende vloot, uitgevoerd met een Atlas V 551-raket.",
+      "description": "Amazon Leo, voorheen bekend als Project Kuiper, is een ambitieuze megaconstelatie van 3.276 satellieten in een lage aardbaan, beheerd door Kuiper Systems LLC, een dochteronderneming van Amazon. De satellieten worden verdeeld over 98 orbitale vlakken op drie hoogteschillen: 590, 610 en 630 kilometer. Ariane 6 verzorgt een deel van de lanceringsreeks, waarbij elke vlucht 35 tot 40 satellieten aan boord neemt. Het project moet wereldwijd concurrerend breedbandinternet leveren en treedt daarmee direct in concurrentie met Starlink van SpaceX.",
       "vehicle": "Ariane 64",
       "launchSite": "Ariane Launch Area 4",
       "duration": "Onbekend",
@@ -1064,9 +1069,12 @@
         "breedband internet",
         "leo",
         "megaconstellation",
-        "leo-satellieten"
+        "leo-satellieten",
+        "vulcan vc6l",
+        "megaconstelatie",
+        "ariane 6"
       ],
-      "_lastClaudeUpdate": "2026-06-29T12:23:26.765Z"
+      "_lastClaudeUpdate": "2026-07-02T10:28:21.858Z"
     },
     {
       "id": "gps-iii-sv10",
@@ -2280,7 +2288,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "15 aug 2026",
+      "launched": "31 dec 2026",
       "objective": "Aspera brengt het hete gas tussen sterrenstelsels in kaart via ultravioletlicht.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor augustus 2026 aan boord van Rocket Labs Electron.",
