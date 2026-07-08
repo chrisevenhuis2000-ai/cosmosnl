@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-07T10:44:45.194Z",
-    "autoUpdated": [
-      "transporter-17-dedicated-sso-rideshare",
-      "transporter-17-dedicated-sso-rideshare"
-    ]
+    "lastUpdated": "2026-07-08T10:06:06.932Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -2082,14 +2079,14 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
-      "objective": "SpaceX lanceert 24 satellieten voor het breedbandinternetnetwerk van Rivada Space Networks.",
+      "launched": "31 dec 2026",
+      "objective": "SpaceX lanceert 24 satellieten voor het internettoegangsnetwerk van Rivada Space Networks.",
       "body": "Polar Orbit",
-      "highlight": "Geplande lancering: 30 juni 2026 vanuit een SpaceX-lanceerplatform.",
+      "highlight": "Lancering gepland voor 31 december 2026 vanuit een polaire lanceerlocatie.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de Rivada 7-missie plaatst SpaceX opnieuw een batch van 24 satellieten in een polaire baan voor het ambitieuze internetconstellatieprogramma van Rivada Space Networks. Het Ierse bedrijf bouwt aan een laagaardse satellietketen die wereldwijde, lage-latentie breedbanddiensten moet leveren, ook op afgelegen locaties. De Falcon 9-raket wordt ingezet voor deze routineuze maar cruciale aanvulling van de groeiende vloot. De lancering staat gepland voor 30 juni 2026.",
+      "description": "Met de Rivada 7-missie brengt SpaceX opnieuw een grote lading satellieten naar een polaire baan voor het ambitieuze breedbandnetwerk van Rivada Space Networks. De 24 satellieten vormen een volgende stap in de opbouw van Rivada's commerciële constellatie, die wereldwijde internetdekking moet bieden via een laagaardsebaan. Een Falcon 9-raket verzorgt de lancering, conform de bewezen routinematige werkwijze van SpaceX voor satellietconstellatie-uitrol. De missie staat gepland voor eind december 2026.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -2110,9 +2107,11 @@
         "polaire baan",
         "rivada space networks",
         "falcon 9",
-        "leo-constellatie"
+        "leo-constellatie",
+        "internetsatellieten",
+        "constellatie"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:35:03.957Z"
+      "_lastClaudeUpdate": "2026-07-08T10:05:59.293Z"
     },
     {
       "id": "rivada-8",
@@ -2121,14 +2120,14 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 jun 2026",
-      "objective": "SpaceX lanceert 24 satellieten voor het breedbandinternetnetwerk van Rivada Space Networks.",
+      "launched": "31 dec 2026",
+      "objective": "SpaceX lanceert 24 satellieten voor het internettoegangsnetwerk van Rivada Space Networks.",
       "body": "Polar Orbit",
-      "highlight": "Geplande lancering: 30 juni 2026",
+      "highlight": "Gepland voor 31 december 2026; onderdeel van groeiend Rivada-netwerk.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de Rivada 8-missie brengt SpaceX opnieuw een batch van 24 satellieten in een polaire baan voor het groeiende constellation van Rivada Space Networks. Het Ierse bedrijf bouwt aan een commercieel laagaardsatellietsysteem dat wereldwijde, veilige internetverbindingen moet bieden, met name voor zakelijke en overheidsdoeleinden. De Falcon 9-raket verzorgt de lancering vanuit een Amerikaans lanceerplatform. De polaire baan stelt de satellieten in staat om vrijwel de gehele aardbol te bestrijken, inclusief de poolgebieden.",
+      "description": "Met de Rivada 8-missie brengt SpaceX opnieuw een batch van 24 satellieten in een polaire baan voor het groeiende constellation van Rivada Space Networks. Het Ierse bedrijf bouwt aan een Low Earth Orbit-netwerk dat wereldwijd snelle en betrouwbare internetverbindingen moet bieden, met name voor zakelijke en overheidsklanten. De Falcon 9-raket wordt ingezet voor deze lancering, conform het bewezen model van herbruikbare ruimtevaart. De missie is gepland voor eind december 2026 en vertegenwoordigt een belangrijke stap in de uitrol van Rivada's volledige constellatie.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -2151,9 +2150,10 @@
         "spacex",
         "falcon 9",
         "internetsatelliet",
-        "polaire baan"
+        "polaire baan",
+        "satellietinternet"
       ],
-      "_lastClaudeUpdate": "2026-04-11T08:35:11.247Z"
+      "_lastClaudeUpdate": "2026-07-08T10:06:06.929Z"
     },
     {
       "id": "rivada-9",
@@ -2201,7 +2201,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 jul 2026",
+      "launched": "14 jul 2026",
       "objective": "Dertiende testvlucht van het tweestaps Starship-raketsysteem, de tweede vlucht van Starship V3.",
       "body": "Suborbital",
       "highlight": "Tweede vlucht van Starship V3 gepland voor juli 2026.",
