@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-10T10:44:14.353Z",
+    "lastUpdated": "2026-07-11T09:16:48.239Z",
     "autoUpdated": [
-      "flight-12",
-      "flight-12"
+      "starlink-group-17-21",
+      "starlink-group-17-21"
     ]
   },
   "missions": [
@@ -761,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "SpaceX lanceert een nieuwe batch Starlink-satellieten naar een lage aardbaan.",
+      "objective": "Onbemande vlucht van Boeing Starliner-1 naar het ISS met cargo en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Lancering gepland voor 31 december 2026 met Atlas V N22",
+      "highlight": "Missie omgeschaald naar onbemand na RCS-problemen tijdens testvlucht 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de Starlink Group 17-21-missie voegt SpaceX opnieuw een reeks satellieten toe aan zijn groeiende breedbandnetwerk in de lage aardbaan. De lancering vindt plaats met een Atlas V N22-raket, een opmerkelijke keuze gezien SpaceX doorgaans zijn eigen Falcon 9 inzet voor Starlink-missies. De satellieten worden ingezet om de dekking en capaciteit van het wereldwijde Starlink-internetnetwerk verder uit te breiden. De missie staat gepland voor 31 december 2026.",
+      "description": "Starliner-1 markeert de eerste operationele vlucht van het Boeing Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na problemen met het RCS-aandrijfsysteem tijdens de bemande testvlucht in 2024 heeft NASA besloten deze missie onbemand uit te voeren. Het ruimtevaartuig levert benodigde cargo aan het ISS en valideert tegelijkertijd de doorgevoerde systeemverbeteringen in de praktijk. De missie is een cruciale stap richting herstel van het vertrouwen in het Starliner-programma.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -807,9 +807,11 @@
         "lage aardbaan",
         "internetsatellieten",
         "megaconstel­latie",
-        "satelliettinternet"
+        "satelliettinternet",
+        "commercial crew",
+        "onbemande vlucht"
       ],
-      "_lastClaudeUpdate": "2026-07-02T10:28:36.417Z"
+      "_lastClaudeUpdate": "2026-07-11T09:16:48.236Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -3114,7 +3116,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "428edcbe-bbd7-4475-8eb1-3dd90b39ad75",
+      "_ll2Id": "ce1317de-ec94-4479-9b28-38ebf11f13ae",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
