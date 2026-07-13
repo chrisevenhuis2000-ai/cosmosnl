@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-12T09:41:59.196Z",
+    "lastUpdated": "2026-07-13T10:48:35.137Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1397,7 +1397,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "17 jul 2026",
+      "launched": "31 jul 2026",
       "objective": "Demonstratie van een volledig cryogeen zuurstofbeheersysteem in een lage aardbaan.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor juli 2026 aan boord van een Electron-raket.",
