@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-13T10:48:35.137Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-07-14T09:45:51.059Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -758,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Onbemande vlucht van Boeing Starliner-1 naar het ISS met cargo en systeemvalidatie.",
+      "objective": "Onbemande operationele vlucht van Starliner naar het ISS met cargo en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Missie omgeschaald naar onbemand na RCS-problemen tijdens testvlucht 2024.",
+      "highlight": "Missie omgezet naar onbemand na RCS-problemen tijdens Crew Flight Test 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van het Boeing Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na problemen met het RCS-aandrijfsysteem tijdens de bemande testvlucht in 2024 heeft NASA besloten deze missie onbemand uit te voeren. Het ruimtevaartuig levert benodigde cargo aan het ISS en valideert tegelijkertijd de doorgevoerde systeemverbeteringen in de praktijk. De missie is een cruciale stap richting herstel van het vertrouwen in het Starliner-programma.",
+      "description": "Starliner-1 markeert de eerste operationele vlucht van het Starliner-ruimtevaartuig naar het Internationaal Ruimtestation in het kader van NASA's Commercial Crew Program. Na problemen met het RCS-houdingsregelingssysteem tijdens de Crew Flight Test-missie in 2024, heeft NASA besloten deze vlucht onbemand uit te voeren. Het vaartuig zal essentiële lading afleveren aan het orbitale laboratorium en tegelijkertijd de doorgevoerde systeemverbeteringen valideren. De missie is een cruciale stap richting herstel van het vertrouwen in het Starliner-platform.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -806,9 +809,10 @@
         "megaconstel­latie",
         "satelliettinternet",
         "commercial crew",
-        "onbemande vlucht"
+        "onbemande vlucht",
+        "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-07-11T09:16:48.236Z"
+      "_lastClaudeUpdate": "2026-07-14T09:45:51.055Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -1529,7 +1533,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 jul 2026",
+      "launched": "21 jul 2026",
       "objective": "MRV-1 brengt een robotvoertuig en verlengingspods naar geostationaire baan om satellieten te onderhouden.",
       "body": "Geostationaire baan",
       "highlight": "Gepland voor lancering in september 2026 met Falcon 9.",
@@ -1538,7 +1542,7 @@
       "bgTo": "#0a2030",
       "description": "SpaceX lanceert in september 2026 de MRV-1-missie voor SpaceLogistics, een dochteronderneming van Northrop Grumman. De payload bestaat uit een Mission Robotic Vehicle (MRV) en meerdere Mission Extension Pods (MEPs), bedoeld om de levensduur van bestaande geostationairen satellieten te verlengen. Het robotvoertuig kan zich zelfstandig koppelen aan klantensatellieten en de pods als permanente aandrijfmodules achterlaten. Dit is een belangrijke stap in de opkomende markt van satellietsonderhoud in de ruimte.",
       "vehicle": "Falcon 9",
-      "launchSite": "Unknown Pad",
+      "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/0f6780cf-edae-4d7c-99d6-ce7de784d140/?format=json",
