@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-16T09:55:24.060Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-07-17T09:45:33.832Z",
+    "autoUpdated": [
+      "sda-tranche-1-transport-layer-e"
+    ]
   },
   "missions": [
     {
@@ -1794,15 +1796,15 @@
       "name": "SDA Tranche 1 Transport Layer E",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "16 jul 2026",
-      "objective": "Lancering van militaire satellietconstellation voor wereldwijde, veerkrachtige dataverbindingen vanuit LEO.",
+      "objective": "Lancering van 21 militaire satellieten voor het Amerikaanse PWSA Tranche 1 Transport Layer netwerk.",
       "body": "Polar Orbit",
-      "highlight": "Geplande lancering in september 2026 met SpaceX Falcon 9.",
+      "highlight": "Zesde en laatste van zes SDA Tranche 1 Transport Layer-missies gepland.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "De SDA Tranche 1 Transport Layer E is de vijfde van zes missies waarmee de Amerikaanse Space Development Agency een robuust militair communicatienetwerk in de lage aardbaan opbouwt. De satellieten maken deel uit van de Proliferated Warfighter Space Architecture en leveren lage-latentie dataverbindingen aan militaire platforms wereldwijd. Een opvallend kenmerk is het gebruik van optische inter-satellietverbindingen, die aanzienlijk sneller en betrouwbaarder zijn dan traditionele radiofrequente crosslinks. Het netwerk opereert in de Ka-band en is dynamisch geconfigureerd voor hogere bandbreedte, betere foutbestendigheid en eenvoudigere overdrachten tussen satellieten.",
+      "description": "SpaceX lanceert met een Falcon 9-raket 21 satellieten van fabrikant York Space Systems naar een poolomloopbaan. De missie maakt deel uit van de Proliferated Warfighter Space Architecture (PWSA) van de Amerikaanse Space Development Agency, die wereldwijde militaire connectiviteit vanuit een lage aardbaan moet garanderen. De satellieten zijn onderling verbonden via optische inter-satellietverbindingen (OISLs), die aanzienlijk beter presteren dan traditionele radiofrequentieverbindingen. Het netwerk opereert in de Ka-band en biedt stereobedekkig, dynamische routering en verhoogde fouttolerantie voor militaire platforms.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -1831,7 +1833,7 @@
         "space development agency",
         "leo-constellatie"
       ],
-      "_lastClaudeUpdate": "2026-06-29T12:26:29.795Z"
+      "_lastClaudeUpdate": "2026-07-17T09:45:33.823Z"
     },
     {
       "id": "sda-tranche-1-transport-layer-f",
@@ -2220,7 +2222,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "16 jul 2026",
+      "launched": "31 jul 2026",
       "objective": "Dertiende testvlucht van het tweestaps Starship-raketsysteem, de tweede vlucht van Starship V3.",
       "body": "Suborbital",
       "highlight": "Tweede vlucht van Starship V3 gepland voor juli 2026.",
@@ -3114,7 +3116,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "428edcbe-bbd7-4475-8eb1-3dd90b39ad75",
+      "_ll2Id": "ce1317de-ec94-4479-9b28-38ebf11f13ae",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
