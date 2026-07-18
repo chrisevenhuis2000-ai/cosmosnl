@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-17T09:45:33.832Z",
-    "autoUpdated": [
-      "sda-tranche-1-transport-layer-e"
-    ]
+    "lastUpdated": "2026-07-18T09:14:49.055Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1257,7 +1255,7 @@
       "bgTo": "#0a2030",
       "description": "Flight 12 markeert een belangrijke mijlpaal voor Astra Space met de jungfernvlucht van de Rocket 4, het tweede generatie lanceervehicle van het bedrijf. De Rocket 4 is ontworpen om kleine satellieten efficiënter en betrouwbaarder naar een lage aardbaan te brengen dan zijn voorganger. SpaceX verzorgt voor deze missie de lanceerdiensten, wat duidt op een samenwerkingsverband binnen de commerciële ruimtevaartindustrie. De lancering staat gepland voor eind december 2026 en wordt nauwlettend gevolgd als graadmeter voor Astra's heropleving na eerdere tegenslagen.",
       "vehicle": "Astra Rocket 4",
-      "launchSite": "Space Launch Complex 46",
+      "launchSite": "Launch Complex 48",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/44/?format=json",
@@ -2222,7 +2220,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 jul 2026",
+      "launched": "20 jul 2026",
       "objective": "Dertiende testvlucht van het tweestaps Starship-raketsysteem, de tweede vlucht van Starship V3.",
       "body": "Suborbital",
       "highlight": "Tweede vlucht van Starship V3 gepland voor juli 2026.",
@@ -2563,7 +2561,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "SpaceX lanceert geheime SDA-satellieten voor de Tranche 2 Tracking Layer in een polaire baan.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering: 30 september 2026",
@@ -2605,7 +2603,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van SDA Tranche 2 Tracking Layer B-satellieten naar een polaire baan voor ruimtegebaseerde bewaking.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor lancering op 30 september 2026 vanuit een Amerikaanse lanceerbasis.",
