@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-18T09:14:49.055Z",
+    "lastUpdated": "2026-07-19T09:43:24.670Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2390,7 +2390,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 aug 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van Tranche 2 Transport Layer-satellieten voor het Amerikaanse Space Development Agency.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor augustus 2026 als onderdeel van het groeiende PWSA-netwerk.",
