@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-19T09:43:24.670Z",
+    "lastUpdated": "2026-07-20T10:39:15.224Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2220,7 +2220,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "20 jul 2026",
+      "launched": "23 jul 2026",
       "objective": "Dertiende testvlucht van het tweestaps Starship-raketsysteem, de tweede vlucht van Starship V3.",
       "body": "Suborbital",
       "highlight": "Tweede vlucht van Starship V3 gepland voor juli 2026.",
