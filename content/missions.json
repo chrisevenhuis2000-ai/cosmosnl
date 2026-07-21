@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-20T10:39:15.224Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-07-21T10:13:41.627Z",
+    "autoUpdated": [
+      "nrol-95"
+    ]
   },
   "missions": [
     {
@@ -1453,7 +1455,7 @@
       "launchSite": "Ariane Launch Area 4",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
-      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/a57aed97-b94f-42e1-905e-9421dbd96ac8/?format=json",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/232/?format=json",
       "timeline": [
         {
           "date": "30 jun 2026",
@@ -3595,6 +3597,41 @@
         "leo"
       ],
       "_lastClaudeUpdate": "2026-07-05T10:04:05.621Z"
+    },
+    {
+      "id": "nrol-95",
+      "_ll2Id": "24675e3d-2458-48a3-8c70-5196e44d4dc3",
+      "name": "NROL-95",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "30 jul 2026",
+      "objective": "SpaceX lanceert een geheime spionagesatelliet voor het Amerikaanse inlichtingenbureau NRO.",
+      "body": "Unknown",
+      "highlight": "Geplande lancering op 30 juli 2026 vanuit een Amerikaanse lanceerbasis.",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Op 30 juli 2026 voert SpaceX de NROL-95-missie uit voor het National Reconnaissance Office, het Amerikaanse bureau dat verantwoordelijk is voor spionagesatellieten. De Falcon 9-raket vertrekt met een geheime lading waarover geen details openbaar worden gemaakt. Het NRO werkt regelmatig samen met SpaceX voor het lanceren van classificeerde satellieten die bijdragen aan nationale veiligheid en inlichtingenvergaring. De exacte baan en het doel van de payload blijven om veiligheidsredenen vertrouwelijk.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 40",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/181/?format=json",
+      "timeline": [
+        {
+          "date": "30 jul 2026",
+          "event": "Geplande lancering van NROL-95"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "NRO",
+        "SpaceX",
+        "Falcon 9",
+        "Defensie",
+        "Inlichtingen"
+      ]
     }
   ]
 }
