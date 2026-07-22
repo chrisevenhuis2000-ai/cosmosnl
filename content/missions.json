@@ -1,8 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-21T10:13:41.627Z",
+    "lastUpdated": "2026-07-22T10:14:06.450Z",
     "autoUpdated": [
-      "nrol-95"
+      "starlink-group-17-21",
+      "starlink-group-17-21"
     ]
   },
   "missions": [
@@ -760,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Onbemande operationele vlucht van Starliner naar het ISS met cargo en systeemvalidatie.",
+      "objective": "Lancering van Starlink Group 17-21 satellieten naar een lage aardbaan met een Atlas V N22-raket.",
       "body": "Low Earth Orbit",
-      "highlight": "Missie omgezet naar onbemand na RCS-problemen tijdens Crew Flight Test 2024.",
+      "highlight": "Gepland voor 31 december 2026 met een Atlas V N22-raket.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van het Starliner-ruimtevaartuig naar het Internationaal Ruimtestation in het kader van NASA's Commercial Crew Program. Na problemen met het RCS-houdingsregelingssysteem tijdens de Crew Flight Test-missie in 2024, heeft NASA besloten deze vlucht onbemand uit te voeren. Het vaartuig zal essentiële lading afleveren aan het orbitale laboratorium en tegelijkertijd de doorgevoerde systeemverbeteringen valideren. De missie is een cruciale stap richting herstel van het vertrouwen in het Starliner-platform.",
+      "description": "SpaceX plant eind 2026 de lancering van een nieuwe reeks Starlink-satellieten als onderdeel van de voortdurende uitbreiding van het commerciële internetsatellietnetwerk. De missie maakt gebruik van een Atlas V N22-raket om de satellietgroep in een lage aardbaan te brengen. Met deze lancering vergroot SpaceX de capaciteit en dekking van het wereldwijde Starlink-netwerk verder.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -811,7 +812,7 @@
         "onbemande vlucht",
         "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-07-14T09:45:51.055Z"
+      "_lastClaudeUpdate": "2026-07-22T10:14:06.446Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -3606,13 +3607,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "30 jul 2026",
-      "objective": "SpaceX lanceert een geheime spionagesatelliet voor het Amerikaanse inlichtingenbureau NRO.",
+      "objective": "SpaceX lanceert een geheime verkenningssatelliet voor het Amerikaanse National Reconnaissance Office.",
       "body": "Unknown",
-      "highlight": "Geplande lancering op 30 juli 2026 vanuit een Amerikaanse lanceerbasis.",
+      "highlight": "Geplande lancering op 30 juli 2026 om 06:37 UTC",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Op 30 juli 2026 voert SpaceX de NROL-95-missie uit voor het National Reconnaissance Office, het Amerikaanse bureau dat verantwoordelijk is voor spionagesatellieten. De Falcon 9-raket vertrekt met een geheime lading waarover geen details openbaar worden gemaakt. Het NRO werkt regelmatig samen met SpaceX voor het lanceren van classificeerde satellieten die bijdragen aan nationale veiligheid en inlichtingenvergaring. De exacte baan en het doel van de payload blijven om veiligheidsredenen vertrouwelijk.",
+      "description": "Op 30 juli 2026 voert SpaceX de NROL-95-missie uit namens het National Reconnaissance Office (NRO), de Amerikaanse inlichtingendienst verantwoordelijk voor spionagesatellieten. De lading is volledig geclassificeerd en details over de bestemming of het doel van de satelliet worden niet vrijgegeven. Een Falcon 9-raket verzorgt de lancering vanaf een nog te bevestigen lanceerplaats. Het NRO beheert een van 's werelds meest geavanceerde ruimtegebaseerde inlichtingennetwerken.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -3630,8 +3631,14 @@
         "SpaceX",
         "Falcon 9",
         "Defensie",
-        "Inlichtingen"
-      ]
+        "Inlichtingen",
+        "nro",
+        "spacex",
+        "falcon 9",
+        "defensie",
+        "inlichtingen"
+      ],
+      "_lastClaudeUpdate": "2026-07-22T10:14:00.086Z"
     }
   ]
 }
