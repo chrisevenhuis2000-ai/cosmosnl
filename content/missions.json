@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-23T10:10:32.810Z",
+    "lastUpdated": "2026-07-24T10:06:21.483Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2220,7 +2220,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "23 jul 2026",
+      "launched": "24 jul 2026",
       "objective": "Dertiende testvlucht van het tweestaps Starship-raketsysteem, de tweede vlucht van Starship V3.",
       "body": "Suborbital",
       "highlight": "Tweede vlucht van Starship V3 gepland voor juli 2026.",
@@ -3114,7 +3114,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "d6615c37-dcef-45d1-96c1-3d1a5250bf13",
+      "_ll2Id": "ce1317de-ec94-4479-9b28-38ebf11f13ae",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
