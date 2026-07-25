@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-24T10:06:21.483Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-07-25T09:26:36.878Z",
+    "autoUpdated": [
+      "flight-13"
+    ]
   },
   "missions": [
     {
@@ -2219,15 +2221,15 @@
       "name": "Flight 13",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
-      "status": "gepland",
+      "status": "actief",
       "launched": "24 jul 2026",
-      "objective": "Dertiende testvlucht van het tweestaps Starship-raketsysteem, de tweede vlucht van Starship V3.",
+      "objective": "Dertiende testvlucht van Starship V3 met eerste lading van 20 Starlink-satellieten aan boord.",
       "body": "Suborbital",
-      "highlight": "Tweede vlucht van Starship V3 gepland voor juli 2026.",
+      "highlight": "Eerste Starship-vlucht ooit met operationele Starlink-satellietlading aan boord.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX voert de dertiende testvlucht uit van Starship, het krachtigste raketsysteem ooit gebouwd. Deze missie markeert tevens de tweede vlucht van de vernieuwde Starship V3-configuratie, waarmee SpaceX verdere verbeteringen in ontwerp en prestaties wil valideren. De suborbale vlucht dient als testplatform voor systemen die nodig zijn voor toekomstige orbitale en interplanetaire missies. De gegevens die worden verzameld, zijn cruciaal voor de langetermijndoelstelling van SpaceX om mensen naar de Maan en Mars te brengen.",
+      "description": "SpaceX voert op 24 juli 2026 de dertiende testvlucht uit van het tweestapsraket Starship, tevens de tweede vlucht van de V3-variant. Voor het eerst draagt Starship een payload mee de ruimte in: twintig V3 Starlink-satellieten die hun zonnepanelen en antennes ontvouwen en via krachtige lasers verbinding proberen te maken met grondstations in Zuid-Afrika en het bestaande Starlink-netwerk. Zes van de satellieten zijn uitgerust met camera's die Starships hitteschild in beeld brengen om nieuwe inspectiemethoden te testen voor toekomstige terugkeer naar de lanceerlocatie. Meerdere tegels zijn wit geschilderd om ontbrekende tegels te simuleren en als referentiepunten te dienen voor de beeldanalyse.",
       "vehicle": "Starship",
       "launchSite": "Orbital Launch Pad 2",
       "duration": "Onbekend",
@@ -2252,9 +2254,11 @@
         "testvlucht",
         "suborbital",
         "herbruikbare raket",
-        "suborbitaal"
+        "suborbitaal",
+        "starlink",
+        "hitteschild"
       ],
-      "_lastClaudeUpdate": "2026-06-29T12:24:30.087Z"
+      "_lastClaudeUpdate": "2026-07-25T09:26:36.865Z"
     },
     {
       "id": "strix-launch-10",
@@ -3114,7 +3118,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "ce1317de-ec94-4479-9b28-38ebf11f13ae",
+      "_ll2Id": "428edcbe-bbd7-4475-8eb1-3dd90b39ad75",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
