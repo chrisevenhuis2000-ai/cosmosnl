@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-28T10:22:50.967Z",
+    "lastUpdated": "2026-07-29T10:28:35.310Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1398,7 +1398,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 jul 2026",
+      "launched": "31 aug 2026",
       "objective": "Demonstratie van een volledig cryogeen zuurstofbeheersysteem in een lage aardbaan.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor juli 2026 aan boord van een Electron-raket.",
@@ -2351,7 +2351,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 jul 2026",
+      "launched": "31 aug 2026",
       "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf Synspective.",
       "body": "Sun-Synchronous Orbit",
       "highlight": "Elfde Synspective-missie voor Rocket Lab gepland voor juli 2026.",
@@ -2858,7 +2858,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "31 aug 2026",
+      "launched": "5 aug 2026",
       "objective": "Lancering van drie BlueBird Block 2-satellieten voor continue breedbandcoverage boven de VS.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor augustus 2026 aan boord van een Falcon 9-raket.",
