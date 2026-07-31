@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-30T10:14:36.981Z",
+    "lastUpdated": "2026-07-31T10:27:31.466Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1218,7 +1218,7 @@
       "launchSite": "Unknown Pad",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
-      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/8b7e748c-6ed5-4681-a898-827b4a23b8d7/?format=json",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1092/?format=json",
       "timeline": [
         {
           "date": "31 mei 2026",
@@ -3133,7 +3133,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "ce1317de-ec94-4479-9b28-38ebf11f13ae",
+      "_ll2Id": "d6615c37-dcef-45d1-96c1-3d1a5250bf13",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
