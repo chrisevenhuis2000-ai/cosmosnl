@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-07-31T10:27:31.466Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-01T09:48:58.008Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -758,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Onbemande vlucht van Starliner-1 naar het ISS met cargo en systeemvalidatie.",
+      "objective": "Onbemande vlucht van Boeing Starliner naar het ISS voor cargoleveringen en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Missie omgezet naar onbemand na RCS-problemen tijdens Crew Flight Test 2024.",
+      "highlight": "Missie omgezet naar onbemand na RCS-problemen tijdens Crew Flight Test in 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na problemen met het RCS-houdingscontrolesysteem tijdens de Crew Flight Test-missie in 2024 besloot NASA de missie om te bouwen naar een onbemande vlucht. Het ruimtevaartuig zal essentiële cargo naar het orbitale laboratorium brengen en tegelijkertijd de doorgevoerde systeemverbeteringen in de praktijk valideren. De missie is een cruciale stap om Starliner alsnog geschikt te maken voor toekomstige bemannde vluchten.",
+      "description": "Starliner-1 is de eerste operationele vlucht van het Boeing Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na problemen met het RCS-attitudebesturingssysteem tijdens de bemanningstestvlucht in 2024 heeft NASA besloten deze missie onbemand uit te voeren. De vlucht zal essentiële vracht afleveren aan het ruimtestation en dient tegelijk als validatie van de doorgevoerde systeemverbeteringen. Het succes van deze missie is cruciaal voor de toekomst van het Starliner-programma en NASA's strategie voor commercieel bemand ruimtevervoer.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -809,7 +812,7 @@
         "onbemande vlucht",
         "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-07-26T09:50:23.294Z"
+      "_lastClaudeUpdate": "2026-08-01T09:48:58.004Z"
     },
     {
       "id": "starlink-group-10-24",
