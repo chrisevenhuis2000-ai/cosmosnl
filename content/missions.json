@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-01T09:48:58.008Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-08-02T09:47:52.471Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1034,13 +1031,13 @@
       "agencyColor": "#ffa040",
       "status": "gepland",
       "launched": "7 okt 2026",
-      "objective": "Uitrol van Amazon's Kuiper-megaconstelatie voor wereldwijde breedbandinternettoegang vanuit een lage baan.",
+      "objective": "Uitrol van 45 Amazon Kuiper-satellieten voor wereldwijd breedband-internet vanuit een lage baan.",
       "body": "Low Earth Orbit",
-      "highlight": "Lancering gepland voor eind 2026 met Ariane 64.",
+      "highlight": "Geplande lancering september 2026; 45 satellieten per Vulcan-vlucht.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Amazon Leo, voorheen bekend als Project Kuiper, is een ambitieuze megaconstelatie van 3.276 satellieten in een lage aardbaan, beheerd door Kuiper Systems LLC, een dochteronderneming van Amazon. De satellieten worden verdeeld over 98 orbitale vlakken op drie hoogteschillen: 590, 610 en 630 kilometer. Ariane 6 verzorgt een deel van de lanceringsreeks, waarbij elke vlucht 35 tot 40 satellieten aan boord neemt. Het project moet wereldwijd concurrerend breedbandinternet leveren en treedt daarmee direct in concurrentie met Starlink van SpaceX.",
+      "description": "Amazon Leo, voorheen bekend als Project Kuiper, is een megaconstellatie van 3.276 satellieten in een lage aardbaan die wereldwijd breedbandinternet moet bieden. De constellatie wordt beheerd door Kuiper Systems LLC, een dochteronderneming van Amazon, en is verdeeld over 98 orbitale vlakken op hoogtes van 590, 610 en 630 kilometer. Bij elke lancering met de Vulcan VC6L-raket worden 45 satellieten tegelijk in een baan gebracht. Amazon treedt hiermee rechtstreeks in concurrentie met bestaande megaconstellaties zoals SpaceX Starlink.",
       "vehicle": "Ariane 64",
       "launchSite": "Ariane Launch Area 4",
       "duration": "Onbekend",
@@ -1075,7 +1072,7 @@
         "megaconstelatie",
         "ariane 6"
       ],
-      "_lastClaudeUpdate": "2026-07-02T10:28:21.858Z"
+      "_lastClaudeUpdate": "2026-08-02T09:47:52.463Z"
     },
     {
       "id": "gps-iii-sv10",
@@ -3136,7 +3133,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "d6615c37-dcef-45d1-96c1-3d1a5250bf13",
+      "_ll2Id": "adfc829a-6704-4d9e-b2ca-1068c38b2b83",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
