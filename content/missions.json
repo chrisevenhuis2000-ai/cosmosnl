@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-04T10:27:59.254Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-05T10:24:26.760Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -758,13 +761,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Onbemande vlucht van Boeing Starliner naar het ISS voor cargoleveringen en systeemvalidatie.",
+      "objective": "Onbemande vlucht van Starliner-1 naar het ISS met cargo en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Missie omgezet naar onbemand na RCS-problemen tijdens Crew Flight Test in 2024.",
+      "highlight": "Missie omgebouwd naar onbemand na RCS-problemen bij testvlucht 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 is de eerste operationele vlucht van het Boeing Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na problemen met het RCS-attitudebesturingssysteem tijdens de bemanningstestvlucht in 2024 heeft NASA besloten deze missie onbemand uit te voeren. De vlucht zal essentiële vracht afleveren aan het ruimtestation en dient tegelijk als validatie van de doorgevoerde systeemverbeteringen. Het succes van deze missie is cruciaal voor de toekomst van het Starliner-programma en NASA's strategie voor commercieel bemand ruimtevervoer.",
+      "description": "Starliner-1 is de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation, uitgevoerd in het kader van NASA's Commercial Crew Program. Na problemen met het RCS-aandrijfsysteem tijdens de bemande testvlucht in 2024 besloot NASA de missie om te vormen tot een onbemande vlucht. Het ruimtevaartuig zal noodzakelijke lading aan boord brengen en dient tegelijkertijd als testplatform voor de doorgevoerde systeemverbeteringen. Zo wil NASA vertrouwen opbouwen voordat er opnieuw astronauten aan boord stappen.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -809,7 +812,7 @@
         "onbemande vlucht",
         "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-08-01T09:48:58.004Z"
+      "_lastClaudeUpdate": "2026-08-05T10:24:26.756Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -3136,7 +3139,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "adfc829a-6704-4d9e-b2ca-1068c38b2b83",
+      "_ll2Id": "d6615c37-dcef-45d1-96c1-3d1a5250bf13",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
