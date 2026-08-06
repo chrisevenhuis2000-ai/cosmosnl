@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-05T10:24:26.760Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-08-06T10:26:19.448Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -3139,7 +3136,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "d6615c37-dcef-45d1-96c1-3d1a5250bf13",
+      "_ll2Id": "ad00f137-39e4-4780-be30-443020b2a5aa",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
