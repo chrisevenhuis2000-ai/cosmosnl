@@ -1,7 +1,12 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-06T10:26:19.448Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-07T08:45:48.839Z",
+    "autoUpdated": [
+      "the-grain-goddess-provides-iqps-launch-7",
+      "voyager1",
+      "the-grain-goddess-provides-iqps-launch-7",
+      "the-lightning-god-defends-iqps-launch-8"
+    ]
   },
   "missions": [
     {
@@ -587,21 +592,21 @@
     },
     {
       "id": "voyager1",
-      "_ll2Id": null,
+      "_ll2Id": "55b79515-ddbf-4198-8a59-29a12ed21330",
       "name": "Voyager 1",
       "agency": "NASA",
       "agencyColor": "#378ADD",
-      "status": "actief",
-      "launched": "5 sep 1977",
-      "objective": "Verkenning buitenste planeten, nu door interstellaire ruimte.",
+      "status": "gepland",
+      "launched": "15 aug 2026",
+      "objective": "Lancering van vermoedelijk geheime LEO-satellieten voor een Amerikaanse overheidsinstantie via SpaceX.",
       "body": "Interstellair",
-      "highlight": "Verst object door mensen gemaakt — >24 miljard km van de Zon",
+      "highlight": "Lanceerdatum vastgesteld op 15 augustus 2026; details over lading nog geheim.",
       "icon": "🌌",
       "bgFrom": "#04060e",
       "bgTo": "#080c18",
-      "description": "Voyager 1 is het verst verwijderde door mensen gemaakte object in de geschiedenis van de ruimtevaart. Gelanceerd in september 1977, maakte de sonde iconische opnamen van Jupiter (1979) en Saturnus (1980), inclusief de ontdekking van actieve vulkanen op Io. In augustus 2012 passeerde Voyager 1 officieel de heliopauze — de grens van de zonnewind — en begeeft zich nu door interstellaire ruimte. Radiogolven doen er ruim 22 uur over om de Aarde te bereiken. Aan boord bevindt zich een Gouden Plaat met geluiden en beelden van de Aarde, als boodschap voor eventuele buitenaardse beschavingen.",
-      "vehicle": "Titan IIIE / Centaur",
-      "launchSite": "LC-41, Cape Canaveral, Florida, VS",
+      "description": "NASA en SpaceX bereiden een lancering voor die mogelijk een batch geheime satellieten naar een lage aardbaan brengt voor een nog onbekende Amerikaanse overheidsinstantie. De missie maakt naar verwachting gebruik van het Starshield-satellietplatform van SpaceX, een militaire variant van de bekende Starlink-bus. Dit vermoeden is gebaseerd op de locaties van de neervaldropzones van de rakettrappen, die exact overeenkomen met eerdere Starlink Group 15-lanceringen. Verdere details over de lading en de opdrachtgever zijn vooralsnog niet vrijgegeven.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 4E",
       "duration": ">48 jaar (nog actief, stand 2026)",
       "distanceKm": ">24.000.000.000 km (>163 AU, stand mrt 2026)",
       "missionUrl": "https://voyager.jpl.nasa.gov/",
@@ -668,8 +673,14 @@
         "interstellair",
         "jupiter",
         "saturnus",
-        "pale blue dot"
-      ]
+        "pale blue dot",
+        "starshield",
+        "spacex",
+        "falcon 9",
+        "defensiesatellieten",
+        "low earth orbit"
+      ],
+      "_lastClaudeUpdate": "2026-08-07T08:45:04.784Z"
     },
     {
       "id": "europa-clipper",
@@ -1207,13 +1218,13 @@
       "agencyColor": "#c080ff",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Lancering van een synthetische apertuurradar satelliet voor het Japanse aardobservatiebedrijf iQPS.",
+      "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse beeldbedrijf iQPS.",
       "body": "Low Earth Orbit",
-      "highlight": "Zevende iQPS-lancering met Electron; geplande liftoff in augustus 2026.",
+      "highlight": "Gepland voor lancering in 2026; zevende iQPS-missie voor Rocket Lab.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Rocket Lab voert met zijn Electron-raket de zevende lancering uit voor het Japanse bedrijf iQPS, dat gespecialiseerd is in aardobservatie. De missie, toepasselijk 'The Grain Goddess Provides' genoemd, brengt een SAR-satelliet in een lage aardbaan die ongeacht weersomstandigheden of daglichttijd beelden van het aardoppervlak kan maken. iQPS bouwt stapsgewijs aan een vloot van kleine radarsatellieten voor commerciële beeldvorming vanuit de ruimte. De Electron-raket is inmiddels een vertrouwde partner voor het Japanse bedrijf bij het uitbreiden van zijn observatienetwerk.",
+      "description": "Rocket Lab lanceert met zijn Electron-raket de zevende satelliet voor het Japanse bedrijf iQPS, gespecialiseerd in synthetische apertuurradar (SAR) aardobservatie. De missie, getiteld 'The Grain Goddess Provides', plaatst de satelliet in een lage aardbaan voor hoogwaardige beeldvorming van het aardoppervlak. SAR-technologie maakt het mogelijk om ook bij bewolking en 's nachts scherpe opnames te maken, wat de satelliet bijzonder waardevol maakt voor landbouw-, maritieme en rampenmonitoring. Het is alweer de zevende samenwerking tussen Rocket Lab en iQPS, wat duidt op een langdurige en groeiende partnerschap.",
       "vehicle": "Electron",
       "launchSite": "Unknown Pad",
       "duration": "Onbekend",
@@ -1238,7 +1249,7 @@
         "sar",
         "sar-satelliet"
       ],
-      "_lastClaudeUpdate": "2026-07-30T10:11:56.521Z"
+      "_lastClaudeUpdate": "2026-08-07T08:45:39.000Z"
     },
     {
       "id": "flight-12",
@@ -1489,13 +1500,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 okt 2026",
-      "objective": "SpaceX lanceert tientallen micro- en nanosatellieten naar een zonnesynchrone baan.",
+      "objective": "SpaceX brengt tientallen micro- en nanosatellieten naar een zonnesynchrone baan via een gedeelde vlucht.",
       "body": "Sun-Synchronous Orbit",
-      "highlight": "Lancering gepland voor 31 oktober 2026 vanaf een SpaceX-lanceerplatform.",
+      "highlight": "Gepland voor 31 oktober 2026; onderdeel van SpaceX's vaste rideshare-programma.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met de Transporter 17-missie voert SpaceX opnieuw een dedicated rideshare-vlucht uit naar een zonnesynchrone baan. Aan boord bevinden zich tientallen kleine micro- en nanosatellieten voor zowel commerciële als overheidklanten wereldwijd. De Falcon 9-raket is specifiek ingezet voor dit soort gedeelde vluchten, waarbij meerdere partijen kostenefficiënt toegang krijgen tot de ruimte. De lancering staat gepland voor 31 oktober 2026.",
+      "description": "Met Transporter 17 voert SpaceX opnieuw een dedicated rideshare-missie uit naar een zonnesynchrone baan, waarbij tientallen kleine satellieten voor commerciële en overheidsklanten worden meegelift. De Falcon 9-raket biedt ruimte aan microsatellieten en nanosatellieten die individueel te duur zouden zijn voor een eigen lancering. Dit type missie is een hoeksteen van SpaceX's commerciële strategie en maakt de ruimtevaart toegankelijker voor kleinere organisaties en startups. Transporter 17 is gepland voor oktober 2026 en volgt een inmiddels beproefde formule die SpaceX met regelmaat uitvoert.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -1523,7 +1534,7 @@
         "zonssynchrone baan",
         "nanosatelliet"
       ],
-      "_lastClaudeUpdate": "2026-07-07T10:44:45.188Z"
+      "_lastClaudeUpdate": "2026-08-07T08:45:13.424Z"
     },
     {
       "id": "mrv-1",
@@ -2500,7 +2511,7 @@
       "bgTo": "#0a2030",
       "description": "SpaceX lanceert met een Falcon 9-raket drie O3b mPower-satellieten voor het Luxemburgse telecombedrijf SES. De satellieten, gebouwd door Boeing, worden geplaatst in een Medium Earth Orbit en vormen onderdeel van het high-throughput O3b mPower-netwerk dat wereldwijde breedbandconnectiviteit levert. Met dit constellation-uitbreidingsprogramma wil SES de capaciteit en dekkingsgraad van zijn MEO-netwerk verder versterken. De lancering staat gepland voor 30 september 2026.",
       "vehicle": "Falcon 9",
-      "launchSite": "Unknown Pad",
+      "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/203/?format=json",
@@ -3136,7 +3147,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "ad00f137-39e4-4780-be30-443020b2a5aa",
+      "_ll2Id": "adfc829a-6704-4d9e-b2ca-1068c38b2b83",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -3392,7 +3403,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van 6 HawkEye 360-satellieten voor wereldwijde radiofrequentiekartering vanuit een lage aardbaan.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering eind 2026 met Rocket Lab Electron-raket.",
@@ -3401,7 +3412,7 @@
       "bgTo": "#080810",
       "description": "Rocket Lab lanceert zes kleine satellieten voor HawkEye 360, een commercieel inlichtingennetwerk dat radiofrequentiesignalen wereldwijd in kaart brengt. De zogeheten Hawk-satellieten opereren vanuit een lage aardbaan en monitoren lucht-, land- en zeeverkeer via RF-technologie. Het systeem biedt civiele SIGINT-diensten en ondersteunt hulpdiensten bij noodsituaties. Met deze lancering breidt HawkEye 360 zijn constellatie verder uit voor een hogere dekking en nauwkeurigere analyses.",
       "vehicle": "Electron",
-      "launchSite": "Rocket Lab Launch Complex 2 (Launch Area 0 C)",
+      "launchSite": "Unknown Pad",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1061/?format=json",
@@ -3434,7 +3445,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van BlackSky Gen-3 aardobservatiesatellieten naar een lage aardbaan.",
       "body": "Low Earth Orbit",
       "highlight": "Gepland voor lancering eind 2026 vanaf Rocket Lab-lanceerplatform.",
@@ -3476,7 +3487,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 sep 2026",
       "objective": "Lancering van BlackSky Gen-3 aardobservatiesatellieten naar een lage baan om de Aarde.",
       "body": "Low Earth Orbit",
       "highlight": "Gepland voor eind 2026; maakt deel uit van lopende Electron-lanceerreeks voor BlackSky.",
@@ -3673,6 +3684,41 @@
         "inlichtingen"
       ],
       "_lastClaudeUpdate": "2026-07-22T10:14:00.086Z"
+    },
+    {
+      "id": "the-lightning-god-defends-iqps-launch-8",
+      "_ll2Id": "57280454-470e-4c5d-8de1-1bbd0ea41b49",
+      "name": "The Lightning God Defends (iQPS Launch 8)",
+      "agency": "Rocket Lab",
+      "agencyColor": "#c080ff",
+      "status": "gepland",
+      "launched": "31 aug 2026",
+      "objective": "Lancering van een synthetische apertuurradar-satelliet voor het Japanse aardobservatiebedrijf iQPS.",
+      "body": "Low Earth Orbit",
+      "highlight": "Geplande lancering: 31 augustus 2026 vanuit Mahia, Nieuw-Zeeland.",
+      "icon": "🚀",
+      "bgFrom": "#040408",
+      "bgTo": "#080810",
+      "description": "Rocket Lab lanceert met zijn Electron-raket de achtste satelliet voor het Japanse bedrijf iQPS, een speler op het gebied van commerciële aardobservatie. De satelliet maakt gebruik van synthetische apertuurradartechnologie (SAR), waarmee hoge-resolutiebeelden van het aardoppervlak kunnen worden gemaakt, ongeacht bewolking of lichtomstandigheden. iQPS bouwt aan een volledig SAR-constellatie om vrijwel real-time beelden van elke locatie op aarde te kunnen leveren. De missienaam 'The Lightning God Defends' verwijst naar de Japanse mythologie en past in de traditie van iQPS om haar satellieten mythologische namen te geven.",
+      "vehicle": "Electron",
+      "launchSite": "Unknown Pad",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1092/?format=json",
+      "timeline": [
+        {
+          "date": "31 aug 2026",
+          "event": "Geplande lancering van The Lightning God Defends (iQPS Launch 8)"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "Rocket Lab",
+        "Electron",
+        "iQPS",
+        "SAR-satelliet",
+        "Aardobservatie"
+      ]
     }
   ]
 }
