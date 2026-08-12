@@ -1,7 +1,11 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-11T08:42:38.581Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-12T09:01:12.565Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21",
+      "ussf-31"
+    ]
   },
   "missions": [
     {
@@ -764,13 +768,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Onbemande vlucht van Starliner-1 naar het ISS met cargo en systeemvalidatie.",
+      "objective": "Onbemande vlucht van Starliner-1 naar het ISS met cargo en systeemupdates na eerdere problemen.",
       "body": "Low Earth Orbit",
-      "highlight": "Onbemand na RCS-problemen tijdens Crew Flight Test 2024.",
+      "highlight": "Omgevormd tot onbemande vlucht na RCS-problemen tijdens Crew Flight Test 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation in het kader van NASA's Commercial Crew Program. Na aanhoudende problemen met het RCS-houdingscontrolesysteem tijdens de bemande testvlucht in 2024 heeft NASA besloten deze missie onbemand uit te voeren. Het ruimtevaartuig zal essentiële cargo aan boord leveren en tegelijkertijd de doorgevoerde systeemverbeteringen valideren in de praktijk. De missie is daarmee een cruciale stap voordat Starliner opnieuw astronauten aan boord mag nemen.",
+      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation, maar zonder bemanning aan boord. NASA besloot de missie om te vormen tot een onbemande vlucht nadat tijdens de Crew Flight Test in 2024 ernstige problemen opdoken met het RCS-houdingsregelingssysteem. Het ruimtevaartuig zal essentiële lading afleveren aan het ruimtestation en dient tegelijkertijd als validatieplatform voor de doorgevoerde technische verbeteringen. De missie is een cruciale stap voor Boeing om het vertrouwen in het Starliner-systeem te herstellen binnen het Commercial Crew Program van NASA.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -815,7 +819,7 @@
         "onbemande vlucht",
         "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-08-09T08:29:59.435Z"
+      "_lastClaudeUpdate": "2026-08-12T09:01:01.364Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -1898,7 +1902,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van 6 satellieten voor het Europese veilige breedbandnetwerk van Open Cosmos in een polaire baan.",
       "body": "Low Earth Orbit",
       "highlight": "Eerste van vier geplande lanceringen voor Open Cosmos LEO-constellatie.",
@@ -3145,7 +3149,7 @@
     },
     {
       "id": "telesat-lightspeed-1",
-      "_ll2Id": "98b905bb-4060-40a2-b299-2773b6883203",
+      "_ll2Id": "1ce39fa1-5f79-4d7b-9aa9-9a5aad74a46a",
       "name": "Telesat Lightspeed 1",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -3723,6 +3727,41 @@
         "aardobservatie"
       ],
       "_lastClaudeUpdate": "2026-08-08T08:26:47.801Z"
+    },
+    {
+      "id": "ussf-31",
+      "_ll2Id": "4c78e865-8f03-4f47-a081-b507da270d19",
+      "name": "USSF-31",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "31 dec 2026",
+      "objective": "SpaceX lanceert twee geheime Amerikaanse militaire satellieten rechtstreeks naar geostationaire baan.",
+      "body": "Geostationaire baan",
+      "highlight": "Geplande lancering op 31 december 2026 met twee geheime militaire payloads.",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Met de USSF-31-missie brengt SpaceX twee geheime payloads van de Amerikaanse Space Force rechtstreeks naar de geostationaire baan op zo'n 36.000 kilometer hoogte. De Falcon 9-raket voert deze missie uit in opdracht van het Amerikaanse leger, waarbij de exacte aard van de satellieten om veiligheidsredenen geheim wordt gehouden. Het is een van de meer veeleisende profielen voor de Falcon 9, die de payloads direct naar GEO moet brengen zonder tussenliggende banen. De missie onderstreept de groeiende samenwerking tussen SpaceX en het Amerikaanse ruimtemilitair.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Unknown Pad",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1041/?format=json",
+      "timeline": [
+        {
+          "date": "31 dec 2026",
+          "event": "Geplande lancering van USSF-31"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "SpaceX",
+        "Falcon 9",
+        "US Space Force",
+        "geostationaire baan",
+        "militair"
+      ]
     }
   ]
 }
