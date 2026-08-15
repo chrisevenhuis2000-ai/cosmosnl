@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-14T08:57:07.358Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-15T08:14:37.941Z",
+    "autoUpdated": [
+      "victus-surgo"
+    ]
   },
   "missions": [
     {
@@ -3763,6 +3765,41 @@
         "defensie"
       ],
       "_lastClaudeUpdate": "2026-08-13T09:01:45.233Z"
+    },
+    {
+      "id": "victus-surgo",
+      "_ll2Id": "fc1bd321-e502-4d0f-81f4-1926dece81c6",
+      "name": "VICTUS SURGO",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "31 dec 2026",
+      "objective": "USSF lanceert responsief ruimtetransportsysteem met Impulse Space voertuigen naar GTO.",
+      "body": "Low Earth Orbit",
+      "highlight": "Geplande lancering eind 2026 via SpaceX Falcon 9.",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "De Amerikaanse Space Force voert met VICTUS SURGO een nieuwe Tactically Responsive Space-missie uit, gericht op het demonstreren van snelle en flexibele ruimteleveringscapaciteiten. Een Falcon 9-raket van SpaceX brengt een Impulse Space Helios-kicktrap naar een lage aardbaan, die vervolgens een Mira orbitaal transfervoertuig naar een geosynchrone transferbaan manoeuvreert. Daarnaast wordt via de Helios-rideshare-dienst een extra payload rechtstreeks naar GEO getransporteerd. De missie onderstreept de groeiende behoefte van de Space Force aan wendbare en tactisch inzetbare ruimtecapaciteiten.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Unknown Pad",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/fc1bd321-e502-4d0f-81f4-1926dece81c6/?format=json",
+      "timeline": [
+        {
+          "date": "31 dec 2026",
+          "event": "Geplande lancering van VICTUS SURGO"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "Space Force",
+        "Impulse Space",
+        "Tactically Responsive Space",
+        "SpaceX Falcon 9",
+        "GTO"
+      ]
     }
   ]
 }
