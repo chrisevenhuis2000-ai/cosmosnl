@@ -1,8 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-15T08:14:37.941Z",
+    "lastUpdated": "2026-08-16T08:15:37.535Z",
     "autoUpdated": [
-      "victus-surgo"
+      "9-x-globalstar-3",
+      "9-x-globalstar-3"
     ]
   },
   "missions": [
@@ -1949,13 +1950,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Negen Globalstar-3 satellieten lanceren ter vernieuwing van het commerciële mobiele communicatienetwerk.",
+      "objective": "Negen Globalstar-3 satellieten lanceren om het mondiale mobiele communicatienetwerk te vernieuwen.",
       "body": "Low Earth Orbit",
       "highlight": "MDA bouwt 17 vernieuwingssatellieten; Rocket Lab levert bussen en dispensers.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "SpaceX lanceert met een Falcon 9-raket negen nieuwe tweede-generatie Globalstar-satellieten naar een lage aardbaan op 1410 kilometer hoogte. De satellieten maken deel uit van een vernieuwingsprogramma waarvoor Globalstar begin 2022 een contract sloot met het Canadese MDA voor de bouw van zeventien nieuwe exemplaren. Rocket Lab is ingeschakeld als onderaannemer voor de constructie van de satellietbussen en de lanceeradapters. Het doel is de bestaande Globalstar-constellatie te versterken, die wereldwijd digitale spraak-, data- en faxdiensten levert.",
+      "description": "SpaceX lanceert negen tweede generatie Globalstar-satellieten naar een lage aardbaan van 1410 kilometer, gekanteld op 52 graden. De satellieten zijn onderdeel van een vernieuwingsprogramma dat Globalstar in vroeg 2022 initieerde met een contract voor zeventien nieuwe exemplaren. Bouwer MDA schakelde Rocket Lab in als onderaannemer voor de satellietbussen en lanceerplatforms. Het vernieuwde netwerk moet wereldwijde digitale spraak-, data- en faxdiensten via lage aardbaan-satellieten blijven garanderen.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -1982,7 +1983,7 @@
         "satellietcommunicatie",
         "low earth orbit"
       ],
-      "_lastClaudeUpdate": "2026-07-30T10:12:04.300Z"
+      "_lastClaudeUpdate": "2026-08-16T08:15:37.529Z"
     },
     {
       "id": "rivada-10",
