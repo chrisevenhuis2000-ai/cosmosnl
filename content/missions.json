@@ -1,9 +1,8 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-16T08:15:37.535Z",
+    "lastUpdated": "2026-08-17T08:30:29.733Z",
     "autoUpdated": [
-      "9-x-globalstar-3",
-      "9-x-globalstar-3"
+      "ussf-75"
     ]
   },
   "missions": [
@@ -3775,13 +3774,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "USSF lanceert responsief ruimtetransportsysteem met Impulse Space voertuigen naar GTO.",
+      "objective": "USSF lanceert tactisch responsieve ruimtemissie met Impulse Space-voertuigen naar GTO.",
       "body": "Low Earth Orbit",
-      "highlight": "Geplande lancering eind 2026 via SpaceX Falcon 9.",
+      "highlight": "Lancering gepland voor 31 december 2026 aan boord van Falcon 9.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "De Amerikaanse Space Force voert met VICTUS SURGO een nieuwe Tactically Responsive Space-missie uit, gericht op het demonstreren van snelle en flexibele ruimteleveringscapaciteiten. Een Falcon 9-raket van SpaceX brengt een Impulse Space Helios-kicktrap naar een lage aardbaan, die vervolgens een Mira orbitaal transfervoertuig naar een geosynchrone transferbaan manoeuvreert. Daarnaast wordt via de Helios-rideshare-dienst een extra payload rechtstreeks naar GEO getransporteerd. De missie onderstreept de groeiende behoefte van de Space Force aan wendbare en tactisch inzetbare ruimtecapaciteiten.",
+      "description": "VICTUS SURGO is een Tactically Responsive Space-missie van het United States Space Force Space Systems Command, gericht op het demonstreren van snelle en flexibele inzet van ruimtecapaciteit. De missie maakt gebruik van een Impulse Space Mira orbitaal transfervoertuig dat opereert in een geostationaire transferbaan, bereikt via een Impulse Space Helios kick stage vanuit een lage aardbaan. Naast de primaire payload wordt ook een rideshare-lading afgeleverd in de geostationaire baan. SpaceX verzorgt de lancering met een Falcon 9-raket, gepland voor eind 2026.",
       "vehicle": "Falcon 9",
       "launchSite": "Unknown Pad",
       "duration": "Onbekend",
@@ -3799,7 +3798,48 @@
         "Impulse Space",
         "Tactically Responsive Space",
         "SpaceX Falcon 9",
-        "GTO"
+        "GTO",
+        "ussf",
+        "tactically responsive space",
+        "impulse space",
+        "falcon 9",
+        "gto"
+      ],
+      "_lastClaudeUpdate": "2026-08-17T08:30:20.727Z"
+    },
+    {
+      "id": "ussf-75",
+      "_ll2Id": "c1bd775a-2fff-45bb-9726-765b69817c19",
+      "name": "USSF-75",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "31 dec 2026",
+      "objective": "Lancering van een geheim ruimtevaartuig voor de Amerikaanse Space Force naar een geostationaire baan.",
+      "body": "Geostationaire baan",
+      "highlight": "Geplande lancering: 31 december 2026",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Met de USSF-75-missie brengt SpaceX een geclassificeerde lading in opdracht van de United States Space Force naar een geostationaire baan. De krachtige Falcon Heavy-raket, bestaande uit drie verbonden Falcon 9-boosters, is de aangewezen drager voor zware militaire satellieten. De details over de aard en het doel van de lading zijn door het Amerikaanse ministerie van Defensie strikt geheimgehouden. De lancering staat gepland voor eind december 2026 vanaf het Kennedy Space Center in Florida.",
+      "vehicle": "Falcon Heavy",
+      "launchSite": "Launch Complex 39A",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1041/?format=json",
+      "timeline": [
+        {
+          "date": "31 dec 2026",
+          "event": "Geplande lancering van USSF-75"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "SpaceX",
+        "Falcon Heavy",
+        "USSF",
+        "Militair",
+        "Geostationaire baan"
       ]
     }
   ]
