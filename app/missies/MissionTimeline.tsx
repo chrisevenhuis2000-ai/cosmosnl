@@ -60,7 +60,7 @@ export default function MissionTimeline() {
 
       {/* Section header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-        <span id="timeline-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Lanceertijdlijn</span>
+        <span id="timeline-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Lanceertijdlijn</span>
         {/* Live indicator */}
         <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 10, height: 10, flexShrink: 0 }}>
           <span className="animate-live-ring" style={{ position: 'absolute', width: 10, height: 10, borderRadius: '50%', background: 'rgba(61,223,144,0.3)' }} />
@@ -75,10 +75,10 @@ export default function MissionTimeline() {
         style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', background: 'rgba(55,138,221,0.05)', border: '1px solid rgba(55,138,221,0.18)', borderRadius: 4, marginBottom: 16 }}
       >
         <span style={{ fontSize: '1.1rem' }}>🌌</span>
-        <span style={{ flex: 1, fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#4A5A8A', lineHeight: 1.5 }}>
+        <span style={{ flex: 1, fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8', lineHeight: 1.5 }}>
           <strong style={{ color: '#8A9BC4' }}>Voyager 1</strong> — gelanceerd 5 september 1977, nu op &gt;163 AU — niet op schaal weergegeven
         </span>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#378ADD', flexShrink: 0 }}>Bekijk →</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#378ADD', flexShrink: 0 }}>Bekijk →</span>
       </Link>
 
       {/* Scrollable timeline track */}
@@ -128,7 +128,7 @@ export default function MissionTimeline() {
                   top:        LY - (major || accent ? 8 : 3),
                   width:      1,
                   height:     major || accent ? 16 : 6,
-                  background: accent ? '#3dcfdf88' : (major ? '#4A5A8A' : '#252858'),
+                  background: accent ? '#3dcfdf88' : (major ? '#7A86A8' : '#252858'),
                 }} />
                 {(major || accent) && (
                   <span style={{
@@ -137,8 +137,8 @@ export default function MissionTimeline() {
                     top:           LY + 14,
                     transform:     'translateX(-50%)',
                     fontFamily:    'var(--font-mono)',
-                    fontSize:      '0.5rem',
-                    color:         accent ? '#3dcfdf' : '#4A5A8A',
+                    fontSize:      '0.73rem',
+                    color:         accent ? '#3dcfdf' : '#7A86A8',
                     letterSpacing: '0.05em',
                     userSelect:    'none',
                     pointerEvents: 'none',
@@ -167,7 +167,7 @@ export default function MissionTimeline() {
               left:         '50%',
               transform:    'translateX(-50%)',
               fontFamily:   'var(--font-mono)',
-              fontSize:     '0.46rem',
+              fontSize:     '0.72rem',
               color:        '#fff',
               letterSpacing: '0.08em',
               whiteSpace:   'nowrap',
@@ -244,7 +244,7 @@ export default function MissionTimeline() {
                   }}>
                     <div style={{
                       fontFamily:   'var(--font-mono)',
-                      fontSize:     '0.53rem',
+                      fontSize:     '0.74rem',
                       color:        isPast ? '#e0e8ff' : '#8090b8',
                       lineHeight:   1.3,
                       whiteSpace:   'nowrap',
@@ -255,7 +255,7 @@ export default function MissionTimeline() {
                     </div>
                     <div style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize:   '0.46rem',
+                      fontSize:   '0.72rem',
                       color:      m.color,
                       marginTop:  2,
                       opacity:    isPast ? 1 : 0.7,
@@ -274,20 +274,20 @@ export default function MissionTimeline() {
       <div style={{ display: 'flex', gap: 20, marginTop: 12, flexWrap: 'wrap', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#3ddf90', boxShadow: '0 0 5px #3ddf9080', flexShrink: 0 }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>Actief / voltooid</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', letterSpacing: '0.1em' }}>Actief / voltooid</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ width: 7, height: 7, borderRadius: '50%', border: '1.5px solid #378ADD66', flexShrink: 0 }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>Gepland</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', letterSpacing: '0.1em' }}>Gepland</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{ background: '#378ADD', padding: '2px 6px', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#fff', display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ background: '#378ADD', padding: '2px 6px', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#fff', display: 'flex', alignItems: 'center', gap: 4 }}>
             <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#fff', display: 'inline-block' }} />
             VANDAAG
           </div>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.1em' }}>Huidige datum (live)</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', letterSpacing: '0.1em' }}>Huidige datum (live)</span>
         </div>
-        <div style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060' }}>Klik op een missie voor details</div>
+        <div style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8' }}>Klik op een missie voor details</div>
       </div>
     </section>
   )

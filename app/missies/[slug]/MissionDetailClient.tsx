@@ -76,9 +76,9 @@ function Topbar() {
   }, [])
   return (
     <div role="banner" style={{ position: 'relative', zIndex: 30, height: 'var(--topbar-h)', background: 'rgba(26,26,46,0.97)', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 20, backdropFilter: 'blur(12px)' }} className="topbar-pad">
-      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', color: '#4A5A8A', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
+      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', color: '#7A86A8', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
       <div style={{ flex: 1 }} />
-      <nav style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.58rem', flexShrink: 0 }}>
+      <nav style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', flexShrink: 0 }}>
         <Link href="/" style={{ color: '#FFFFFF' }}>NL</Link>
       </nav>
     </div>
@@ -106,7 +106,7 @@ function SiteNav() {
             const isActive = href === '/missies'
             return (
               <li key={href}>
-                <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#4A5A8A', textDecoration: 'none', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}>{label}</Link>
+                <Link href={href} style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#7A86A8', textDecoration: 'none', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}>{label}</Link>
               </li>
             )
           })}
@@ -129,26 +129,26 @@ function SiteFooter() {
         <div className="footer-grid">
           <div>
             <img src="/logo-transparent.png" alt="NightGazer" style={{ height: 42, width: 'auto', display: 'block', marginBottom: 16 }} />
-            <p style={{ fontSize: '0.78rem', color: '#4A5A8A', lineHeight: 1.7, maxWidth: 260, margin: 0 }}>
+            <p style={{ fontSize: '0.78rem', color: '#7A86A8', lineHeight: 1.7, maxWidth: 260, margin: 0 }}>
               Nederlandstalig ruimtevaartnieuws — van Mars-rovers tot telescopen aan de rand van het heelal.
             </p>
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Pagina&apos;s</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Pagina&apos;s</div>
             {[['/', 'Home'], ['/nieuws', 'Nieuws'], ['/missies', 'Missies'], ['/sterrenkijken', 'Sterrenkijken'], ['/educatie', 'Educatie']].map(([href, label]) => (
               <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10 }}>{label}</Link>
             ))}
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Bronnen</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Bronnen</div>
             {[['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']].map(([label, href]) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10 }}>{label} ↗</a>
             ))}
           </div>
         </div>
         <div className="footer-bottom-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 24, borderTop: '1px solid #252858' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#2A3060' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#2A3060' }}>Afbeeldingen: NASA · ESA · SpaceX</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>Afbeeldingen: NASA · ESA · SpaceX</span>
         </div>
       </div>
     </footer>
@@ -175,9 +175,9 @@ function ArticleCard({ article }: { article: Article }) {
       )}
       <div style={{ padding: '14px 16px 18px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: article.catColor || '#378ADD' }}>{article.category}</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: article.catColor || '#378ADD' }}>{article.category}</span>
           <span style={{ color: '#252858' }}>·</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>{article.readTime} min</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8' }}>{article.readTime} min</span>
         </div>
         <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.95rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.35, marginBottom: 6 }}>{article.title}</h3>
         <p style={{ fontSize: '0.73rem', color: '#8A9BC4', lineHeight: 1.6, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{article.excerpt}</p>
@@ -190,7 +190,7 @@ function ArticleCard({ article }: { article: Article }) {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>{children}</span>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>{children}</span>
       <div style={{ flex: 1, height: 1, background: '#252858' }} />
     </div>
   )
@@ -247,9 +247,9 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
 
         <div className="hero-content-pad" style={{ position: 'relative', zIndex: 2, paddingTop: 64, paddingBottom: 72 }}>
           {/* Breadcrumb */}
-          <Link href="/missies" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', textDecoration: 'none', marginBottom: 32, transition: 'color 0.15s' }}
+          <Link href="/missies" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7A86A8', textDecoration: 'none', marginBottom: 32, transition: 'color 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#4A5A8A')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#7A86A8')}
           >
             <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M11 6H1M5 10l-4-4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             Alle missies
@@ -259,8 +259,8 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
             <div style={{ fontSize: '4rem', lineHeight: 1, flexShrink: 0 }}>{mission.icon}</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: mission.agencyColor }}>{mission.agency}</span>
-                <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: mission.agencyColor }}>{mission.agency}</span>
+                <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
                   {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} />}
                   {st.label}
                 </span>
@@ -273,7 +273,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
           {/* Highlight callout */}
           <div style={{ marginTop: 32, display: 'inline-flex', alignItems: 'center', gap: 10, padding: '10px 16px', background: `${mission.agencyColor}12`, border: `1px solid ${mission.agencyColor}30`, borderRadius: 2 }}>
             <svg width="14" height="14" fill="none" viewBox="0 0 12 12"><path d="M6 1l1.5 3 3.5.5-2.5 2.4.6 3.5L6 8.9l-3.1 1.5.6-3.5L1 4.5 4.5 4z" stroke={mission.agencyColor} strokeWidth="1" fill="none" /></svg>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', color: '#8A9BC4' }}>{mission.highlight}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: '#8A9BC4' }}>{mission.highlight}</span>
           </div>
         </div>
       </section>
@@ -292,14 +292,14 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
             { label: 'Lanceerbasis', value: mission.launchSite },
           ].map(s => (
             <div key={s.label} style={{ background: '#12132A', padding: '18px 20px' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 6 }}>{s.label}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#FFFFFF', lineHeight: 1.4 }}>{s.value}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 6 }}>{s.label}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.79rem', color: '#FFFFFF', lineHeight: 1.4 }}>{s.value}</div>
             </div>
           ))}
         </div>
 
         {/* Last updated */}
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#2A3060', textAlign: 'right', margin: '-16px 0 48px' }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#7A86A8', textAlign: 'right', margin: '-16px 0 48px' }}>
           Bijgewerkt: {new Date(MISSIONS_LAST_UPDATED).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}
         </p>
 
@@ -308,7 +308,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
           <SectionLabel>Over de missie</SectionLabel>
           <div className="mission-desc-row" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'start' }}>
             <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.85, margin: 0 }}>{mission.description}</p>
-            <a href={mission.missionUrl} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor, textDecoration: 'none', padding: '8px 16px', border: `1px solid ${mission.agencyColor}40`, borderRadius: 2, whiteSpace: 'nowrap', transition: 'background 0.15s' }}
+            <a href={mission.missionUrl} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor, textDecoration: 'none', padding: '8px 16px', border: `1px solid ${mission.agencyColor}40`, borderRadius: 2, whiteSpace: 'nowrap', transition: 'background 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.background = `${mission.agencyColor}12`)}
               onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
             >
@@ -323,8 +323,8 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
             {mission.facts.map(f => (
               <div key={f.label} style={{ background: '#12132A', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#4A5A8A' }}>{f.label}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#FFFFFF', lineHeight: 1.4 }}>{f.value}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#7A86A8' }}>{f.label}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.79rem', color: '#FFFFFF', lineHeight: 1.4 }}>{f.value}</div>
               </div>
             ))}
           </div>
@@ -341,7 +341,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
                 <div key={i} style={{ display: 'flex', gap: 0, alignItems: 'flex-start' }}>
                   {/* Date */}
                   <div className="mission-timeline-date" style={{ width: 88, flexShrink: 0, paddingRight: 20, paddingTop: 18, paddingBottom: 18 }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.06em', display: 'block', textAlign: 'right' }}>{entry.date}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', letterSpacing: '0.06em', display: 'block', textAlign: 'right' }}>{entry.date}</span>
                   </div>
                   {/* Dot */}
                   <div style={{ flexShrink: 0, display: 'flex', alignItems: 'flex-start', paddingTop: 22 }}>
@@ -349,7 +349,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
                   </div>
                   {/* Event */}
                   <div style={{ flex: 1, paddingLeft: 20, paddingTop: 16, paddingBottom: 16, borderBottom: i < mission.timeline.length - 1 ? '1px solid rgba(37,40,88,0.4)' : 'none' }}>
-                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#FFFFFF', lineHeight: 1.55, margin: 0 }}>{entry.event}</p>
+                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.79rem', color: '#FFFFFF', lineHeight: 1.55, margin: 0 }}>{entry.event}</p>
                   </div>
                 </div>
               ))}
@@ -365,7 +365,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
           <section aria-labelledby="nieuws-label" style={{ marginBottom: 72 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
               <SectionLabel>Gerelateerd nieuws</SectionLabel>
-              <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em', flexShrink: 0, marginLeft: 16 }}>Alle nieuws →</Link>
+              <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em', flexShrink: 0, marginLeft: 16 }}>Alle nieuws →</Link>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
               {articles.map(a => <ArticleCard key={a.slug} article={a} />)}
@@ -386,10 +386,10 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span style={{ fontSize: '1.4rem' }}>{m.icon}</span>
-                    <span style={{ background: ost.bg, color: ost.color, fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2 }}>{ost.label}</span>
+                    <span style={{ background: ost.bg, color: ost.color, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2 }}>{ost.label}</span>
                   </div>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: '#FFFFFF' }}>{m.name}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: m.agencyColor, letterSpacing: '0.08em' }}>{m.agency}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: m.agencyColor, letterSpacing: '0.08em' }}>{m.agency}</div>
                   <p style={{ fontSize: '0.75rem', color: '#8A9BC4', margin: 0, lineHeight: 1.6 }}>{m.objective}</p>
                 </Link>
               )

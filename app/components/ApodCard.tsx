@@ -27,7 +27,7 @@ export default function ApodCard() {
 
   useEffect(() => {
     fetch(`${PROXY}/apod`)
-      .then(r => r.json())
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then((d: ApodData) => { setApod(d); setLoading(false) })
       .catch(() => setLoading(false))
   }, [])
@@ -52,7 +52,7 @@ export default function ApodCard() {
       <div style={{ padding: '10px 16px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{
           fontFamily:    'var(--font-mono)',
-          fontSize:      '0.5rem',
+          fontSize:      '0.73rem',
           letterSpacing: '0.2em',
           textTransform: 'uppercase',
           color:         '#378ADD',
@@ -62,7 +62,7 @@ export default function ApodCard() {
           padding:       '2px 7px',
         }}>NASA · Foto van de dag</span>
         {apod && (
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060', marginLeft: 'auto' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', marginLeft: 'auto' }}>
             {formatDate(apod.date)}
           </span>
         )}
@@ -74,7 +74,7 @@ export default function ApodCard() {
       ) : isVideo ? (
         <div style={{ width: '100%', aspectRatio: '16/9', background: '#0d0e20', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <a href={apod!.url} target="_blank" rel="noopener noreferrer"
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em' }}>
+            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em' }}>
             ▶ Bekijk video ↗
           </a>
         </div>
@@ -114,8 +114,8 @@ export default function ApodCard() {
             </p>
             <p style={{
               fontFamily: 'var(--font-mono)',
-              fontSize:   '0.52rem',
-              color:      '#4A5A8A',
+              fontSize:   '0.74rem',
+              color:      '#7A86A8',
               margin:     0,
               lineHeight: 1.7,
               display:    '-webkit-box',
@@ -126,7 +126,7 @@ export default function ApodCard() {
               {apod.explanation}
             </p>
             {apod.copyright && (
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#2A3060', margin: '8px 0 0', letterSpacing: '0.04em' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#7A86A8', margin: '8px 0 0', letterSpacing: '0.04em' }}>
                 © {apod.copyright.replace(/\n/g, ' ')}
               </p>
             )}

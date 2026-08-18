@@ -143,18 +143,18 @@ function Topbar() {
   }, [])
   return (
     <div role="banner" style={{ position: 'relative', zIndex: 30, height: 'var(--topbar-h)', background: 'rgba(26,26,46,0.97)', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 20, backdropFilter: 'blur(12px)' }} className="topbar-pad">
-      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', color: '#4A5A8A', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
-      <div aria-hidden="true" style={{ flex: 1, overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' }}>
+      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', color: '#7A86A8', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
+      <div aria-hidden="true" className="ticker-mask" style={{ flex: 1, overflow: 'hidden' }}>
         <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: '#7A86A8', letterSpacing: '0.06em' }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3dcfdf', flexShrink: 0, display: 'inline-block' }} />
               {item}
             </span>
           ))}
         </div>
       </div>
-      <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.58rem', flexShrink: 0 }}>
+      <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', flexShrink: 0 }}>
         <Link href="/" style={{ color: '#FFFFFF' }}>NL</Link>
       </nav>
     </div>
@@ -183,9 +183,9 @@ function SiteNav() {
               const isActive = href === '/nieuws'
               return (
                 <li key={href}>
-                  <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#4A5A8A', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}
+                  <Link href={href} style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#7A86A8', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#FFFFFF' : '#4A5A8A')}
+                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#FFFFFF' : '#7A86A8')}
                   >{label}</Link>
                 </li>
               )
@@ -200,8 +200,8 @@ function SiteNav() {
               onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}
             >
               <span style={{ fontSize: '0.75rem', opacity: 0.6 }}>🔍</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.08em' }}>Zoek…</span>
-              <kbd style={{ fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#2A3060', background: '#1a1c42', border: '1px solid #252858', borderRadius: 3, padding: '1px 5px' }}>⌘K</kbd>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', letterSpacing: '0.08em' }}>Zoek…</span>
+              <kbd style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#7A86A8', background: '#1a1c42', border: '1px solid #252858', borderRadius: 3, padding: '1px 5px' }}>⌘K</kbd>
             </button>
             <button className="nav-hamburger" aria-expanded={mobileOpen} aria-controls="mobile-nav" aria-label={mobileOpen ? 'Menu sluiten' : 'Menu openen'} onClick={() => setMobileOpen(o => !o)} style={{ flexDirection: 'column', gap: 5, padding: 8, background: 'none', border: 'none', cursor: 'pointer' }}>
               {[0, 1, 2].map(i => (
@@ -232,7 +232,7 @@ function SiteFooter() {
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 32, marginBottom: 32 }}>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Navigatie</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Navigatie</div>
             {NAV_LINKS.map(({ href, label }) => (
               <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
@@ -241,7 +241,7 @@ function SiteFooter() {
             ))}
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Bronnen</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Bronnen</div>
             {[['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']].map(([label, href]) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
@@ -251,8 +251,8 @@ function SiteFooter() {
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 24, borderTop: '1px solid #252858' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#2A3060' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#2A3060' }}>Afbeeldingen: NASA · ESA · Pexels</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>Afbeeldingen: NASA · ESA · Pexels</span>
         </div>
       </div>
     </footer>
@@ -303,7 +303,7 @@ function FeaturedCard({ article }: { article: Article }) {
         {/* Right: content */}
         <div style={{ padding: '36px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '3px solid #378ADD' }}>
           {article.category && (
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: article.catColor || '#7aadff', marginBottom: 16, display: 'block' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: article.catColor || '#7aadff', marginBottom: 16, display: 'block' }}>
               ★ Uitgelicht · {article.category}
             </span>
           )}
@@ -317,11 +317,11 @@ function FeaturedCard({ article }: { article: Article }) {
           )}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
             {article.date && (
-              <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#4A5A8A' }}>{article.date}</time>
+              <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8' }}>{article.date}</time>
             )}
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#4A5A8A' }}>· {mins} min leestijd</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8' }}>· {mins} min leestijd</span>
           </div>
-          <span style={{ alignSelf: 'flex-start', fontFamily: 'var(--font-mono)', fontSize: '0.58rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', borderBottom: '1px solid rgba(55,138,221,0.4)', paddingBottom: 2 }}>
+          <span style={{ alignSelf: 'flex-start', fontFamily: 'var(--font-mono)', fontSize: '0.76rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', borderBottom: '1px solid rgba(55,138,221,0.4)', paddingBottom: 2 }}>
             Lees artikel →
           </span>
         </div>
@@ -354,12 +354,12 @@ function ArticleCard({ article }: { article: Article }) {
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(transparent, rgba(10,16,48,0.85))' }} />
           {/* Category badge — top left */}
           {article.category && (
-            <span style={{ position: 'absolute', top: 10, left: 10, fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: article.catColor || '#7aadff', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
+            <span style={{ position: 'absolute', top: 10, left: 10, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: article.catColor || '#7aadff', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
               {article.category}
             </span>
           )}
           {/* Read time — top right */}
-          <span style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#8A9CC0', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
+          <span style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#8A9CC0', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
             {mins} min
           </span>
         </div>
@@ -370,12 +370,12 @@ function ArticleCard({ article }: { article: Article }) {
             {article.title}
           </h2>
           {article.excerpt && (
-            <p style={{ fontSize: '0.82rem', color: '#8A9CC0', lineHeight: 1.5, flex: 1, marginBottom: 12, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
+            <p style={{ fontSize: '0.92rem', color: '#8A9CC0', lineHeight: 1.5, flex: 1, marginBottom: 12, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>
               {article.excerpt}
             </p>
           )}
           {article.date && (
-            <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#4A5A8A', display: 'block' }}>
+            <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8', display: 'block' }}>
               {article.date}
             </time>
           )}
@@ -473,7 +473,7 @@ export default function NieuwsClient() {
         {/* Page header */}
         <div style={{ borderBottom: '1px solid #252858', background: 'linear-gradient(180deg, rgba(26,26,46,0.9) 0%, transparent 100%)', padding: 'clamp(32px,5vw,64px) clamp(16px,4vw,60px) 40px' }}>
           <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 12 }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 12 }}>
               Astronomie &amp; Ruimtevaart
             </p>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#fff', marginBottom: 8 }}>
@@ -493,9 +493,9 @@ export default function NieuwsClient() {
               const active = filter === cat
               return (
                 <button key={cat} onClick={() => { setFilter(cat); setVisibleCount(18) }}
-                  style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '14px 20px', background: 'none', border: 'none', borderBottom: active ? '2px solid #378ADD' : '2px solid transparent', color: active ? '#fff' : '#4A5A8A', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'color 0.15s, border-color 0.15s' }}
+                  style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '14px 20px', background: 'none', border: 'none', borderBottom: active ? '2px solid #378ADD' : '2px solid transparent', color: active ? '#fff' : '#7A86A8', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'color 0.15s, border-color 0.15s' }}
                   onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#8A9CC0' }}
-                  onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#4A5A8A' }}
+                  onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#7A86A8' }}
                 >
                   {cat}{loading ? '' : ` (${count})`}
                 </button>
@@ -527,12 +527,12 @@ export default function NieuwsClient() {
               <p style={{ color: '#8A9CC0', fontSize: '0.9rem', marginBottom: 8 }}>
                 Geen artikelen gevonden
               </p>
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#4A5A8A', marginBottom: 28 }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#7A86A8', marginBottom: 28 }}>
                 in categorie &ldquo;{filter}&rdquo;
               </p>
               <button
                 onClick={() => { setFilter('Alles'); setVisibleCount(18) }}
-                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.4)', padding: '10px 24px', borderRadius: 2, cursor: 'pointer', transition: 'background 0.15s' }}
+                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.4)', padding: '10px 24px', borderRadius: 2, cursor: 'pointer', transition: 'background 0.15s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(55,138,221,0.08)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
               >
@@ -552,13 +552,13 @@ export default function NieuwsClient() {
           {hasMore && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
               <button onClick={() => setVisibleCount(c => c + 18)}
-                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.35)', padding: '11px 28px', cursor: 'pointer', borderRadius: 2, transition: 'background 0.15s, border-color 0.15s' }}
+                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.35)', padding: '11px 28px', cursor: 'pointer', borderRadius: 2, transition: 'background 0.15s, border-color 0.15s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(55,138,221,0.08)'; e.currentTarget.style.borderColor = 'rgba(55,138,221,0.6)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'none'; e.currentTarget.style.borderColor = 'rgba(55,138,221,0.35)' }}
               >
                 Laad meer
               </button>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: '#4A5A8A' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>
                 {(featured ? gridArticles.length + 1 : gridArticles.length)} van {filtered.length}
               </span>
               <div style={{ flex: 1, height: 2, background: '#252858', borderRadius: 1, overflow: 'hidden' }}>

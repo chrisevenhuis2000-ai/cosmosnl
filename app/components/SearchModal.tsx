@@ -103,13 +103,13 @@ export default function SearchModal({ open, onClose }: { open: boolean; onClose:
             placeholder="Zoek artikelen…"
             style={{ flex: 1, background: 'none', border: 'none', outline: 'none', color: '#fff', fontSize: '1rem', fontFamily: 'var(--font-sans)', caretColor: '#378ADD' }}
           />
-          <kbd style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', background: '#1a1c42', border: '1px solid #252858', borderRadius: 4, padding: '2px 6px' }}>ESC</kbd>
+          <kbd style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', background: '#1a1c42', border: '1px solid #252858', borderRadius: 4, padding: '2px 6px' }}>ESC</kbd>
         </div>
 
         {/* Results */}
         <div className="search-modal-results" style={{ maxHeight: 400, overflowY: 'auto' }}>
           {results.length === 0 && query ? (
-            <div style={{ padding: '24px 20px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#4A5A8A' }}>
+            <div style={{ padding: '24px 20px', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#7A86A8' }}>
               Geen artikelen gevonden voor "{query}"
             </div>
           ) : (
@@ -137,11 +137,11 @@ export default function SearchModal({ open, onClose }: { open: boolean; onClose:
                     {a.title}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: a.catColor || '#7aadff' }}>{a.category}</span>
-                    {a.date && <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#4A5A8A' }}>{a.date}</span>}
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: a.catColor || '#7aadff' }}>{a.category}</span>
+                    {a.date && <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8' }}>{a.date}</span>}
                   </div>
                 </div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', flexShrink: 0 }}>↵</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', flexShrink: 0 }}>↵</span>
               </button>
             ))
           )}
@@ -150,8 +150,8 @@ export default function SearchModal({ open, onClose }: { open: boolean; onClose:
         {/* Footer hint */}
         <div style={{ padding: '8px 20px', borderTop: '1px solid #1a1c3a', display: 'flex', gap: 16 }}>
           {[['↑↓', 'navigeer'], ['↵', 'open'], ['ESC', 'sluit']].map(([key, label]) => (
-            <span key={key} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#2A3060', display: 'flex', alignItems: 'center', gap: 4 }}>
-              <kbd style={{ background: '#1a1c42', border: '1px solid #252858', borderRadius: 3, padding: '1px 5px', color: '#4A5A8A' }}>{key}</kbd>
+            <span key={key} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <kbd style={{ background: '#1a1c42', border: '1px solid #252858', borderRadius: 3, padding: '1px 5px', color: '#7A86A8' }}>{key}</kbd>
               {label}
             </span>
           ))}

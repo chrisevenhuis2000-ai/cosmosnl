@@ -10,7 +10,7 @@ const SolarSystemMap    = dynamic(() => import('./SolarSystemMap'), {
   ssr: false,
   loading: () => (
     <div className="solar-map-loading" style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Kaart laden...</span>
+      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8' }}>Kaart laden...</span>
     </div>
   ),
 })
@@ -104,18 +104,18 @@ function Topbar() {
   }, [])
   return (
     <div role="banner" style={{ position: 'relative', zIndex: 30, height: 'var(--topbar-h)', background: 'rgba(26,26,46,0.97)', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 20, backdropFilter: 'blur(12px)' }} className="topbar-pad">
-      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', color: '#4A5A8A', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
-      <div aria-hidden="true" style={{ flex: 1, overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' }}>
+      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', color: '#7A86A8', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
+      <div aria-hidden="true" className="ticker-mask" style={{ flex: 1, overflow: 'hidden' }}>
         <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap', animationDuration: TICKER_DURATION }}>
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: '#7A86A8', letterSpacing: '0.06em' }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3dcfdf', flexShrink: 0, display: 'inline-block' }} />
               {item}
             </span>
           ))}
         </div>
       </div>
-      <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.58rem', flexShrink: 0 }}>
+      <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', flexShrink: 0 }}>
         <Link href="/" style={{ color: '#FFFFFF' }}>NL</Link>
       </nav>
     </div>
@@ -144,9 +144,9 @@ function SiteNav() {
               const isActive = href === '/missies'
               return (
                 <li key={href}>
-                  <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#4A5A8A', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}
+                  <Link href={href} style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#7A86A8', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#FFFFFF' : '#4A5A8A')}
+                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#FFFFFF' : '#7A86A8')}
                   >{label}</Link>
                 </li>
               )
@@ -199,7 +199,7 @@ function AnimatedStat({ target, label, color, delay = 0 }: { target: number; lab
   return (
     <div style={{ animation: ready ? 'count-up 0.4s ease both' : undefined }}>
       <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 700, color, lineHeight: 1 }}>{val}</div>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 5 }}>{label}</div>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7A86A8', marginTop: 5 }}>{label}</div>
     </div>
   )
 }
@@ -235,7 +235,7 @@ function MissiesHero() {
         {/* Live badge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <div aria-hidden="true" style={{ width: 32, height: 1, background: '#378ADD' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', color: '#3ddf90', textTransform: 'uppercase' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', color: '#3ddf90', textTransform: 'uppercase' }}>
             <span className="animate-pulse-dot" style={{ width: 6, height: 6, borderRadius: '50%', background: '#3ddf90', flexShrink: 0 }} aria-hidden="true" />
             Live missiedashboard
           </div>
@@ -257,7 +257,7 @@ function MissiesHero() {
         </div>
 
         <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-          <a href="#alle-missies" className="btn-clip" style={{ background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
+          <a href="#alle-missies" className="btn-clip" style={{ background: '#378ADD', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.background = '#4A9DE8')}
             onMouseLeave={e => (e.currentTarget.style.background = '#378ADD')}
           >
@@ -275,8 +275,8 @@ function MissiesHero() {
       </div>
 
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 24, right: 40, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-        <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, #4A5A8A, transparent)' }} />
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A5A8A', writingMode: 'vertical-rl' }}>Scroll</span>
+        <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, #7A86A8, transparent)' }} />
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A86A8', writingMode: 'vertical-rl' }}>Scroll</span>
       </div>
     </section>
   )
@@ -326,7 +326,7 @@ function getBodyEmoji(body: string): string {
 
 function getDestStyle(body: string) {
   const key = Object.keys(DEST_STYLE).find(k => body?.toLowerCase().includes(k.toLowerCase()))
-  return key ? DEST_STYLE[key] : { gradient: 'linear-gradient(145deg, #080c18 0%, #0c1020 100%)', accent: '#4A5A8A', icon: '🚀' }
+  return key ? DEST_STYLE[key] : { gradient: 'linear-gradient(145deg, #080c18 0%, #0c1020 100%)', accent: '#7A86A8', icon: '🚀' }
 }
 
 // Compute destinations dynamically from MISSIONS data
@@ -357,7 +357,7 @@ function AgenciesStrip() {
             onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
           >
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: ag.color, flexShrink: 0 }} />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', color: '#FFFFFF' }}>{ag.name}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 700, letterSpacing: '0.1em', color: '#FFFFFF' }}>{ag.name}</span>
             {ag.missions > 0 && (
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: ag.color, lineHeight: 1 }}>{ag.missions}</span>
             )}
@@ -404,10 +404,10 @@ function MissionCard({ mission }: { mission: Mission }) {
           <div style={{ fontSize: '1.6rem', lineHeight: 1, flexShrink: 0 }}>{mission.icon}</div>
           <div>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 4 }}>{mission.name}</div>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor }}>{mission.agency}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor }}>{mission.agency}</span>
           </div>
         </div>
-        <span style={{ flexShrink: 0, background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 5 }}>
+        <span style={{ flexShrink: 0, background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 5 }}>
           {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color, flexShrink: 0 }} aria-hidden="true" />}
           {st.label}
         </span>
@@ -415,24 +415,24 @@ function MissionCard({ mission }: { mission: Mission }) {
 
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
         <div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 2 }}>Lancering</div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#8A9BC4' }}>{mission.launched}</div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 2 }}>Lancering</div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#8A9BC4' }}>{mission.launched}</div>
         </div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', padding: '5px 10px', borderRadius: 2 }}>
           <span aria-hidden="true" style={{ fontSize: '0.85rem', lineHeight: 1 }}>{destEmoji}</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4' }}>{mission.body}</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#8A9BC4' }}>{mission.body}</span>
         </div>
       </div>
 
-      <p style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.65, margin: 0 }}>{mission.objective}</p>
+      <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.65, margin: 0 }}>{mission.objective}</p>
 
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '10px 12px', background: `${mission.agencyColor}0d`, borderLeft: `2px solid ${mission.agencyColor}70`, marginTop: 'auto' }}>
         <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }}>
           <path d="M6 1l1.5 3 3.5.5-2.5 2.4.6 3.5L6 8.9l-3.1 1.5.6-3.5L1 4.5 4.5 4z" stroke={mission.agencyColor} strokeWidth="1" fill="none" />
         </svg>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#8A9BC4', lineHeight: 1.55 }}>{mission.highlight}</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: '#8A9BC4', lineHeight: 1.55 }}>{mission.highlight}</span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: mission.agencyColor, opacity: 0.7 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: mission.agencyColor, opacity: 0.7 }}>
         Lees meer
         <svg width="10" height="10" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </div>
@@ -478,12 +478,12 @@ function ArticleCard({ article }: { article: Article }) {
           <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 70, background: 'linear-gradient(transparent, rgba(10,16,48,0.85))' }} />
           {/* Category badge */}
           {article.category && (
-            <span style={{ position: 'absolute', top: 10, left: 10, fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: article.catColor || '#3dcfdf', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
+            <span style={{ position: 'absolute', top: 10, left: 10, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: article.catColor || '#3dcfdf', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
               {article.category}
             </span>
           )}
           {/* Read time badge */}
-          <span style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#8A9CC0', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
+          <span style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#8A9CC0', background: 'rgba(10,16,48,0.78)', padding: '3px 8px', borderRadius: 2 }}>
             {article.readTime ?? 3} min
           </span>
         </div>
@@ -491,7 +491,7 @@ function ArticleCard({ article }: { article: Article }) {
           <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.98rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.35, marginBottom: 8 }}>{article.title}</h3>
           <p style={{ fontSize: '0.75rem', color: '#8A9BC4', lineHeight: 1.6, flex: 1, margin: 0, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' } as React.CSSProperties}>{article.excerpt}</p>
           {article.date && (
-            <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', display: 'block', marginTop: 12 }}>{article.date}</time>
+            <time style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', display: 'block', marginTop: 12 }}>{article.date}</time>
           )}
         </div>
       </article>
@@ -516,15 +516,15 @@ function MissionDetailPanel({ mission, onClose, showClose = true }: { mission: M
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontSize: '2.8rem', lineHeight: 1 }}>{mission.icon}</span>
-          <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 5 }}>
+          <span style={{ background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 5 }}>
             {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} aria-hidden="true" />}
             {st.label}
           </span>
         </div>
         {showClose && (
-          <button onClick={onClose} aria-label="Sluit detail" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 2, color: '#4A5A8A', cursor: 'pointer', padding: '4px 10px', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', transition: 'color 0.15s, border-color 0.15s', flexShrink: 0 }}
+          <button onClick={onClose} aria-label="Sluit detail" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 2, color: '#7A86A8', cursor: 'pointer', padding: '4px 10px', fontFamily: 'var(--font-mono)', fontSize: '0.7rem', transition: 'color 0.15s, border-color 0.15s', flexShrink: 0 }}
             onMouseEnter={e => { e.currentTarget.style.color = '#FFFFFF'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)' }}
-            onMouseLeave={e => { e.currentTarget.style.color = '#4A5A8A'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)' }}
+            onMouseLeave={e => { e.currentTarget.style.color = '#7A86A8'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)' }}
           >×</button>
         )}
       </div>
@@ -532,19 +532,19 @@ function MissionDetailPanel({ mission, onClose, showClose = true }: { mission: M
       {/* Name + agency */}
       <div>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15, marginBottom: 6 }}>{mission.name}</div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: mission.agencyColor, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{mission.agency}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: mission.agencyColor, letterSpacing: '0.1em', textTransform: 'uppercase' }}>{mission.agency}</div>
       </div>
 
       {/* Meta */}
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4' }}>🚀 {mission.launched}</div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4' }}>{destEmoji} {mission.body}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#8A9BC4' }}>🚀 {mission.launched}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#8A9BC4' }}>{destEmoji} {mission.body}</div>
       </div>
 
       <div aria-hidden="true" style={{ height: 1, background: `${mission.agencyColor}30` }} />
 
       {/* Objective */}
-      <p style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.7, margin: 0 }}>{mission.objective}</p>
+      <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.7, margin: 0 }}>{mission.objective}</p>
 
       <div aria-hidden="true" style={{ height: 1, background: `${mission.agencyColor}30` }} />
 
@@ -553,11 +553,11 @@ function MissionDetailPanel({ mission, onClose, showClose = true }: { mission: M
         <svg width="11" height="11" fill="none" viewBox="0 0 12 12" aria-hidden="true" style={{ flexShrink: 0, marginTop: 2 }}>
           <path d="M6 1l1.5 3 3.5.5-2.5 2.4.6 3.5L6 8.9l-3.1 1.5.6-3.5L1 4.5 4.5 4z" stroke={mission.agencyColor} strokeWidth="1" fill="none" />
         </svg>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', color: '#8A9BC4', lineHeight: 1.6 }}>{mission.highlight}</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#8A9BC4', lineHeight: 1.6 }}>{mission.highlight}</span>
       </div>
 
       {/* CTA */}
-      <Link href={`/missies/${mission.id}`} style={{ marginTop: 'auto', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor, textDecoration: 'none', padding: '10px 0', borderTop: `1px solid ${mission.agencyColor}30`, transition: 'opacity 0.15s' }}
+      <Link href={`/missies/${mission.id}`} style={{ marginTop: 'auto', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: mission.agencyColor, textDecoration: 'none', padding: '10px 0', borderTop: `1px solid ${mission.agencyColor}30`, transition: 'opacity 0.15s' }}
         onMouseEnter={e => (e.currentTarget.style.opacity = '0.75')}
         onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
       >
@@ -588,12 +588,12 @@ function MissionListItem({ mission, selected, onClick }: { mission: Mission; sel
       <span style={{ fontSize: '1.4rem', lineHeight: 1, flexShrink: 0 }}>{mission.icon}</span>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.25, marginBottom: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{mission.name}</div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', letterSpacing: '0.06em' }}>
           <span style={{ color: mission.agencyColor }}>{mission.agency}</span>
           {' · '}{destEmoji} {mission.body}
         </div>
       </div>
-      <span style={{ flexShrink: 0, background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.44rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 4 }}>
+      <span style={{ flexShrink: 0, background: st.bg, color: st.color, fontFamily: 'var(--font-mono)', fontSize: '0.71rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 2, border: `1px solid ${st.color}40`, display: 'flex', alignItems: 'center', gap: 4 }}>
         {mission.status === 'actief' && <span className="animate-pulse-dot" style={{ width: 4, height: 4, borderRadius: '50%', background: st.color }} aria-hidden="true" />}
         {st.label}
       </span>
@@ -610,10 +610,10 @@ function ActiveMissionsPanel() {
   return (
     <section aria-labelledby="active-label" style={{ marginBottom: 60 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
-        <span id="active-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Nu actief</span>
+        <span id="active-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Nu actief</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span className="animate-pulse-dot" style={{ width: 7, height: 7, borderRadius: '50%', background: '#3ddf90', display: 'inline-block' }} aria-hidden="true" />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#3ddf90' }}>{active.length} missie{active.length !== 1 ? 's' : ''} live</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#3ddf90' }}>{active.length} missie{active.length !== 1 ? 's' : ''} live</span>
         </div>
         <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
       </div>
@@ -666,7 +666,7 @@ function AllMissionsSection() {
   return (
     <section aria-labelledby="missies-label" id="alle-missies" style={{ marginBottom: 80 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
-        <span id="missies-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Alle missies</span>
+        <span id="missies-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Alle missies</span>
         <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
       </div>
 
@@ -675,12 +675,12 @@ function AllMissionsSection() {
         {/* "Alle" pill */}
         <button
           onClick={() => selectDest(null)}
-          style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 2, border: `1px solid ${destFilter === null ? '#378ADD' : '#252858'}`, background: destFilter === null ? 'rgba(55,138,221,0.14)' : 'transparent', color: destFilter === null ? '#FFFFFF' : '#4A5A8A', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
+          style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 2, border: `1px solid ${destFilter === null ? '#378ADD' : '#252858'}`, background: destFilter === null ? 'rgba(55,138,221,0.14)' : 'transparent', color: destFilter === null ? '#FFFFFF' : '#7A86A8', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
           onMouseEnter={e => { if (destFilter !== null) e.currentTarget.style.borderColor = 'rgba(55,138,221,0.4)' }}
           onMouseLeave={e => { if (destFilter !== null) e.currentTarget.style.borderColor = '#252858' }}
         >
           Alle
-          <span style={{ background: destFilter === null ? 'rgba(55,138,221,0.2)' : '#1a1d40', color: destFilter === null ? '#378ADD' : '#4A5A8A', padding: '0px 6px', borderRadius: 2, fontSize: '0.5rem', fontWeight: 700 }}>{MISSIONS.length}</span>
+          <span style={{ background: destFilter === null ? 'rgba(55,138,221,0.2)' : '#1a1d40', color: destFilter === null ? '#378ADD' : '#7A86A8', padding: '0px 6px', borderRadius: 2, fontSize: '0.73rem', fontWeight: 700 }}>{MISSIONS.length}</span>
         </button>
 
         {DEST_PILLS.map(pill => {
@@ -688,13 +688,13 @@ function AllMissionsSection() {
           return (
             <button key={pill.name}
               onClick={() => selectDest(pill.name)}
-              style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 2, border: `1px solid ${isActive ? '#378ADD' : '#252858'}`, background: isActive ? 'rgba(55,138,221,0.14)' : 'transparent', color: isActive ? '#FFFFFF' : '#4A5A8A', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
+              style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 2, border: `1px solid ${isActive ? '#378ADD' : '#252858'}`, background: isActive ? 'rgba(55,138,221,0.14)' : 'transparent', color: isActive ? '#FFFFFF' : '#7A86A8', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
               onMouseEnter={e => { if (!isActive) e.currentTarget.style.borderColor = 'rgba(55,138,221,0.4)' }}
               onMouseLeave={e => { if (!isActive) e.currentTarget.style.borderColor = '#252858' }}
             >
               <span>{pill.emoji}</span>
               {pill.name}
-              <span style={{ background: isActive ? 'rgba(55,138,221,0.2)' : '#1a1d40', color: isActive ? '#378ADD' : '#4A5A8A', padding: '0px 6px', borderRadius: 2, fontSize: '0.5rem', fontWeight: 700 }}>{pill.count}</span>
+              <span style={{ background: isActive ? 'rgba(55,138,221,0.2)' : '#1a1d40', color: isActive ? '#378ADD' : '#7A86A8', padding: '0px 6px', borderRadius: 2, fontSize: '0.73rem', fontWeight: 700 }}>{pill.count}</span>
             </button>
           )
         })}
@@ -708,7 +708,7 @@ function AllMissionsSection() {
         {/* Left: mission list */}
         <div style={{ background: '#0f1028' }}>
           {filtered.length === 0 ? (
-            <div style={{ padding: '40px 24px', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#4A5A8A', textAlign: 'center' }}>Geen missies gevonden</div>
+            <div style={{ padding: '40px 24px', fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#7A86A8', textAlign: 'center' }}>Geen missies gevonden</div>
           ) : (
             filtered.map(m => (
               <MissionListItem key={m.id} mission={m} selected={m.id === selectedId} onClick={() => selectMission(m.id)} />
@@ -735,12 +735,12 @@ function SiteFooter() {
         <div className="footer-grid">
           <div>
             <img src="/logo-transparent.png" alt="NightGazer" style={{ height: 42, width: 'auto', display: 'block', marginBottom: 16 }} />
-            <p style={{ fontSize: '0.78rem', color: '#4A5A8A', lineHeight: 1.7, maxWidth: 260, margin: '0 0 20px' }}>
+            <p style={{ fontSize: '0.78rem', color: '#7A86A8', lineHeight: 1.7, maxWidth: 260, margin: '0 0 20px' }}>
               Nederlandstalig ruimtevaartnieuws — van Mars-rovers tot telescopen aan de rand van het heelal.
             </p>
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Pagina&apos;s</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Pagina&apos;s</div>
             {[['/', 'Home'], ['/nieuws', 'Nieuws'], ['/missies', 'Missies'], ['/sterrenkijken', 'Sterrenkijken'], ['/educatie', 'Educatie']].map(([href, label]) => (
               <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
@@ -749,7 +749,7 @@ function SiteFooter() {
             ))}
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>Bronnen</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Bronnen</div>
             {[['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']].map(([label, href]) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
@@ -759,8 +759,8 @@ function SiteFooter() {
           </div>
         </div>
         <div className="footer-bottom-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 24, borderTop: '1px solid #252858' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#2A3060' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#2A3060' }}>Afbeeldingen: NASA · ESA · SpaceX</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>Afbeeldingen: NASA · ESA · SpaceX</span>
         </div>
       </div>
     </footer>
@@ -835,7 +835,7 @@ export default function MissiesPage() {
         {/* ── Solar system map ──────────────────────────────────────── */}
         <section aria-labelledby="map-label" style={{ marginBottom: 80 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
-            <span id="map-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Positiekaart</span>
+            <span id="map-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Positiekaart</span>
             <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
           </div>
           <SolarSystemMap />
@@ -853,7 +853,7 @@ export default function MissiesPage() {
         {/* ── Destinations ─────────────────────────────────────────── */}
         <section aria-labelledby="dest-label" style={{ marginBottom: 80 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28 }}>
-            <span id="dest-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Bestemmingen</span>
+            <span id="dest-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Bestemmingen</span>
             <div aria-hidden="true" style={{ flex: 1, height: 1, background: '#252858' }} />
           </div>
           <div className="destinations-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 2, background: '#252858', border: '1px solid #252858' }}>
@@ -866,7 +866,7 @@ export default function MissiesPage() {
                 <div style={{ fontSize: '2.5rem', lineHeight: 1, filter: `drop-shadow(0 0 10px ${dest.accent}50)` }}>{dest.icon}</div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF' }}>{dest.name}</div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 700, color: dest.accent, lineHeight: 1 }}>{dest.count}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: dest.accent, letterSpacing: '0.1em', opacity: 0.8 }}>missie{dest.count !== 1 ? 's' : ''}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: dest.accent, letterSpacing: '0.1em', opacity: 0.8 }}>missie{dest.count !== 1 ? 's' : ''}</div>
               </div>
             ))}
           </div>
@@ -876,15 +876,15 @@ export default function MissiesPage() {
         <section aria-labelledby="nieuws-label" id="nieuws" style={{ marginBottom: 64 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, gap: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              <span id="nieuws-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Missie nieuws</span>
+              <span id="nieuws-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Missie nieuws</span>
               {articles.length > 0 && (
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#252858', background: '#1a1d40', padding: '2px 8px', borderRadius: 2 }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#252858', background: '#1a1d40', padding: '2px 8px', borderRadius: 2 }}>
                   {articles.length} artikelen
                 </span>
               )}
               <div aria-hidden="true" style={{ width: 48, height: 1, background: '#252858' }} />
             </div>
-            <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em', transition: 'color 0.15s' }}
+            <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#378ADD', textDecoration: 'none', letterSpacing: '0.08em', transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
               onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
             >Alle artikelen →</Link>

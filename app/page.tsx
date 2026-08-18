@@ -154,18 +154,18 @@ function Topbar({ items }: { items: string[] }) {
   }, [])
   return (
     <div role="banner" style={{ position: 'relative', zIndex: 30, height: 'var(--topbar-h)', background: 'rgba(26,26,46,0.97)', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 20, backdropFilter: 'blur(12px)' }} className="topbar-pad">
-      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', color: '#4A5A8A', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
-      <div aria-hidden="true" style={{ flex: 1, overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)' }}>
+      <span suppressHydrationWarning className="topbar-date" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', color: '#7A86A8', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0 }}>{date}</span>
+      <div aria-hidden="true" className="ticker-mask" style={{ flex: 1, overflow: 'hidden' }}>
         <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
           {[...items, ...items].map((item, i) => (
-            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.57rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginRight: 48, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', color: '#7A86A8', letterSpacing: '0.06em' }}>
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#3dcfdf', flexShrink: 0, display: 'inline-block' }} />
               {item}
             </span>
           ))}
         </div>
       </div>
-      <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.58rem', flexShrink: 0 }}>
+      <nav role="navigation" aria-label="Taal selectie" style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.76rem', flexShrink: 0 }}>
         <Link href="/" style={{ color: '#FFFFFF' }} aria-current="true">NL</Link>
       </nav>
     </div>
@@ -198,7 +198,7 @@ function SiteNav() {
           <ul className="nav-links" role="list" style={{ gap: 32, flex: 1, justifyContent: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map(({ href, label }) => (
               <li key={href}>
-                <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0' }}
+                <Link href={href} style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
                   onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
                 >{label}</Link>
@@ -257,11 +257,11 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
       <div className="hero-content-pad animate-fadeUp" style={{ position: 'relative', zIndex: 2, maxWidth: 860 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <div aria-hidden="true" style={{ width: 32, height: 1, background: '#378ADD' }} />
-          <span role="status" aria-live="polite" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(224,80,64,0.15)', border: '1px solid rgba(224,80,64,0.4)', color: '#ff7060', fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.18em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2 }}>
+          <span role="status" aria-live="polite" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(224,80,64,0.15)', border: '1px solid rgba(224,80,64,0.4)', color: '#ff7060', fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.18em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: 2 }}>
             <span className="animate-pulse-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#e05040', flexShrink: 0 }} aria-hidden="true" />
             NASA APOD
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', color: '#378ADD', textTransform: 'uppercase' }}>Foto van de dag</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', color: '#378ADD', textTransform: 'uppercase' }}>Foto van de dag</span>
         </div>
         <h1 id="hero-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', fontWeight: 700, lineHeight: 1.06, color: '#FFFFFF', marginBottom: 20, letterSpacing: '-0.01em' }}>
           {apod?.title || 'Elke dag een nieuw venster op het heelal'}
@@ -270,7 +270,7 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
           {apod?.explanation ? apod.explanation.slice(0, 200) + '…' : 'NASA publiceert dagelijks de mooiste astronomische foto — wij leggen het uit op jouw niveau, van beginner tot professional.'}
         </p>
         <div className="hero-ctas" style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-          <Link href={heroHref} target={heroTarget} rel="noopener noreferrer" className="btn-clip" style={{ background: '#FFFFFF', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
+          <Link href={heroHref} target={heroTarget} rel="noopener noreferrer" className="btn-clip" style={{ background: '#FFFFFF', color: '#1A1A2E', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.background = '#fff')}
             onMouseLeave={e => (e.currentTarget.style.background = '#FFFFFF')}
           >
@@ -286,10 +286,10 @@ function Hero({ apod, featuredSlug }: { apod: APODData | null; featuredSlug: str
           </a>
         </div>
       </div>
-      {apod?.copyright && <div style={{ position: 'absolute', bottom: 16, right: 24, zIndex: 3, fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: 'rgba(120,130,160,0.5)' }}>© {apod.copyright}</div>}
+      {apod?.copyright && <div style={{ position: 'absolute', bottom: 16, right: 24, zIndex: 3, fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: 'rgba(120,130,160,0.5)' }}>© {apod.copyright}</div>}
       <div aria-hidden="true" style={{ position: 'absolute', bottom: 24, right: 40, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-        <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, #4A5A8A, transparent)' }} />
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A5A8A', writingMode: 'vertical-rl' }}>Scroll</span>
+        <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, #7A86A8, transparent)' }} />
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A86A8', writingMode: 'vertical-rl' }}>Scroll</span>
       </div>
     </section>
   )
@@ -313,7 +313,7 @@ function TopicsStrip({ active, onFilter, counts }: { active: string; onFilter: (
                 flexShrink: 0,
                 padding: '13px 20px',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.6rem',
+                fontSize: '0.77rem',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 color: isActive ? '#FFFFFF' : '#8A9BC4',
@@ -333,7 +333,7 @@ function TopicsStrip({ active, onFilter, counts }: { active: string; onFilter: (
               {t}
               {/* Article count badge */}
               {t !== 'Alles' && count > 0 && (
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 18, height: 16, padding: '0 5px', background: isActive ? 'rgba(55,138,221,0.2)' : 'rgba(74,82,120,0.3)', color: isActive ? '#378ADD' : '#8A9BC4', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', borderRadius: 2, fontVariantNumeric: 'tabular-nums' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 18, height: 16, padding: '0 5px', background: isActive ? 'rgba(55,138,221,0.2)' : 'rgba(74,82,120,0.3)', color: isActive ? '#378ADD' : '#8A9BC4', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', borderRadius: 2, fontVariantNumeric: 'tabular-nums' }}>
                   {count}
                 </span>
               )}
@@ -377,7 +377,7 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
             {/* Glow circle — unique position per article */}
             {!article.imageUrl && <div aria-hidden="true" style={{ position: 'absolute', left: `${cx}%`, top: `${cy}%`, width: 120, height: 120, borderRadius: '50%', background: article.catColor, opacity: 0.18, filter: 'blur(28px)', transform: 'translate(-50%,-50%)', pointerEvents: 'none' }} />}
             {/* Category badge */}
-            <span style={{ position: 'absolute', bottom: 12, left: 14, fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: article.catColor, background: 'rgba(26,26,46,0.75)', backdropFilter: 'blur(8px)', padding: '3px 8px', borderRadius: 2, border: `1px solid ${article.catColor}30`, zIndex: 2 }}>
+            <span style={{ position: 'absolute', bottom: 12, left: 14, fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: article.catColor, background: 'rgba(26,26,46,0.75)', backdropFilter: 'blur(8px)', padding: '3px 8px', borderRadius: 2, border: `1px solid ${article.catColor}30`, zIndex: 2 }}>
               {article.category}
             </span>
           </div>
@@ -387,11 +387,11 @@ function BentoCard({ article, size }: { article: Article; size: 'hero' | 'md' | 
             {article.title}
           </h2>
           {size !== 'sm' && (
-            <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.65, flex: 1, display: '-webkit-box', WebkitLineClamp: size === 'hero' ? 3 : 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: size === 'hero' ? 20 : 16 }}>
+            <p style={{ fontSize: '0.92rem', color: '#8A9BC4', lineHeight: 1.65, flex: 1, display: '-webkit-box', WebkitLineClamp: size === 'hero' ? 3 : 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', marginBottom: size === 'hero' ? 20 : 16 }}>
               {article.excerpt}
             </p>
           )}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: '#4A5A8A', letterSpacing: '0.05em', marginTop: 'auto', paddingTop: size === 'sm' ? 8 : 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8', letterSpacing: '0.05em', marginTop: 'auto', paddingTop: size === 'sm' ? 8 : 12 }}>
             {size === 'hero' && <><span>{article.author}</span><span style={{ opacity: 0.4 }}>·</span></>}
             <span>{article.date}</span>
             <span style={{ opacity: 0.4 }}>·</span>
@@ -413,10 +413,10 @@ function MissiesStrip() {
     <section aria-labelledby="missies-strip-label" style={{ margin: '32px 0 8px', borderTop: '1px solid #252858', paddingTop: 28 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span id="missies-strip-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Actieve Missies</span>
+          <span id="missies-strip-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Actieve Missies</span>
           <div aria-hidden="true" style={{ width: 48, height: 1, background: '#2A2E62' }} />
         </div>
-        <Link href="/missies" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none' }}>
+        <Link href="/missies" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none' }}>
           Alle missies →
         </Link>
       </div>
@@ -428,12 +428,12 @@ function MissiesStrip() {
                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}>
               <div>
                 <div style={{ fontSize: '1.5rem', marginBottom: 8 }}>{m.icon}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: m.agencyColor, marginBottom: 4 }}>{m.agency}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: m.agencyColor, marginBottom: 4 }}>{m.agency}</div>
                 <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', lineHeight: 1.3, marginBottom: 6 }}>{m.name}</div>
               </div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'rgba(61,207,111,0.12)', border: '1px solid rgba(61,207,111,0.25)', borderRadius: 20, padding: '2px 8px' }}>
                 <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#3ddf90' }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#3ddf90', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Actief</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#3ddf90', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Actief</span>
               </div>
             </div>
           </Link>
@@ -474,13 +474,13 @@ function ArticleGridCard({ article }: { article: Article }) {
           <div style={{ position: 'absolute', inset: 0, background: article.catColor, opacity: hovered ? 0.04 : 0, transition: 'opacity 0.25s' }} />
           {/* Category badge overlay */}
           <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: article.catColor, background: 'rgba(26,26,46,0.8)', backdropFilter: 'blur(6px)', padding: '3px 8px', borderRadius: 2, border: `1px solid ${article.catColor}35` }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: article.catColor, background: 'rgba(26,26,46,0.8)', backdropFilter: 'blur(6px)', padding: '3px 8px', borderRadius: 2, border: `1px solid ${article.catColor}35` }}>
               {article.category}
             </span>
           </div>
           {/* Read time badge */}
           <div style={{ position: 'absolute', top: 12, right: 12 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#8A9BC4', background: 'rgba(26,26,46,0.7)', backdropFilter: 'blur(6px)', padding: '3px 7px', borderRadius: 2 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#8A9BC4', background: 'rgba(26,26,46,0.7)', backdropFilter: 'blur(6px)', padding: '3px 7px', borderRadius: 2 }}>
               {article.readTime} min
             </span>
           </div>
@@ -500,13 +500,13 @@ function ArticleGridCard({ article }: { article: Article }) {
 
           {/* Footer: level + date + hover arrow */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4, paddingTop: 10, borderTop: '1px solid #252858' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '2px 6px', background: lvlC.bg, color: lvlC.color, borderLeft: `2px solid ${lvlC.border}`, borderRadius: 2 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '2px 6px', background: lvlC.bg, color: lvlC.color, borderLeft: `2px solid ${lvlC.border}`, borderRadius: 2 }}>
               {LEVEL_LABEL[lvl]}
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A', marginLeft: 'auto' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', marginLeft: 'auto' }}>
               {article.date}
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: article.catColor, opacity: hovered ? 1 : 0, transform: hovered ? 'translateX(0)' : 'translateX(-6px)', transition: 'opacity 0.15s, transform 0.15s' }} aria-hidden="true">
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: article.catColor, opacity: hovered ? 1 : 0, transform: hovered ? 'translateX(0)' : 'translateX(-6px)', transition: 'opacity 0.15s, transform 0.15s' }} aria-hidden="true">
               → Lees
             </span>
           </div>
@@ -696,7 +696,7 @@ function DailyQuizWidget() {
     <div role="region" aria-labelledby="quiz-widget-title" style={{ border: `1px solid ${answered ? (correct ? 'rgba(61,223,144,0.35)' : 'rgba(224,80,64,0.35)') : '#252858'}`, background: '#16173A', overflow: 'hidden', borderRadius: 2, transition: 'border-color 0.4s' }}>
       {/* Header */}
       <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-        <span id="quiz-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span id="quiz-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span aria-hidden="true">🧠</span>
           Vraag van de dag
         </span>
@@ -705,7 +705,7 @@ function DailyQuizWidget() {
           {LVLS.map(l => (
             <button key={l.key} aria-pressed={level === l.key}
               onClick={() => switchLevel(l.key)}
-              style={{ padding: '3px 9px', fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.06em', textTransform: 'uppercase', border: `1px solid ${level === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: level === l.key ? l.color : '#4A5A8A', background: level === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
+              style={{ padding: '3px 9px', fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase', border: `1px solid ${level === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: level === l.key ? l.color : '#7A86A8', background: level === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
             >{l.label}</button>
           ))}
         </div>
@@ -713,7 +713,7 @@ function DailyQuizWidget() {
 
       <div style={{ padding: '16px 20px' }}>
         {/* Topic badge */}
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: activeLvl.color, marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: activeLvl.color, marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ width: 5, height: 5, borderRadius: '50%', background: activeLvl.color, display: 'inline-block', flexShrink: 0 }} aria-hidden="true" />
           {q.topic}
         </div>
@@ -740,7 +740,7 @@ function DailyQuizWidget() {
                 onMouseEnter={e => { if (!answered) { e.currentTarget.style.borderColor = activeLvl.color; e.currentTarget.style.color = '#FFFFFF' } }}
                 onMouseLeave={e => { if (!answered) { e.currentTarget.style.borderColor = '#252858'; e.currentTarget.style.color = '#8A9BC4' } }}
               >
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: 'inherit', flexShrink: 0, marginTop: 2 }}>{['A','B','C','D'][i]}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: 'inherit', flexShrink: 0, marginTop: 2 }}>{['A','B','C','D'][i]}</span>
                 {opt}
                 {answered && isCorrect  && <span aria-hidden="true" style={{ marginLeft: 'auto', flexShrink: 0 }}>✓</span>}
                 {answered && isSelected && !isCorrect && <span aria-hidden="true" style={{ marginLeft: 'auto', flexShrink: 0 }}>✗</span>}
@@ -752,7 +752,7 @@ function DailyQuizWidget() {
         {/* Explanation */}
         {answered && (
           <div style={{ marginTop: 14, padding: '12px 14px', background: correct ? 'rgba(61,223,144,0.07)' : 'rgba(224,80,64,0.07)', borderLeft: `2px solid ${correct ? '#3ddf90' : '#e05040'}`, animation: 'fadeIn 0.3s ease both' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: correct ? '#3ddf90' : '#e05040', marginBottom: 6 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: correct ? '#3ddf90' : '#e05040', marginBottom: 6 }}>
               {correct ? '✓ Correct!' : `✗ Niet helemaal — het juiste antwoord is ${['A','B','C','D'][variant.correct]}`}
             </div>
             <p style={{ fontSize: '0.76rem', color: '#B5D4F4', lineHeight: 1.7, margin: 0 }}>{variant.explain}</p>
@@ -762,9 +762,9 @@ function DailyQuizWidget() {
 
       {/* Footer */}
       <div style={{ borderTop: '1px solid #252858', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060' }}>Morgen nieuwe vraag</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8' }}>Morgen nieuwe vraag</span>
         <Link href="/educatie"
-          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, transition: 'color 0.15s' }}
+          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, transition: 'color 0.15s' }}
           onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
           onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
         >
@@ -784,7 +784,7 @@ function skDist(lat1: number, lon1: number, lat2: number, lon2: number): number 
 function StargazingWidget() {
   const [score,    setScore]    = useState<number | null>(null)
   const [label,    setLabel]    = useState('Laden…')
-  const [color,    setColor]    = useState('#4A5A8A')
+  const [color,    setColor]    = useState('#7A86A8')
   const [clouds,   setClouds]   = useState<number | null>(null)
   const [darkKm,   setDarkKm]   = useState<number | null>(null)
   const [darkName, setDarkName] = useState('')
@@ -835,11 +835,11 @@ function StargazingWidget() {
     <div role="region" aria-labelledby="sk-widget-title" style={{ border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
       {/* Header */}
       <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span id="sk-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span id="sk-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span aria-hidden="true">🌠</span>
           Vanavond zichtbaar
         </span>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A' }}>{locName}</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8' }}>{locName}</span>
       </div>
 
       {/* Score + highlights */}
@@ -858,30 +858,30 @@ function StargazingWidget() {
             />
           </svg>
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700, color: loading ? '#4A5A8A' : color, lineHeight: 1 }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700, color: loading ? '#7A86A8' : color, lineHeight: 1 }}>
               {loading ? '…' : (score ?? '?')}
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.42rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>/10</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#7A86A8', letterSpacing: '0.06em' }}>/10</span>
           </div>
         </div>
 
         {/* Label + info rows */}
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: loading ? '#4A5A8A' : color, marginBottom: 6 }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: loading ? '#7A86A8' : color, marginBottom: 6 }}>
             {loading ? 'Ophalen…' : label}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 5 }}>
               <span aria-hidden="true" style={{ color: '#ffa040' }}>{topObj.icon}</span>
               {topObj.obj} zichtbaar
             </span>
             {clouds !== null && (
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: clouds < 20 ? '#3ddf90' : clouds < 50 ? '#d4a84b' : '#8A9BC4' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: clouds < 20 ? '#3ddf90' : clouds < 50 ? '#d4a84b' : '#8A9BC4' }}>
                 ☁ {clouds}% bewolking vanavond
               </span>
             )}
             {darkKm !== null && (
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#8A9BC4' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#8A9BC4' }}>
                 🌑 Dark sky {darkKm} km · {darkName}
               </span>
             )}
@@ -892,7 +892,7 @@ function StargazingWidget() {
       {/* CTA */}
       <div style={{ borderTop: '1px solid #252858', padding: '10px 20px' }}>
         <Link href="/sterrenkijken"
-          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
           onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
           onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
         >
@@ -911,14 +911,14 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
   return (
     <div role="region" aria-labelledby="iss-title" style={{ border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
       <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span id="iss-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span id="iss-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ position: 'relative', width: 7, height: 7, flexShrink: 0 }} aria-hidden="true">
             <span className="animate-pulse-dot" style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#3ddf90' }} />
             <span className="animate-live-ring" style={{ position: 'absolute', inset: -3, borderRadius: '50%', border: '1px solid #3ddf90' }} />
           </span>
           ISS Live Tracker
         </span>
-        <span aria-live="polite" aria-atomic="true" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#4A5A8A' }}>Realtime</span>
+        <span aria-live="polite" aria-atomic="true" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8' }}>Realtime</span>
       </div>
       <div role="img" aria-label="ISS positie op wereldkaart" style={{ height: 160, background: '#0d1425', position: 'relative', overflow: 'hidden' }}>
         <img src={`${PROXY}/image-proxy?url=${encodeURIComponent('https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1280px-World_map_-_low_resolution.svg.png')}&w=680`} alt="" aria-hidden="true" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, filter: 'brightness(1.3) saturate(0.5) sepia(0.4) hue-rotate(190deg)', position: 'absolute', inset: 0 }} />
@@ -936,7 +936,7 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
           <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#3ddf90', boxShadow: '0 0 0 3px rgba(61,223,144,0.25), 0 0 14px rgba(61,223,144,0.6)' }} />
           <div className="animate-live-ring" style={{ position: 'absolute', inset: -4, borderRadius: '50%', border: '1px solid rgba(61,223,144,0.5)' }} />
         </div>
-        {iss && <div aria-hidden="true" style={{ position: 'absolute', left: `${Math.min(px + 2, 83)}%`, top: `${Math.max(py - 14, 4)}%`, fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#3ddf90', letterSpacing: '0.1em', whiteSpace: 'nowrap', zIndex: 3 }}>ISS ↗</div>}
+        {iss && <div aria-hidden="true" style={{ position: 'absolute', left: `${Math.min(px + 2, 83)}%`, top: `${Math.max(py - 14, 4)}%`, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#3ddf90', letterSpacing: '0.1em', whiteSpace: 'nowrap', zIndex: 3 }}>ISS ↗</div>}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         {[
@@ -947,7 +947,7 @@ function ISSWidget({ iss }: { iss: ISSData | null }) {
         ].map((s, i) => (
           <div key={i} style={{ padding: '12px 20px', borderTop: '1px solid #252858', borderRight: i % 2 === 0 ? '1px solid #252858' : 'none' }}>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1 }}>{s.val}</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 3 }}>{s.lbl}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8', marginTop: 3 }}>{s.lbl}</div>
           </div>
         ))}
       </div>
@@ -960,7 +960,7 @@ function APODWidget({ apod }: { apod: APODData | null }) {
   return (
     <div role="region" aria-labelledby="apod-widget-title" style={{ border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
       <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858' }}>
-        <span id="apod-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4' }}>NASA Foto van de Dag</span>
+        <span id="apod-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4' }}>NASA Foto van de Dag</span>
       </div>
       {apod?.media_type === 'image' ? (
         <img src={`${PROXY}/image-proxy?url=${encodeURIComponent(apod.url)}&w=700`} alt={apod.title} loading="lazy" style={{ width: '100%', height: 160, objectFit: 'cover', filter: 'brightness(0.85) saturate(1.1)', display: 'block' }} />
@@ -971,7 +971,7 @@ function APODWidget({ apod }: { apod: APODData | null }) {
       )}
       {apod && (
         <div style={{ padding: '14px 20px' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.53rem', letterSpacing: '0.1em', color: '#378ADD', marginBottom: 6 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.1em', color: '#378ADD', marginBottom: 6 }}>
             {new Date(apod.date).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}
           </div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.3, marginBottom: 6 }}>{apod.title}</div>
@@ -992,12 +992,12 @@ function AIPromoWidget() {
   return (
     <div role="region" aria-label="AI feature" style={{ border: '1px solid rgba(55,138,221,0.3)', background: 'linear-gradient(135deg,rgba(16,17,42,0.95),rgba(20,25,60,0.95))', padding: 24, position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
       <div aria-hidden="true" style={{ position: 'absolute', right: 16, top: 12, fontSize: '4rem', color: '#8a6820', opacity: 0.12, lineHeight: 1, pointerEvents: 'none' }}>✦</div>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 12 }}>✦ AI Feature</div>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 12 }}>✦ AI Feature</div>
       <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 10 }}>Lees elk artikel op jouw niveau</div>
       <p style={{ fontSize: '0.76rem', color: '#8A9BC4', lineHeight: 1.65, marginBottom: 16 }}>Kies Beginner, Amateur of Pro — onze AI herschrijft het artikel live voor jou.</p>
       <div role="group" aria-label="Lees niveau keuze" style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
         {LEVELS_UI.map(l => (
-          <button key={l.key} aria-label={`${l.label} niveau`} style={{ flex: 1, padding: '6px 0', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', textAlign: 'center', border: `1px solid ${l.border}`, color: l.color, background: 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'background 0.15s' }}
+          <button key={l.key} aria-label={`${l.label} niveau`} style={{ flex: 1, padding: '6px 0', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase', textAlign: 'center', border: `1px solid ${l.border}`, color: l.color, background: 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'background 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.background = l.bg)}
             onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
           >{l.label}</button>
@@ -1055,7 +1055,7 @@ function ThisWeekWidget() {
       {/* Header */}
       <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 8 }}>
         <span aria-hidden="true">🗓️</span>
-        <span id="thisweek-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4' }}>
+        <span id="thisweek-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4' }}>
           {mounted ? heading : 'Binnenkort in de sterrenkunde'}
         </span>
       </div>
@@ -1086,7 +1086,7 @@ function ThisWeekWidget() {
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.2 }}>{ev.title}</span>
                   {mounted && (
-                    <span style={{ flexShrink: 0, fontFamily: 'var(--font-mono)', fontSize: '0.44rem', letterSpacing: '0.08em', color: badgeColor, background: badgeBg, border: `1px solid ${badgeColor}30`, padding: '2px 6px', borderRadius: 2, whiteSpace: 'nowrap' }}>
+                    <span style={{ flexShrink: 0, fontFamily: 'var(--font-mono)', fontSize: '0.71rem', letterSpacing: '0.08em', color: badgeColor, background: badgeBg, border: `1px solid ${badgeColor}30`, padding: '2px 6px', borderRadius: 2, whiteSpace: 'nowrap' }}>
                       {dayBadge}
                     </span>
                   )}
@@ -1095,9 +1095,9 @@ function ThisWeekWidget() {
                 {/* Category + date */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
                   <span style={{ width: 4, height: 4, borderRadius: '50%', background: clr, flexShrink: 0, display: 'block' }} aria-hidden="true" />
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.45rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: clr }}>{ev.cat}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.45rem', color: '#4A5A8A' }}>·</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.45rem', color: '#4A5A8A' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: clr }}>{ev.cat}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#7A86A8' }}>·</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#7A86A8' }}>
                     {new Date(ev.date + 'T12:00:00Z').toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' })}
                   </span>
                 </div>
@@ -1112,9 +1112,9 @@ function ThisWeekWidget() {
 
       {/* Footer */}
       <div style={{ borderTop: '1px solid #252858', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060' }}>Lanceringen & verschijnselen</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8' }}>Lanceringen & verschijnselen</span>
         <Link href="/missies"
-          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, transition: 'color 0.15s' }}
+          style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, transition: 'color 0.15s' }}
           onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
           onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
         >
@@ -1142,7 +1142,7 @@ function EventCountdownStrip() {
 
         {/* Left label — sticky */}
         <div className="event-strip-label" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10, paddingRight: 20, borderRight: '1px solid #252858', paddingTop: 14, paddingBottom: 14 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A9BC4', whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A9BC4', whiteSpace: 'nowrap' }}>
             🗓️ Aankomend
           </span>
         </div>
@@ -1173,8 +1173,8 @@ function EventCountdownStrip() {
                 {/* Category dot + label */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7 }}>
                   <span style={{ width: 5, height: 5, borderRadius: '50%', background: clr, flexShrink: 0, display: 'block' }} aria-hidden="true" />
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: clr }}>{ev.cat}</span>
-                  {urgent && <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#e05040', marginLeft: 4 }}>SNEL!</span>}
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: clr }}>{ev.cat}</span>
+                  {urgent && <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#e05040', marginLeft: 4 }}>SNEL!</span>}
                 </div>
 
                 {/* Event name */}
@@ -1190,14 +1190,14 @@ function EventCountdownStrip() {
                         {ev.days === 0 ? 'Vandaag' : ev.days}
                       </span>
                       {ev.days > 0 && (
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#4A5A8A', letterSpacing: '0.06em' }}>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', letterSpacing: '0.06em' }}>
                           {ev.days === 1 ? 'dag' : 'dagen'}
                         </span>
                       )}
                     </>
                   )}
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.46rem', color: '#4A5A8A', marginTop: 2 }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', marginTop: 2 }}>
                   {new Date(ev.date + 'T00:00:00Z').toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', year: 'numeric' })}
                 </div>
 
@@ -1218,7 +1218,7 @@ function EventCountdownStrip() {
           {/* Missies link */}
           <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', padding: '12px 20px' }}>
             <Link href="/missies"
-              style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+              style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
               onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
             >
@@ -1254,16 +1254,16 @@ function SiteFooter() {
                 { href: '#', label: 'NightGazer op Instagram', icon: <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" width="13" height="13"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" /><circle cx="8" cy="8" r="3" /><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor" stroke="none" /></svg> },
                 { href: '#', label: 'NightGazer op YouTube', icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M14.5 4.5s-.2-1.2-.7-1.7c-.7-.7-1.4-.7-1.8-.8C10.5 2 8 2 8 2s-2.5 0-4 .1c-.4 0-1.1.1-1.8.8-.5.5-.7 1.7-.7 1.7S1.3 5.9 1.3 7.3v1.3c0 1.4.2 2.8.2 2.8s.2 1.2.7 1.7c.7.7 1.6.7 2 .7C5.5 14 8 14 8 14s2.5 0 4-.1c.4-.1 1.1-.1 1.8-.8.5-.5.7-1.7.7-1.7s.2-1.4.2-2.8V7.3C14.7 5.9 14.5 4.5 14.5 4.5zM6.5 10.2V5.8l4.5 2.2-4.5 2.2z" /></svg> },
               ].map(({ href, label, icon }) => (
-                <a key={label} href={href} aria-label={label} style={{ width: 32, height: 32, border: '1px solid #2A2E62', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4A5A8A', transition: 'border-color 0.15s, color 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#4A5A8A'; e.currentTarget.style.color = '#8A9BC4' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#2A2E62'; e.currentTarget.style.color = '#4A5A8A' }}
+                <a key={label} href={href} aria-label={label} style={{ width: 32, height: 32, border: '1px solid #2A2E62', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7A86A8', transition: 'border-color 0.15s, color 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#7A86A8'; e.currentTarget.style.color = '#8A9BC4' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#2A2E62'; e.currentTarget.style.color = '#7A86A8' }}
                 >{icon}</a>
               ))}
             </div>
           </div>
           {cols.map(col => (
             <div key={col.title}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>{col.title}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>{col.title}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {col.links.map(([label, href]) => (
                   <Link key={label} href={href} style={{ fontSize: '0.82rem', color: '#8A9BC4', textDecoration: 'none', transition: 'color 0.15s' }}
@@ -1276,8 +1276,8 @@ function SiteFooter() {
           ))}
         </div>
         <div className="footer-bottom-row" style={{ borderTop: '1px solid #252858', paddingTop: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.06em', color: '#2A3060' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#2A3060' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.06em', color: '#7A86A8' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8' }}>
             {[['Claude AI', '⬡'], ['NASA Open APIs', '★']].map(([label, icon]) => (
               <span key={label} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 8px', border: '1px solid #252858', borderRadius: 2 }}>
                 <span aria-hidden="true">{icon}</span>{label}
@@ -1401,7 +1401,9 @@ export default function HomePage() {
   // Fetch APOD
   useEffect(() => {
     fetch(`${PROXY}/apod`)
-      .then(r => r.json()).then(setApod).catch(() => {})
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(setApod)
+      .catch(() => {})
   }, [])
 
   // Fetch ISS every 5s
@@ -1445,10 +1447,10 @@ export default function HomePage() {
         {/* Bento: latest 6 articles (always unfiltered — quick overview) */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, gap: 16 }} id="nieuws">
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>Uitgelicht</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>Uitgelicht</span>
             <div aria-hidden="true" style={{ width: 48, height: 1, background: '#2A2E62' }} />
           </div>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#4A5A8A' }}>Laatste nieuws</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>Laatste nieuws</span>
         </div>
         <div className="bento-grid">
           {gridArticles[0] && <BentoCard article={gridArticles[0]} size="hero" />}
@@ -1473,12 +1475,12 @@ export default function HomePage() {
             {/* Section header with filter status */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, gap: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <span id="grid-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#4A5A8A' }}>
+                <span id="grid-label" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A86A8' }}>
                   {activeFilter === 'Alles' ? 'Alle artikelen' : activeFilter}
                 </span>
                 <div aria-hidden="true" style={{ width: 32, height: 1, background: '#252858' }} />
               </div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: '#4A5A8A' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>
                 {filtered.length} {filtered.length === 1 ? 'artikel' : 'artikelen'}
               </span>
             </div>
@@ -1486,9 +1488,9 @@ export default function HomePage() {
             {/* Empty state when filter has no results */}
             {filtered.length === 0 && (
               <div style={{ padding: '48px 24px', textAlign: 'center', border: '1px solid #252858', borderRadius: 2 }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: '#4A5A8A', marginBottom: 8 }}>Geen artikelen gevonden</div>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: '#2A3060' }}>Probeer een ander onderwerp of bekijk alle artikelen.</p>
-                <button onClick={() => handleFilter('Alles')} style={{ marginTop: 20, fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.3)', padding: '8px 20px', borderRadius: 2, cursor: 'pointer', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: '#7A86A8', marginBottom: 8 }}>Geen artikelen gevonden</div>
+                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#7A86A8' }}>Probeer een ander onderwerp of bekijk alle artikelen.</p>
+                <button onClick={() => handleFilter('Alles')} style={{ marginTop: 20, fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.3)', padding: '8px 20px', borderRadius: 2, cursor: 'pointer', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                   Toon alle artikelen
                 </button>
               </div>
@@ -1506,14 +1508,14 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 20, paddingTop: 8 }}>
                 <button
                   onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
-                  style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.35)', padding: '11px 28px', cursor: 'pointer', borderRadius: 2, transition: 'background 0.15s, border-color 0.15s' }}
+                  style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.35)', padding: '11px 28px', cursor: 'pointer', borderRadius: 2, transition: 'background 0.15s, border-color 0.15s' }}
                   aria-label={`Laad meer artikelen — ${filtered.length - visibleCount} resterend`}
                   onMouseEnter={e => { e.currentTarget.style.background = 'rgba(55,138,221,0.08)'; e.currentTarget.style.borderColor = 'rgba(55,138,221,0.6)' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'none'; e.currentTarget.style.borderColor = 'rgba(55,138,221,0.35)' }}
                 >
                   Laad meer
                 </button>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', color: '#4A5A8A' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>
                   {visible.length} van {filtered.length}
                 </span>
                 {/* Progress bar */}
@@ -1526,7 +1528,7 @@ export default function HomePage() {
             {!hasMore && filtered.length > 0 && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 16, paddingTop: 8 }}>
                 <div style={{ flex: 1, height: 1, background: '#252858' }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#2A3060', flexShrink: 0 }}>Alle {filtered.length} artikelen geladen</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8', flexShrink: 0 }}>Alle {filtered.length} artikelen geladen</span>
                 <div style={{ flex: 1, height: 1, background: '#252858' }} />
               </div>
             )}

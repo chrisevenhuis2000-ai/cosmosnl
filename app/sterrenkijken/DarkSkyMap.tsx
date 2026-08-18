@@ -196,7 +196,7 @@ export default function DarkSkyMap({
           border-radius: 4px !important;
         }
         .ds-popup .leaflet-popup-content { margin: 0 !important; }
-        .leaflet-popup-close-button { color: #4A5A8A !important; top: 8px !important; right: 8px !important; }
+        .leaflet-popup-close-button { color: #7A86A8 !important; top: 8px !important; right: 8px !important; }
         .leaflet-popup-close-button:hover { color: #fff !important; }
         @keyframes pulse {
           0%, 100% { transform: scale(1); opacity: 0.6; }

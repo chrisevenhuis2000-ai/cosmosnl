@@ -55,8 +55,8 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
       </span>
       <span style={{
         fontFamily:    'var(--font-mono)',
-        fontSize:      '0.44rem',
-        color:         '#4A5A8A',
+        fontSize:      '0.71rem',
+        color:         '#7A86A8',
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
         marginTop:     3,
@@ -123,7 +123,7 @@ export default function VolgendeLancering() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{
             fontFamily:    'var(--font-mono)',
-            fontSize:      '0.5rem',
+            fontSize:      '0.73rem',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             color:         '#378ADD',
@@ -136,8 +136,8 @@ export default function VolgendeLancering() {
           </span>
           <span style={{
             fontFamily:    'var(--font-mono)',
-            fontSize:      '0.48rem',
-            color:         next.status === 'Go' ? '#3ddf90' : '#4A5A8A',
+            fontSize:      '0.72rem',
+            color:         next.status === 'Go' ? '#3ddf90' : '#7A86A8',
             letterSpacing: '0.08em',
           }}>
             {next.status}
@@ -149,15 +149,15 @@ export default function VolgendeLancering() {
           <div style={{ display: 'flex', gap: 6 }}>
             <button onClick={handlePrev} aria-label="Vorige lancering" style={{
               background: 'rgba(42,48,96,0.4)', border: '1px solid #252858',
-              borderRadius: 3, color: '#4A5A8A', fontSize: '0.7rem',
+              borderRadius: 3, color: '#7A86A8', fontSize: '0.7rem',
               padding: '3px 8px', cursor: 'pointer',
             }}>‹</button>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.44rem', color: '#2A3060', alignSelf: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.71rem', color: '#7A86A8', alignSelf: 'center' }}>
               {idx + 1}/{launches.length}
             </span>
             <button onClick={handleNext} aria-label="Volgende lancering" style={{
               background: 'rgba(42,48,96,0.4)', border: '1px solid #252858',
-              borderRadius: 3, color: '#4A5A8A', fontSize: '0.7rem',
+              borderRadius: 3, color: '#7A86A8', fontSize: '0.7rem',
               padding: '3px 8px', cursor: 'pointer',
             }}>›</button>
           </div>
@@ -178,8 +178,8 @@ export default function VolgendeLancering() {
         </p>
         <p style={{
           fontFamily:    'var(--font-mono)',
-          fontSize:      '0.52rem',
-          color:         '#4A5A8A',
+          fontSize:      '0.74rem',
+          color:         '#7A86A8',
           margin:        '5px 0 0',
           letterSpacing: '0.04em',
         }}>
@@ -189,7 +189,7 @@ export default function VolgendeLancering() {
 
       {/* Countdown */}
       {past ? (
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#3ddf90', margin: 0 }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#3ddf90', margin: 0 }}>
           ✅ Lancering heeft plaatsgevonden
         </p>
       ) : (

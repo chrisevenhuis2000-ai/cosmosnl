@@ -62,7 +62,7 @@ const CATEGORY_TO_MISSION: Record<string, { slug: string; name: string; icon: st
 }
 
 const LEVEL_COLORS: Record<ReadingLevel, { border: string; bg: string; text: string; dot: string }> = {
-  original: { border: '#252858', bg: 'transparent',          text: '#FFFFFF',  dot: '#4A5A8A' },
+  original: { border: '#252858', bg: 'transparent',          text: '#FFFFFF',  dot: '#7A86A8' },
   beginner: { border: '#c4390a', bg: 'rgba(196,57,10,0.08)', text: '#ffb4a0',  dot: '#e05040' },
   amateur:  { border: '#1a6b4a', bg: 'rgba(26,107,74,0.08)', text: '#90e0b8',  dot: '#3ddf90' },
   pro:      { border: '#2a3a8a', bg: 'rgba(42,58,138,0.08)', text: '#a0b4ff',  dot: '#3dcfdf' },
@@ -235,18 +235,18 @@ function LevelToggle({ level, loading, onChange }: {
   const dot = LEVEL_COLORS[level].dot
   return (
     <div style={{ position: 'sticky', top: 60, zIndex: 30, background: 'rgba(26,26,46,0.97)', backdropFilter: 'blur(16px)', borderBottom: '1px solid #252858', height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 clamp(16px, 4vw, 40px)', gap: 12 }}>
-      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A', display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
+      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.76rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8', display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
         <span style={{ color: '#e05040' }}>◈</span>
         <span className="toggle-label">Leesniveau</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', background: '#16173A', border: '1px solid #252858', borderRadius: 40, padding: 3, gap: 1, flexShrink: 0 }}>
         {levels.map(({ key, label, emoji }) => (
-          <button key={key} onClick={() => onChange(key)} style={{ border: 'none', borderRadius: 36, padding: '5px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.06em', textTransform: 'uppercase', cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap', background: level === key ? '#0F1028' : 'transparent', color: level === key ? '#FFFFFF' : '#4A5A8A', boxShadow: level === key ? '0 1px 4px rgba(0,0,0,0.4)' : 'none' }}>
+          <button key={key} onClick={() => onChange(key)} style={{ border: 'none', borderRadius: 36, padding: '5px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.77rem', letterSpacing: '0.06em', textTransform: 'uppercase', cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap', background: level === key ? '#0F1028' : 'transparent', color: level === key ? '#FFFFFF' : '#7A86A8', boxShadow: level === key ? '0 1px 4px rgba(0,0,0,0.4)' : 'none' }}>
             {emoji} {label}
           </button>
         ))}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', color: '#4A5A8A', flexShrink: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#7A86A8', flexShrink: 0 }}>
         <div style={{ width: 6, height: 6, borderRadius: '50%', background: loading ? '#378ADD' : dot, animation: loading ? 'livePulse 1s ease-in-out infinite' : 'none' }} />
         <span className="toggle-status">{loading ? 'AI herschrijft...' : levels.find(l => l.key === level)?.label}</span>
       </div>
@@ -265,11 +265,11 @@ function ObservableCard({ tags }: { tags: string[] }) {
     <div style={{ background: 'rgba(61,207,144,0.08)', border: '1px solid rgba(61,207,144,0.25)', borderRadius: 6, padding: '16px 20px', marginBottom: 24, display: 'flex', alignItems: 'flex-start', gap: 16 }}>
       <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>🔭</span>
       <div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 6 }}>Zelf te zien</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 6 }}>Zelf te zien</div>
         <div style={{ fontSize: '0.85rem', color: '#c0e8d4', lineHeight: 1.5, marginBottom: 10 }}>
           Dit verschijnsel is (mogelijk) met het blote oog of een telescoop te zien vanuit Nederland.
         </div>
-        <a href="/sterrenkijken" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#3ddf90', textDecoration: 'none' }}>
+        <a href="/sterrenkijken" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#3ddf90', textDecoration: 'none' }}>
           Bekijk kijkomstandigheden →
         </a>
       </div>
@@ -312,13 +312,13 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
           <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden', transition: 'border-color 0.15s' }}
                onMouseEnter={e => (e.currentTarget.style.borderColor = relatedMission.agencyColor)}
                onMouseLeave={e => (e.currentTarget.style.borderColor = '#252858')}>
-            <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>Gerelateerde Missie</div>
+            <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8' }}>Gerelateerde Missie</div>
             <div style={{ padding: 18, display: 'flex', alignItems: 'center', gap: 14 }}>
               <span style={{ fontSize: '1.8rem' }}>{relatedMission.icon}</span>
               <div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.46rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: relatedMission.agencyColor, marginBottom: 4 }}>{relatedMission.agency}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: relatedMission.agencyColor, marginBottom: 4 }}>{relatedMission.agency}</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#fff' }}>{relatedMission.name}</div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#4A5A8A', marginTop: 4 }}>Bekijk missie →</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', color: '#7A86A8', marginTop: 4 }}>Bekijk missie →</div>
               </div>
             </div>
           </div>
@@ -327,12 +327,12 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
 
       {/* Voortgang */}
       <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>Voortgang</div>
+        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8' }}>Voortgang</div>
         <div style={{ padding: 18 }}>
           <div style={{ height: 3, background: '#252858', borderRadius: 2, marginBottom: 10, overflow: 'hidden' }}>
             <div style={{ height: '100%', width: `${readProgress}%`, background: 'linear-gradient(90deg, #185FA5, #378ADD)', borderRadius: 2, transition: 'width 0.4s ease' }} />
           </div>
-          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', color: '#4A5A8A' }}>
+          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#7A86A8' }}>
             {readProgress >= 98 ? '✓ Volledig gelezen' : `~${minsLeft} min resterend`}
           </div>
         </div>
@@ -340,7 +340,7 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
 
       {/* Kerncijfers */}
       <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>Kerncijfers</div>
+        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8' }}>Kerncijfers</div>
         <div style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 18 }}>
           {enrichLoading && !enrichment ? (
             [1, 2, 3].map(i => (
@@ -353,13 +353,13 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
           ) : enrichment?.kerncijfers?.length ? (
             enrichment.kerncijfers.map((kc, i) => (
               <div key={i}>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 4 }}>{kc.label}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 4 }}>{kc.label}</div>
                 <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1.6rem', fontWeight: 700, color: '#378ADD', lineHeight: 1 }}>{kc.value}</div>
-                <div style={{ fontSize: '0.76rem', color: '#8A9BC4', marginTop: 4 }}>{kc.unit}</div>
+                <div style={{ fontSize: '0.86rem', color: '#8A9BC4', marginTop: 4 }}>{kc.unit}</div>
               </div>
             ))
           ) : (
-            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: '#252858' }}>Geen cijfers beschikbaar</div>
+            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.77rem', color: '#252858' }}>Geen cijfers beschikbaar</div>
           )}
         </div>
       </div>
@@ -367,7 +367,7 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
       {/* Related articles */}
       {related.length > 0 && (
         <div style={{ background: '#12132A', border: '1px solid #252858', borderRadius: 4, overflow: 'hidden' }}>
-          <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>Gerelateerde artikelen</div>
+          <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8' }}>Gerelateerde artikelen</div>
           <div style={{ padding: '0 18px' }}>
             {related.map((r, i) => (
               <a key={r.slug} href={`/nieuws/${r.slug}`}
@@ -381,7 +381,7 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
                   </div>
                 )}
                 <div>
-                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.48rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 4 }}>{r.category}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 4 }}>{r.category}</div>
                   <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.3, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{r.title}</div>
                 </div>
               </a>
@@ -392,7 +392,7 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
 
       {/* AI Leesniveaus */}
       <div style={{ background: '#12132A', border: '1px solid rgba(55,138,221,0.25)', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#378ADD' }}>✦ AI Leesniveaus</div>
+        <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#378ADD' }}>✦ AI Leesniveaus</div>
         <div style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {[
             { emoji: '🌱', label: 'Beginner', desc: 'Metaforen, geen jargon' },
@@ -402,8 +402,8 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
             <div key={label} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
               <span style={{ fontSize: '0.9rem', flexShrink: 0 }}>{emoji}</span>
               <div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#FFFFFF', marginBottom: 2 }}>{label}</div>
-                <div style={{ fontSize: '0.76rem', color: '#8A9BC4' }}>{desc}</div>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#FFFFFF', marginBottom: 2 }}>{label}</div>
+                <div style={{ fontSize: '0.86rem', color: '#8A9BC4' }}>{desc}</div>
               </div>
             </div>
           ))}
@@ -417,7 +417,7 @@ function Sidebar({ article, enrichment, enrichLoading, readProgress, related, cu
 
       {/* Back */}
       <a href="/"
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px 20px', border: '1px solid #252858', borderRadius: 2, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px 20px', border: '1px solid #252858', borderRadius: 2, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.77rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', transition: 'border-color 0.15s, color 0.15s' }}
         onMouseEnter={e => { e.currentTarget.style.borderColor = '#378ADD'; e.currentTarget.style.color = '#378ADD' }}
         onMouseLeave={e => { e.currentTarget.style.borderColor = '#252858'; e.currentTarget.style.color = '#8A9BC4' }}
       >← Alle artikelen</a>
@@ -595,7 +595,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
   if (!article) return (
     <div style={{ background: '#1A1A2E', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#4A5A8A', letterSpacing: '0.2em' }}>LADEN...</div>
+      <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#7A86A8', letterSpacing: '0.2em' }}>LADEN...</div>
     </div>
   )
 
@@ -653,12 +653,12 @@ export default function ArticleClient({ slug }: { slug: string }) {
             <img src="/logo-transparent.png" alt="NightGazer" style={{ height: 46, width: 'auto', display: 'block' }} />
           </a>
           <nav style={{ flex: 1 }}>
-            <a href="/" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+            <a href="/" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7A86A8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#4A5A8A')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#7A86A8')}
             >← Nieuws</a>
           </nav>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', border: '1px solid rgba(55,138,221,0.3)', padding: '4px 12px', borderRadius: 20, flexShrink: 0 }}>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', border: '1px solid rgba(55,138,221,0.3)', padding: '4px 12px', borderRadius: 20, flexShrink: 0 }}>
             {article.category}
           </span>
         </div>
@@ -679,10 +679,10 @@ export default function ArticleClient({ slug }: { slug: string }) {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, background: article.catColor }} />
         <div style={{ position: 'absolute', bottom: 36, left: 0, right: 0, padding: '0 clamp(16px,4vw,40px)', maxWidth: 860 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: article.catColor, border: `1px solid ${article.catColor}50`, padding: '3px 10px', borderRadius: 2 }}>{article.category}</span>
-            {article.date && <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', color: '#8A9BC4' }}>{article.date}</span>}
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', color: '#8A9BC4' }}>· Redactie NightGazer</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'rgba(55,138,221,0.15)', color: '#B5D4F4', padding: '2px 8px', borderRadius: 2, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem' }}>⏱ {article.readTime} min</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: article.catColor, border: `1px solid ${article.catColor}50`, padding: '3px 10px', borderRadius: 2 }}>{article.category}</span>
+            {article.date && <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#8A9BC4' }}>{article.date}</span>}
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#8A9BC4' }}>· Redactie NightGazer</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'rgba(55,138,221,0.15)', color: '#B5D4F4', padding: '2px 8px', borderRadius: 2, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem' }}>⏱ {article.readTime} min</span>
           </div>
           <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.5rem,3.5vw,2.8rem)', fontWeight: 800, lineHeight: 1.1, color: '#FFFFFF', letterSpacing: '-0.01em' }}>
             {article.title}
@@ -692,8 +692,8 @@ export default function ArticleClient({ slug }: { slug: string }) {
         {/* ── Image credit below hero ── */}
         {displayImageCredit && (
           <div style={{ background: 'rgba(10,12,30,0.95)', borderBottom: '1px solid #1a1e40', padding: '5px clamp(16px,4vw,40px)', display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#3A4A70', letterSpacing: '0.08em' }}>📷</span>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.5rem', color: '#3A4A70', letterSpacing: '0.06em' }}>{displayImageCredit}</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', color: '#3A4A70', letterSpacing: '0.08em' }}>📷</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', color: '#3A4A70', letterSpacing: '0.06em' }}>{displayImageCredit}</span>
           </div>
         )}
       </div>
@@ -709,9 +709,9 @@ export default function ArticleClient({ slug }: { slug: string }) {
             <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#252858', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', flexShrink: 0 }}>🔭</div>
             <div style={{ flex: 1 }}>
               <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#FFFFFF', marginBottom: 2 }}>{article.author}</div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>{article.role}</div>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8' }}>{article.role}</div>
             </div>
-            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', color: '#4A5A8A', textAlign: 'right', lineHeight: 1.7 }}>
+            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#7A86A8', textAlign: 'right', lineHeight: 1.7 }}>
               {article.date && <div>{article.date}</div>}
               <div>{article.readTime} min lezen</div>
             </div>
@@ -719,7 +719,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
           {/* AI level banner */}
           {level !== 'original' && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 18px', borderRadius: 4, marginBottom: 28, background: col.bg, border: `1px solid ${col.border}`, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.62rem', letterSpacing: '0.08em', color: col.text }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 18px', borderRadius: 4, marginBottom: 28, background: col.bg, border: `1px solid ${col.border}`, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem', letterSpacing: '0.08em', color: col.text }}>
               <span>{LEVELS[level].emoji}</span>
               <span>{LEVELS[level].description} — herschreven door AI</span>
             </div>
@@ -747,7 +747,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
           {/* ── Kernfeiten fact box ── */}
           {(kernfeiten?.length || enrichLoading) && (
             <div style={{ background: '#12132A', border: '1px solid #252858', borderTop: '3px solid #378ADD', padding: '20px 24px', borderRadius: '0 0 4px 4px', margin: '2.2em 0' }}>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 14 }}>✦ Kernfeiten</div>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.77rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 14 }}>✦ Kernfeiten</div>
               {enrichLoading && !kernfeiten?.length ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {[1, 2, 3].map(i => <div key={i} style={{ height: 12, background: '#252858', borderRadius: 2 }} className="shimmer" />)}
@@ -787,7 +787,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
               <img src={IMG(displayImageUrl, 860, 480)} alt={article.title} crossOrigin="anonymous"
                 style={{ width: '100%', borderRadius: 4, display: 'block', filter: 'brightness(0.88)' }}
               />
-              <figcaption style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', color: '#4A5A8A', padding: '8px 0', letterSpacing: '0.06em' }}>
+              <figcaption style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: '#7A86A8', padding: '8px 0', letterSpacing: '0.06em' }}>
                 📷 {displayImageCredit || 'NASA'}
               </figcaption>
             </figure>
@@ -803,7 +803,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
             <blockquote style={{ borderLeft: '3px solid #378ADD', padding: '18px 24px', background: 'rgba(55,138,221,0.06)', borderRadius: '0 4px 4px 0', margin: '2.5em 0' }}>
               <p style={{ fontStyle: 'italic', color: '#B5D4F4', margin: 0, fontSize: '1.08rem', lineHeight: 1.7 }}>"{quote.text}"</p>
               {quote.author && (
-                <footer style={{ marginTop: 10, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', color: '#4A5A8A' }}>
+                <footer style={{ marginTop: 10, fontFamily: 'JetBrains Mono, monospace', fontSize: '0.76rem', color: '#7A86A8' }}>
                   — {quote.author}
                 </footer>
               )}
@@ -812,9 +812,9 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
           {/* ── Tags ── */}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 52, paddingTop: 24, borderTop: '1px solid #252858' }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Tags:</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8' }}>Tags:</span>
             {(article.tags.length ? article.tags : [article.category, 'NightGazer', 'Astronomie']).map(tag => (
-              <span key={tag} style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 12px', background: 'rgba(55,138,221,0.08)', color: '#B5D4F4', borderRadius: 2, border: '1px solid rgba(55,138,221,0.2)' }}>
+              <span key={tag} style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 12px', background: 'rgba(55,138,221,0.08)', color: '#B5D4F4', borderRadius: 2, border: '1px solid rgba(55,138,221,0.2)' }}>
                 {tag}
               </span>
             ))}
@@ -822,10 +822,10 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
           {/* ── Share ── */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 20, flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A' }}>Deel:</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8' }}>Deel:</span>
             {['X / Twitter', 'LinkedIn', 'Kopieer link'].map(label => (
               <button key={label}
-                style={{ padding: '6px 14px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.56rem', letterSpacing: '0.06em', textTransform: 'uppercase', border: '1px solid #252858', background: 'transparent', color: '#8A9BC4', borderRadius: 2, cursor: 'pointer', transition: 'border-color 0.15s, color 0.15s' }}
+                style={{ padding: '6px 14px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.06em', textTransform: 'uppercase', border: '1px solid #252858', background: 'transparent', color: '#8A9BC4', borderRadius: 2, cursor: 'pointer', transition: 'border-color 0.15s, color 0.15s' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = '#378ADD'; e.currentTarget.style.color = '#378ADD' }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = '#252858'; e.currentTarget.style.color = '#8A9BC4' }}
               >{label}</button>
@@ -850,8 +850,8 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
       {/* ── Footer ─────────────────────────────────────────────────── */}
       <footer style={{ borderTop: '1px solid #252858', background: '#12132A', padding: '20px clamp(16px,4vw,40px)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', color: '#2A3060' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
-        <a href="/" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', color: '#4A5A8A', textDecoration: 'none' }}>← Terug naar home</a>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', color: '#7A86A8' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
+        <a href="/" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', color: '#7A86A8', textDecoration: 'none' }}>← Terug naar home</a>
       </footer>
     </>
   )

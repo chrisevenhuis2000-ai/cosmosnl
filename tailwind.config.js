@@ -21,9 +21,9 @@ module.exports = {
         green:  '#3ddf90',
       },
       fontFamily: {
-        display: ['var(--font-cormorant)', 'serif'],
-        sans:    ['var(--font-syne)', 'sans-serif'],
-        mono:    ['var(--font-dm-mono)', 'monospace'],
+        display: ['var(--font-playfair)', 'serif'],
+        sans:    ['var(--font-inter)', 'sans-serif'],
+        mono:    ['var(--font-jetbrains)', 'monospace'],
       },
     },
   },

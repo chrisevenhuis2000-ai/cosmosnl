@@ -29,9 +29,9 @@ export function SiteNav() {
           <ul className="nav-links" role="list" style={{ gap: 32, flex: 1, justifyContent: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {NAV_LINKS.map(({ href, label }) => (
               <li key={href}>
-                <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A5A8A', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0' }}
+                <Link href={href} style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0' }}
                   onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#4A5A8A')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#7A86A8')}
                 >{label}</Link>
               </li>
             ))}

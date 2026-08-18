@@ -503,7 +503,7 @@ export default function SolarSystemMap() {
         {/* Row 1: title + LIVE + fullscreen */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8' }}>
               🗺 Missie-positiekaart
             </span>
             {/* LIVE badge */}
@@ -512,15 +512,15 @@ export default function SolarSystemMap() {
                 <span className="animate-live-ring" style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(61,223,144,0.4)' }} />
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#3ddf90', display: 'block' }} />
               </span>
-              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', letterSpacing: '0.12em', color: '#3ddf90' }}>LIVE</span>
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.71rem', letterSpacing: '0.12em', color: '#3ddf90' }}>LIVE</span>
             </span>
           </div>
           <button onClick={toggleFullscreen} title={isFull ? 'Sluit volledig scherm' : 'Bekijk in volledig scherm'} style={{
-            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', letterSpacing: '0.06em', textTransform: 'uppercase',
             padding: '4px 10px',
             border:     `1px solid ${isFull ? '#378ADD' : '#252858'}`,
             background:  isFull ? 'rgba(55,138,221,0.14)' : 'transparent',
-            color:       isFull ? '#FFFFFF' : '#4A5A8A',
+            color:       isFull ? '#FFFFFF' : '#7A86A8',
             cursor: 'pointer', borderRadius: 3, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
           }}>
             {isFull ? '⤡ Verkleinen' : '⤢ Volledig scherm'}
@@ -532,12 +532,12 @@ export default function SolarSystemMap() {
           <div className="solar-zoom-pills" style={{ display: 'flex' }}>
             {(['inner','outer','interstellar'] as Zoom[]).map((z, i) => (
               <button key={z} onClick={() => setZoom(z)} style={{
-                fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+                fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', letterSpacing: '0.06em', textTransform: 'uppercase',
                 padding: '4px 12px',
                 border:           `1px solid ${zoom === z ? '#378ADD' : '#252858'}`,
                 borderLeft:       i === 0 ? `1px solid ${zoom === z ? '#378ADD' : '#252858'}` : 'none',
                 background:       zoom === z ? 'rgba(55,138,221,0.18)' : '#0b0c1e',
-                color:            zoom === z ? '#FFFFFF' : '#4A5A8A',
+                color:            zoom === z ? '#FFFFFF' : '#7A86A8',
                 cursor:           'pointer',
                 borderRadius:     i === 0 ? '3px 0 0 3px' : i === 2 ? '0 3px 3px 0' : 0,
                 transition:       'all 0.15s',
@@ -548,11 +548,11 @@ export default function SolarSystemMap() {
           </div>
           <div style={{ width: 1, height: 16, background: '#252858', flexShrink: 0 }} />
           <button onClick={toggleAnim} style={{
-            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', letterSpacing: '0.06em', textTransform: 'uppercase',
             padding: '4px 11px',
             border:     `1px solid ${animating ? '#3ddf90' : '#252858'}`,
             background:  animating ? 'rgba(61,223,144,0.12)' : 'transparent',
-            color:       animating ? '#3ddf90' : '#4A5A8A',
+            color:       animating ? '#3ddf90' : '#7A86A8',
             cursor: 'pointer', borderRadius: 3, display: 'flex', alignItems: 'center', gap: 5, transition: 'all 0.15s',
           }}>
             {animating
@@ -596,14 +596,14 @@ export default function SolarSystemMap() {
               <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 3 }}>
                 {hovered.name}
               </div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: hovered.color, marginBottom: 7, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: hovered.color, marginBottom: 7, display: 'flex', alignItems: 'center', gap: 6 }}>
                 {hovered.status === 'actief'
                   ? <span style={{ width: 5, height: 5, borderRadius: '50%', background: hovered.color, display: 'inline-block' }} />
                   : <span style={{ width: 5, height: 5, borderRadius: '50%', border: `1px solid ${hovered.color}`, display: 'inline-block' }} />
                 }
                 {hovered.status === 'actief' ? 'Actief' : 'Gepland'} · {hovered.agency} · {hovered.au < 10 ? hovered.au.toFixed(2) : Math.round(hovered.au)} AU
               </div>
-              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', color: '#8A9BC4', lineHeight: 1.6 }}>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.76rem', color: '#8A9BC4', lineHeight: 1.6 }}>
                 {hovered.detail}
               </div>
             </div>
@@ -623,10 +623,10 @@ export default function SolarSystemMap() {
                 boxShadow: m.status === 'actief' ? `0 0 5px ${m.color}88` : 'none',
               }} />
               <div style={{ minWidth: 0 }}>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.49rem', color: m.status === 'actief' ? '#c0cce8' : '#6070a0', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.73rem', color: m.status === 'actief' ? '#c0cce8' : '#6070a0', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {m.label}
                 </span>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.43rem', color: m.status === 'actief' ? m.color : '#4A5A8A' }}>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: m.status === 'actief' ? m.color : '#7A86A8' }}>
                   {m.status === 'actief'
                     ? (m.au < 10 ? `${m.au.toFixed(2)} AU` : `${Math.round(m.au)} AU`)
                     : 'Gepland'}
@@ -635,7 +635,7 @@ export default function SolarSystemMap() {
             </div>
           ))}
         </div>
-        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.43rem', color: '#2A3868', textAlign: 'right' }}>
+        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#2A3868', textAlign: 'right' }}>
           Posities: benadering {new Date().toLocaleDateString('nl-NL', { month: 'long', year: 'numeric' })}
         </div>
       </div>

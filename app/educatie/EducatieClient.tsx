@@ -272,9 +272,9 @@ function SiteNav() {
               const isActive = href === '/educatie'
               return (
                 <li key={href}>
-                  <Link href={href} style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#4A5A8A', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}
+                  <Link href={href} style={{ fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: isActive ? '#FFFFFF' : '#7A86A8', textDecoration: 'none', transition: 'color 0.15s', padding: '8px 0', borderBottom: isActive ? '1px solid #378ADD' : 'none' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#FFFFFF' : '#4A5A8A')}
+                    onMouseLeave={e => (e.currentTarget.style.color = isActive ? '#FFFFFF' : '#7A86A8')}
                   >{label}</Link>
                 </li>
               )
@@ -316,7 +316,7 @@ function EducatieHero() {
         <div style={{ width: 520, height: 520, borderRadius: '50%', border: '1px solid rgba(224,80,64,0.08)', position: 'absolute' }} />
         <div style={{ width: 360, height: 360, borderRadius: '50%', border: '1px solid rgba(61,223,144,0.1)', position: 'absolute' }} />
         <div style={{ width: 200, height: 200, borderRadius: '50%', border: '1px solid rgba(61,207,223,0.14)', background: 'radial-gradient(circle, rgba(55,138,221,0.06) 0%, transparent 70%)', position: 'absolute' }} />
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(138,155,196,0.3)', textAlign: 'center', lineHeight: 2 }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(138,155,196,0.3)', textAlign: 'center', lineHeight: 2 }}>
           <div style={{ color: 'rgba(224,80,64,0.4)' }}>BEGINNER</div>
           <div style={{ color: 'rgba(61,223,144,0.4)' }}>AMATEUR</div>
           <div style={{ color: 'rgba(61,207,223,0.4)' }}>PRO</div>
@@ -329,7 +329,7 @@ function EducatieHero() {
       <div className="hero-content-pad animate-fadeUp" style={{ position: 'relative', zIndex: 2, maxWidth: 780 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <div aria-hidden="true" style={{ width: 32, height: 1, background: '#3ddf90' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', color: '#3ddf90', textTransform: 'uppercase' }}>Leren</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.22em', color: '#3ddf90', textTransform: 'uppercase' }}>Leren</span>
         </div>
         <h1 id="hero-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.6rem,6vw,5rem)', fontWeight: 700, lineHeight: 1.04, color: '#FFFFFF', marginBottom: 20, letterSpacing: '-0.015em' }}>
           Astronomie<br />
@@ -343,7 +343,7 @@ function EducatieHero() {
           {LEVELS.map(l => (
             <div key={l.key} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', border: `1px solid ${l.border}`, background: l.bg, borderRadius: 2 }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: l.color, flexShrink: 0, display: 'block' }} aria-hidden="true" />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: l.color }}>{l.label}</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: l.color }}>{l.label}</span>
             </div>
           ))}
         </div>
@@ -356,12 +356,12 @@ function EducatieHero() {
           ].map(({ value, label, color }) => (
             <div key={label}>
               <div className="edu-stat-value" style={{ fontFamily: 'var(--font-display)', fontSize: '2.4rem', fontWeight: 700, color, lineHeight: 1 }}>{value}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A5A8A', marginTop: 4 }}>{label}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7A86A8', marginTop: 4 }}>{label}</div>
             </div>
           ))}
         </div>
         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-          <a href="#leerpaden" className="btn-clip" style={{ background: '#3ddf90', color: '#04120a', fontFamily: 'var(--font-mono)', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
+          <a href="#leerpaden" className="btn-clip" style={{ background: '#3ddf90', color: '#04120a', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.background = '#5aeaa6')}
             onMouseLeave={e => (e.currentTarget.style.background = '#3ddf90')}
           >
@@ -385,7 +385,7 @@ function LevelDemo() {
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 40, alignItems: 'center', textAlign: 'center' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#378ADD', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#378ADD', display: 'flex', alignItems: 'center', gap: 12 }}>
             <span aria-hidden="true" style={{ width: 28, height: 1, background: '#378ADD', display: 'inline-block' }} />
             Hoe werkt het
             <span aria-hidden="true" style={{ width: 28, height: 1, background: '#378ADD', display: 'inline-block' }} />
@@ -409,9 +409,9 @@ function LevelDemo() {
             {/* Level toggle */}
             <div role="group" aria-label="Kies niveau" style={{ display: 'flex', gap: 4 }}>
               {LEVELS.map(l => (
-                <button key={l.key} aria-pressed={active === l.key} onClick={() => setActive(l.key as 'beg' | 'ama' | 'pro')} style={{ padding: '6px 14px', fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${active === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: active === l.key ? l.color : '#4A5A8A', background: active === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
+                <button key={l.key} aria-pressed={active === l.key} onClick={() => setActive(l.key as 'beg' | 'ama' | 'pro')} style={{ padding: '6px 14px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${active === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: active === l.key ? l.color : '#7A86A8', background: active === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
                   onMouseEnter={e => { if (active !== l.key) { e.currentTarget.style.borderColor = l.border; e.currentTarget.style.color = l.color } }}
-                  onMouseLeave={e => { if (active !== l.key) { e.currentTarget.style.borderColor = 'rgba(37,40,88,0.8)'; e.currentTarget.style.color = '#4A5A8A' } }}
+                  onMouseLeave={e => { if (active !== l.key) { e.currentTarget.style.borderColor = 'rgba(37,40,88,0.8)'; e.currentTarget.style.color = '#7A86A8' } }}
                 >{l.label}</button>
               ))}
             </div>
@@ -419,7 +419,7 @@ function LevelDemo() {
           {/* Level description bar */}
           <div style={{ padding: '10px 24px', background: lvl.bg, borderBottom: `2px solid ${lvl.color}30`, display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: lvl.color, flexShrink: 0 }} aria-hidden="true" />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.08em', color: lvl.color }}>{lvl.desc}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', color: lvl.color }}>{lvl.desc}</span>
           </div>
           {/* Content */}
           <div style={{ padding: '28px 24px' }}>
@@ -431,7 +431,7 @@ function LevelDemo() {
 
         {/* CTA */}
         <div style={{ textAlign: 'center', marginTop: 32 }}>
-          <Link href="/nieuws/neutronenster-uitgelegd" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'color 0.15s' }}
+          <Link href="/nieuws/neutronenster-uitgelegd" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#378ADD', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'color 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
             onMouseLeave={e => (e.currentTarget.style.color = '#378ADD')}
           >
@@ -479,7 +479,7 @@ function Leerpaden() {
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
             <span aria-hidden="true" style={{ width: 28, height: 1, background: '#3ddf90', display: 'inline-block' }} />
             Leerpaden
           </div>
@@ -519,14 +519,14 @@ function Leerpaden() {
                     </div>
                     <div style={{ minWidth: 0 }}>
                       <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2, marginBottom: 4 }}>{topic.title}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#8A9BC4', lineHeight: 1.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{topic.desc}</div>
+                      <div style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{topic.desc}</div>
                     </div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
                     {/* Concept pills – desktop only */}
                     <div className="nav-links" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                       {topic.concepts.map(c => (
-                        <span key={c} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4A5A8A', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '3px 8px', borderRadius: 2 }}>{c}</span>
+                        <span key={c} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7A86A8', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '3px 8px', borderRadius: 2 }}>{c}</span>
                       ))}
                     </div>
                     {/* Chevron */}
@@ -543,14 +543,14 @@ function Leerpaden() {
                     <div style={{ padding: '16px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <span style={{ width: 6, height: 6, borderRadius: '50%', background: topic.color, display: 'block', flexShrink: 0 }} aria-hidden="true" />
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.56rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: topic.color }}>Uitgelegd — {detail.featuredConcept}</span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: topic.color }}>Uitgelegd — {detail.featuredConcept}</span>
                       </div>
                       {/* Level toggle */}
                       <div role="group" aria-label="Kies niveau" style={{ display: 'flex', gap: 4 }}>
                         {LEVELS.map(l => (
                           <button key={l.key} aria-pressed={lvl === l.key}
                             onClick={e => { e.stopPropagation(); setLvl(topic.id, l.key as 'beg' | 'ama' | 'pro') }}
-                            style={{ padding: '5px 12px', fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${lvl === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: lvl === l.key ? l.color : '#4A5A8A', background: lvl === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
+                            style={{ padding: '5px 12px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${lvl === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: lvl === l.key ? l.color : '#7A86A8', background: lvl === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
                           >{l.label}</button>
                         ))}
                       </div>
@@ -558,7 +558,7 @@ function Leerpaden() {
 
                     {/* Level description bar */}
                     <div style={{ margin: '12px 24px 0', padding: '8px 12px', background: activeLvl.bg, borderLeft: `2px solid ${activeLvl.color}` }}>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.06em', color: activeLvl.color }}>{activeLvl.desc}</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.06em', color: activeLvl.color }}>{activeLvl.desc}</span>
                     </div>
 
                     {/* Explanation text */}
@@ -572,12 +572,12 @@ function Leerpaden() {
                     <div style={{ padding: '20px 24px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="content-split">
                       {/* Key facts */}
                       <div style={{ border: '1px solid #252858', background: 'rgba(37,40,88,0.2)', padding: 16, borderRadius: 2 }}>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: topic.color, marginBottom: 12 }}>Kernfeiten</div>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: topic.color, marginBottom: 12 }}>Kernfeiten</div>
                         <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
                           {detail.keyFacts.map((fact, i) => (
                             <li key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
                               <span style={{ width: 4, height: 4, borderRadius: '50%', background: topic.color, flexShrink: 0, marginTop: 6, display: 'block' }} aria-hidden="true" />
-                              <span style={{ fontSize: '0.78rem', color: '#8A9BC4', lineHeight: 1.6 }}>{fact}</span>
+                              <span style={{ fontSize: '0.88rem', color: '#8A9BC4', lineHeight: 1.6 }}>{fact}</span>
                             </li>
                           ))}
                         </ul>
@@ -585,7 +585,7 @@ function Leerpaden() {
 
                       {/* Sources */}
                       <div style={{ border: '1px solid #252858', background: 'rgba(37,40,88,0.2)', padding: 16, borderRadius: 2 }}>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 12 }}>Bronnen</div>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 12 }}>Bronnen</div>
                         <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
                           {detail.sources.map((src, i) => (
                             <li key={i}>
@@ -602,7 +602,7 @@ function Leerpaden() {
                         </ul>
                         <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid #252858' }}>
                           <Link href={`/nieuws?topic=${topic.title}`}
-                            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: topic.color, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
+                            style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: topic.color, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'color 0.15s' }}
                             onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
                             onMouseLeave={e => (e.currentTarget.style.color = topic.color)}
                           >
@@ -620,10 +620,10 @@ function Leerpaden() {
                         style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '14px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}
                       >
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A5A8A' }}>📖 Begrippenlijst</span>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', color: '#2A3060', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '1px 6px', borderRadius: 10 }}>{detail.glossary.length} termen</span>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#7A86A8' }}>📖 Begrippenlijst</span>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#7A86A8', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '1px 6px', borderRadius: 10 }}>{detail.glossary.length} termen</span>
                         </div>
-                        <svg width="13" height="13" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ color: '#4A5A8A', flexShrink: 0, transition: 'transform 0.25s', transform: glossaryOpen[topic.id] ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                        <svg width="13" height="13" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ color: '#7A86A8', flexShrink: 0, transition: 'transform 0.25s', transform: glossaryOpen[topic.id] ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                           <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </button>
@@ -632,8 +632,8 @@ function Leerpaden() {
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
                             {detail.glossary.map(entry => (
                               <div key={entry.term} style={{ background: 'rgba(37,40,88,0.15)', border: '1px solid #252858', borderRadius: 2, padding: '12px 14px' }}>
-                                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', fontWeight: 700, color: topic.color, letterSpacing: '0.06em', marginBottom: 5 }}>{entry.term}</div>
-                                <p style={{ fontSize: '0.78rem', color: '#8A9BC4', lineHeight: 1.65, margin: 0 }}>{entry.def}</p>
+                                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 700, color: topic.color, letterSpacing: '0.06em', marginBottom: 5 }}>{entry.term}</div>
+                                <p style={{ fontSize: '0.88rem', color: '#8A9BC4', lineHeight: 1.65, margin: 0 }}>{entry.def}</p>
                               </div>
                             ))}
                           </div>
@@ -650,7 +650,7 @@ function Leerpaden() {
                       if (!matches.length) return null
                       return (
                         <div style={{ margin: '0 24px 24px', borderTop: '1px solid #252858', paddingTop: 16 }}>
-                          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 10 }}>📰 In het nieuws</div>
+                          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 10 }}>📰 In het nieuws</div>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                             {matches.map((a: any) => (
                               <a key={a.slug} href={`/nieuws/${a.slug}`} style={{ fontSize: '0.8rem', color: '#8A9CC0', textDecoration: 'none', lineHeight: 1.4, transition: 'color 0.15s' }}
@@ -682,7 +682,7 @@ function Kernconcepten() {
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c080ff', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c080ff', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
               <span aria-hidden="true" style={{ width: 28, height: 1, background: '#c080ff', display: 'inline-block' }} />
               Uitgelegd
             </div>
@@ -693,7 +693,7 @@ function Kernconcepten() {
               Elke uitleg is beschikbaar op drie niveaus. Klik een artikel om te beginnen.
             </p>
           </div>
-          <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'color 0.15s', whiteSpace: 'nowrap' }}
+          <Link href="/nieuws" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A9BC4', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'color 0.15s', whiteSpace: 'nowrap' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
             onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
           >
@@ -715,7 +715,7 @@ function Kernconcepten() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     <span style={{ fontSize: '1.8rem' }} aria-hidden="true">{c.icon}</span>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: c.color, marginBottom: 4 }}>{c.category}</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: c.color, marginBottom: 4 }}>{c.category}</div>
                       <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2 }}>{c.title}</div>
                     </div>
                   </div>
@@ -723,7 +723,7 @@ function Kernconcepten() {
                   {/* Level pills */}
                   <div style={{ display: 'flex', gap: 6 }}>
                     {LEVELS.map(l => (
-                      <span key={l.key} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: l.color, background: l.bg, border: `1px solid ${l.border}`, padding: '2px 7px', borderRadius: 2 }}>{l.label}</span>
+                      <span key={l.key} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: l.color, background: l.bg, border: `1px solid ${l.border}`, padding: '2px 7px', borderRadius: 2 }}>{l.label}</span>
                     ))}
                   </div>
                 </div>
@@ -744,7 +744,7 @@ function FAQ() {
     <section aria-labelledby="faq-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
       <div className="main-pad" style={{ maxWidth: 780, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 14 }}>Veelgestelde vragen</div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 14 }}>Veelgestelde vragen</div>
           <h2 id="faq-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,3vw,2.2rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15 }}>FAQ</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -752,7 +752,7 @@ function FAQ() {
             <div key={i} style={{ border: '1px solid #252858', background: open === i ? '#16173A' : '#0F1028', overflow: 'hidden', transition: 'background 0.2s', borderRadius: 2 }}>
               <button aria-expanded={open === i} onClick={() => setOpen(open === i ? null : i)} style={{ width: '100%', padding: '18px 24px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, textAlign: 'left' }}>
                 <span style={{ fontSize: '0.9rem', fontWeight: 500, color: '#FFFFFF', lineHeight: 1.4 }}>{faq.q}</span>
-                <svg width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ flexShrink: 0, color: '#4A5A8A', transition: 'transform 0.25s', transform: open === i ? 'rotate(45deg)' : 'none' }}>
+                <svg width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ flexShrink: 0, color: '#7A86A8', transition: 'transform 0.25s', transform: open === i ? 'rotate(45deg)' : 'none' }}>
                   <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </button>
@@ -791,16 +791,16 @@ function SiteFooter() {
                 { href: '#', label: 'NightGazer op Instagram',  icon: <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" width="13" height="13"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" /><circle cx="8" cy="8" r="3" /><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor" stroke="none" /></svg> },
                 { href: '#', label: 'NightGazer op YouTube',    icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M14.5 4.5s-.2-1.2-.7-1.7c-.7-.7-1.4-.7-1.8-.8C10.5 2 8 2 8 2s-2.5 0-4 .1c-.4 0-1.1.1-1.8.8-.5.5-.7 1.7-.7 1.7S1.3 5.9 1.3 7.3v1.3c0 1.4.2 2.8.2 2.8s.2 1.2.7 1.7c.7.7 1.6.7 2 .7C5.5 14 8 14 8 14s2.5 0 4-.1c.4-.1 1.1-.1 1.8-.8.5-.5.7-1.7.7-1.7s.2-1.4.2-2.8V7.3C14.7 5.9 14.5 4.5 14.5 4.5zM6.5 10.2V5.8l4.5 2.2-4.5 2.2z" /></svg> },
               ].map(({ href, label, icon }) => (
-                <a key={label} href={href} aria-label={label} style={{ width: 32, height: 32, border: '1px solid #2A2E62', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4A5A8A', transition: 'border-color 0.15s, color 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#4A5A8A'; e.currentTarget.style.color = '#8A9BC4' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#2A2E62'; e.currentTarget.style.color = '#4A5A8A' }}
+                <a key={label} href={href} aria-label={label} style={{ width: 32, height: 32, border: '1px solid #2A2E62', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7A86A8', transition: 'border-color 0.15s, color 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#7A86A8'; e.currentTarget.style.color = '#8A9BC4' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#2A2E62'; e.currentTarget.style.color = '#7A86A8' }}
                 >{icon}</a>
               ))}
             </div>
           </div>
           {cols.map(col => (
             <div key={col.title}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.57rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A5A8A', marginBottom: 16 }}>{col.title}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>{col.title}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {col.links.map(([label, href]) => (
                   <Link key={label} href={href} style={{ fontSize: '0.82rem', color: '#8A9BC4', textDecoration: 'none', transition: 'color 0.15s' }}
@@ -813,8 +813,8 @@ function SiteFooter() {
           ))}
         </div>
         <div className="footer-bottom-row" style={{ borderTop: '1px solid #252858', paddingTop: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.54rem', letterSpacing: '0.06em', color: '#2A3060' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: '#2A3060' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.06em', color: '#7A86A8' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8' }}>
             {[['Claude AI', '⬡'], ['NASA Open APIs', '★']].map(([label, icon]) => (
               <span key={label} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 8px', border: '1px solid #252858', borderRadius: 2 }}>
                 <span aria-hidden="true">{icon}</span>{label}

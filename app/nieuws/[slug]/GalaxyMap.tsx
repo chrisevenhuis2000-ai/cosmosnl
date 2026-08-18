@@ -254,7 +254,7 @@ export default function GalaxyMap({ currentSlug, compact = false }: Props) {
         // ── Label ────────────────────────────────────────────────────────
         const lines = wrapTitle(n.title, isCurrent ? 26 : 22)
         const fSize = isCurrent ? 11 : 9.5
-        ctx.font      = `${isCurrent ? 600 : 400} ${fSize}px 'DM Mono',monospace`
+        ctx.font      = `${isCurrent ? 600 : 400} ${fSize}px 'JetBrains Mono',monospace`
         ctx.textAlign = 'center'
 
         // Label below node; if too close to bottom, put it above
@@ -326,23 +326,23 @@ export default function GalaxyMap({ currentSlug, compact = false }: Props) {
       {!compact && (
         <div style={{ padding: '24px 0 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <div style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.57rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#3a4268', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-              <span style={{ color: currentColor, fontSize: '0.65rem' }}>✦</span>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#3a4268', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+              <span style={{ color: currentColor, fontSize: '0.79rem' }}>✦</span>
               Sterrenveld
             </div>
-            <div style={{ fontFamily: 'Cormorant Garamond,serif', fontSize: '1.05rem', color: '#6a78a0' }}>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', color: '#6a78a0' }}>
               {related.length} gerelateerde artikelen in{' '}
               <span style={{ color: currentColor }}>{currentCat}</span>
             </div>
           </div>
-          <div style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.5rem', color: '#2a3050', letterSpacing: '0.08em', textAlign: 'right', lineHeight: 1.9 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#2a3050', letterSpacing: '0.08em', textAlign: 'right', lineHeight: 1.9 }}>
             HOVER om te verkennen<br />KLIK om te navigeren
           </div>
         </div>
       )}
 
       {compact && (
-        <div style={{ padding: '10px 18px', borderBottom: '1px solid #1a1e3a', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.53rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: currentColor, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ padding: '10px 18px', borderBottom: '1px solid #1a1e3a', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.74rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: currentColor, display: 'flex', alignItems: 'center', gap: 8 }}>
           ✦ Sterrenveld
         </div>
       )}
@@ -378,13 +378,13 @@ export default function GalaxyMap({ currentSlug, compact = false }: Props) {
             backdropFilter: 'blur(10px)',
             zIndex: 10,
           }}>
-            <div style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: currentColor, marginBottom: 5 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: currentColor, marginBottom: 5 }}>
               {currentCat}
             </div>
-            <div style={{ fontFamily: 'Cormorant Garamond,serif', fontSize: '0.9rem', color: '#dce8ff', lineHeight: 1.35 }}>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', color: '#dce8ff', lineHeight: 1.35 }}>
               {tooltip.title}
             </div>
-            <div style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.48rem', color: '#3a4870', marginTop: 7 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#3a4870', marginTop: 7 }}>
               klik om te lezen →
             </div>
           </div>
@@ -393,7 +393,7 @@ export default function GalaxyMap({ currentSlug, compact = false }: Props) {
         {/* "Jij bent hier" badge */}
         <div style={{
           position: 'absolute', bottom: 12, left: 12,
-          fontFamily: 'DM Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.12em', textTransform: 'uppercase',
+          fontFamily: 'var(--font-mono)', fontSize: '0.73rem', letterSpacing: '0.12em', textTransform: 'uppercase',
           color: currentColor,
           background: 'rgba(2,5,16,0.85)',
           border: `1px solid ${currentColor}35`,

@@ -20,7 +20,7 @@ export default function NotFound() {
       </div>
 
       <div className="relative z-10 max-w-md">
-        <p className="font-mono text-xs tracking-widest uppercase text-[#4A5A8A] mb-4">
+        <p className="font-mono text-xs tracking-widest uppercase text-[#7A86A8] mb-4">
           Fout 404
         </p>
 

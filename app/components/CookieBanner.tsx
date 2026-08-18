@@ -78,7 +78,7 @@ export function CookieBanner() {
               aria-label="Alleen noodzakelijke cookies toestaan"
               style={{
                 padding: '8px 14px',
-                fontFamily: 'var(--font-mono)', fontSize: '0.56rem',
+                fontFamily: 'var(--font-mono)', fontSize: '0.75rem',
                 letterSpacing: '0.08em', textTransform: 'uppercase',
                 border: '1px solid #252858', color: '#8A9BC4',
                 background: 'transparent', borderRadius: 4,
@@ -94,7 +94,7 @@ export function CookieBanner() {
               aria-label="Alle cookies accepteren"
               style={{
                 padding: '8px 14px',
-                fontFamily: 'var(--font-mono)', fontSize: '0.56rem',
+                fontFamily: 'var(--font-mono)', fontSize: '0.75rem',
                 letterSpacing: '0.08em', textTransform: 'uppercase',
                 background: '#378ADD', color: '#fff',
                 border: '1px solid #378ADD', borderRadius: 4,

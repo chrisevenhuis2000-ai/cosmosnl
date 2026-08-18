@@ -45,10 +45,10 @@ export default function AuroraAlert() {
     }}>
       {/* Header */}
       <div style={{ padding: '11px 18px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.54rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: data?.aurora ? '#d4a84b' : '#4A5A8A' }}>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: data?.aurora ? '#d4a84b' : '#7A86A8' }}>
           {data?.aurora ? '🌌 Aurora-alert' : '☀ Ruimteweer'}
         </span>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', color: '#2A3060', marginLeft: 'auto' }}>NOAA KP-index</span>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.71rem', color: '#7A86A8', marginLeft: 'auto' }}>NOAA KP-index</span>
       </div>
 
       <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -62,7 +62,7 @@ export default function AuroraAlert() {
                 <span style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 800, color, lineHeight: 1 }}>
                   {kp.toFixed(1)}
                 </span>
-                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', color: '#4A5A8A', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 2 }}>KP</span>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.71rem', color: '#7A86A8', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 2 }}>KP</span>
               </>
             )}
           </div>
@@ -77,7 +77,7 @@ export default function AuroraAlert() {
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color, marginBottom: 4 }}>
                   {data?.kpText}
                 </div>
-                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.52rem', color: '#8A9BC4', lineHeight: 1.5 }}>
+                <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', color: '#8A9BC4', lineHeight: 1.5 }}>
                   {data?.aurora
                     ? 'Kans op noorderlicht in Noord-Nederland! Ga naar een donkere locatie.'
                     : kp >= 3
@@ -107,7 +107,7 @@ export default function AuroraAlert() {
                 )
               })}
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.42rem', color: '#2A3060' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.7rem', color: '#7A86A8' }}>
               <span>Rustig</span>
               <span>Aurora NL ≥5</span>
               <span>Sterk ≥7</span>
@@ -118,7 +118,7 @@ export default function AuroraAlert() {
         {/* 24-uurs grafiek */}
         {!loading && data && data.entries.length > 0 && (
           <div>
-            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', color: '#2A3060', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 6 }}>
+            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.71rem', color: '#7A86A8', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 6 }}>
               Afgelopen 24 uur
             </div>
             <div style={{ display: 'flex', gap: 3, alignItems: 'flex-end', height: 32 }}>

@@ -21,7 +21,7 @@
   /* UI greys (dark mode) */
   --text-primary:   #FFFFFF;
   --text-secondary: #8A9BC4;
-  --text-muted:     #4A5A8A;
+  --text-muted:     #7A86A8;
   --border:         #252858;
   --surface:        #12132A;
   --surface-alt:    #0F1028;
@@ -133,6 +133,10 @@
 
   /* Ticker */
   .ticker-scroll { animation: ticker 50s linear infinite; }
+  .ticker-mask {
+    mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  }
 
   /* Article level left-border (used by ArticleClient) */
   .level-border-beg { border-left: 2px solid #e05040; }
@@ -461,4 +465,5 @@
   }
   html { scroll-behavior: auto; }
   .ticker-scroll { animation: none; }
+  .ticker-mask { mask-image: none; -webkit-mask-image: none; }
 }
