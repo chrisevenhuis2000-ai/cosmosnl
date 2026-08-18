@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { AdUnit } from '@/app/components/AdUnit'
+import { TOPICS, getTopic } from '@/lib/topics'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -386,13 +387,22 @@ function ArticleCard({ article }: { article: Article }) {
 }
 
 // ── Page ───────────────────────────────────────────────────────────────────
-export default function NieuwsClient() {
+export default function NieuwsClient({ initialCategory }: { initialCategory?: string } = {}) {
+  const topic       = initialCategory ? getTopic(initialCategory) : undefined
+  const isDedicated = !!topic
+
   const [articles,     setArticles]     = useState<Article[]>([])
-  const [filter,       setFilter]       = useState('Alles')
+  const [filter,       setFilter]       = useState(topic?.slug || 'Alles')
   const [visibleCount, setVisibleCount] = useState(18)
   const [showTop,      setShowTop]      = useState(false)
   const fetchedRef  = useRef<Set<string>>(new Set())
   const usedUrls    = useRef<Set<string>>(new Set())
+
+  // Op onderwerp-pagina's zijn de filterpillen echte links naar de andere
+  // onderwerp-pagina's (alleen die met een eigen statische pagina), zodat de
+  // URL altijd overeenkomt met wat er te zien is. Op de algemene /nieuws-hub
+  // blijft het lokale, klikbare filter (met o.a. "sterrenkijken") ongewijzigd.
+  const pillCategories = isDedicated ? ['Alles', ...TOPICS.map(t => t.slug)] : CATEGORIES
 
   // Load article index
   useEffect(() => {
@@ -445,13 +455,13 @@ export default function NieuwsClient() {
   // Category counts
   const catCounts = useMemo(() => {
     const counts: Record<string, number> = {}
-    for (const cat of CATEGORIES) {
+    for (const cat of pillCategories) {
       counts[cat] = cat === 'Alles'
         ? articles.length
         : articles.filter(a => a.category?.toLowerCase() === cat).length
     }
     return counts
-  }, [articles])
+  }, [articles, pillCategories])
 
   const filtered = filter === 'Alles'
     ? articles
@@ -473,31 +483,61 @@ export default function NieuwsClient() {
         {/* Page header */}
         <div style={{ borderBottom: '1px solid #252858', background: 'linear-gradient(180deg, rgba(26,26,46,0.9) 0%, transparent 100%)', padding: 'clamp(32px,5vw,64px) clamp(16px,4vw,60px) 40px' }}>
           <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#378ADD', marginBottom: 12 }}>
-              Astronomie &amp; Ruimtevaart
+            {topic && (
+              <Link href="/nieuws" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8', textDecoration: 'none', marginBottom: 18 }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#7A86A8')}
+              >
+                ← Alle nieuws
+              </Link>
+            )}
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: topic?.color || '#378ADD', marginBottom: 12 }}>
+              {topic ? 'Onderwerp' : 'Astronomie & Ruimtevaart'}
             </p>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#fff', marginBottom: 8 }}>
-              Nieuws
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#fff', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 14 }}>
+              {topic && <span aria-hidden="true">{topic.emoji}</span>}
+              {topic ? topic.label : 'Nieuws'}
             </h1>
-            <p style={{ color: '#8A9CC0', fontSize: '0.95rem' }}>
-              {articles.length > 0 ? `${articles.length} artikelen — dagelijks bijgewerkt` : 'Artikelen laden…'}
+            <p style={{ color: '#8A9CC0', fontSize: '0.95rem', maxWidth: 560, lineHeight: 1.6 }}>
+              {topic
+                ? topic.description
+                : (articles.length > 0 ? `${articles.length} artikelen — dagelijks bijgewerkt` : 'Artikelen laden…')}
             </p>
+            {topic && !loading && (
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8', marginTop: 10 }}>
+                {filtered.length} {filtered.length === 1 ? 'artikel' : 'artikelen'}
+              </p>
+            )}
           </div>
         </div>
 
         {/* Category filter */}
         <div style={{ borderBottom: '1px solid #252858', padding: '0 clamp(16px,4vw,60px)', overflowX: 'auto' }}>
           <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', gap: 0 }}>
-            {CATEGORIES.map(cat => {
-              const count = catCounts[cat] ?? 0
-              const active = filter === cat
+            {pillCategories.map(cat => {
+              const count  = catCounts[cat] ?? 0
+              const active = isDedicated ? cat === topic?.slug : filter === cat
+              const label  = `${cat}${loading ? '' : ` (${count})`}`
+              const style  = { fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.1em', textTransform: 'uppercase' as const, padding: '14px 20px', background: 'none', border: 'none', borderBottom: active ? '2px solid #378ADD' : '2px solid transparent', color: active ? '#fff' : '#7A86A8', cursor: 'pointer', whiteSpace: 'nowrap' as const, transition: 'color 0.15s, border-color 0.15s', textDecoration: 'none', display: 'inline-block' }
+
+              if (isDedicated) {
+                const href = cat === 'Alles' ? '/nieuws' : `/nieuws/onderwerp/${cat}`
+                return (
+                  <Link key={cat} href={href} style={style}
+                    onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#8A9CC0' }}
+                    onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#7A86A8' }}
+                  >
+                    {label}
+                  </Link>
+                )
+              }
               return (
                 <button key={cat} onClick={() => { setFilter(cat); setVisibleCount(18) }}
-                  style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '14px 20px', background: 'none', border: 'none', borderBottom: active ? '2px solid #378ADD' : '2px solid transparent', color: active ? '#fff' : '#7A86A8', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'color 0.15s, border-color 0.15s' }}
+                  style={style}
                   onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#8A9CC0' }}
                   onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#7A86A8' }}
                 >
-                  {cat}{loading ? '' : ` (${count})`}
+                  {label}
                 </button>
               )
             })}
@@ -530,14 +570,24 @@ export default function NieuwsClient() {
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', color: '#7A86A8', marginBottom: 28 }}>
                 in categorie &ldquo;{filter}&rdquo;
               </p>
-              <button
-                onClick={() => { setFilter('Alles'); setVisibleCount(18) }}
-                style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.4)', padding: '10px 24px', borderRadius: 2, cursor: 'pointer', transition: 'background 0.15s' }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(55,138,221,0.08)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
-              >
-                Toon alle artikelen
-              </button>
+              {isDedicated ? (
+                <Link href="/nieuws"
+                  style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.4)', padding: '10px 24px', borderRadius: 2, textDecoration: 'none', transition: 'background 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(55,138,221,0.08)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                >
+                  Toon alle artikelen
+                </Link>
+              ) : (
+                <button
+                  onClick={() => { setFilter('Alles'); setVisibleCount(18) }}
+                  style={{ fontFamily: 'var(--font-mono)', fontSize: '0.77rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#378ADD', background: 'none', border: '1px solid rgba(55,138,221,0.4)', padding: '10px 24px', borderRadius: 2, cursor: 'pointer', transition: 'background 0.15s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(55,138,221,0.08)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'none' }}
+                >
+                  Toon alle artikelen
+                </button>
+              )}
             </div>
           )}
 

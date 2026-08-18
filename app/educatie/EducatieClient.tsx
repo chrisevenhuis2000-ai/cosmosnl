@@ -772,7 +772,7 @@ function FAQ() {
 // ── Footer ────────────────────────────────────────────────────────────────────
 function SiteFooter() {
   const cols = [
-    { title: 'Onderwerpen', links: [['Zonnestelsel', '/nieuws'], ['Sterren & Leven', '/nieuws'], ['Kosmologie', '/nieuws'], ['Exoplaneten', '/nieuws'], ['Ruimtevaart', '/missies']] },
+    { title: 'Onderwerpen', links: [['Kosmologie', '/nieuws/onderwerp/kosmologie'], ['James Webb', '/nieuws/onderwerp/james-webb'], ['Missies', '/nieuws/onderwerp/missies'], ['Kometen', '/nieuws/onderwerp/kometen'], ['Ruimtevaart', '/missies']] },
     { title: 'Tools',       links: [['Sterrenkijken', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
     { title: 'Over ons',    links: [['Redactie', '/over'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
   ]

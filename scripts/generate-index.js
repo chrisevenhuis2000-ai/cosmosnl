@@ -15,6 +15,10 @@ const CAT_COLORS = {
   'observing':     '#d4a84b',
   'educatie':      '#3ddf90',
   'education':     '#3ddf90',
+  'maan':          '#c9d2ea',
+  'kometen':       '#f4c26b',
+  'zwarte-gaten':  '#9a9ad0',
+  'exoplaneten':   '#3ddfcf',
 }
 
 const CAT_EMOJI = {
@@ -28,6 +32,10 @@ const CAT_EMOJI = {
   'observing':     '☄️',
   'educatie':      '⭐',
   'education':     '⭐',
+  'maan':          '🌙',
+  'kometen':       '☄️',
+  'zwarte-gaten':  '⚫',
+  'exoplaneten':   '🪐',
 }
 
 const CAT_BG = {
@@ -41,6 +49,10 @@ const CAT_BG = {
   'observing':     'linear-gradient(135deg,#1a1505,#2a2010)',
   'educatie':      'linear-gradient(135deg,#051a10,#0a2a1a)',
   'education':     'linear-gradient(135deg,#051a10,#0a2a1a)',
+  'maan':          'linear-gradient(135deg,#12141f,#242a45)',
+  'kometen':       'linear-gradient(135deg,#1a1206,#3a2810)',
+  'zwarte-gaten':  'linear-gradient(135deg,#050508,#15151f)',
+  'exoplaneten':   'linear-gradient(135deg,#051a18,#0a3028)',
 }
 
 function parseFrontmatter(raw) {

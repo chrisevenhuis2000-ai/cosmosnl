@@ -1235,7 +1235,7 @@ function EventCountdownStrip() {
 // ── Footer ─────────────────────────────────────────────────────────────────
 function SiteFooter() {
   const cols = [
-    { title: 'Onderwerpen', links: [['James Webb', '/nieuws'], ['Mars Exploratie', '/nieuws'], ['Zwarte Gaten', '/nieuws'], ['Sterrenkijken', '/sterrenkijken'], ['Exoplaneten', '/nieuws']] },
+    { title: 'Onderwerpen', links: [['James Webb', '/nieuws/onderwerp/james-webb'], ['Mars', '/nieuws/onderwerp/mars'], ['Maan', '/nieuws/onderwerp/maan'], ['Kosmologie', '/nieuws/onderwerp/kosmologie'], ['Sterrenkijken', '/sterrenkijken']] },
     { title: 'Tools',       links: [['ISS Tracker', '/'], ['Sterrenkaart', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
     { title: 'Over ons',    links: [['Redactie', '/over'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
   ]
