@@ -525,13 +525,6 @@ const SK_DARK_SPOTS = [
   { name: 'Bourtangermoor',  lat: 53.01, lon: 7.20 },
   { name: 'Fochteloërveen',  lat: 52.96, lon: 6.38 },
 ]
-const SK_OBJECTS = [
-  { obj: 'Jupiter',          icon: '♃' },
-  { obj: 'Venus',            icon: '♀' },
-  { obj: 'Mars',             icon: '♂' },
-  { obj: 'Orionnevel (M42)', icon: '⭐' },
-]
-
 // ── Daily quiz data ─────────────────────────────────────────────────────────
 type QuizLevel = { q: string; options: string[]; correct: number; explain: string }
 const DAILY_QUESTIONS: { id: number; topic: string; beg: QuizLevel; ama: QuizLevel; pro: QuizLevel }[] = [
@@ -786,6 +779,7 @@ function StargazingWidget() {
   const [label,    setLabel]    = useState('Laden…')
   const [color,    setColor]    = useState('#7A86A8')
   const [clouds,   setClouds]   = useState<number | null>(null)
+  const [temp,     setTemp]     = useState<number | null>(null)
   const [darkKm,   setDarkKm]   = useState<number | null>(null)
   const [darkName, setDarkName] = useState('')
   const [locName] = useState('Amsterdam')
@@ -817,6 +811,7 @@ function StargazingWidget() {
         setLabel(lbl)
         setColor(clr)
         setClouds(cc)
+        setTemp(Math.round(temp))
 
         const nearest = SK_DARK_SPOTS.map(sp => ({ ...sp, km: skDist(lat, lon, sp.lat, sp.lon) })).sort((a, b) => a.km - b.km)[0]
         setDarkKm(nearest.km)
@@ -828,11 +823,13 @@ function StargazingWidget() {
     fetch20h(52.3676, 4.9041)
   }, [])
 
-  const topObj = SK_OBJECTS[0]
-  const circumference = 2 * Math.PI * 26 // r=26
+  const circumference = 2 * Math.PI * 30 // r=30
 
   return (
-    <div role="region" aria-labelledby="sk-widget-title" style={{ border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
+    <div role="region" aria-labelledby="sk-widget-title" style={{ position: 'relative', border: '1px solid #252858', background: '#16173A', overflow: 'hidden', borderRadius: 2 }}>
+      {/* Status accent — colour communicates conditions at a glance */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: loading ? '#252858' : color, transition: 'background 0.6s' }} />
+
       {/* Header */}
       <div style={{ padding: '11px 20px', borderBottom: '1px solid #252858', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span id="sk-widget-title" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -843,41 +840,45 @@ function StargazingWidget() {
       </div>
 
       {/* Score + highlights */}
-      <div style={{ padding: '16px 20px 14px', display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{ padding: '18px 20px 14px', display: 'flex', alignItems: 'center', gap: 18, background: loading ? 'transparent' : `radial-gradient(circle at 10% 20%, ${color}16, transparent 68%)`, transition: 'background 0.6s' }}>
         {/* Score ring */}
-        <div aria-label={`Sterrenkijk-score: ${score ?? '…'} van 10`} style={{ position: 'relative', width: 64, height: 64, flexShrink: 0 }}>
-          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="26" fill="none" stroke="#252858" strokeWidth="5" />
-            <circle cx="32" cy="32" r="26" fill="none"
+        <div aria-label={`Sterrenkijk-score: ${score ?? '…'} van 10`} style={{ position: 'relative', width: 72, height: 72, flexShrink: 0 }}>
+          {!loading && (
+            <div aria-hidden="true" style={{ position: 'absolute', inset: -8, borderRadius: '50%', background: color, opacity: 0.18, filter: 'blur(14px)' }} />
+          )}
+          <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true" style={{ position: 'relative' }}>
+            <circle cx="36" cy="36" r="30" fill="none" stroke="#252858" strokeWidth="6" />
+            <circle cx="36" cy="36" r="30" fill="none"
               stroke={loading ? '#252858' : color}
-              strokeWidth="5"
+              strokeWidth="6"
               strokeDasharray={`${loading ? 0 : ((score ?? 0) / 10) * circumference} ${circumference}`}
               strokeLinecap="round"
-              transform="rotate(-90 32 32)"
+              transform="rotate(-90 36 36)"
               style={{ transition: 'stroke-dasharray 0.9s ease, stroke 0.4s' }}
             />
           </svg>
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700, color: loading ? '#7A86A8' : color, lineHeight: 1 }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, color: loading ? '#7A86A8' : color, lineHeight: 1, transition: 'color 0.4s' }}>
               {loading ? '…' : (score ?? '?')}
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#7A86A8', letterSpacing: '0.06em' }}>/10</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: '#7A86A8', letterSpacing: '0.06em' }}>/10</span>
           </div>
         </div>
 
         {/* Label + info rows */}
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 700, color: loading ? '#7A86A8' : color, marginBottom: 6 }}>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', fontWeight: 700, color: loading ? '#7A86A8' : color, marginBottom: 8, transition: 'color 0.4s' }}>
             {loading ? 'Ophalen…' : label}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#8A9BC4', display: 'flex', alignItems: 'center', gap: 5 }}>
-              <span aria-hidden="true" style={{ color: '#ffa040' }}>{topObj.icon}</span>
-              {topObj.obj} zichtbaar
-            </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
             {clouds !== null && (
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: clouds < 20 ? '#3ddf90' : clouds < 50 ? '#d4a84b' : '#8A9BC4' }}>
                 ☁ {clouds}% bewolking vanavond
+              </span>
+            )}
+            {temp !== null && (
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#8A9BC4' }}>
+                🌡 {temp}°C vanavond
               </span>
             )}
             {darkKm !== null && (
