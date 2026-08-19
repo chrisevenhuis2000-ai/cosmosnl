@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-18T08:22:28.174Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-19T08:23:51.166Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -764,13 +767,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Onbemande vlucht van Starliner-1 naar het ISS met cargo en systeemupdates na eerdere problemen.",
+      "objective": "Onbemande vlucht van Starliner-1 naar het ISS voor cargoleveringen en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Omgevormd tot onbemande vlucht na RCS-problemen tijdens Crew Flight Test 2024.",
+      "highlight": "Hervormd tot onbemande cargomissie na RCS-problemen in 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation, maar zonder bemanning aan boord. NASA besloot de missie om te vormen tot een onbemande vlucht nadat tijdens de Crew Flight Test in 2024 ernstige problemen opdoken met het RCS-houdingsregelingssysteem. Het ruimtevaartuig zal essentiële lading afleveren aan het ruimtestation en dient tegelijkertijd als validatieplatform voor de doorgevoerde technische verbeteringen. De missie is een cruciale stap voor Boeing om het vertrouwen in het Starliner-systeem te herstellen binnen het Commercial Crew Program van NASA.",
+      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na ernstige problemen met het RCS-stuursysteem tijdens de Crew Flight Test-missie in 2024 besloot NASA de missie te hervormen: in plaats van astronauten vervoert het vaartuig nu uitsluitend cargo. De vlucht biedt tevens de mogelijkheid om de doorgevoerde systeemverbeteringen in de praktijk te valideren voordat er opnieuw een bemande vlucht wordt overwogen.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -815,7 +818,7 @@
         "onbemande vlucht",
         "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-08-12T09:01:01.364Z"
+      "_lastClaudeUpdate": "2026-08-19T08:23:51.161Z"
     },
     {
       "id": "starlink-group-10-24",
