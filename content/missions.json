@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-19T08:23:51.166Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-08-20T08:24:18.509Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -3693,7 +3690,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 aug 2026",
+      "launched": "20 aug 2026",
       "objective": "Lancering van een synthetische apertuur-radarsatelliet voor het Japanse aardobservatiebedrijf iQPS.",
       "body": "Low Earth Orbit",
       "highlight": "Geplande lancering op 31 augustus 2026 vanuit Mahia, Nieuw-Zeeland.",
