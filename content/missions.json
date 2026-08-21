@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-20T08:24:18.509Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-21T08:26:23.361Z",
+    "autoUpdated": [
+      "the-lightning-god-defends-iqps-launch-8",
+      "bandwagon-5-dedicated-mid-inclination-rideshare"
+    ]
   },
   "missions": [
     {
@@ -3689,17 +3692,17 @@
       "name": "The Lightning God Defends (iQPS Launch 8)",
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
-      "status": "gepland",
+      "status": "actief",
       "launched": "20 aug 2026",
-      "objective": "Lancering van een synthetische apertuur-radarsatelliet voor het Japanse aardobservatiebedrijf iQPS.",
+      "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
-      "highlight": "Geplande lancering op 31 augustus 2026 vanuit Mahia, Nieuw-Zeeland.",
+      "highlight": "Achtste Electron-lancering voor iQPS; uitbreiding SAR-constellatie.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Rocket Lab lanceert met zijn Electron-raket de achtste satelliet voor het Japanse bedrijf iQPS, gespecialiseerd in aardobservatie. De satelliet maakt gebruik van synthetische apertuurradar (SAR), waarmee onafhankelijk van weersomstandigheden en daglicht beelden van het aardoppervlak kunnen worden gemaakt. De missie draagt de naam 'The Lightning God Defends', een verwijzing naar de Japanse mythologie. Met deze lancering breidt iQPS zijn groeiende constellatie van SAR-satellieten verder uit.",
+      "description": "Rocket Lab voert de achtste lancering uit voor het Japanse aardobservatiebedrijf iQPS, waarbij een synthetische apertuurradar (SAR) satelliet in een lage aardbaan wordt gebracht. De Electron-raket vertrekt met als doel de groeiende SAR-constellatie van iQPS verder uit te breiden, waarmee het bedrijf hoge-resolutie beelden van het aardoppervlak kan produceren, ongeacht weersomstandigheden of lichtinval. iQPS streeft naar een dichte constellatie die snelle herbezoektijden mogelijk maakt voor klanten wereldwijd. De missienaam 'The Lightning God Defends' verwijst naar de Japanse mythologische traditie die iQPS hanteert voor haar satellieten.",
       "vehicle": "Electron",
-      "launchSite": "Unknown Pad",
+      "launchSite": "Rocket Lab Launch Complex 1B",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/1092/?format=json",
@@ -3720,9 +3723,10 @@
         "rocket lab",
         "electron",
         "sar",
-        "aardobservatie"
+        "aardobservatie",
+        "sar-satelliet"
       ],
-      "_lastClaudeUpdate": "2026-08-08T08:26:47.801Z"
+      "_lastClaudeUpdate": "2026-08-21T08:26:15.508Z"
     },
     {
       "id": "ussf-31",
@@ -3845,6 +3849,41 @@
         "geostationaire baan"
       ],
       "_lastClaudeUpdate": "2026-08-18T08:22:28.170Z"
+    },
+    {
+      "id": "bandwagon-5-dedicated-mid-inclination-rideshare",
+      "_ll2Id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+      "name": "Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+      "agency": "SpaceX",
+      "agencyColor": "#3dcfdf",
+      "status": "gepland",
+      "launched": "31 okt 2026",
+      "objective": "SpaceX lanceert tientallen micro- en nanosatellieten naar een mid-inclinatiebaan in een gedeelde vlucht.",
+      "body": "Low Earth Orbit",
+      "highlight": "Gepland voor lancering op 31 oktober 2026 vanaf Kennedy Space Center.",
+      "icon": "🚀",
+      "bgFrom": "#040e14",
+      "bgTo": "#0a2030",
+      "description": "Bandwagon 5 is de vijfde editie van SpaceX's dedicated rideshare-programma voor mid-inclinatiebanen, gericht op commerciële en overheidsklanten. De Falcon 9-raket vervoert tientallen kleine micro- en nanosatellieten tegelijk, wat de kosten per kilogram drastisch verlaagt voor kleinere operatoren. Het Bandwagon-programma biedt toegang tot banen rond 45 graden inclinatie, ideaal voor aardobservatie en communicatiesatellieten die brede geografische dekking vereisen. De vlucht sluit aan op SpaceX's strategie om regelmatige, betaalbare rideshare-diensten aan te bieden naast het Transporter-programma.",
+      "vehicle": "Falcon 9",
+      "launchSite": "Space Launch Complex 40",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/121/?format=json",
+      "timeline": [
+        {
+          "date": "31 okt 2026",
+          "event": "Geplande lancering van Bandwagon 5 (Dedicated Mid-Inclination Rideshare)"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "SpaceX",
+        "Falcon 9",
+        "Rideshare",
+        "Low Earth Orbit",
+        "Nanosatellieten"
+      ]
     }
   ]
 }
