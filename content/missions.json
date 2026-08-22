@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-21T08:26:23.361Z",
+    "lastUpdated": "2026-08-22T08:17:34.961Z",
     "autoUpdated": [
-      "the-lightning-god-defends-iqps-launch-8",
-      "bandwagon-5-dedicated-mid-inclination-rideshare"
+      "starlink-group-17-21",
+      "starlink-group-17-21"
     ]
   },
   "missions": [
@@ -769,11 +769,11 @@
       "launched": "31 dec 2026",
       "objective": "Onbemande vlucht van Starliner-1 naar het ISS voor cargoleveringen en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Hervormd tot onbemande cargomissie na RCS-problemen in 2024.",
+      "highlight": "Herstructureerd naar onbemande missie na RCS-problemen in 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na ernstige problemen met het RCS-stuursysteem tijdens de Crew Flight Test-missie in 2024 besloot NASA de missie te hervormen: in plaats van astronauten vervoert het vaartuig nu uitsluitend cargo. De vlucht biedt tevens de mogelijkheid om de doorgevoerde systeemverbeteringen in de praktijk te valideren voordat er opnieuw een bemande vlucht wordt overwogen.",
+      "description": "Starliner-1 markeert de eerste operationele vlucht van het Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na de problemen met het RCS-stuurssysteem tijdens de Crew Flight Test in 2024 besloot NASA de missie te herstructureren en geen bemanning mee te sturen. Het vaartuig zal in plaats daarvan essentiële cargo naar het orbitale laboratorium brengen. Tegelijkertijd dient de vlucht als validatie van de systeemverbeteringen die na de eerdere testmissie zijn doorgevoerd.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -818,7 +818,7 @@
         "onbemande vlucht",
         "internet vanuit de ruimte"
       ],
-      "_lastClaudeUpdate": "2026-08-19T08:23:51.161Z"
+      "_lastClaudeUpdate": "2026-08-22T08:17:34.956Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -3858,13 +3858,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 okt 2026",
-      "objective": "SpaceX lanceert tientallen micro- en nanosatellieten naar een mid-inclinatiebaan in een gedeelde vlucht.",
+      "objective": "SpaceX lanceert tientallen micro- en nanosatellieten naar een mid-inclinatiebaan via een dedicated rideshare-vlucht.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor lancering op 31 oktober 2026 vanaf Kennedy Space Center.",
+      "highlight": "Gepland voor lancering op 31 oktober 2026.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Bandwagon 5 is de vijfde editie van SpaceX's dedicated rideshare-programma voor mid-inclinatiebanen, gericht op commerciële en overheidsklanten. De Falcon 9-raket vervoert tientallen kleine micro- en nanosatellieten tegelijk, wat de kosten per kilogram drastisch verlaagt voor kleinere operatoren. Het Bandwagon-programma biedt toegang tot banen rond 45 graden inclinatie, ideaal voor aardobservatie en communicatiesatellieten die brede geografische dekking vereisen. De vlucht sluit aan op SpaceX's strategie om regelmatige, betaalbare rideshare-diensten aan te bieden naast het Transporter-programma.",
+      "description": "Bandwagon 5 is de vijfde editie van SpaceX's succesvolle Bandwagon-rideshare-programma, gericht op klanten die behoefte hebben aan een mid-inclinatiebaan in plaats van de polaire banen die via het Transporter-programma worden aangeboden. Aan boord bevinden zich tientallen kleine satellieten voor commerciële en gouvernementele opdrachtgevers, die dankzij het gedeelde vluchtmodel aanzienlijk op lanceerkosten besparen. De Falcon 9-raket, bekend om zijn herbruikbare eerste trap, voert de missie uit vanuit één van SpaceX's lanceerlocaties aan de Amerikaanse kust. Het Bandwagon-programma biedt een toegankelijke weg naar de ruimte voor organisaties met kleinere payloads die specifieke orbitale vereisten hebben.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 40",
       "duration": "Onbekend",
@@ -3882,8 +3882,14 @@
         "Falcon 9",
         "Rideshare",
         "Low Earth Orbit",
-        "Nanosatellieten"
-      ]
+        "Nanosatellieten",
+        "spacex",
+        "falcon 9",
+        "rideshare",
+        "low earth orbit",
+        "nanosatellieten"
+      ],
+      "_lastClaudeUpdate": "2026-08-22T08:17:28.206Z"
     }
   ]
 }
