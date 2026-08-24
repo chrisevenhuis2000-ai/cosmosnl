@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-23T08:17:14.234Z",
+    "lastUpdated": "2026-08-24T08:34:51.017Z",
     "autoUpdated": []
   },
   "missions": [
@@ -1407,7 +1407,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 aug 2026",
+      "launched": "30 sep 2026",
       "objective": "Demonstreren van een compleet cryogeen vloeistofbeheersysteem in een baan om de Aarde.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland voor augustus 2026 aan boord van een Electron-raket.",
