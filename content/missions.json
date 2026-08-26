@@ -1,7 +1,10 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-25T08:29:11.845Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-26T08:30:21.431Z",
+    "autoUpdated": [
+      "starlink-group-17-21",
+      "starlink-group-17-21"
+    ]
   },
   "missions": [
     {
@@ -766,11 +769,11 @@
       "launched": "31 dec 2026",
       "objective": "Onbemande vlucht van Starliner-1 naar het ISS voor cargoleveringen en systeemvalidatie.",
       "body": "Low Earth Orbit",
-      "highlight": "Herstructureerd naar onbemande missie na RCS-problemen in 2024.",
+      "highlight": "Missie omgeschaald naar onbemand na RCS-problemen tijdens testvlucht 2024.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Starliner-1 markeert de eerste operationele vlucht van het Starliner-ruimtevaartuig naar het Internationaal Ruimtestation als onderdeel van NASA's Commercial Crew Program. Na de problemen met het RCS-stuurssysteem tijdens de Crew Flight Test in 2024 besloot NASA de missie te herstructureren en geen bemanning mee te sturen. Het vaartuig zal in plaats daarvan essentiële cargo naar het orbitale laboratorium brengen. Tegelijkertijd dient de vlucht als validatie van de systeemverbeteringen die na de eerdere testmissie zijn doorgevoerd.",
+      "description": "Starliner-1 markeert de eerste operationele vlucht van Boeing's Starliner-ruimtevaartuig naar het Internationaal Ruimtestation in het kader van NASA's Commercial Crew Program. Na problemen met het RCS-aandrijfsysteem tijdens de bemande testvlucht in 2024 heeft NASA besloten deze missie onbemand uit te voeren. Het ruimtevaartuig zal essentiële lading afleveren aan het orbitale laboratorium en tegelijkertijd de doorgevoerde systeemverbeteringen in de praktijk valideren. De missie is een cruciale stap richting het herstel van het vertrouwen in het Starliner-platform.",
       "vehicle": "Atlas V N22",
       "launchSite": "Space Launch Complex 41",
       "duration": "Onbekend",
@@ -813,9 +816,10 @@
         "satelliettinternet",
         "commercial crew",
         "onbemande vlucht",
-        "internet vanuit de ruimte"
+        "internet vanuit de ruimte",
+        "megaconstallatie"
       ],
-      "_lastClaudeUpdate": "2026-08-22T08:17:34.956Z"
+      "_lastClaudeUpdate": "2026-08-26T08:30:21.426Z"
     },
     {
       "id": "starlink-group-10-24",
@@ -1248,7 +1252,7 @@
     },
     {
       "id": "flight-12",
-      "_ll2Id": "3ac1bd74-bf9a-4afe-ae00-3e1d180142dd",
+      "_ll2Id": "4ca86de3-2ff8-4fd3-a22c-35b7fc618610",
       "name": "Flight 12",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
@@ -1261,8 +1265,8 @@
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
       "description": "LandSpace bereidt zich voor op de tweede testvlucht van zijn Zhuque-3 raket, gepland voor 10 augustus 2026. De ZQ-3 is een herbruikbare draagraket die de Chinese commerciële ruimtevaart naar een hoger niveau moet tillen. De identiteit van de payload aan boord is op dit moment nog niet bekendgemaakt. De missie moet verder bewijs leveren voor de betrouwbaarheid en herbruikbaarheid van het voertuig.",
-      "vehicle": "Astra Rocket 4",
-      "launchSite": "Launch Complex 48",
+      "vehicle": "Gravity-2",
+      "launchSite": "Unknown launch location",
       "duration": "Onbekend",
       "distanceKm": "Onbekend",
       "missionUrl": "https://ll.thespacedevs.com/2.3.0/agencies/44/?format=json",
