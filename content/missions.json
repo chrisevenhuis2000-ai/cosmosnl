@@ -1,10 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-26T08:30:21.431Z",
-    "autoUpdated": [
-      "starlink-group-17-21",
-      "starlink-group-17-21"
-    ]
+    "lastUpdated": "2026-08-27T18:29:22.838Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1583,12 +1580,12 @@
     },
     {
       "id": "sda-tranche-1-tracking-layer-a",
-      "_ll2Id": "da43dc2c-00af-4cc1-8ef1-90a60b2eb9e5",
+      "_ll2Id": "2d0472b9-463d-49c8-afb1-7925e49a3368",
       "name": "SDA Tranche 1 Tracking Layer A",
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van satellieten voor wereldwijde detectie en tracking van hypersonische raketdreigingen.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering in september 2026 vanuit een polaire baan.",
@@ -1633,7 +1630,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van satellieten voor vroege detectie en tracking van hypersonische raketten in polaire baan.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor lancering in september 2026 als derde C-batch voor PWSA.",
@@ -1677,7 +1674,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van satellietcluster voor wereldwijde detectie en tracking van hypersonische raketdreigingen.",
       "body": "Polar Orbit",
       "highlight": "Gepland voor lancering in september 2026 naar polaire baan.",
@@ -1770,7 +1767,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van militaire LEO-satellietcluster voor veerkrachtige, lage-latentie dataverbindingen wereldwijd.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering in polaire baan op 30 september 2026.",
@@ -1859,7 +1856,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "31 dec 2026",
       "objective": "Lancering van militaire satellietconstellation voor veilige, lage-latentie dataverbindingen vanuit LEO.",
       "body": "Polar Orbit",
       "highlight": "Geplande lancering in Q4 2026 naar een polaire baan.",
