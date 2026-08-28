@@ -438,7 +438,7 @@
 
 /* Map containers */
 .dark-sky-map-wrap  { height: var(--map-h-desktop); position: relative; }
-.solar-map-loading  { height: var(--map-h-desktop); }
+.solar-map-loading  { aspect-ratio: 20 / 11; min-height: 380px; height: auto; }
 
 /* Horizontal scroll strip with snap */
 .missies-strip-scroll {
@@ -469,15 +469,14 @@
 
 @media (max-width: 768px) {
   .dark-sky-map-wrap { height: var(--map-h-mobile); }
-  .solar-map-loading  { height: var(--map-h-mobile); }
 }
 
 @media (max-width: 640px) {
   .article-card-grid     { grid-template-columns: 1fr !important; }
   .destinations-grid     { grid-template-columns: 1fr 1fr !important; }
   .mission-desc-row      { grid-template-columns: 1fr !important; gap: 16px; }
-  .mission-timeline-date { width: 64px !important; font-size: 0.6rem !important; }
-  .mission-timeline-line { left: 64px !important; }
+  .mission-timeline-date { width: 72px !important; font-size: 0.7rem !important; }
+  .mission-timeline-line { left: 72px !important; }
   .active-bento-grid     { grid-template-columns: 1fr !important; }
   .active-panel-grid     { grid-template-columns: 1fr !important; }
   .missions-split-grid   { grid-template-columns: 1fr !important; }

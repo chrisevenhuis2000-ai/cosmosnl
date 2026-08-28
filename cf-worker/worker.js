@@ -123,10 +123,13 @@ export default {
     }
 
     // ── GET /apod ─────────────────────────────────────────────────────────
-    // Proxies NASA APOD and caches the result for 1 hour via CF Cache API.
-    // API key stays server-side — never exposed to the browser.
+    // Proxies NASA APOD and caches the result for a full day via CF Cache API
+    // — APOD only changes once every 24h, so the cache key is date-scoped
+    // (rather than a static key) and kept for 24h instead of re-fetching
+    // NASA hourly. API key stays server-side — never exposed to the browser.
     if (request.method === 'GET' && url.pathname === '/apod') {
-      const cacheKey = new Request('https://nasa-apod-cache/apod')
+      const today    = new Date().toISOString().slice(0, 10) // YYYY-MM-DD (UTC)
+      const cacheKey = new Request(`https://nasa-apod-cache/apod?date=${today}`)
       const cache    = caches.default
 
       const cached = await cache.match(cacheKey)
@@ -143,7 +146,7 @@ export default {
       const data = await res.json()
 
       await cache.put(cacheKey, new Response(JSON.stringify(data), {
-        headers: { 'Cache-Control': 'public, max-age=3600', 'Content-Type': 'application/json' },
+        headers: { 'Cache-Control': 'public, max-age=86400', 'Content-Type': 'application/json' },
       }))
 
       return cors(request, JSON.stringify(data))

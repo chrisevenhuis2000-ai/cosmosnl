@@ -361,7 +361,7 @@ function EducatieHero() {
             </div>
           ))}
         </div>
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
           <a href="#leerpaden" className="btn-clip" style={{ background: '#3ddf90', color: '#04120a', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'background 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.background = '#5aeaa6')}
             onMouseLeave={e => (e.currentTarget.style.background = '#3ddf90')}
@@ -370,6 +370,17 @@ function EducatieHero() {
             <svg width="12" height="12" fill="none" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </a>
         </div>
+        {/* Jump nav — wayfinding for the long scroll below */}
+        <nav aria-label="Op deze pagina" style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          {[['#hoe-werkt-het', 'Hoe werkt het'], ['#leerpaden', 'Leerpaden'], ['#kernconcepten', 'Kernconcepten'], ['#faq', 'FAQ']].map(([href, label]) => (
+            <a key={href} href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, transition: 'color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#7A86A8')}
+            >
+              ↓ {label}
+            </a>
+          ))}
+        </nav>
       </div>
     </section>
   )
@@ -381,7 +392,7 @@ function LevelDemo() {
   const text = active === 'beg' ? DEMO_CONCEPT.beg : active === 'ama' ? DEMO_CONCEPT.ama : DEMO_CONCEPT.pro
   const lvl = LEVELS.find(l => l.key === active)!
   return (
-    <section aria-labelledby="level-demo-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858', borderBottom: '1px solid #252858' }}>
+    <section id="hoe-werkt-het" aria-labelledby="level-demo-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858', borderBottom: '1px solid #252858' }}>
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 50% 100% at 100% 50%, rgba(55,138,221,0.04) 0%, transparent 70%)', pointerEvents: 'none' }} />
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         {/* Header */}
@@ -457,9 +468,10 @@ const TOPIC_TAGS: Record<string, string[]> = {
 
 function Leerpaden() {
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [topicLevel, setTopicLevel] = useState<Record<string, 'beg' | 'ama' | 'pro'>>({})
+  const [level, setLevel] = useState<'beg' | 'ama' | 'pro'>('beg')
   const [glossaryOpen, setGlossaryOpen] = useState<Record<string, boolean>>({})
   const [newsIndex, setNewsIndex] = useState<any[]>([])
+  const activeLvl = LEVELS.find(l => l.key === level)!
 
   useEffect(() => {
     fetch('/content/index.json')
@@ -468,28 +480,35 @@ function Leerpaden() {
       .catch(() => {})
   }, [])
 
-  function getLvl(id: string): 'beg' | 'ama' | 'pro' {
-    return topicLevel[id] ?? 'beg'
-  }
-  function setLvl(id: string, lvl: 'beg' | 'ama' | 'pro') {
-    setTopicLevel(prev => ({ ...prev, [id]: lvl }))
-  }
-
   return (
     <section id="leerpaden" aria-labelledby="leerpaden-title" style={{ position: 'relative', zIndex: 1, background: '#1A1A2E' }}>
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         {/* Header */}
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
-            <span aria-hidden="true" style={{ width: 28, height: 1, background: '#3ddf90', display: 'inline-block' }} />
-            Leerpaden
+        <div style={{ marginBottom: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20 }}>
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#3ddf90', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span aria-hidden="true" style={{ width: 28, height: 1, background: '#3ddf90', display: 'inline-block' }} />
+              Leerpaden
+            </div>
+            <h2 id="leerpaden-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3.5vw,2.6rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15, marginBottom: 12 }}>
+              Kies je leerpad
+            </h2>
+            <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.75, maxWidth: 520 }}>
+              Elk leerpad biedt een gestructureerde route door een astronomie-onderwerp — van basis tot expert. Klik een kaart om de uitleg te openen.
+            </p>
           </div>
-          <h2 id="leerpaden-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3.5vw,2.6rem)', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.15, marginBottom: 12 }}>
-            Kies je leerpad
-          </h2>
-          <p style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.75, maxWidth: 520 }}>
-            Elk leerpad biedt een gestructureerde route door een astronomie-onderwerp — van basis tot expert. Klik een kaart om de uitleg te openen.
-          </p>
+          {/* Shared level toggle — applies to every leerpad below */}
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 8 }}>Jouw niveau</div>
+            <div role="group" aria-label="Kies niveau voor alle leerpaden" style={{ display: 'flex', gap: 4 }}>
+              {LEVELS.map(l => (
+                <button key={l.key} aria-pressed={level === l.key}
+                  onClick={() => setLevel(l.key as 'beg' | 'ama' | 'pro')}
+                  style={{ padding: '6px 14px', fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${level === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: level === l.key ? l.color : '#7A86A8', background: level === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
+                >{l.label}</button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Grid */}
@@ -497,9 +516,7 @@ function Leerpaden() {
           {TOPICS.map(topic => {
             const detail = TOPIC_DETAILS[topic.id]
             const isOpen = expanded === topic.id
-            const lvl = getLvl(topic.id)
-            const activeLvl = LEVELS.find(l => l.key === lvl)!
-            const text = detail[lvl as 'beg' | 'ama' | 'pro']
+            const text = detail[level]
 
             return (
               <div key={topic.id} style={{ border: '1px solid #252858', overflow: 'hidden', background: '#12132A' }}>
@@ -523,48 +540,25 @@ function Leerpaden() {
                       <div style={{ fontSize: '0.9rem', color: '#8A9BC4', lineHeight: 1.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{topic.desc}</div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-                    {/* Concept pills – desktop only */}
-                    <div className="nav-links" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                      {topic.concepts.map(c => (
-                        <span key={c} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7A86A8', background: 'rgba(37,40,88,0.5)', border: '1px solid #252858', padding: '3px 8px', borderRadius: 2 }}>{c}</span>
-                      ))}
-                    </div>
-                    {/* Chevron */}
-                    <svg width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ color: topic.color, flexShrink: 0, transition: 'transform 0.3s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                      <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
+                  {/* Chevron */}
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true" style={{ color: topic.color, flexShrink: 0, transition: 'transform 0.3s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                    <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </button>
 
                 {/* Expanded educational panel */}
                 {isOpen && detail && (
                   <div style={{ borderTop: `1px solid ${topic.color}20`, animation: 'fadeIn 0.25s ease both' }}>
                     {/* Featured concept header */}
-                    <div style={{ padding: '16px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: topic.color, display: 'block', flexShrink: 0 }} aria-hidden="true" />
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: topic.color }}>Uitgelegd — {detail.featuredConcept}</span>
-                      </div>
-                      {/* Level toggle */}
-                      <div role="group" aria-label="Kies niveau" style={{ display: 'flex', gap: 4 }}>
-                        {LEVELS.map(l => (
-                          <button key={l.key} aria-pressed={lvl === l.key}
-                            onClick={e => { e.stopPropagation(); setLvl(topic.id, l.key as 'beg' | 'ama' | 'pro') }}
-                            style={{ padding: '5px 12px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase', border: `1px solid ${lvl === l.key ? l.color : 'rgba(37,40,88,0.8)'}`, color: lvl === l.key ? l.color : '#7A86A8', background: lvl === l.key ? l.bg : 'transparent', borderRadius: 2, cursor: 'pointer', transition: 'all 0.15s' }}
-                          >{l.label}</button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Level description bar */}
-                    <div style={{ margin: '12px 24px 0', padding: '8px 12px', background: activeLvl.bg, borderLeft: `2px solid ${activeLvl.color}` }}>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.06em', color: activeLvl.color }}>{activeLvl.desc}</span>
+                    <div style={{ padding: '16px 24px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: topic.color, display: 'block', flexShrink: 0 }} aria-hidden="true" />
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: topic.color }}>Uitgelegd — {detail.featuredConcept}</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.73rem', color: '#7A86A8', marginLeft: 'auto' }}>Niveau: <span style={{ color: activeLvl.color }}>{activeLvl.label}</span></span>
                     </div>
 
                     {/* Explanation text */}
                     <div style={{ padding: '16px 24px 0' }}>
-                      <p style={{ fontSize: lvl === 'pro' ? '0.82rem' : '0.9rem', color: '#B5D4F4', lineHeight: 1.85, fontFamily: lvl === 'pro' ? 'var(--font-mono)' : 'var(--font-sans)', margin: 0 }}>
+                      <p style={{ fontSize: level === 'pro' ? '0.82rem' : '0.9rem', color: '#B5D4F4', lineHeight: 1.85, fontFamily: level === 'pro' ? 'var(--font-mono)' : 'var(--font-sans)', margin: 0 }}>
                         {text}
                       </p>
                     </div>
@@ -679,7 +673,7 @@ function Leerpaden() {
 // ── Kernconcepten ─────────────────────────────────────────────────────────────
 function Kernconcepten() {
   return (
-    <section aria-labelledby="concepten-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
+    <section id="kernconcepten" aria-labelledby="concepten-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
       <div className="main-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
           <div>
@@ -742,7 +736,7 @@ function Kernconcepten() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
   return (
-    <section aria-labelledby="faq-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
+    <section id="faq" aria-labelledby="faq-title" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
       <div className="main-pad" style={{ maxWidth: 780, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 14 }}>Veelgestelde vragen</div>

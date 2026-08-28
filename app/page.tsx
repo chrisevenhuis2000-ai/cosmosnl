@@ -7,6 +7,7 @@ import { AdUnit } from './components/AdUnit'
 import { SiteFooter, type FooterCol } from './components/SiteFooter'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+const APOD_CACHE_KEY = 'nightgazer_apod_cache'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface APODData {
@@ -1018,7 +1019,7 @@ const SPACE_EVENTS = [
   { id: 5,  date: '2026-06-20', title: 'Jupiter–Mars conjunctie',       icon: '♃', cat: 'Planeet', color: '#d4a84b', desc: 'Jupiter en Mars staan op minder dan 0,5° van elkaar — spectaculair met verrekijker.' },
   { id: 6,  date: '2026-08-12', title: 'Totale zonsverduistering',      icon: '🌑', cat: 'Eclips',  color: '#c080ff', desc: 'Totaliteitspad over Groenland, IJsland, Spanje en Rusland.' },
   { id: 7,  date: '2026-08-13', title: 'Perseïden piek',                icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~100/u. Nieuwe maan = ideale omstandigheden. BESTE KANS 2026.' },
-  { id: 8,  date: '2026-09-15', title: 'Artemis II (gepland)',          icon: '🚀', cat: 'Missie',  color: '#378ADD', desc: 'Eerste bemande vlucht om de Maan, vier astronauten, 10 dagen.' },
+  { id: 8,  date: '2026-08-30', title: 'Nancy Grace Roman-lancering',   icon: '🚀', cat: 'Missie',  color: '#378ADD', desc: 'Infraroodtelescoop naar L2 voor onderzoek naar donkere energie en exoplaneten — Falcon Heavy.' },
   { id: 9,  date: '2026-11-17', title: 'Leoniden',                      icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~15/u. Halve maan, redelijke condities.' },
   { id: 10, date: '2026-12-14', title: 'Geminiden piek',                icon: '☄️', cat: 'Meteor',  color: '#ffa040', desc: 'ZHR ~150/u. Grootste meteorenstroom van het jaar. Geen maanlicht.' },
 ]
@@ -1349,11 +1350,23 @@ export default function HomePage() {
     })
   }, [articles])
 
-  // Fetch APOD
+  // Fetch APOD — cached in localStorage per day so repeat visits render instantly
   useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10)
+    try {
+      const cached = localStorage.getItem(APOD_CACHE_KEY)
+      if (cached) {
+        const { date, data } = JSON.parse(cached)
+        if (date === today && data) { setApod(data); return }
+      }
+    } catch {}
+
     fetch(`${PROXY}/apod`)
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then(setApod)
+      .then((data: APODData) => {
+        setApod(data)
+        try { localStorage.setItem(APOD_CACHE_KEY, JSON.stringify({ date: today, data })) } catch {}
+      })
       .catch(() => {})
   }, [])
 

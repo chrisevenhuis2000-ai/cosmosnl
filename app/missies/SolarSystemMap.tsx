@@ -252,10 +252,10 @@ export default function SolarSystemMap() {
       ctx.lineWidth = 1.5
       ctx.stroke()
       ctx.setLineDash([])
-      ctx.font       = '9px JetBrains Mono, monospace'
-      ctx.fillStyle  = 'rgba(61,223,144,0.45)'
+      ctx.font       = '11px JetBrains Mono, monospace'
+      ctx.fillStyle  = 'rgba(61,223,144,0.55)'
       ctx.textAlign  = 'center'
-      ctx.fillText('Heliopauze · ~120 AU', cx, cy - helioR + 14)
+      ctx.fillText('Heliopauze · ~120 AU', cx, cy - helioR + 15)
     }
 
     // ── Sun ──────────────────────────────────────────────────────────────
@@ -276,10 +276,10 @@ export default function SolarSystemMap() {
     ctx.fillStyle = core; ctx.fill()
 
     // Sun label
-    ctx.fillStyle = 'rgba(255,220,80,0.7)'
-    ctx.font      = '10px JetBrains Mono, monospace'
+    ctx.fillStyle = 'rgba(255,220,80,0.8)'
+    ctx.font      = '11px JetBrains Mono, monospace'
     ctx.textAlign = 'center'
-    ctx.fillText('Zon', cx, cy + 22)
+    ctx.fillText('Zon', cx, cy + 24)
 
     // ── Saturn rings ─────────────────────────────────────────────────────
     if (ZOOM_CFG[z].showPlanets.includes('saturn')) {
@@ -297,6 +297,10 @@ export default function SolarSystemMap() {
     }
 
     // ── Planets ──────────────────────────────────────────────────────────
+    // placedLabels tracks every label's bounding box this frame so mission
+    // labels (drawn after) can dodge planet labels instead of overlapping them.
+    const placedLabels: { x: number; y: number; w: number; h: number }[] = []
+
     for (const p of visiblePlanets) {
       const angle    = planetAngle(p.L0, p.rate, t)
       const [px, py] = auToXY(p.r, angle, cx, cy, R, z)
@@ -313,10 +317,13 @@ export default function SolarSystemMap() {
       ctx.fillStyle = p.color; ctx.fill()
 
       if (z !== 'outer' || p.r >= 1.5) {
-        ctx.fillStyle = 'rgba(180,200,235,0.75)'
-        ctx.font      = `9px JetBrains Mono, monospace`
+        ctx.fillStyle = 'rgba(190,210,240,0.85)'
+        ctx.font      = '11px JetBrains Mono, monospace'
         ctx.textAlign = 'center'
-        ctx.fillText(p.name, px, py - dotR - 5)
+        const ty = py - dotR - 6
+        ctx.fillText(p.name, px, ty)
+        const tw = ctx.measureText(p.name).width
+        placedLabels.push({ x: px - tw / 2 - 2, y: ty - 11, w: tw + 4, h: 14 })
       }
     }
 
@@ -377,13 +384,30 @@ export default function SolarSystemMap() {
         ctx.fillStyle = 'rgba(255,255,255,0.7)'; ctx.fill()
       }
 
-      // Label — offset outward from Sun along mission's current angle
-      const labelDist = dotR + 13
-      const rad = mAngle * DEG
-      const lx  = mx + Math.cos(rad) * labelDist
-      const ly  = my - Math.sin(rad) * labelDist
-      ctx.fillStyle  = isHover ? '#FFFFFF' : 'rgba(200,218,255,0.85)'
-      ctx.font       = isHover ? 'bold 10px JetBrains Mono, monospace' : '9px JetBrains Mono, monospace'
+      // Label — offset outward from Sun along mission's current angle.
+      // Pushed further out step by step until it clears every label already
+      // placed this frame (planets + earlier missions), instead of stacking
+      // on top of them when several missions cluster near the same point.
+      ctx.font = isHover ? 'bold 12px JetBrains Mono, monospace' : '11px JetBrains Mono, monospace'
+      const rad   = mAngle * DEG
+      const textW = ctx.measureText(m.label).width
+      const textH = 15
+      let labelDist = dotR + 15
+      let lx = mx, ly = my
+      for (let attempt = 0; attempt < 6; attempt++) {
+        lx = mx + Math.cos(rad) * labelDist
+        ly = my - Math.sin(rad) * labelDist
+        const boxX = lx < cx ? lx - textW - 2 : lx - 2
+        const box  = { x: boxX, y: ly - textH / 2, w: textW + 4, h: textH }
+        const overlaps = placedLabels.some(p =>
+          box.x < p.x + p.w && box.x + box.w > p.x && box.y < p.y + p.h && box.y + box.h > p.y
+        )
+        if (!overlaps) break
+        labelDist += 12
+      }
+      placedLabels.push({ x: lx < cx ? lx - textW - 2 : lx - 2, y: ly - textH / 2, w: textW + 4, h: textH })
+
+      ctx.fillStyle  = isHover ? '#FFFFFF' : 'rgba(200,218,255,0.9)'
       ctx.textAlign  = lx < cx ? 'right' : 'left'
       ctx.fillText(m.label, lx + (lx < cx ? -2 : 2), ly + 4)
 
@@ -400,12 +424,12 @@ export default function SolarSystemMap() {
     ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx + scalePx, by); ctx.stroke()
     ctx.beginPath(); ctx.moveTo(bx, by - 5); ctx.lineTo(bx, by + 5); ctx.stroke()
     ctx.beginPath(); ctx.moveTo(bx + scalePx, by - 5); ctx.lineTo(bx + scalePx, by + 5); ctx.stroke()
-    ctx.fillStyle = 'rgba(140,160,210,0.95)'; ctx.font = '10px JetBrains Mono, monospace'; ctx.textAlign = 'left'
+    ctx.fillStyle = 'rgba(150,170,220,1)'; ctx.font = '11px JetBrains Mono, monospace'; ctx.textAlign = 'left'
     ctx.fillText(`${scaleAU} AU`, bx, by - 9)
 
     // North label
-    ctx.fillStyle = 'rgba(100,120,170,0.7)'; ctx.font = '9px JetBrains Mono, monospace'; ctx.textAlign = 'right'
-    ctx.fillText('↑ Ecliptische noord', W - 12, 18)
+    ctx.fillStyle = 'rgba(110,130,180,0.8)'; ctx.font = '11px JetBrains Mono, monospace'; ctx.textAlign = 'right'
+    ctx.fillText('↑ Ecliptische noord', W - 12, 20)
 
     rafRef.current = requestAnimationFrame(draw)
   }, [])
@@ -429,7 +453,7 @@ export default function SolarSystemMap() {
         canvas.height = window.innerHeight - 52   // minus header bar
       } else {
         const w = wrap.clientWidth
-        const h = Math.max(Math.round(w * 0.6), 340)
+        const h = Math.max(Math.round(w * 0.55), 380)
         canvas.width = w; canvas.height = h
       }
     }
@@ -564,11 +588,11 @@ export default function SolarSystemMap() {
       </div>
 
       {/* ── Canvas ──────────────────────────────────────────────────────── */}
-      <div ref={wrapRef} style={{ position: 'relative', maxWidth: isFull ? '100%' : 580, width: '100%', margin: '0 auto', flex: isFull ? '1' : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: isFull ? 'none' : '0 0 40px rgba(55,138,221,0.10), inset 0 0 0 1px rgba(55,138,221,0.14)' }}>
+      <div ref={wrapRef} style={{ position: 'relative', maxWidth: isFull ? '100%' : 900, width: '100%', margin: '0 auto', flex: isFull ? '1' : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: isFull ? 'none' : '0 0 40px rgba(55,138,221,0.10), inset 0 0 0 1px rgba(55,138,221,0.14)' }}>
         {mounted && (
           <canvas
             ref={canvasRef}
-            style={{ display: 'block', width: '100%', maxWidth: isFull ? '100%' : 580 }}
+            style={{ display: 'block', width: '100%', maxWidth: isFull ? '100%' : 900 }}
             onMouseMove={onMouseMove}
             onMouseLeave={onMouseLeave}
             onTouchStart={onTouchStart}

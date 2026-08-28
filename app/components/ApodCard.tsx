@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
+const APOD_CACHE_KEY = 'nightgazer_apod_cache'
 
 interface ApodData {
   title:       string
@@ -26,9 +27,22 @@ export default function ApodCard() {
   const [imgErr,  setImgErr]  = useState(false)
 
   useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10)
+    try {
+      const cached = localStorage.getItem(APOD_CACHE_KEY)
+      if (cached) {
+        const { date, data } = JSON.parse(cached)
+        if (date === today && data) { setApod(data); setLoading(false); return }
+      }
+    } catch {}
+
     fetch(`${PROXY}/apod`)
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then((d: ApodData) => { setApod(d); setLoading(false) })
+      .then((d: ApodData) => {
+        setApod(d)
+        setLoading(false)
+        try { localStorage.setItem(APOD_CACHE_KEY, JSON.stringify({ date: today, data: d })) } catch {}
+      })
       .catch(() => setLoading(false))
   }, [])
 
