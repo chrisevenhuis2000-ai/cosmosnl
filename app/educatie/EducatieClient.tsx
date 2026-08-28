@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import { SiteFooter, type FooterCol } from '@/app/components/SiteFooter'
 
 // ── Nav links ───────────────────────────────────────────────────────────────
 const NAV_LINKS = [
@@ -770,62 +771,11 @@ function FAQ() {
 }
 
 // ── Footer ────────────────────────────────────────────────────────────────────
-function SiteFooter() {
-  const cols = [
-    { title: 'Onderwerpen', links: [['Kosmologie', '/nieuws/onderwerp/kosmologie'], ['James Webb', '/nieuws/onderwerp/james-webb'], ['Missies', '/nieuws/onderwerp/missies'], ['Kometen', '/nieuws/onderwerp/kometen'], ['Ruimtevaart', '/missies']] },
-    { title: 'Tools',       links: [['Sterrenkijken', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
-    { title: 'Over ons',    links: [['Redactie', '/over'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
-  ]
-  return (
-    <footer role="contentinfo" style={{ position: 'relative', zIndex: 1, background: '#12132A', borderTop: '1px solid #252858' }}>
-      <div className="footer-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <div className="footer-grid">
-          <div>
-            <div style={{ marginBottom: 16 }}>
-              <img src="/logo-transparent.png" alt="NightGazer" style={{ height: 42, width: 'auto', display: 'block' }} />
-            </div>
-            <p style={{ fontSize: '0.82rem', color: '#8A9BC4', lineHeight: 1.75, maxWidth: 280, marginBottom: 24 }}>Nederlandstalig astronomie-platform met AI-aangedreven uitleg op jouw niveau. Van beginners tot professionals.</p>
-            <div style={{ display: 'flex', gap: 10 }} aria-label="Sociale media">
-              {[
-                { href: '#', label: 'NightGazer op X',         icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M12.6 1h2.4l-5.2 6 6.2 8H12l-3.7-4.9L3.8 15H1.4l5.5-6.3L.8 1H5l3.4 4.5L12.6 1z" /></svg> },
-                { href: '#', label: 'NightGazer op Instagram',  icon: <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" width="13" height="13"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5" /><circle cx="8" cy="8" r="3" /><circle cx="11.5" cy="4.5" r="0.7" fill="currentColor" stroke="none" /></svg> },
-                { href: '#', label: 'NightGazer op YouTube',    icon: <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M14.5 4.5s-.2-1.2-.7-1.7c-.7-.7-1.4-.7-1.8-.8C10.5 2 8 2 8 2s-2.5 0-4 .1c-.4 0-1.1.1-1.8.8-.5.5-.7 1.7-.7 1.7S1.3 5.9 1.3 7.3v1.3c0 1.4.2 2.8.2 2.8s.2 1.2.7 1.7c.7.7 1.6.7 2 .7C5.5 14 8 14 8 14s2.5 0 4-.1c.4-.1 1.1-.1 1.8-.8.5-.5.7-1.7.7-1.7s.2-1.4.2-2.8V7.3C14.7 5.9 14.5 4.5 14.5 4.5zM6.5 10.2V5.8l4.5 2.2-4.5 2.2z" /></svg> },
-              ].map(({ href, label, icon }) => (
-                <a key={label} href={href} aria-label={label} style={{ width: 32, height: 32, border: '1px solid #2A2E62', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7A86A8', transition: 'border-color 0.15s, color 0.15s' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#7A86A8'; e.currentTarget.style.color = '#8A9BC4' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#2A2E62'; e.currentTarget.style.color = '#7A86A8' }}
-                >{icon}</a>
-              ))}
-            </div>
-          </div>
-          {cols.map(col => (
-            <div key={col.title}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.76rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>{col.title}</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {col.links.map(([label, href]) => (
-                  <Link key={label} href={href} style={{ fontSize: '0.82rem', color: '#8A9BC4', textDecoration: 'none', transition: 'color 0.15s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
-                  >{label}</Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="footer-bottom-row" style={{ borderTop: '1px solid #252858', paddingTop: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.06em', color: '#7A86A8' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.74rem', color: '#7A86A8' }}>
-            {[['Claude AI', '⬡'], ['NASA Open APIs', '★']].map(([label, icon]) => (
-              <span key={label} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '3px 8px', border: '1px solid #252858', borderRadius: 2 }}>
-                <span aria-hidden="true">{icon}</span>{label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-}
+const FOOTER_COLS: FooterCol[] = [
+  { title: 'Onderwerpen', links: [['Kosmologie', '/nieuws/onderwerp/kosmologie'], ['James Webb', '/nieuws/onderwerp/james-webb'], ['Missies', '/nieuws/onderwerp/missies'], ['Kometen', '/nieuws/onderwerp/kometen'], ['Ruimtevaart', '/missies']] },
+  { title: 'Tools',       links: [['Sterrenkijken', '/sterrenkijken'], ['Lanceringskalender', '/missies']] },
+  { title: 'Over ons',    links: [['Redactie', '/over'], ['Contact', '/contact'], ['Privacy', '/privacy']] },
+]
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function EducatiePage() {
@@ -840,7 +790,7 @@ export default function EducatiePage() {
         <Kernconcepten />
         <FAQ />
       </main>
-      <SiteFooter />
+      <SiteFooter cols={FOOTER_COLS} note="Afbeeldingen: NASA · ESA · Pexels" />
     </>
   )
 }

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { getMissionBySlug, MISSIONS, MISSIONS_LAST_UPDATED } from '@/lib/missions-data'
 import { AdUnit } from '@/app/components/AdUnit'
+import { SiteFooter, type FooterCol } from '@/app/components/SiteFooter'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -122,38 +123,11 @@ function SiteNav() {
 }
 
 // ── Footer ───────────────────────────────────────────────────────────────────
-function SiteFooter() {
-  return (
-    <footer style={{ position: 'relative', zIndex: 1, background: '#0F1028', borderTop: '1px solid #252858' }}>
-      <div className="footer-pad" style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <div className="footer-grid">
-          <div>
-            <img src="/logo-transparent.png" alt="NightGazer" style={{ height: 42, width: 'auto', display: 'block', marginBottom: 16 }} />
-            <p style={{ fontSize: '0.78rem', color: '#7A86A8', lineHeight: 1.7, maxWidth: 260, margin: 0 }}>
-              Nederlandstalig ruimtevaartnieuws — van Mars-rovers tot telescopen aan de rand van het heelal.
-            </p>
-          </div>
-          <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Pagina&apos;s</div>
-            {[['/', 'Home'], ['/nieuws', 'Nieuws'], ['/missies', 'Missies'], ['/sterrenkijken', 'Sterrenkijken'], ['/educatie', 'Educatie']].map(([href, label]) => (
-              <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10 }}>{label}</Link>
-            ))}
-          </div>
-          <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Bronnen</div>
-            {[['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']].map(([label, href]) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10 }}>{label} ↗</a>
-            ))}
-          </div>
-        </div>
-        <div className="footer-bottom-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 24, borderTop: '1px solid #252858' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>Afbeeldingen: NASA · ESA · SpaceX</span>
-        </div>
-      </div>
-    </footer>
-  )
-}
+const FOOTER_TAGLINE = 'Nederlandstalig ruimtevaartnieuws — van Mars-rovers tot telescopen aan de rand van het heelal.'
+const FOOTER_COLS: FooterCol[] = [
+  { title: 'Pagina\'s', links: [['Home', '/'], ['Nieuws', '/nieuws'], ['Missies', '/missies'], ['Sterrenkijken', '/sterrenkijken'], ['Educatie', '/educatie']] },
+  { title: 'Bronnen',   links: [['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']] },
+]
 
 // ── Article card ─────────────────────────────────────────────────────────────
 function ArticleCard({ article }: { article: Article }) {
@@ -399,7 +373,7 @@ export default function MissionDetailClient({ slug }: { slug: string }) {
 
       </main>
 
-      <SiteFooter />
+      <SiteFooter cols={FOOTER_COLS} tagline={FOOTER_TAGLINE} note="Afbeeldingen: NASA · ESA · SpaceX" />
     </>
   )
 }

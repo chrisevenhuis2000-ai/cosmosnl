@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { AdUnit } from '@/app/components/AdUnit'
 import { TOPICS, getTopic } from '@/lib/topics'
+import { SiteFooter, type FooterCol } from '@/app/components/SiteFooter'
 
 const PROXY = 'https://cosmosnl-proxy.chrisevenhuis2000.workers.dev'
 
@@ -227,38 +228,10 @@ function SiteNav() {
 }
 
 // ── Footer ─────────────────────────────────────────────────────────────────
-function SiteFooter() {
-  return (
-    <footer style={{ position: 'relative', zIndex: 1, borderTop: '1px solid #252858', background: '#12132A', padding: '40px clamp(16px,4vw,60px)' }}>
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 32, marginBottom: 32 }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Navigatie</div>
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link key={href} href={href} style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
-              >{label}</Link>
-            ))}
-          </div>
-          <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#7A86A8', marginBottom: 16 }}>Bronnen</div>
-            {[['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']].map(([label, href]) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#8A9BC4', textDecoration: 'none', marginBottom: 10, transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#FFFFFF')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#8A9BC4')}
-              >{label} ↗</a>
-            ))}
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 24, borderTop: '1px solid #252858' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>© {new Date().getFullYear()} NightGazer · nightgazer.space</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#7A86A8' }}>Afbeeldingen: NASA · ESA · Pexels</span>
-        </div>
-      </div>
-    </footer>
-  )
-}
+const FOOTER_COLS: FooterCol[] = [
+  { title: 'Navigatie', links: NAV_LINKS.map(({ href, label }): [string, string] => [label, href]) },
+  { title: 'Bronnen',   links: [['NASA', 'https://nasa.gov'], ['ESA', 'https://esa.int'], ['SpaceX', 'https://spacex.com']] },
+]
 
 // ── Skeleton card ──────────────────────────────────────────────────────────
 function ArticleSkeleton() {
@@ -619,7 +592,7 @@ export default function NieuwsClient({ initialCategory }: { initialCategory?: st
         </div>
       </main>
 
-      <SiteFooter />
+      <SiteFooter cols={FOOTER_COLS} note="Afbeeldingen: NASA · ESA · Pexels" />
 
       {/* Back-to-top button */}
       {showTop && (

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { LEVELS, type ReadingLevel } from '@/types'
 import GalaxyMap from './GalaxyMap'
 import { AdUnit } from '@/app/components/AdUnit'
+import { SiteFooter } from '@/app/components/SiteFooter'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -848,11 +849,7 @@ export default function ArticleClient({ slug }: { slug: string }) {
 
       </div>
 
-      {/* ── Footer ─────────────────────────────────────────────────── */}
-      <footer style={{ borderTop: '1px solid #252858', background: '#12132A', padding: '20px clamp(16px,4vw,40px)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', color: '#7A86A8' }}>© 2026 NightGazer — Astronomie voor iedereen</span>
-        <a href="/" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.74rem', color: '#7A86A8', textDecoration: 'none' }}>← Terug naar home</a>
-      </footer>
+      <SiteFooter />
     </>
   )
 }
