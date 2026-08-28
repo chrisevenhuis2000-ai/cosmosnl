@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-27T18:29:22.838Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-08-28T19:45:06.474Z",
+    "autoUpdated": [
+      "mtg-i2"
+    ]
   },
   "missions": [
     {
@@ -1450,15 +1452,15 @@
       "name": "MTG-I2",
       "agency": "Arianespace",
       "agencyColor": "#ffa040",
-      "status": "gepland",
+      "status": "actief",
       "launched": "27 aug 2026",
-      "objective": "Lancering van de derde MTG-weersatelliet voor verbeterde weersvoorspelling boven Europa.",
+      "objective": "MTG-I2 is de derde Meteosat Third Generation satelliet voor geavanceerde weersvoorspellingen vanuit een geostationaire baan.",
       "body": "Geostationaire baan",
-      "highlight": "Gepland voor lancering in augustus 2026 aan boord van Ariane 62.",
+      "highlight": "Lancering gepland voor 27 augustus 2026 met Ariane 62",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "MTG-I2 is de derde satelliet van de derde generatie Meteosat-weersatellieten van EUMETSAT, ontworpen om Europa's meteorologische capaciteiten aanzienlijk te versterken. De satelliet wordt gelanceerd door Arianespace met de Ariane 62-raket vanuit het ruimtecentrum in Kourou, Frans-Guyana. Vanuit een geostationaire baan zal MTG-I2 continue, hoogresolutiebeelden van het Europese en Afrikaanse continent leveren. De missie draagt bij aan nauwkeurigere weersvoorspellingen en vroege waarschuwingen voor extreme weersomstandigheden.",
+      "description": "MTG-I2 is de derde satelliet binnen de nieuwe generatie weersatellieten van EUMETSAT, de Europese organisatie voor meteorologische satellieten. De lancering staat gepland voor augustus 2026 aan boord van een Ariane 62-raket vanaf het Europese ruimtevaartcentrum in Kourou, Frans-Guyana. De satelliet zal vanuit een geostationaire baan op circa 36.000 kilometer hoogte continue beelden en data leveren ter ondersteuning van nauwkeurigere weersvoorspellingen en klimaatmonitoring. MTG-I2 maakt deel uit van een bredere vloot die EUMETSAT voor de komende decennia voorbereidt op de groeiende behoefte aan betrouwbare meteorologische informatie boven Europa en Afrika.",
       "vehicle": "Ariane 62",
       "launchSite": "Ariane Launch Area 4",
       "duration": "Onbekend",
@@ -1486,9 +1488,10 @@
         "mtg-serie",
         "ariane 62",
         "meteosat third generation",
-        "meteorologie"
+        "meteorologie",
+        "klimaatmonitoring"
       ],
-      "_lastClaudeUpdate": "2026-07-30T10:11:24.436Z"
+      "_lastClaudeUpdate": "2026-08-28T19:45:06.460Z"
     },
     {
       "id": "transporter-17-dedicated-sso-rideshare",
