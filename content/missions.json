@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-29T13:30:22.583Z",
+    "lastUpdated": "2026-08-30T13:24:07.209Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2813,7 +2813,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "12 sep 2026",
+      "launched": "30 sep 2026",
       "objective": "SpaceX Crew-13 brengt astronauten naar het ISS als onderdeel van NASA's Commercial Crew Program.",
       "body": "Low Earth Orbit",
       "highlight": "Lancering gepland op 12 september 2026 om 22:34 UTC",
