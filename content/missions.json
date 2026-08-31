@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-08-30T13:24:07.209Z",
+    "lastUpdated": "2026-08-31T15:38:21.352Z",
     "autoUpdated": []
   },
   "missions": [
@@ -2386,7 +2386,7 @@
       "agency": "Rocket Lab",
       "agencyColor": "#c080ff",
       "status": "gepland",
-      "launched": "31 aug 2026",
+      "launched": "1 sep 2026",
       "objective": "Lancering van een synthetische-apertuurradarsatelliet voor het Japanse aardobservatiebedrijf Synspective.",
       "body": "Sun-Synchronous Orbit",
       "highlight": "Geplande lancering op 31 augustus 2026 om 12:05 UTC.",
@@ -2687,7 +2687,7 @@
       "agency": "Arianespace",
       "agencyColor": "#ffa040",
       "status": "gepland",
-      "launched": "31 dec 2026",
+      "launched": "30 nov 2026",
       "objective": "Lancering van de tweede Metop Second Generation B-weersatelliet voor verbeterde weersvoorspelling vanuit poolbaan.",
       "body": "Sun-Synchronous Orbit",
       "highlight": "Geplande lancering eind 2026 met Ariane 62 vanuit Kourou.",
