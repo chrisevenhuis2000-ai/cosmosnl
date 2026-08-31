@@ -1,4 +1,4 @@
-# 🔭 CosmosNL
+# 🔭 Nightgazer.space
 
 > Astronomie voor iedereen — van beginners tot professionals, in Nederlands én Engels.
 
