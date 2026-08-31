@@ -25,7 +25,7 @@ Het Nederlandse astronomie-platform met AI-aangedreven uitleg op jouw niveau.
 ### 2. Installeren
 
 ```bash
-git clone https://github.com/jouwnaam/cosmosnl.git
+git clone https://github.com/chrisevenhuis2000-ai/nightgazer.space
 cd cosmosnl
 npm install
 ```
