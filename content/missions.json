@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-09-03T12:21:54.224Z",
-    "autoUpdated": [
-      "ussf-153"
-    ]
+    "lastUpdated": "2026-09-04T12:21:50.375Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -3928,13 +3926,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "10 sep 2026",
-      "objective": "Lancering van geheime Amerikaanse militaire satellieten in een lage aardbaan voor de US Space Force.",
+      "objective": "Gelanceerd van een geheime lading in een lage aardbaan voor de Amerikaanse Space Force.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor lancering op 10 september 2026 vanaf een SpaceX-lanceerlocatie.",
+      "highlight": "Geclassificeerde lading; mogelijke Starshield-satellieten voor een VS-overheidsdienst.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "USSF-153 is een geheime missie voor de United States Space Force, uitgevoerd door SpaceX met een Falcon 9-raket. Op basis van de locaties van de terugvallende rakettrappen, die precies overeenkomen met eerdere Starlink Group 15-lanceringen, wordt vermoed dat de missie een batch geclassificeerde satellieten omvat op het Starshield-platform van SpaceX. Starshield is een militaire variant van de bekende Starlink-satellietbus, speciaal ontwikkeld voor gebruik door Amerikaanse overheidsdiensten. Verdere details over de lading en de specifieke missiedoelen zijn door de Space Force niet vrijgegeven.",
+      "description": "USSF-153 is een geclassificeerde missie uitgevoerd door SpaceX in opdracht van de United States Space Force. De exacte aard van de lading blijft geheim, maar aanwijzingen wijzen op een batch van geclassificeerde satellieten gebaseerd op het Starshield-platform van SpaceX. De locaties van de neervaldrop zones van de eerste trap komen nauwkeurig overeen met eerdere Starlink Group 15-lanceringen, wat de theorie over Starshield-satellieten ondersteunt. De Falcon 9-raket voerde de missie uit vanuit een onbekend lanceerkomplex.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -3952,8 +3950,14 @@
         "US Space Force",
         "Starshield",
         "Falcon 9",
-        "Geclassificeerde missie"
-      ]
+        "Geclassificeerde missie",
+        "space force",
+        "spacex",
+        "falcon 9",
+        "starshield",
+        "geclassificeerd"
+      ],
+      "_lastClaudeUpdate": "2026-09-04T12:21:50.360Z"
     }
   ]
 }
