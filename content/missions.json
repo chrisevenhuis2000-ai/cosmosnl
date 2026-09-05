@@ -1,7 +1,9 @@
 {
   "_meta": {
-    "lastUpdated": "2026-09-04T12:21:50.375Z",
-    "autoUpdated": []
+    "lastUpdated": "2026-09-05T11:27:51.623Z",
+    "autoUpdated": [
+      "haste-leidos-3"
+    ]
   },
   "missions": [
     {
@@ -2523,7 +2525,7 @@
       "agency": "SpaceX",
       "agencyColor": "#3dcfdf",
       "status": "gepland",
-      "launched": "30 sep 2026",
+      "launched": "13 sep 2026",
       "objective": "Lancering van drie O3b mPower-satellieten voor hoge-capaciteit internetdiensten in MEO.",
       "body": "Medium Earth Orbit",
       "highlight": "Derde batch O3b mPower-satellieten vergroot capaciteit van SES-netwerk.",
@@ -3958,6 +3960,39 @@
         "geclassificeerd"
       ],
       "_lastClaudeUpdate": "2026-09-04T12:21:50.360Z"
+    },
+    {
+      "id": "haste-leidos-3",
+      "_ll2Id": "04522dea-1450-48f5-bc9d-2d7f1e637f9b",
+      "name": "HASTE | Leidos-3",
+      "agency": "Rocket Lab",
+      "agencyColor": "#c080ff",
+      "status": "gepland",
+      "launched": "31 dec 2026",
+      "objective": "HASTE | Leidos-3 — Rocket Lab missie naar Aardeomloopbaan.",
+      "body": "Aardeomloopbaan",
+      "highlight": "Lancering gepland: 31 dec 2026",
+      "icon": "🚀",
+      "bgFrom": "#040408",
+      "bgTo": "#080810",
+      "description": "HASTE | Leidos-3 is een geplande missie van Rocket Lab naar Aardeomloopbaan.",
+      "vehicle": "Electron",
+      "launchSite": "Rocket Lab Launch Complex 2 (Launch Area 0 C)",
+      "duration": "Onbekend",
+      "distanceKm": "Onbekend",
+      "missionUrl": "https://ll.thespacedevs.com/2.3.0/launches/04522dea-1450-48f5-bc9d-2d7f1e637f9b/?format=json",
+      "timeline": [
+        {
+          "date": "31 dec 2026",
+          "event": "Geplande lancering van HASTE | Leidos-3"
+        }
+      ],
+      "facts": [],
+      "relatedTags": [
+        "haste-leidos-3",
+        "rocket-lab",
+        "aardeomloopbaan"
+      ]
     }
   ]
 }
