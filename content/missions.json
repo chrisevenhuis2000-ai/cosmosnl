@@ -1,9 +1,7 @@
 {
   "_meta": {
-    "lastUpdated": "2026-09-05T11:27:51.623Z",
-    "autoUpdated": [
-      "haste-leidos-3"
-    ]
+    "lastUpdated": "2026-09-06T11:49:04.008Z",
+    "autoUpdated": []
   },
   "missions": [
     {
@@ -1217,13 +1215,13 @@
       "agencyColor": "#c080ff",
       "status": "gepland",
       "launched": "31 dec 2026",
-      "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse beeldbedrijf iQPS.",
+      "objective": "Lancering van een SAR-aardobservatiesatelliet voor het Japanse bedrijf iQPS.",
       "body": "Low Earth Orbit",
-      "highlight": "Gepland voor lancering in 2026; zevende iQPS-missie voor Rocket Lab.",
+      "highlight": "Gepland voor eind 2026; zevende lancering in de iQPS-reeks.",
       "icon": "🚀",
       "bgFrom": "#040408",
       "bgTo": "#080810",
-      "description": "Rocket Lab lanceert met zijn Electron-raket de zevende satelliet voor het Japanse bedrijf iQPS, gespecialiseerd in synthetische apertuurradar (SAR) aardobservatie. De missie, getiteld 'The Grain Goddess Provides', plaatst de satelliet in een lage aardbaan voor hoogwaardige beeldvorming van het aardoppervlak. SAR-technologie maakt het mogelijk om ook bij bewolking en 's nachts scherpe opnames te maken, wat de satelliet bijzonder waardevol maakt voor landbouw-, maritieme en rampenmonitoring. Het is alweer de zevende samenwerking tussen Rocket Lab en iQPS, wat duidt op een langdurige en groeiende partnerschap.",
+      "description": "Rocket Lab lanceert met zijn Electron-raket de zevende satelliet voor het Japanse aardobservatiebedrijf iQPS. Het ruimtevaartuig is uitgerust met een synthetische apertuurradar (SAR), waarmee het ongeacht weersomstandigheden of daglicht gedetailleerde beelden van het aardoppervlak kan maken. De missie draagt de naam 'The Grain Goddess Provides', een verwijzing naar de Japanse rijstgodin Inari, en versterkt de groeiende vloot van iQPS in een lage baan om de aarde. Met deze lancering bouwt iQPS verder aan zijn commerciële constellatie voor snelle en frequente beeldvorming van de aarde.",
       "vehicle": "Electron",
       "launchSite": "Unknown Pad",
       "duration": "Onbekend",
@@ -1248,7 +1246,7 @@
         "sar",
         "sar-satelliet"
       ],
-      "_lastClaudeUpdate": "2026-08-07T08:45:39.000Z"
+      "_lastClaudeUpdate": "2026-09-06T11:49:04.002Z"
     },
     {
       "id": "flight-12",
@@ -1510,13 +1508,13 @@
       "agencyColor": "#3dcfdf",
       "status": "gepland",
       "launched": "31 okt 2026",
-      "objective": "SpaceX brengt tientallen micro- en nanosatellieten naar een zonnesynchrone baan via een gedeelde vlucht.",
+      "objective": "SpaceX brengt tientallen microsatellieten en nanosatellieten naar een zonsynchrone baan.",
       "body": "Sun-Synchronous Orbit",
-      "highlight": "Gepland voor 31 oktober 2026; onderdeel van SpaceX's vaste rideshare-programma.",
+      "highlight": "Gepland voor lancering op 31 oktober 2026 vanaf SpaceX-lanceerplatform.",
       "icon": "🚀",
       "bgFrom": "#040e14",
       "bgTo": "#0a2030",
-      "description": "Met Transporter 17 voert SpaceX opnieuw een dedicated rideshare-missie uit naar een zonnesynchrone baan, waarbij tientallen kleine satellieten voor commerciële en overheidsklanten worden meegelift. De Falcon 9-raket biedt ruimte aan microsatellieten en nanosatellieten die individueel te duur zouden zijn voor een eigen lancering. Dit type missie is een hoeksteen van SpaceX's commerciële strategie en maakt de ruimtevaart toegankelijker voor kleinere organisaties en startups. Transporter 17 is gepland voor oktober 2026 en volgt een inmiddels beproefde formule die SpaceX met regelmaat uitvoert.",
+      "description": "Met de Transporter 17-missie voert SpaceX opnieuw een toegewijde rideshare-vlucht uit naar een zonsynchrone baan. Aan boord bevinden zich tientallen kleine micro- en nanosatellieten voor zowel commerciële als overheidsklanten. De Falcon 9-raket is speciaal geconfigureerd voor deze poolbaanvlucht, waarbij meerdere satellieten tegelijk worden uitgestoten. De missie maakt deel uit van SpaceX' groeiende Transporter-programma, dat betaalbare toegang tot de ruimte biedt voor kleine payloads.",
       "vehicle": "Falcon 9",
       "launchSite": "Space Launch Complex 4E",
       "duration": "Onbekend",
@@ -1542,9 +1540,10 @@
         "nanosatellieten",
         "sso",
         "zonssynchrone baan",
-        "nanosatelliet"
+        "nanosatelliet",
+        "zonsynchrone baan"
       ],
-      "_lastClaudeUpdate": "2026-08-07T08:45:13.424Z"
+      "_lastClaudeUpdate": "2026-09-06T11:48:54.988Z"
     },
     {
       "id": "mrv-1",
